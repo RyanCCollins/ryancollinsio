@@ -4,6 +4,38 @@ User.create(
   password: "Password123!"
 )
 
+ProjectImage.create(
+  src: "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/main-images/home-nav.png?raw=true",
+)
+
+ProjectImage.create(
+  src: "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/main-images/home.png?raw=true",
+)
+
+ProjectImage.create(
+  src: "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/main-images/key-metrics-main.png?raw=true",
+)
+
+ProjectImage.create(
+  src: "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/main-images/key-metrics-bottom.png?raw=true",
+)
+
+ProjectImage.create(
+  src: "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/main-images/geospatial.png?raw=true",
+)
+
+ProjectImage.create(
+  src: "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/main-images/data-view-main.png?raw=true",
+)
+
+ProjectImage.create(
+  src: "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/main-images/data-view-search.png?raw=true",
+)
+
+ProjectImage.create(
+  src: "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/main-images/data-page-filter.png?raw=true",
+)
+
 Project.create(
   title: 'Corporate Dashboard',
   user: User.all.first,
@@ -17,8 +49,16 @@ Project.create(
   technicalInformation: "Built with functional JavaScript, ES2015, React, Redux, Grommet, CSS Modules, following the unidirectional data-flow architecture. Utilizes best practices for scaling of React Apps. Unit tests written with Jest and Enzyme to provide high quality code. Built a custom GraphQL back end schema.",
   technicalReview: "Excellent work, all data are very nicely presented in the DOM! ... Great work with GraphQl and React / Redux!",
   reviewerName: "Expert Code Reviewer",
-  category: "frontend"
+  category: "frontend",
 )
+
+p = Project.first
+images = ProjectImage.all
+
+images.each do |i|
+  p.images << i
+end
+p.save
 
 Project.create(
   title: 'Meetup Event Planner',

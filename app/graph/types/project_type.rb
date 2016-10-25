@@ -18,4 +18,5 @@ ProjectType = GraphQL::ObjectType.define do
   field :designPatterns, types.String, 'The design patterns of the project'
   field :reviewerName, types.String, 'The reviewer name of the project'
   field :technicalReview, types.String, 'The Technical Review of the project'
+  field :images, types[ProjectImageType], 'Associated images for the project'
 end

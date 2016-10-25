@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import * as PortfolioActionCreators from './actions';
 import cssModules from 'react-css-modules';
 import styles from './index.module.scss';
-import { WithLoading } from 'components';
+import { WithLoading, Divider } from 'components';
 import Section from 'grommet-udacity/components/Section';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
@@ -12,6 +12,7 @@ import Columns from 'grommet-udacity/components/Columns';
 import Box from 'grommet-udacity/components/Box';
 import Heading from 'grommet-udacity/components/Heading';
 import Anchor from 'grommet-udacity/components/Anchor';
+import Headline from 'grommet-udacity/components/Headline';
 
 class PortfolioContainer extends Component { // eslint-disable-line react/prefer-stateless-function
   render() {
@@ -23,12 +24,17 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
     return (
       <WithLoading isLoading={isLoading}>
         <Section className={styles.portfolio}>
+          <Headline align="center">
+            Portfolio
+          </Headline>
+          <Divider />
+          <Box>
             <Columns
               className={styles.masonry}
               masonry
               justify="center"
               size="small"
-              maxCount={2}
+              maxCount={3}
             >
               {projects && projects.map((project, i) =>
                 <Box className={styles.card} size="medium" key={i}>
@@ -41,6 +47,7 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
                 </Box>
               )}
             </Columns>
+          </Box>
         </Section>
       </WithLoading>
     );

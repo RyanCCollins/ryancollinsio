@@ -13,9 +13,16 @@ QueryType = GraphQL::ObjectType.define do
     end
   end
   field :project, ProjectType do
-    argument :id, !types.ID
+    argument :id, types.ID
+    argument :slug, types.String
     resolve -> (obj, args, ctx) do
-      Project.find_by(id: args[:id])
+      if args[:id]
+        Project.find_by(id: args[:id])
+      elsif args[:slug]
+        Project.find_by(slug: args[:slug])
+      else
+        Project.all.first
+      end
     end
   end
 end

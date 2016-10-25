@@ -24,6 +24,9 @@ export const projectData = createFragment(
         avatar
         bio
       }
+      images {
+        src
+      }
     }
   `
 );
