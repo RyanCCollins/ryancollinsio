@@ -3,6 +3,7 @@ ProjectType = GraphQL::ObjectType.define do
   description 'The application, non auth user type'
   field :id, !types.ID, 'The id of the project'
   field :title, !types.String, 'The title of the project'
+  field :slug, !types.String, 'The slug for the project'
   field :description, types.String, 'The description of the project'
   field :caption, types.String, 'The caption of the project'
   field :milestones, types.String, 'The project milestones'

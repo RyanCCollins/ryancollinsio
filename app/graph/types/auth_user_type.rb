@@ -9,5 +9,5 @@ AuthUserType = GraphQL::ObjectType.define do
   field :events, types[EventType], 'The user events'
   field :avatar, types.String, 'The user avatar'
   field :auth_token, types.String, 'The user auth token'
-  field :employer, types.String, 'The user employer'
+  field :projects, types[ProjectType], 'The user projects'
 end
