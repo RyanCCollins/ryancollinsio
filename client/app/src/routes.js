@@ -18,6 +18,7 @@ const routes = (
         <IndexRoute component={Pages.LandingPage} />
         <Route path="/portfolio" component={Pages.PortfolioPage} />
         <Route path="/projects/:slug" component={Pages.ProjectPage} />
+        <Route path="/admin/create-project" component={Pages.CreateProjectPage} />
         <Route path="*" component={Pages.NotFoundPage} />
       </Route>
     </Router>

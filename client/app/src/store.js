@@ -9,9 +9,11 @@ const isDeveloping = process.env.NODE_ENV !== 'production';
 import client from './apolloClient';
 
 import { initialState as landing } from './containers/LandingContainer/reducer';
+import { initialState as createProject } from './containers/CreateProjectContainer/reducer';
 
 const initialState = {
   landing,
+  createProject,
 };
 
 /* Commonly used middlewares and enhancers */
