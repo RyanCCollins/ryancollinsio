@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   before_create :generate_auth_token!
+  has_many :projects
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   enum role: [:user, :admin]
