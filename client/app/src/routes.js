@@ -16,6 +16,8 @@ const routes = (
     >
       <Route path="/" component={App}>
         <IndexRoute component={Pages.LandingPage} />
+        <Route path="/portfolio" component={Pages.PortfolioPage} />
+        <Route path="/projects/:slug" component={Pages.ProjectPage} />
         <Route path="*" component={Pages.NotFoundPage} />
       </Route>
     </Router>

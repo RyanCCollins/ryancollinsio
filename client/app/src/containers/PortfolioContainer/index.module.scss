@@ -1,0 +1,18 @@
+.card {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  background: #fff;
+  text-align: left;
+  position: relative;
+  border: 1px solid #dbe2e8;
+  box-shadow: 0 2px 4px 0 rgba(46,61,73,0.12);
+  border-radius: 0.125rem;
+  transition: box-shadow 0.3s ease, border 0.3s ease;
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+
+.image {
+  max-width: 100%;
+  height: auto;
+}
