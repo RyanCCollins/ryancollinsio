@@ -2,8 +2,8 @@ class User < ApplicationRecord
   before_create :generate_auth_token!
   has_many :projects
   has_many :posts
-  has_many :project_comments, through: :project
-  has_many :post_comments, through: :post
+  has_many :project_comments, through: :projects
+  has_many :post_comments, through: :posts
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   enum role: [:user, :admin]

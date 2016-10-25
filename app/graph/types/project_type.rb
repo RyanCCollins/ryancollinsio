@@ -1,6 +1,6 @@
 ProjectType = GraphQL::ObjectType.define do
   name 'Project'
-  description 'The application, non auth user type'
+  description 'Project type'
   field :id, !types.ID, 'The id of the project'
   field :title, !types.String, 'The title of the project'
   field :slug, !types.String, 'The slug for the project'
@@ -19,4 +19,5 @@ ProjectType = GraphQL::ObjectType.define do
   field :reviewerName, types.String, 'The reviewer name of the project'
   field :technicalReview, types.String, 'The Technical Review of the project'
   field :images, types[ProjectImageType], 'Associated images for the project'
+  field :comments, types[ProjectCommentType], 'Associated comments'
 end

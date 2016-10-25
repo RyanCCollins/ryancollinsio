@@ -3,7 +3,8 @@ class Project < ApplicationRecord
   belongs_to :user
   enum category: [:frontend, :fullstack, :backend, :ios]
   has_many :images, class_name: 'ProjectImage'
-  has_many :comments, class_name: 'ProjectComment'
+  has_many :project_comments
+  alias_attribute :comments, :project_comments
 
   def create_slug
     self.slug = self.title.parameterize

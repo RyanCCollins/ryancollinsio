@@ -8,7 +8,7 @@ module ProjectMutations
     return_field :project, ProjectType
     resolve -> (inputs, ctx) do
       user = User.find_by(auth_token: inputs[:auth_token])
-      project = user.projects.create(inputs[:project])
+      project = user.projects.create(inputs[:project].to_h)
       if project.save!
         {
           project: project
@@ -26,7 +26,7 @@ module ProjectMutations
     return_field :project, ProjectType
     resolve -> (inputs, ctx) do
       user = User.find_by(auth_token: inputs[:auth_token])
-      project = user.projects.update(inputs[:project])
+      project = user.projects.update(inputs[:project].to_h)
       if project.save!
         {
           project: project
@@ -56,16 +56,20 @@ module ProjectMutations
       name 'CreateProjectComment'
       description 'Create a Project comment'
       input_field :auth_token, !types.String, 'The user auth token'
-      input_field :comment, ProjectCommentInputType, 'The project comment'
+      input_field :comment, CommentInputType, 'The project comment'
       input_field :project_id, !types.ID, 'The project id'
-      return_field :comment, ProjectCommentType, 'The comment that was created'
+      return_field :project_comment, ProjectCommentType, 'The comment that was created'
       resolve -> (inputs, ctx) do
         user = User.find_by(auth_token: inputs[:auth_token])
-        comment = user.project_comments.build(inputs[:comment])
-        comment.project = Project.find_by(id: inputs[:project_id])
+        project = Project.find_by(id: inputs[:project_id])
+        comment = ProjectComment.new(
+          body: inputs[:comment][:body],
+          user: user,
+          project: project
+        )
         if comment.save!
           {
-            comment: comment
+            project_comment: comment
           }
         end
       end
@@ -74,16 +78,16 @@ module ProjectMutations
       name 'EditProjectComment'
       description 'Edit a Project comment'
       input_field :auth_token, !types.String, 'The user auth token'
-      input_field :comment, ProjectCommentInputType, 'The project comment'
+      input_field :comment, CommentInputType, 'The project comment'
       input_field :comment_id, !types.ID, 'The comment id'
 
-      return_field :comment, ProjectCommentType, 'The comment that was created'
+      return_field :project_comment, ProjectCommentType, 'The comment that was created'
       resolve -> (inputs, ctx) do
         user = User.find_by(auth_token: inputs[:auth_token])
         comment = user.project_comments.find_by(id: inputs[:comment_id])
-        if comment.update(inputs[:comment])
+        if comment.update(inputs[:comment].to_h)
           {
-            comment: comment
+            project_comment: comment
           }
         end
       end
