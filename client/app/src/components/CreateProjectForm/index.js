@@ -4,6 +4,7 @@ import FormField from 'grommet-udacity/components/FormField';
 import FormFields from 'grommet-udacity/components/FormFields';
 import Footer from 'grommet-udacity/components/Footer';
 import Button from 'grommet-udacity/components/Button';
+import Select from 'grommet-udacity/components/Select';
 import { MarkdownInput } from 'components';
 
 const CreateProjectForm = ({
@@ -32,6 +33,34 @@ const CreateProjectForm = ({
             autoComplete="off"
             aria-invalid={fields.titleInput.error}
             aria-required
+          />
+        </FormField>
+        <FormField
+          label="Category"
+          htmlFor="category-input"
+        >
+          <Select
+            {...fields.categoryInput}
+            onChange={({ option }) => fields.categoryInput.onChange(option.label)}
+            id="category-input"
+            options={[
+              {
+                value: 'frontend',
+                label: 'Front End',
+              },
+              {
+                value: 'fullstack',
+                label: 'Full Stack',
+              },
+              {
+                value: 'backend',
+                label: 'Back End',
+              },
+              {
+                value: 'ios',
+                label: 'iOS',
+              },
+            ]}
           />
         </FormField>
         <FormField
@@ -88,6 +117,23 @@ const CreateProjectForm = ({
             autoComplete="off"
             aria-invalid={fields.projectUrlInput.error}
             aria-required
+          />
+        </FormField>
+      </fieldset>
+      <fieldset>
+        <legend>
+          Images
+        </legend>
+        <FormField
+          label="Feature Image Url"
+          htmlFor="feature-image-input"
+        >
+          <input
+            {...fields.featureImageInput}
+            type="text"
+            id="feature-image-input"
+            placeholder="http://cdn.com/image.png"
+            aria-invalid={fields.featureImageInput.error}
           />
         </FormField>
       </fieldset>

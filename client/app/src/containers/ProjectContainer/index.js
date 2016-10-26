@@ -11,6 +11,7 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Heading from 'grommet-udacity/components/Heading';
 
+
 class ProjectContainer extends Component { // eslint-disable-line react/prefer-stateless-function
   constructor() {
     super();

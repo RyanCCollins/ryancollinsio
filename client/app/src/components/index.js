@@ -1,4 +1,6 @@
 /* Assemble all components for export */
+export Comment from './Comment';
+export Post from './Post';
 export WithToast from './WithToast';
 export ToastMessage from './ToastMessage';
 export CreateProjectForm from './CreateProjectForm';

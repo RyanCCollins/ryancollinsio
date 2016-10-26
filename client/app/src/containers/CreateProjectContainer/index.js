@@ -25,6 +25,8 @@ export const formFields = [
   'reviewerNameInput',
   'technicalInformationInput',
   'designPatternsInput',
+  'categoryInput',
+  'featureImageInput',
 ];
 
 class CreateProjectContainer extends Component {
@@ -40,6 +42,7 @@ class CreateProjectContainer extends Component {
     } = this.props;
     const user = {
       id: 1,
+      authToken: 'EKeE_j49qzXp3GvzfP7N',
     };
     mutate(
       fieldsToSubmission(
@@ -50,6 +53,9 @@ class CreateProjectContainer extends Component {
     .then(() => {
       const message = 'The project has successfully been created.';
       actions.createProjectMessage(message);
+      setTimeout(() => {
+        this.context.router.push('/portfolio');
+      }, 3000);
     })
     .catch((err) => {
       actions.createProjectError(err);
@@ -94,6 +100,10 @@ CreateProjectContainer.propTypes = {
   createEventError: PropTypes.object,
   message: PropTypes.string,
   actions: PropTypes.object.isRequired,
+};
+
+CreateProjectContainer.contextTypes = {
+  router: PropTypes.object.isRequired,
 };
 
 // mapStateToProps :: {State} -> {Props}

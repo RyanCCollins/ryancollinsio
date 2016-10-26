@@ -11,21 +11,7 @@ import Box from 'grommet-udacity/components/Box';
 import Section from 'grommet-udacity/components/Section';
 import Heading from 'grommet-udacity/components/Heading';
 import Anchor from 'grommet-udacity/components/Anchor';
-
-const WithLoading = ({
-  children,
-  isLoading,
-}) => (
-  <div>
-    {isLoading ?
-      <h1>
-        Loading...
-      </h1>
-    :
-      <div>{children}</div>
-    }
-  </div>
-);
+import { WithLoading } from 'components';
 
 class Landing extends Component { // eslint-disable-line react/prefer-stateless-function
   render() {

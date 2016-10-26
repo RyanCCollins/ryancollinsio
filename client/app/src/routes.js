@@ -19,6 +19,8 @@ const routes = (
         <Route path="/portfolio" component={Pages.PortfolioPage} />
         <Route path="/projects/:slug" component={Pages.ProjectPage} />
         <Route path="/admin/create-project" component={Pages.CreateProjectPage} />
+        <Route path="/blog" component={Pages.BlogPage} />
+        <Route path="/blog/posts/:slug" component={Pages.PostPage} />
         <Route path="*" component={Pages.NotFoundPage} />
       </Route>
     </Router>

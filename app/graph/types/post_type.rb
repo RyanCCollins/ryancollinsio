@@ -7,4 +7,6 @@ PostType = GraphQL::ObjectType.define do
   field :body, types.String, 'The body of the post'
   field :comments, types[PostCommentType], 'Associated comments'
   field :user, UserType, 'The user who made the post'
+  field :feature_image, types.String, 'The url to the featured image'
+  field :created_at, types.String, 'The datetime it was created'
 end
