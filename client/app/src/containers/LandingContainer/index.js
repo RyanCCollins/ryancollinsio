@@ -77,7 +77,7 @@ class LandingContainer extends Component {
             </Heading>
           </Animate>
         </Hero>
-        <Section className={styles.section}>
+        <Section className={styles.section} align="center" justify="center">
           <Headline align="center" className="heading">
             Summary
           </Headline>
