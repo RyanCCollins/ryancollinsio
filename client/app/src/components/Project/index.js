@@ -71,21 +71,23 @@ const Project = ({
         </Box>
       </Box>
     </Section>
-    <Section>
-      <Heading align="center">
-        Expert Technical Review
-      </Heading>
-      <Divider />
-      <Box align="center" justify="center" pad="large">
-        <Box className="card">
-          <Box pad="medium">
-            <Quote credit={`- ${project.reviewerName}`}>
-              <Markdown content={project.technicalReview} />
-            </Quote>
+    {project.technicalReview && project.reviewerName &&
+      <Section>
+        <Heading align="center">
+          Expert Technical Review
+        </Heading>
+        <Divider />
+        <Box align="center" justify="center" pad="large">
+          <Box className="card">
+            <Box pad="medium">
+              <Quote credit={`- ${project.reviewerName}`}>
+                <Markdown content={project.technicalReview} />
+              </Quote>
+            </Box>
           </Box>
         </Box>
-      </Box>
-    </Section>
+      </Section>
+    }
     <Section>
       <Heading align="center">
         Technical Information

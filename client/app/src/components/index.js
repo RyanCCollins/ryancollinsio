@@ -1,4 +1,5 @@
 /* Assemble all components for export */
+export ResponsiveImage from './ResponsiveImage';
 export Comment from './Comment';
 export Post from './Post';
 export WithToast from './WithToast';

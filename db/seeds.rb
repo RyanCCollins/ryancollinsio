@@ -407,3 +407,72 @@ Whether you are a seasoned engineer / developer, or are just starting your journ
 /n
 With great power comes great responsibility, so if like me, you do find that Functional Programming opens your eyes to powerful new ideas, please share the knowledge and insights that you have gained through the experience of learning it."
 )
+
+Reference.create(
+  avatar: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAaFAAAAJGFiZTQxNmE5LTZhY2ItNDgwNS1iMzgyLTU4ODAxZGM0MTE0OA.jpg',
+  name: 'Gabriele Cimato',
+  body: 'Ryan will be a great asset in any field he
+      applies his energy to. He is extremely knowledgeable
+      and has also some fundamental traits that make him ideal in
+      any team. He is very open minded, determined and well rounded
+      in javascript, Front-End and Back-End. He did a tremendous job
+      coordinating a team of developers from different parts of the
+      globe to achieve results within a deadline on the Food Drivr project.
+      I really enjoyed our hacking marathons and working hard together towards
+      a goal. Ryan was always either helping out the Front-End or the
+      Back-End team and even hopping in with the Mobile one as well.
+      His dedication and knowledge as a developer are inspiring!',
+  title: 'Lead Full Stack Engineer',
+  company: "Food Perk"
+)
+
+Reference.create(
+  avatar: 'https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/frank.jpg?raw=true',
+  name: 'Frank Robert',
+  body: "Ryan has been an outstanding leader from the day that I've met him. He constantly shows initiative and well-developed problem-solving skills that have allowed him to create several large-scale projects on his own, freelance, create his own company, and even begin working towards a Hackathon. Ryan is also extremely insightful and has helped me learn quite a bit. He has pushed everyone on the Hacksmiths team to perform their best and on schedule. I believe that Ryan will succeed and compliment any development team he joins.",
+  title: 'Front End Software Engineer',
+  company: 'Sweet IQ'
+)
+
+Reference.create(
+  avatar: 'https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/mikael.jpg?raw=true',
+  name: 'Mikael Mukhsikaroyan',
+  body: "Ryan is one of the most intelligent Software
+      Engineers I've had the pleasure of knowing. He has demonstrated
+      his leadership skills as leader of Hacksmiths and has a personality
+      that inspires those around him to always do their best. I have
+      gained a lot of knowledge about software development from Ryan,
+      who always takes the time to explain concepts that are difficult
+      to grasp. Whether as a team member or as a leader, Ryan would be
+      an asset to any project.",
+  title: 'iOS Developer',
+  company: 'Hacksmiths'
+)
+
+Reference.create(
+  avatar: 'https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/cody.jpg?raw=true',
+  name: 'Cody Perry',
+  body: "Ryan is a fantastic leader, teacher and project manager.
+      He has a wealth of knowledge expanding from the Front end technologies
+      to integrating the back-end aspect on projects. The information he brings
+      fundamentally makes everyone around him better. Anytime someone is
+      struggling to understand or complete a task he's available to walk through it.",
+  title: 'Front End Web Developer',
+  company: "Perry's Design"
+)
+
+Reference.create(
+  avatar: 'https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/sean.jpg?raw=true',
+  name: 'Sean Craig',
+  body: "Ryan is one of the most focused developers I've had the privilege to work with. His knowledge base is also incredibly deep. We have partnered on several projects and all of them are world class. Ryan is also an incredibly enjoyable person to work with and I've had a blast working with him.",
+  title: 'Lead Designer',
+  company: 'Applied Rater'
+)
+
+Reference.create(
+  avatar: 'https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/alice.jpg?raw=true',
+  name: 'Alice Bonner',
+  body: "Ryan was one of the standout employees in my tenure ... More importantly, Ryan was innovative and always looking for new ways to solve problems.  He has tremendous leadership potential, both in terms of his interpersonal skills and his solid knowledge of data systems...",
+  title: 'Director',
+  company: 'CMS - Division of Nursing Homes'
+)

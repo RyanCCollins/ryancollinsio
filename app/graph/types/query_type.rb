@@ -43,4 +43,9 @@ QueryType = GraphQL::ObjectType.define do
       Post.all
     end
   end
+  field :references, types[ReferenceType] do
+    resolve -> (obj, args, ctx) do
+      Reference.all
+    end
+  end
 end
