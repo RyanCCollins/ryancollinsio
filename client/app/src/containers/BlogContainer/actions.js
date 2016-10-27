@@ -44,3 +44,7 @@ export const blogSetSearchTerm = (value) => ({
   type: types.BLOG_SET_SEARCH_TERM,
   value,
 });
+
+export const blogClearSearchTerm = () => ({
+  type: types.BLOG_CLEAR_SEARCH_TERM,
+});

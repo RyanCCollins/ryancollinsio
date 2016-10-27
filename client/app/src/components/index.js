@@ -1,4 +1,5 @@
 /* Assemble all components for export */
+export PostPreview from './PostPreview';
 export ResponsiveImage from './ResponsiveImage';
 export Comment from './Comment';
 export Post from './Post';

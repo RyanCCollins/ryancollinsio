@@ -7,43 +7,38 @@ import Headline from 'grommet-udacity/components/Headline';
 import Hero from 'grommet-udacity/components/Hero';
 import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
-import { highlightContent } from './utils';
 
 const Post = ({
   post,
-  searchTerm,
-}) => {
-  const formattedDescription = highlightContent(searchTerm, post.body);
-  return (
-    <Box
-      style={{ marginTop: 0, paddingTop: 0 }}
+}) => (
+  <Box
+    style={{ marginTop: 0, paddingTop: 0 }}
+  >
+    <Hero
+      backgroundImage={post.image}
     >
-      <Hero
-        backgroundImage={post.image}
-      >
-        <Headline strong className={styles.headline} align="center">
-          {post.title}
-        </Headline>
-      </Hero>
-      <Section
-        className={styles.articleWrapper}
-        pad="large"
-      >
-        <Article className={`${styles.post} markdown-body`}>
-          <Markdown
-            components={{
-              h1: { props: { strong: true } },
-              h2: { props: { strong: true } },
-              p: { props: { size: 'large' } },
-              img: { props: { size: 'small' } },
-            }}
-            content={formattedDescription}
-          />
-        </Article>
-      </Section>
-    </Box>
-  );
-};
+      <Headline strong className={styles.headline} align="center">
+        {post.title}
+      </Headline>
+    </Hero>
+    <Section
+      className={styles.articleWrapper}
+      pad="large"
+    >
+      <Article className={`${styles.post} markdown-body`}>
+        <Markdown
+          components={{
+            h1: { props: { strong: true } },
+            h2: { props: { strong: true } },
+            p: { props: { size: 'large' } },
+            img: { props: { size: 'small' } },
+          }}
+          content={post.body}
+        />
+      </Article>
+    </Section>
+  </Box>
+);
 
 Post.propTypes = {
   post: PropTypes.object.isRequired,
