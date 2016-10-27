@@ -39,3 +39,8 @@ export const clearBlogToast = (type) =>
         break;
     }
   };
+
+export const blogSetSearchTerm = (value) => ({
+  type: types.BLOG_SET_SEARCH_TERM,
+  value,
+});

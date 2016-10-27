@@ -4,11 +4,18 @@ import update from 'react-addons-update';
 export const initialState = {
   error: null,
   message: null,
+  searchTerm: '',
 };
 
 const blogReducer =
   (state = initialState, action) => {
     switch (action.type) {
+      case types.BLOG_SET_SEARCH_TERM:
+        return update(state, {
+          searchTerm: {
+            $set: action.value,
+          },
+        });
       case types.BLOG_ERROR:
         return update(state, {
           error: {

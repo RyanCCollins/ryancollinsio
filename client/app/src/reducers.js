@@ -6,11 +6,13 @@ import client from './apolloClient';
 // Import all of your reducers here:
 import landing from 'containers/LandingContainer/reducer';
 import createProject from 'containers/CreateProjectContainer/reducer';
+import blog from 'containers/BlogContainer/reducer';
 
 const rootReducer = combineReducers({
   // Apply all of the reducers here.
   landing,
   createProject,
+  blog,
   routing: routerReducer,
   form: formReducer,
   apollo: client.reducer(),

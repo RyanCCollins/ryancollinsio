@@ -10,10 +10,12 @@ import client from './apolloClient';
 
 import { initialState as landing } from './containers/LandingContainer/reducer';
 import { initialState as createProject } from './containers/CreateProjectContainer/reducer';
+import { initialState as blog } from './containers/BlogContainer/reducer';
 
 const initialState = {
   landing,
   createProject,
+  blog,
 };
 
 /* Commonly used middlewares and enhancers */
