@@ -23,12 +23,12 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
     } = this.props;
     return (
       <WithLoading isLoading={isLoading}>
-        <Section className={styles.portfolio}>
+        <Section className={styles.portfolio} colorIndex="light-2">
           <Headline align="center">
             Portfolio
           </Headline>
           <Divider />
-          <Box>
+          <Box className={styles.innerBox}>
             <Columns
               className={styles.masonry}
               masonry

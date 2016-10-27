@@ -23,12 +23,14 @@ const Project = ({
     <Hero
       backgroundImage={project.featureImage}
     >
-      <Headline align="center" className={styles.heroHeader}>
-        {project.title}
-      </Headline>
-      <Heading tag="h3" align="center" className={styles.heroHeader}>
-        {project.caption}
-      </Heading>
+      <Box colorIndex="grey-1-a" pad="large" size="large">
+        <Headline align="center" className={styles.heroHeader}>
+          {project.title}
+        </Headline>
+        <Heading tag="h3" align="center" className={styles.heroHeader}>
+          {project.caption}
+        </Heading>
+      </Box>
     </Hero>
     <Section pad="large" primary>
       <Heading align="center">

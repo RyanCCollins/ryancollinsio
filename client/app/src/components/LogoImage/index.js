@@ -1,22 +1,15 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
+import CrownLogo from './crown.png';
 
-const LogoImage = ({
-  imageSource,
-}) => (
-  <div className={styles.logoImageContainer}>
-    <img
-      src={imageSource}
-      alt="Udacity Logo"
-      className={styles.logoImage}
-      id="udacity-alumni-logo"
-    />
-  </div>
+const LogoImage = () => (
+  <img
+    src={CrownLogo}
+    alt="Ryan Collins Logo"
+    className={styles.logoImage}
+    id="ryancollins-logo"
+  />
 );
-
-LogoImage.propTypes = {
-  imageSource: PropTypes.string.isRequired,
-};
 
 export default cssModules(LogoImage, styles);

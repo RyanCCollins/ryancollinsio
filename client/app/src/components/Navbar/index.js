@@ -3,15 +3,17 @@ import Header from 'grommet-udacity/components/Header';
 import Title from 'grommet-udacity/components/Title';
 import Menu from 'grommet-udacity/components/Menu';
 import Anchor from 'grommet-udacity/components/Anchor';
-import LogoImage from './logo.png';
 import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
+import { LogoImage } from 'components';
 
 const Navbar = () => (
   <div className={styles.navbar}>
     <Header justify="between">
       <Title>
-        <img className={styles.logo} src={LogoImage} alt="logo"/>
+        <Anchor href="/">
+          <LogoImage />
+        </Anchor>
       </Title>
       <Menu
         style={{ marginRight: 20 }}

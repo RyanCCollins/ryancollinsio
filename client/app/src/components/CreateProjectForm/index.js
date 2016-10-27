@@ -6,14 +6,15 @@ import Footer from 'grommet-udacity/components/Footer';
 import Button from 'grommet-udacity/components/Button';
 import Select from 'grommet-udacity/components/Select';
 import { MarkdownInput } from 'components';
-import { Select } from 'antd';
+import { Select as TagSelect } from 'antd';
+const Option = TagSelect.Option;
 
 const CreateProjectForm = ({
   fields,
   invalid,
   onSubmit,
   onSetTechnicalInfoTags,
-  technicalInfoTags
+  technicalInfoTags,
 }) => (
   <Form>
     <FormFields>

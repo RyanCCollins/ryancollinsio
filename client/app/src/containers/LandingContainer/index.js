@@ -19,6 +19,8 @@ import Value from 'grommet-udacity/components/Value';
 import Label from 'grommet-udacity/components/Label';
 import Columns from 'grommet-udacity/components/Columns';
 import Carousel from 'grommet-udacity/components/Carousel';
+import Footer from 'grommet-udacity/components/Footer';
+import Button from 'grommet-udacity/components/Button';
 import {
   milestones,
   summary,
@@ -82,16 +84,24 @@ class LandingContainer extends Component {
             Summary
           </Headline>
           <Divider />
-          <Box align="center" justify="center" className={styles.container}>
+          <Box align="center" justify="center" className={styles.innerContainer}>
             <Markdown content={summary} className="paragraph" />
           </Box>
         </Section>
-        <Section className={styles.section} colorIndex="brand" full="horizontal" pad="large">
-          <Headline className="heading" align="center" className={styles.invertedHeader}>
+        <Section
+          className={styles.section}
+          colorIndex="brand"
+          full="horizontal"
+          pad="large"
+        >
+          <Headline
+            align="center"
+            className={`${styles.invertedHeader} heading`}
+          >
             Milestones
           </Headline>
           <Divider inverted />
-          <Box align="center" justify="center" className={styles.container}>
+          <Box align="center" justify="center" className={styles.innerContainer}>
             <Markdown content={milestones} className="paragraph" />
           </Box>
         </Section>
@@ -119,6 +129,13 @@ class LandingContainer extends Component {
               </Box>
             )}
           </Columns>
+          <Footer align="center" justify="center" pad="large">
+            <Button
+              primary
+              href="/portfolio"
+              label="View Projects"
+            />
+          </Footer>
         </Section>
         <Section
           className={styles.section}
@@ -143,6 +160,13 @@ class LandingContainer extends Component {
               <PolarRadiusAxis/>
             </RadarChart>
           </Box>
+          <Footer align="center" justify="center" pad="large">
+            <Button
+              primary
+              href="https://github.com/ryanccollins"
+              label="View Open Source"
+            />
+          </Footer>
         </Section>
         <Section
           className={styles.section}
