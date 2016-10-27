@@ -42,7 +42,7 @@ class CreateProjectContainer extends Component {
     } = this.props;
     const user = {
       id: 1,
-      authToken: 'EKeE_j49qzXp3GvzfP7N',
+      authToken: '3Qh2sqCfhWU6iYm3qN26',
     };
     mutate(
       fieldsToSubmission(

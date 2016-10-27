@@ -13,6 +13,9 @@
 }
 
 .image {
-  max-width: 100%;
+  min-width: 400px;
+  min-height: 350px;
+  width: auto;
   height: auto;
+  display: block;
 }

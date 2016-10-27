@@ -19,8 +19,8 @@ const fieldsToSubmission = (fields, user) => ({
       reviewerName: fields.reviewerNameInput.value,
       technicalInformation: fields.technicalInformationInput.value,
       designPatterns: fields.designPatternsInput.value,
-      category: categoryEnum[fields.categoryInput.value],
-      featureImage: fields.featureImage.value,
+      category: categoryEnum[`${fields.categoryInput.value}`],
+      featureImage: fields.featureImageInput.value,
     },
   },
 });

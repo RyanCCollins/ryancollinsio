@@ -41,9 +41,6 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
                   <Anchor href={`/projects/${project.slug}`}>
                     <img src={project.featureImage} className={styles.image} />
                   </Anchor>
-                  <Heading align="center">
-                    {project.title}
-                  </Heading>
                 </Box>
               )}
             </Columns>

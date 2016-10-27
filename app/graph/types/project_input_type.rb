@@ -13,4 +13,5 @@ ProjectInputType = GraphQL::InputObjectType.define do
   input_field :technicalReview, types.String, 'The technicalReview of the project'
   input_field :reviewerName, types.String, 'The reviewerName of the project'
   input_field :category, types.String, 'The category of the project'
+  input_field :tags, -> { types[TagInputType] }, 'The associated tags for the project'
 end

@@ -1,0 +1,2 @@
+class ProjectTag < ApplicationRecord
+end

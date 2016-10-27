@@ -6,11 +6,14 @@ import Footer from 'grommet-udacity/components/Footer';
 import Button from 'grommet-udacity/components/Button';
 import Select from 'grommet-udacity/components/Select';
 import { MarkdownInput } from 'components';
+import { Select } from 'antd';
 
 const CreateProjectForm = ({
   fields,
   invalid,
   onSubmit,
+  onSetTechnicalInfoTags,
+  technicalInfoTags
 }) => (
   <Form>
     <FormFields>
@@ -199,6 +202,16 @@ const CreateProjectForm = ({
             id="technical-information-input"
             aria-invalid={fields.technicalInformationInput.error}
           />
+        </FormField>
+        <FormField>
+          <Select
+            tags
+            style={{ width: '100%' }}
+            searchPlaceholder="Start Typing to add a tag."
+            onChange={onSetTag}
+          >
+            {children}
+          </Select>
         </FormField>
       </fieldset>
       <fieldset>

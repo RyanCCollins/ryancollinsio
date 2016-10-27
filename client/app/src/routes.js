@@ -21,6 +21,7 @@ const routes = (
         <Route path="/admin/create-project" component={Pages.CreateProjectPage} />
         <Route path="/blog" component={Pages.BlogPage} />
         <Route path="/blog/posts/:slug" component={Pages.PostPage} />
+        <Route path="/admin/create-post" component={Pages.CreatePostPage} />
         <Route path="*" component={Pages.NotFoundPage} />
       </Route>
     </Router>

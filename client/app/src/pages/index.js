@@ -1,4 +1,5 @@
 /* Assemble all pages for export */
+export CreatePostPage from './CreatePostPage/index';
 export PostPage from './PostPage/index';
 export BlogPage from './BlogPage/index';
 export CreateProjectPage from './CreateProjectPage/index';

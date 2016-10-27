@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161027044605) do
+ActiveRecord::Schema.define(version: 20161027212753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,14 @@ ActiveRecord::Schema.define(version: 20161027044605) do
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_post_comments_on_post_id", using: :btree
     t.index ["user_id"], name: "index_post_comments_on_user_id", using: :btree
+  end
+
+  create_table "post_tags", id: false, force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "tag_id"
+    t.index ["post_id"], name: "index_post_tags_on_post_id", using: :btree
+    t.index ["tag_id", "post_id"], name: "index_post_tags_on_tag_id_and_post_id", unique: true, using: :btree
+    t.index ["tag_id"], name: "index_post_tags_on_tag_id", using: :btree
   end
 
   create_table "posts", force: :cascade do |t|
@@ -61,6 +69,12 @@ ActiveRecord::Schema.define(version: 20161027044605) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["project_id"], name: "index_project_images_on_project_id", using: :btree
+  end
+
+  create_table "project_tags", id: false, force: :cascade do |t|
+    t.integer "tag_id"
+    t.integer "project_id"
+    t.index ["tag_id", "project_id"], name: "index_project_tags_on_tag_id_and_project_id", unique: true, using: :btree
   end
 
   create_table "projects", force: :cascade do |t|
@@ -93,6 +107,12 @@ ActiveRecord::Schema.define(version: 20161027044605) do
     t.string   "company"
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -119,6 +139,8 @@ ActiveRecord::Schema.define(version: 20161027044605) do
   add_foreign_key "post_comment_votes", "users"
   add_foreign_key "post_comments", "posts"
   add_foreign_key "post_comments", "users"
+  add_foreign_key "post_tags", "posts"
+  add_foreign_key "post_tags", "tags"
   add_foreign_key "posts", "users"
   add_foreign_key "project_comments", "projects"
   add_foreign_key "project_comments", "users"
