@@ -166,3 +166,244 @@ Also, searching for [Immutable Architecture][12] and [Functional JavaScript][13]
 [12]: https://medium.com/search?q=immutable%20architecture
 [13]: https://medium.com/search?q=functional%20javascript"
 )
+
+Post.create(
+  user: User.first,
+  feature_image: "http://res.cloudinary.com/dc1qjoyvn/image/upload/v1472593988/ge3wvwgvomm5tc04zjsz.png",
+  title: "Feature First Organization",
+  body: "# Feature First Organization
+/n
+tldr; Colocation is in. Your organization starts and ends with the feature you are implementing. You know you are doing it right if your entire app is a composition of feature-first components and your components are modular to the point where you can pluck components for reuse by dragging and dropping the folder they reside in. [The original article was posted on Medium](https://medium.com/front-end-hacking/the-secret-to-organization-in-functional-programming-913484e85fc9#.kwiqkohbv) and featured on [Front End Weekly](https://medium.com/front-end-hacking), a curated publication for Front End JavaScript engineering content.
+/n /n
+## Feature First
+/n
+I am not going to claim ownership of the idea, but I will tell you about how I came to believe that organizing your applications by feature is such an amazing pattern to follow. I am a web developer, so my examples will relate to my web development. If you stick with me, however, I will tell you how I believe that this architecture can be applied in nearly any domain.
+/n /n
+## Search for Perfection
+/n
+In the search to build the perfect boilerplate for myself and the teams I work with ([Hacksmiths](https://github.com/teamhacksmiths) and [Udacity Alumni](https://github.com/udacityalumni)), I reverse engineered some of the most popular open source [React boilerplates](https://github.com/mxstbr/react-boilerplate) available. Without a shadow of a doubt, the organization pattern followed by the React Boilerplate project is the best. In an attempt to put a name on it, I did some research and I found an article that explained this organizational strategy fairly well.
+/n
+The [article](http://engineering.kapost.com/2016/01/organizing-large-react-applications/), entitled “Organizing Large React Applications”, calls this type of organization Feature First Organization. They explain that a large application should be a collection of small applications that function in isolation. Wait a minute, this is starting to sound like another architectural pattern known in the Back End ecosystem as “micro-services”. I think we are onto something here!
+/n
+In an attempt to switch into the practice of organizing my applications by feature, I created a clone of one of [my open source boilerplate projects](https://github.com/RyanCCollins/react-redux-simple-starter). I went about reorganizing the structure of the demo application in order to follow the feature first pattern.
+Here is an example of the file structure from my boilerplate project:
+/n
+```
+|   |   ├── containers
+|   |   |   ├── FeatureFirstContainer
+|   |   |   |   ├── tests
+|   |   |   |   |   ├── actions.test.js
+|   |   |   |   |   ├── index.test.js
+|   |   |   |   |   └── reducer.test.js
+|   |   |   |   ├── actions.js
+|   |   |   |   ├── constants.js
+|   |   |   |   ├── index.js
+|   |   |   |   ├── index.module.scss
+|   |   |   |   └── reducer
+|   |   |   └── index.js
+```
+/n
+You will see that all of the files pertaining to the one FeatureFirstContainer component, including all of the Redux boilerplate, tests and component files exist within one folder. The module takes care of literally everything related to the one feature, in this case a mock container connected to Redux.
+/n
+Another way to think about this is that there are no files that exist outside of this component that couple it to the application I am currently building. I am not suggesting that you don’t use the component in your app, but when you do use it, you import it as if it were any other NPM module. If you look at this example on Github, you will see that I even include a README.md file with each React Component. Without even realizing it, my application is completely modular and reusable. Brilliant!
+/n
+I have a [few example projects](https://github.com/RyanCCollins/restaurant-reviewer/tree/master/app/src/containers) that demonstrates this strategy, by the way. Take a look through the components and connected containers in the link listed above, if you are interested. I also suggest that you take a look at my boilerplate projects ([Scalable React Boilerplate](https://github.com/RyanCCollins/scalable-react-boilerplate) and [React Redux Simple Starter](https://github.com/RyanCCollins/react-redux-simple-starter)) to see the difference between these organizational strategies.
+/n /n
+## Benefits of Feature First
+/n
+The real benefit as I see it, to this organizational pattern is that you encourage isolation and encapsulation of your UI components. You are literally guaranteeing that your application’s components will be reusable.
+/n
+At the end of my projects, I generally will go through the source code to determine what parts of it are reusable, so that I can add them to a UI Kit that I am building. The amazing thing is that as soon as I started using the Feature First organization strategy, ALL of my UI became reusable. It’s truly amazing.
+/n
+React encourages that you take a functional approach to building UIs. By following a few simple suggestions, your UI can become pure and composable, which is the goal of Functional Programming. Complexity is encapsulated under the hood and your UI becomes a box of legos that you can piece together. I propose that following the feature first organizational strategy is a natural progression of this idea.
+/n
+/n
+## Colocation
+/n
+The engineers at Facebook realize the benefits of functional abstractions. As far as I can tell, they are taking this approach to the extreme by applying it to their entire architecture. For example, GraphQL is an extension of this abstraction. It colocates data fetching right into your UI components. Using the tools of today, such as Webpack, we can colocate literally everything with our UI. CSS, Images, Data fetching, State Management, etc.
+/n
+Colocation [used to be a horrible idea](http://stackoverflow.com/questions/2612483/whats-so-bad-about-in-line-css), but now we see that with the right abstractions, it can be glorious. The big difference, in my opinion, is how we think about architecting our apps today versus then. We have modules baked right into the JavaScript language and are able to build apps using this approach.
+/n
+By following the feature-first approach, we can get away with colocation and in many ways it makes our applications simpler. Just like the micro-service architecture, we can architect our user interface as a composition of self-contained UI components.
+Brilliant!
+/n /n
+## Application in Other Domains
+/n
+What I hope is that this pattern can be followed in nearly any programming domain and language. The fact that it works with Flux and React so well should be a sign that we are onto something big here that other domains can also benefit from. Any language with a module system can benefit from the feature first architecture.
+/n
+My hope in writing this article is to spread the knowledge I have gained from following this strategy. If you are a programmer who craves composability, maybe give the feature-first organizational pattern a try in your domain and let us know how it works.
+/n
+/n
+## P.S.
+/n
+If you are interested like me in the effects of cutting edge functional programming on the JavaScript ecosystem, check out the [React Rally talk by Brian Lonsdorf](https://youtu.be/Fk--XUEorvc?t=11643). He is one of the leading Functional Programmers in the JavaScript community and he talks about the beauty of composability.
+/n
+Another talk that I have also enjoyed was [Lee Byron’s Immutable Architecture](https://vimeo.com/166790294) talk. It gives you a glimpse into how Facebook is using Functional Abstractions in their app architecture.
+/n
+I hope that my insights have been helpful in your search for the perfect organizational strategy on the web. If so, please tap the heart button below! Many thanks!
+/n
+/n
+## P.P.S
+/n
+In object oriented languages, such as Python and Ruby, encapsulation is a part of the language. You may be thinking that the problems addressed in this article are solved by OO languages and the solution is to stick with OO. My point is to show you my approach to implementing modularity in a non OO language / domain. Even still, OO has its problems and even with smart OO architecture your application can become [extremely coupled](http://www.johndcook.com/blog/2011/07/19/you-wanted-banana/).
+/n
+Functional / Immutable architecture can be utilized with any language / domain that uses functions, which is close to all of them. You don’t need Haskell to reap these benefits. If you look at Rails, for example, you see that the approach to organization is to group code by their file types, versus their features.
+/n
+In my opinion, having worked as an iOS and a Rails developer, along with other similar domains, I feel that most approaches in OO languages require additional abstractions. MVC gets you pretty far, but as our apps continue to get more and more complex, we need to take a different approach. I propose that the feature first architecture, along with unidirectional data flow, is one suitable approach and I look forward to seeing it used in many other domains."
+)
+
+
+Post.create(
+  user: User.first,
+  feature_image: "http://res.cloudinary.com/dc1qjoyvn/image/upload/v1468092213/efjetjkyzb6b9tcxrxqp.png",
+  title: "Lessons Learned From Functional Reactive Programming",
+  body: "The author of [Elm-lang](http://elm-lang.org/papers/concurrent-frp.pdf), a progressive functional language built to create Front End Web GUIs states in his senior thesis that 'Functional Reactive Programming (FRP) is a declarative way to create reactive systems.'
+/n
+He goes on to further define the need for FRP in building user interfaces and defining how FRP has shown great potential in other areas: 'FRP has already shown its potential in a diversity of domains: robotics, music synthesis, animation, video games, and graphical user interfaces. These domains are reactive because they require interaction with a wide range of outside inputs, from keyboards to accelerometers.'
+/n
+/n
+### What's this all about?
+/n
+So what does this all mean and why is it important? The complexity of software is growing at an exponential rate. To sum up a [famous article](http://www.curtclifton.net/storage/papers/MoseleyMarks06a.pdf) detailing this phenomenon, the biggest problem with modern software is the ever-growing complexity of dynamic state.
+/n
+The aim of Functional Programming is to provide a set of rules that simplify the cognitive overhead of the engineering of modern software. In the case of Elm, the creator’s vision was to bring these abstract ideas from the forefront of academia into the mainstream and apply them to the domain of graphical user interfaces on the web.
+/n
+Many of the design patterns that are commonly used by modern software developers, MVC for example, aim to solve the same problem of curtailing complexity as our GUIs continue to advance. Graphical user interfaces on the web and mobile devices are expected to be fast and responsive and in almost all cases are one of the biggest determining factors of the success of an application.
+/n
+The rate of computational complexity of our applications on the web and in other domains is growing. As a result, we are forced to think of new ways to continue to provide our end users with a reactive experience while decreasing the complexity of building such applications.
+/n
+/n
+### Functional Reactive Programming to the rescue
+/n
+We’ve seen the concepts of FRP enter the mainstream in many forms, specifically with React, Redux and many other (now) commonly used JavaScript libraries.
+/n
+So what does the paradigm shift brought by these innovations entail and what does it mean for developers and engineers?
+/n
+The main principles of Functional Programming pertaining to JavaScript are well detailed by DrBoolean in his [entertaining and educational book](https://github.com/ryan-collins-forks/mostly-adequate-guide) entitled 'Professor Frisbee's Mostly Adequate Guide to Functional Programming' and in his [animated cartoon series](https://youtu.be/h_tkIpwbsxY) by the same name.
+/n
+/n
+
+## A brief introduction
+/n
+I would highly recommend that you use the resources and links from this article to take a deeper dive into the world of Functional Programming and please take what I have to say with an understanding that it has been simplified for the sake of brevity.
+/n
+That said, I have provided a bit of an overview of the main concepts involved in understanding how Functional Programming solves many of the problems we face while developing reactive software systems.
+/n
+/n
+
+### Immutable Data
+/n
+Mutable data, as defined by Merriam Webster, is “capable of change or of being changed” over time. Going back to state complexity, we can pinpoint one of the main causes of this growing complexity.
+/n
+Mutable data structures, by their very definition, are capable of changing their assigned values over time. When you think about this, this is craziness. How are we to keep our applications in sync with our data when the data can change over time? It’s like trying to eat a nice relaxing dinner when the tablecloth is continually ripped out from underneath your dinnerware.
+/n
+Immutable data structures solve this problem by very loudly declaring that they will not change their assigned value over time, offering us a guarantee that forms the very backbone of Functional Programming. In other words, when you assign a variable to a value, that value cannot ever be reassigned.
+Can you see how this principle aims to solve state complexity? State is defined as “the particular condition that someone or something is in at a specific time”. If the condition of our data cannot change, then we basically eliminate state and therefore state complexity. Problem solved, right?
+/n
+Well, sort’ve.
+/n
+In reality, stateless (read static) applications are fairly boring. Modern applications, in fact, have more dynamic state than ever before and to our end users, this is wonderful!
+/n
+So how do we allow for dynamic data if we cut off the ability of our data to dynamically change over time?
+/n
+Enter Pure Functions, or as DrBoolean says 'Pure Happiness with Pure Functions.'
+/n
+/n
+
+### Pure Functions
+/n
+Pure functions come from the mathematical roots of Functional Programming.  By definition, a pure function is one without side effects.  Given the same input, a pure function will always return the same output.
+/n
+A very simple example of this is a function that takes as input two numbers and returns the numbers added together.  I recommend reading up on pure functions in the [Mostly Adequate Guide](https://github.com/ryan-collins-forks/mostly-adequate-guide), but for the sake of demonstration, let us take a look.
+/n
+/n
+
+```
+// Using ES2015 fat arrow functions
+const add = (num1, num2) => num1 + num2;
+// And with ES5
+var add = function(num1, num2) {
+ return num1 + num2;
+};
+// add(2, 3) => 5
+```
+/n
+/n
+
+If you are thinking that this is a very oversimplified example of the type of functions you write every day, then you are right. Most of our applications have side effects all over the place! Self-containing our applications can only take us so far. Our software needs to interact with the outside world through APIs, for example, by making calls to micro-services, databases, etc. We need to write asynchronous code with ajax, or more recently Fetch. The list goes on and on.
+/n
+It seems so far that each of these principles sound great in isolation, but don’t really work so well in the real world. However, given several somewhat simple rules, you can apply pure functions to nearly any problem and completely eliminate side effects while still being able to create an application that communicates with the outside world. As a matter of fact, we innately employ many of these same principles, isolating state and side effects that is, when utilizing the prominent systems architectures used today (REST, for example).
+/n
+Going back to the first principle of employing immutable data structures, the answer to how your data can change over time is to utilize pure functions as a vehicle to mutate state. If you are familiar at all with Redux, this is actually quite simple and can be applied to your workflow with very little overhead.
+/n
+By example, Redux gives you [Reducer functions](http://redux.js.org/docs/basics/Reducers.html) and [Actions](http://redux.js.org/docs/basics/Actions.html), which work together to provide a means to represent state mutations using a pure functional approach. Although Redux does not actually provide you with the tools to eliminate side effects completely while still allowing you to interact with the outside world, it does provide you with a set of principles that when followed guarantees that your state will be managed predictably.
+/n
+In order to interact with the outside world, you will want to use Middleware such as [Redux Thunk](https://github.com/gaearon/redux-thunk), [Redux Promise Middleware](https://github.com/pburtchaell/redux-promise-middleware) or [Redux Sagas](https://github.com/yelouafi/redux-saga), which help give you a place to put side effects in your JavaScript application.
+/n
+/n
+## Higher Order Functions
+The idea that a function is a first-class citizen is not at all a new concept. Almost all of the modern programming languages, including Ruby, Python, Swift, JavaScript, etc. employ this idea. A function, just like an object or any other data type, can be assigned and passed around as a variable.
+/n
+Using this concept, we come upon the idea that we can compose new functionality by passing functions into other functions. Woah, what? This is not actually as much of a head spinner as it first may sound. You likely use this declarative approach in your modern language of choice already.
+/n
+For example, one of the most commonly used higher order functions is .map, which takes as an argument a function that will be applied to every item in an array and returns an array containing the newly transformed data.
+
+/n
+/n
+```
+//Using ES2015s Fat Arrow Functions this would look like:
+const myArray = [1, 2, 3, 4];
+const myNewArray = myArray.map((item) => item * 2);
+// => [2, 4, 6, 8]
+// And in Ruby (Notice the similarities?)
+myArray = [1, 2, 3, 4]
+myNewArray = myArray.map{ |item| item * 2 }
+```
+
+/n
+/n
+As many of you may know, in practice, this type of code can be very powerful. Instead of the imperative approach whereby you define how something should happen, with the declarative approach, the details of how something happens are hidden behind the scenes. Suddenly, the world in front of us opens up and we begin to see how this approach can be applied to nearly everything.
+/n
+For example, using React, we can .map over an array and return an array of user interface that the browser can understand.
+
+/n
+/n
+```
+const MyComponent = ({
+  items
+}) => (
+  <ul>
+    {items.map((item) =>
+      <li>{item.property}</li>
+    )}
+  </ul>
+);
+```
+/n
+/n
+### A bit of history
+/n
+This approach comes from a branch of combinatory mathematics, made famous by [Haskell Curry](https://en.wikipedia.org/wiki/Haskell_Curry), a mathematician whose studies led to an innovation known as Lambda Calculus.  As a matter of fact, the idea of a function taking other functions as arguments and even returning a function that can be passed around and called later was [named after this same man](https://en.wikipedia.org/wiki/Currying) as was one of the most famous functional languages, [Haskell](https://www.haskell.org/).
+/n
+The idea of higher order functions is implemented by almost every major modern language and it is one of the secrets behind the declarative nature of many of our favorite languages and libraries, including React and Redux. Using this approach, the door to [function composition](https://en.wikipedia.org/wiki/Function_composition) is opened, providing us with the means to create highly reusable and powerful code. It encourages encapsulation by providing the engineer with the ability to define the declaration of data transformations while leaving the steps taken behind the scenes up to the language / library.
+
+/n
+/n
+### Sign Me Up!
+/n
+If you are a JavaScript developer and are sold on the idea of limiting the cognitive overhead of your application, I suggest that you watch the [Egghead.io Redux series](https://egghead.io/courses/getting-started-with-redux) featuring [Dan Abramov](https://medium.com/@dan_abramov), the creator of Redux. In this video series, Mr. Abramov teaches much more than the API to his library. He touches on many of the same principles as referenced in this article and describes how you can employ them in JavaScript applications using just a few simple libraries.
+/n
+By agreeing to the contracts of Functional Programming, you enable amazing features that previously did not exist, such as [Time Travel](https://medium.com/r/?url=https%3A%2F%2Fgithub.com%2Fgaearon%2Fredux-devtools) and [Hot Reloading](https://medium.com/r/?url=https%3A%2F%2Fgaearon.github.io%2Freact-hot-loader%2F). Your applications suddenly become totally predictable and easy to debug, while remaining fast and reactive to the end user. Your application becomes easier to reason about and much easier to test.
+/n
+We see these innovations and ideas used in many areas beyond Redux. Elm for example, was the pioneer of many of these innovations, including Facebook’s popularized [Flux](https://facebook.github.io/react/docs/flux-overview.html) / [unidirectional data flow architecture](https://medium.com/r/?url=http%3A%2F%2Fstaltz.com%2Funidirectional-user-interface-architectures.html). The innovation of Redux is to provide an agreed upon set of tools that integrates directly with the tooling we already use and provides us with an agreed upon set of terminology for these concepts.
+
+/n
+/n
+### Summing it up
+/n
+Again, the concepts discussed here are really just the tip of the iceberg when it comes to Functional Programming. When combined together, they form the basis of a powerful paradigm shift. At the same time, they work to minimize the cognitive overhead involved with building and maintaining modern software.
+/n
+Whether you are a seasoned engineer / developer, or are just starting your journey, I encourage you to take a serious look at Functional Programming and the impact it has had on the way we build software. I am not saying that you need to totally dismiss Object Orientation and the patterns and paradigms you currently employ. At the very least, I do recommend that you put aside some play time to try these concepts out in practice.
+/n
+With great power comes great responsibility, so if like me, you do find that Functional Programming opens your eyes to powerful new ideas, please share the knowledge and insights that you have gained through the experience of learning it."
+)

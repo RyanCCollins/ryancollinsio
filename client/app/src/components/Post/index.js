@@ -25,8 +25,16 @@ const Post = ({
       className={styles.articleWrapper}
       pad="large"
     >
-      <Article className={styles.post}>
-        <Markdown content={post.body} />
+      <Article className={`${styles.post} markdown-body`}>
+        <Markdown
+          components={{
+            h1: { props: { strong: true } },
+            h2: { props: { strong: true } },
+            p: { props: { size: 'large' } },
+            img: { props: { size: 'small' } },
+          }}
+          content={post.body}
+        />
       </Article>
     </Section>
   </Box>

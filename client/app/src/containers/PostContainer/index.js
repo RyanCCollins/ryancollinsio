@@ -13,21 +13,35 @@ import Button from 'grommet-udacity/components/Button';
 import Box from 'grommet-udacity/components/Box';
 import Footer from 'grommet-udacity/components/Footer';
 import Columns from 'grommet-udacity/components/Columns';
-import Markdown from 'grommet-udacity/components/Markdown';
-import Label from 'grommet-udacity/components/Label';
 import List from 'grommet-udacity/components/List';
 import ListItem from 'grommet-udacity/components/ListItem';
-import { WithLoading, Post, Divider } from 'components';
+import { WithLoading, Post, Divider, Comment } from 'components';
 import RTE from 'react-rte';
-import moment from 'moment';
+
 
 class PostContainer extends Component { // eslint-disable-line react/prefer-stateless-function
   constructor() {
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleUpvote = this.handleUpvote.bind(this);
     this.state = {
       value: RTE.createEmptyValue(),
     };
+  }
+  handleUpvote(id) {
+    const {
+      upvoteComment,
+      refetch,
+    } = this.props;
+    const data = {
+      variables: {
+        auth_token: '_qABAmYzDj2MVq2jePih',
+        id,
+      },
+    };
+    upvoteComment(data).then(() => {
+      refetch();
+    });
   }
   handleSubmit() {
     const {
@@ -36,7 +50,7 @@ class PostContainer extends Component { // eslint-disable-line react/prefer-stat
     } = this.props;
     const user = {
       id: 1,
-      authToken: 'urCdQvKupT7G4N_hoY7c',
+      authToken: '_qABAmYzDj2MVq2jePih',
     };
     const data = {
       variables: {
@@ -88,21 +102,11 @@ class PostContainer extends Component { // eslint-disable-line react/prefer-stat
                     post.comments
                       .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
                       .map((comment, i) =>
-                    <ListItem>
-                      <Box key={i} direction="row">
-                        <Box align="center" justify="center" style={{ marginRight: 40 }}>
-                          <img className="avatar avatar__small" src={comment.user.avatar} />
-                          <Label uppercase>
-                            {comment.user.name}
-                          </Label>
-                        </Box>
-                        <Box align="center" justify="center">
-                          <Heading tag="h4">
-                            {`on ${moment(comment.created_at).format('MMM Do YY h:mm:ss a')}`}
-                          </Heading>
-                          <Markdown content={comment.body} />
-                        </Box>
-                      </Box>
+                    <ListItem key={i}>
+                      <Comment
+                        onUpvote={this.handleUpvote}
+                        comment={comment}
+                      />
                     </ListItem>
                   )}
                 </List>
@@ -116,6 +120,7 @@ class PostContainer extends Component { // eslint-disable-line react/prefer-stat
 }
 
 PostContainer.propTypes = {
+  upvoteComment: PropTypes.func.isRequired,
   post: PropTypes.object,
   isLoading: PropTypes.bool.isRequired,
   postError: PropTypes.object,
@@ -148,6 +153,8 @@ const loadPostQuery = gql`
       created_at
       image: feature_image
       comments {
+        id
+        total_votes
         body
         created_at
         user {
@@ -192,7 +199,21 @@ const createCommentMutation = gql`
 
 const ContainerWithMutation = graphql(createCommentMutation)(ContainerWithData);
 
+const upvoteCommentMutation = gql`
+  mutation upvoteComment($auth_token: String!, $id: ID!) {
+    VotePostComment(input: { auth_token: $auth_token, post_comment_id: $id }) {
+      total_votes
+    }
+  }
+`;
+
+const ContainerWithMoreMutations = graphql(upvoteCommentMutation, {
+  props: ({ mutate }) => ({
+    upvoteComment: mutate,
+  }),
+})(ContainerWithMutation);
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ContainerWithMutation);
+)(ContainerWithMoreMutations);

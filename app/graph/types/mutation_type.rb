@@ -18,4 +18,6 @@ MutationType = GraphQL::ObjectType.define do
   field :CreateProjectComment, field: ProjectMutations::ProjectComments::Create.field
   field :EditProjectComment, field: ProjectMutations::ProjectComments::Edit.field
   field :DeleteProjectComment, field: ProjectMutations::ProjectComments::Delete.field
+
+  field :VotePostComment, field: PostMutations::PostCommentVotes::Vote.field
 end
