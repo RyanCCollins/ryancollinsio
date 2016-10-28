@@ -1,6 +1,8 @@
 .landing {
   margin-top: 0 !important;
   padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
 }
 .full {
   width: 100vw;
@@ -53,6 +55,7 @@
 }
 
 .techStackWrapper {
+  color: white;
   width: 100%;
   display: flex;
   flex-wrap: wrap;

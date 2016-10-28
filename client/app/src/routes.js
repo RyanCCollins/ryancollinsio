@@ -4,7 +4,7 @@ import { ApolloProvider } from 'react-apollo';
 import store, { history } from './store';
 import client from './apolloClient';
 /* eslint-disable */
-import App from 'components/App';
+import { AppContainer } from 'containers';
 import * as Pages from 'pages';
 /* eslint-enable */
 
@@ -14,7 +14,7 @@ const routes = (
       history={history} // Scroll to top on route transitions
       onUpdate={() => window.scrollTo(0, 0)} // eslint-disable-line
     >
-      <Route path="/" component={App}>
+      <Route path="/" component={AppContainer}>
         <IndexRoute component={Pages.LandingPage} />
         <Route path="/portfolio" component={Pages.PortfolioPage} />
         <Route path="/projects/:slug" component={Pages.ProjectPage} />

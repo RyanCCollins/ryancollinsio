@@ -1,14 +1,13 @@
 import * as types from './constants';
 
 export const initialState = {
-  // Initial State goes here!
+  authToken: 'nHqNxnWy5M2rjsryoG3x',
+  user: null,
 };
 
 const appContainerReducer =
   (state = initialState, action) => {
     switch (action.type) {
-      case types.DEFAULT_ACTION:
-        return state;
       default:
         return state;
     }

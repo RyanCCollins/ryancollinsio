@@ -48,7 +48,7 @@ class LandingContainer extends Component {
       references,
     } = this.props;
     return (
-      <Section
+      <Box
         align="center"
         justify="center"
         className={styles.landing}
@@ -221,8 +221,9 @@ class LandingContainer extends Component {
           full="horizontal"
           align="center"
           justify="center"
+          texture="http://wallpapercave.com/wp/uDIy1Pt.jpg"
         >
-          <Headline align="center" className="heading">
+          <Headline align="center" className="heading heading__light">
             Tech Stack
           </Headline>
           <Divider />
@@ -246,7 +247,7 @@ class LandingContainer extends Component {
             </div>
           </div>
         </Section>
-      </Section>
+      </Box>
     );
   }
 }

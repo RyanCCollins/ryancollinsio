@@ -16,4 +16,3 @@ export LoadingIndicator from './LoadingIndicator';
 export WithLoading from './WithLoading';
 export Navbar from './Navbar';
 export LogoImage from './LogoImage';
-export App from './App';

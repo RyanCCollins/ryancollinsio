@@ -8,6 +8,7 @@ import landing from 'containers/LandingContainer/reducer';
 import createProject from 'containers/CreateProjectContainer/reducer';
 import createPost from 'containers/CreatePostContainer/reducer';
 import blog from 'containers/BlogContainer/reducer';
+import app from 'containers/AppContainer/reducer';
 
 const rootReducer = combineReducers({
   // Apply all of the reducers here.
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   createProject,
   blog,
   createPost,
+  app,
   routing: routerReducer,
   form: formReducer,
   apollo: client.reducer(),

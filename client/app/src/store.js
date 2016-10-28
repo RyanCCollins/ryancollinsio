@@ -12,12 +12,14 @@ import { initialState as landing } from './containers/LandingContainer/reducer';
 import { initialState as createProject } from './containers/CreateProjectContainer/reducer';
 import { initialState as createPost } from './containers/CreatePostContainer/reducer';
 import { initialState as blog } from './containers/BlogContainer/reducer';
+import { initialState as app } from 'containers/AppContainer/reducer';
 
 const initialState = {
   landing,
   createProject,
   blog,
   createPost,
+  app,
 };
 
 /* Commonly used middlewares and enhancers */
