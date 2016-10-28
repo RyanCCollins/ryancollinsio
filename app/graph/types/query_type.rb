@@ -48,4 +48,10 @@ QueryType = GraphQL::ObjectType.define do
       Reference.all
     end
   end
+  field :postTags, types[TagType] do
+    Tag.joins("join post_tags on post_tags.tag_id = tags.id")
+  end
+  field :projectTags, types[TagType] do
+    Tag.joins("join project_tags on project_tags.tag_id = tags.id")
+  end
 end

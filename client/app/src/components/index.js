@@ -1,4 +1,5 @@
 /* Assemble all components for export */
+export CreatePostForm from './CreatePostForm';
 export AppFooter from './AppFooter';
 export PostPreview from './PostPreview';
 export ResponsiveImage from './ResponsiveImage';

@@ -10,7 +10,6 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Columns from 'grommet-udacity/components/Columns';
 import Box from 'grommet-udacity/components/Box';
-import Heading from 'grommet-udacity/components/Heading';
 import Anchor from 'grommet-udacity/components/Anchor';
 import Headline from 'grommet-udacity/components/Headline';
 

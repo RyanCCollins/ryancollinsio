@@ -112,6 +112,7 @@
     "react-addons-test-utils": "^15.3.2",
     "react-addons-update": "^15.3.2",
     "react-apollo": "^0.5.13",
+    "react-css-stagger": "0.0.3",
     "react-dom": "^15.0.1",
     "react-foundation": "^0.6.8",
     "react-intl": "^2.1.3",

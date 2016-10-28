@@ -3,12 +3,12 @@ import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
 import Section from 'grommet-udacity/components/Section';
 import Heading from 'grommet-udacity/components/Heading';
-import Headline from 'grommet-udacity/components/Headline';
 import Hero from 'grommet-udacity/components/Hero';
 import Box from 'grommet-udacity/components/Box';
 import Markdown from 'grommet-udacity/components/Markdown';
 import Quote from 'grommet-udacity/components/Quote';
 import Columns from 'grommet-udacity/components/Columns';
+import Headline from 'grommet-udacity/components/Headline';
 import Image from 'grommet-udacity/components/Image';
 import Footer from 'grommet-udacity/components/Footer';
 import Button from 'grommet-udacity/components/Button';
@@ -23,11 +23,11 @@ const Project = ({
     <Hero
       backgroundImage={project.featureImage}
     >
-      <Box colorIndex="grey-1-a" pad="large" size="large">
-        <Headline align="center" className={styles.heroHeader}>
+      <Box colorIndex="grey-1-a" pad="large" style={{ width: '100%' }}>
+        <Headline>
           {project.title}
         </Headline>
-        <Heading tag="h3" align="center" className={styles.heroHeader}>
+        <Heading tag="h3">
           {project.caption}
         </Heading>
       </Box>

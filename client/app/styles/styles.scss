@@ -15,6 +15,15 @@
   min-height: 100vh;
 }
 
+.fadeIn-enter {
+  opacity: 0;
+  transition: 0.3s ease-in-out all;
+}
+
+.fadeIn-enter.fadeIn-enter-active {
+  opacity: 1;
+}
+
 .spin-image {
   -webkit-animation-name: spin;
   animation-name: spin;
