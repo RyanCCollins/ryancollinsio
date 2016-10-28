@@ -8,8 +8,14 @@ import SocialShare from 'grommet-udacity/components/SocialShare';
 import Anchor from 'grommet-udacity/components/Anchor';
 
 const AppFooter = () => (
-  <Footer pad="large">
-    <Box direction="column" align="center" pad="none" responsive className={styles.flexOne}>
+  <Footer pad="large" colorIndex="light-2">
+    <Box
+      direction="column"
+      align="center"
+      pad="none"
+      responsive
+      className={styles.flexOne}
+    >
       <Heading tag="h3">
         By{' '}
         <a

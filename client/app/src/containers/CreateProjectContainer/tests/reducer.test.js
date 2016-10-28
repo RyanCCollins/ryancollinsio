@@ -8,7 +8,7 @@ describe('createProjectReducer', () => {
       createProjectReducer(undefined, {})
     ).toEqual(initialState);
   });
-  it('should handle reducer for CREATE_PROJECT_ADD_TAG', () => {
+  it('should handle reducer for CREATE_PROJECT_SET_TAGS', () => {
     const tags = [
       {
         title: 'Hello world',
@@ -22,7 +22,7 @@ describe('createProjectReducer', () => {
     };
     expect(
       createProjectReducer(stateBefore, {
-        type: types.CREATE_PROJECT_ADD_TAG,
+        type: types.CREATE_PROJECT_SET_TAGS,
         tags,
       })
     ).toEqual(stateAfter);

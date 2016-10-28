@@ -1,0 +1,26 @@
+exports[`<CreateProject /> should render with default props 1`] = `
+<ConnectedForm
+  actions={
+    Object {
+      "clearCreateProjectError": [Function anonymous],
+      "clearCreateProjectMessage": [Function anonymous],
+      "clearCreateProjectToast": [Function anonymous],
+      "createProjectAddTag": [Function anonymous],
+      "createProjectError": [Function anonymous],
+      "createProjectMessage": [Function anonymous]
+    }
+  }
+  createEventError={null}
+  message={null}
+  selectedTags={Array []}
+  store={
+    Object {
+      "clearActions": [Function clearActions],
+      "dispatch": [Function anonymous],
+      "getActions": [Function getActions],
+      "getState": [Function getState],
+      "replaceReducer": [Function replaceReducer],
+      "subscribe": [Function subscribe]
+    }
+  } />
+`;

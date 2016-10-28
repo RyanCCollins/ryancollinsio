@@ -1,0 +1,22 @@
+exports[`<Landing /> should render with default props 1`] = `
+<Apollo(Apollo(LandingContainer))
+  actions={
+    Object {
+      "landingShowHeadline": [Function anonymous],
+      "landingShowImage": [Function anonymous],
+      "performLandingAnimation": [Function anonymous]
+    }
+  }
+  headline={false}
+  image={false}
+  store={
+    Object {
+      "clearActions": [Function clearActions],
+      "dispatch": [Function anonymous],
+      "getActions": [Function getActions],
+      "getState": [Function getState],
+      "replaceReducer": [Function replaceReducer],
+      "subscribe": [Function subscribe]
+    }
+  } />
+`;

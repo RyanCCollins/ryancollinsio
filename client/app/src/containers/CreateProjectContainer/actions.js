@@ -41,7 +41,7 @@ export const clearCreateProjectToast = (type) =>
   };
 
 // createProjectAddTag :: String -> {Action}
-export const createProjectAddTag = (value) => ({
-  type: types.CREATE_PROJECT_ADD_TAG,
-  value,
+export const createProjectSetTags = (tags) => ({
+  type: types.CREATE_PROJECT_SET_TAGS,
+  tags,
 });

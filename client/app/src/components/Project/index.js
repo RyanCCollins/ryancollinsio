@@ -80,8 +80,8 @@ const Project = ({
         </Heading>
         <Divider />
         <Box align="center" justify="center" pad="large">
-          <Box className="card">
-            <Box pad="medium">
+          <Box className="card" align="center">
+            <Box pad="medium" align="center">
               <Quote credit={`- ${project.reviewerName}`}>
                 <Markdown content={project.technicalReview} />
               </Quote>

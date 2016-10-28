@@ -10,10 +10,10 @@ export const initialState = {
 const createProjectReducer =
   (state = initialState, action) => {
     switch (action.type) {
-      case types.CREATE_PROJECT_ADD_TAG:
+      case types.CREATE_PROJECT_SET_TAGS:
         return update(state, {
           selectedTags: {
-            $set: action.value,
+            $set: action.tags,
           },
         });
       case types.CREATE_PROJECT_ERROR:

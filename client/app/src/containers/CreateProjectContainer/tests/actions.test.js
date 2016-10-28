@@ -39,16 +39,16 @@ describe('CreateProject actions', () => {
       actions.clearCreateProjectMessage()
     ).toEqual(expected);
   });
-  it('should have a type of CREATE_PROJECT_ADD_TAG', () => {
+  it('should have a type of CREATE_PROJECT_SET_TAGS', () => {
     const tags = [{
       title: 'Hello World',
     }];
     const expected = {
-      type: types.CREATE_PROJECT_ADD_TAG,
-      value: tags,
+      type: types.CREATE_PROJECT_SET_TAGS,
+      tags,
     };
     expect(
-      actions.createProjectAddTag(tags)
+      actions.createProjectSetTags(tags)
     ).toEqual(expected);
   });
 });

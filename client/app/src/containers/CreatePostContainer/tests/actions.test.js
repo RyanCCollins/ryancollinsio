@@ -33,7 +33,7 @@ describe('CreatePost actions', () => {
   it('should have a type of CREATE_POST_SET_ERROR', () => {
     const error = new Error('OOps');
     const expected = {
-      type: types.CREATE_POST_SET_MESSAGE,
+      type: types.CREATE_POST_SET_ERROR,
       error,
     };
     expect(
