@@ -1,18 +1,19 @@
 // Included if you are using grommet.  Otherwise, just erase this next line.
+@import './antd';
 @import 'grommet-udacity/scss/udacity/index';
-
-// Add globally used utility styles here.
-// Or import scss libraries that are to be used without CSS modules.
-/*
-.my-style {
-  max-width: 20px;
-  color: goldenrod;
-}
-<div className="my-style" />
-*/
 
 .full-height {
   min-height: 100vh;
+}
+
+.main-text {
+  p {
+    font-size: 20px;
+    padding: 10px 40px;
+    line-height: 1.75rem;
+    letter-spacing: 1.3px;
+    font-family: 'Merriweather', serif;
+  }
 }
 
 .fadeIn-enter {

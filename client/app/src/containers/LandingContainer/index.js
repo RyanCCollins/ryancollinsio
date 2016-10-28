@@ -48,7 +48,11 @@ class LandingContainer extends Component {
       references,
     } = this.props;
     return (
-      <Section align="center" justify="center" className={styles.landing}>
+      <Section
+        align="center"
+        justify="center"
+        className={styles.landing}
+      >
         <Hero
           backgroundImage="https://github.com/RyanCCollins/cdn/blob/master/misc/rc-full.png?raw=true"
           justify="start"
@@ -85,7 +89,9 @@ class LandingContainer extends Component {
           </Headline>
           <Divider />
           <Box align="center" justify="center" className={styles.innerContainer}>
-            <Markdown content={summary} className="paragraph" />
+            <Box className="main-text">
+              <Markdown content={summary} className="paragraph" />
+            </Box>
           </Box>
         </Section>
         <Section
@@ -102,7 +108,9 @@ class LandingContainer extends Component {
           </Headline>
           <Divider inverted />
           <Box align="center" justify="center" className={styles.innerContainer}>
-            <Markdown content={milestones} className="paragraph" />
+            <Box className="main-text">
+              <Markdown content={milestones} className="paragraph" />
+            </Box>
           </Box>
         </Section>
         <Section className={styles.section} colorIndex="light-2" full="horizontal">
