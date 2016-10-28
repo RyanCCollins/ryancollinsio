@@ -8,10 +8,11 @@ import Box from 'grommet-udacity/components/Box';
 import Paragraph from 'grommet-udacity/components/Paragraph';
 import Label from 'grommet-udacity/components/Label';
 import Carousel from 'grommet-udacity/components/Carousel';
-import { Divider } from 'components';
+import { Divider, WithLoading } from 'components';
 
 const ReferencesSection = ({
   references,
+  isLoading,
 }) => (
   <Section
     className="section"
@@ -24,7 +25,10 @@ const ReferencesSection = ({
       References
     </Headline>
     <Divider />
-    {references && references.length > 0 &&
+    <WithLoading
+      fullscreen={false}
+      isLoading={isLoading}
+    >
       <Carousel autoplay>
         {references.map((reference, i) =>
           <div
@@ -50,12 +54,13 @@ const ReferencesSection = ({
           </div>
         )}
       </Carousel>
-    }
+    </WithLoading>
   </Section>
 );
 
 ReferencesSection.propTypes = {
   references: PropTypes.array.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 export default cssModules(ReferencesSection, styles);

@@ -1,15 +1,5 @@
-import {
-  milestones,
-  summary,
-} from './blurbs';
-import chartData from './chartData';
-import languages from './languages';
-import techStack from './techStack';
-
-export default {
-  milestones,
-  summary,
-  chartData,
-  languages,
-  techStack,
-};
+export milestones from './milestones';
+export summary from './summary';
+export chartData from './chartData';
+export languages from './languages';
+export techStack from './techStack';

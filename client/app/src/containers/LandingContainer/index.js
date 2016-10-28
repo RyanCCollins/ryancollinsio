@@ -33,6 +33,7 @@ class LandingContainer extends Component {
       image,
       headline,
       references,
+      isLoading,
     } = this.props;
     return (
       <Box
@@ -45,7 +46,7 @@ class LandingContainer extends Component {
         <MilestonesSection milestones={milestones} />
         <LanguageSection languages={languages} />
         <FocusSection chartData={chartData} />
-        <ReferencesSection references={references} />
+        <ReferencesSection references={references} isLoading={isLoading} />
         <TechStackSection techItems={techStack} />
       </Box>
     );
@@ -53,6 +54,7 @@ class LandingContainer extends Component {
 }
 
 LandingContainer.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
   actions: PropTypes.object.isRequired,
   image: PropTypes.bool.isRequired,
   headline: PropTypes.bool.isRequired,
