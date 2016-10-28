@@ -1,0 +1,5 @@
+exports[`<ToastMessage /> should render with default props 1`] = `
+<Toast
+  onClose={undefined}
+  status="ok" />
+`;

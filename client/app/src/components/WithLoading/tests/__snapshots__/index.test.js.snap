@@ -1,0 +1,15 @@
+exports[`<WithLoading /> should render with default props 1`] = `
+<div>
+  <Section
+    align="center"
+    className="full-height"
+    justify="center"
+    pad={
+      Object {
+        "vertical": "medium"
+      }
+    }>
+    <undefined />
+  </Section>
+</div>
+`;

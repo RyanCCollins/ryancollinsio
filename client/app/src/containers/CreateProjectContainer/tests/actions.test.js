@@ -3,12 +3,52 @@ import * as actions from '../actions';
 import * as types from '../constants';
 
 describe('CreateProject actions', () => {
-  describe('Default Action', () => {
-    it('has a type of DEFAULT_ACTION', () => {
-      const expected = {
-        type: types.CREATEPROJECT_DEFAULT_ACTION,
-      };
-      expect(actions.createProjectDefaultAction()).toEqual(expected);
-    });
+  it('should have a type of CREATE_PROJECT_ERROR', () => {
+    const error = new Error('Oops');
+    const expected = {
+      type: types.CREATE_PROJECT_ERROR,
+      error,
+    };
+    expect(
+      actions.createProjectError(error)
+    ).toEqual(expected);
+  });
+  it('should have a type of CREATE_PROJECT_MESSAGE', () => {
+    const message = 'Hello world';
+    const expected = {
+      type: types.CREATE_PROJECT_MESSAGE,
+      message,
+    };
+    expect(
+      actions.createProjectMessage(message)
+    ).toEqual(expected);
+  });
+  it('should have a type of CLEAR_CREATE_PROJECT_ERROR', () => {
+    const expected = {
+      type: types.CLEAR_CREATE_PROJECT_ERROR,
+    };
+    expect(
+      actions.clearCreateProjectError()
+    ).toEqual(expected);
+  });
+  it('should have a type of CLEAR_CREATE_PROJECT_MESSAGE', () => {
+    const expected = {
+      type: types.CLEAR_CREATE_PROJECT_MESSAGE,
+    };
+    expect(
+      actions.clearCreateProjectMessage()
+    ).toEqual(expected);
+  });
+  it('should have a type of CREATE_PROJECT_ADD_TAG', () => {
+    const tags = [{
+      title: 'Hello World',
+    }];
+    const expected = {
+      type: types.CREATE_PROJECT_ADD_TAG,
+      value: tags,
+    };
+    expect(
+      actions.createProjectAddTag(tags)
+    ).toEqual(expected);
   });
 });

@@ -1,0 +1,25 @@
+exports[`<Blog /> should render with default props 1`] = `
+<Apollo(BlogContainer)
+  actions={
+    Object {
+      "blogClearSearchTerm": [Function anonymous],
+      "blogError": [Function anonymous],
+      "blogMessage": [Function anonymous],
+      "blogSetSearchTerm": [Function anonymous],
+      "clearBlogError": [Function anonymous],
+      "clearBlogMessage": [Function anonymous],
+      "clearBlogToast": [Function anonymous]
+    }
+  }
+  searchTerm={null}
+  store={
+    Object {
+      "clearActions": [Function clearActions],
+      "dispatch": [Function anonymous],
+      "getActions": [Function getActions],
+      "getState": [Function getState],
+      "replaceReducer": [Function replaceReducer],
+      "subscribe": [Function subscribe]
+    }
+  } />
+`;
