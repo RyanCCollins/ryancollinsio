@@ -7,7 +7,9 @@ import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
 import { LogoImage } from 'components';
 
-const Navbar = () => (
+const Navbar = ({
+  pathname,
+}) => (
   <div className={styles.navbar}>
     <Header justify="between">
       <Title>
@@ -16,19 +18,28 @@ const Navbar = () => (
         </Anchor>
       </Title>
       <Menu
-        style={{ marginRight: 20 }}
+        className={styles.rightMenu}
         direction="row"
         align="center"
         responsive={false}
       >
-        <Anchor href="/blog" className="active">
+        <Anchor
+          className={pathname === '/' ? 'active' : ''}
+          href="/"
+        >
+          Home
+        </Anchor>
+        <Anchor
+          className={pathname === '/blog' ? 'active' : ''}
+          href="/blog"
+        >
           Blog
         </Anchor>
-        <Anchor href="/portfolio">
+        <Anchor
+          className={pathname === '/portfolio' ? 'active' : ''}
+          href="/portfolio"
+        >
           Portfolio
-        </Anchor>
-        <Anchor href="/other">
-          Other
         </Anchor>
       </Menu>
     </Header>

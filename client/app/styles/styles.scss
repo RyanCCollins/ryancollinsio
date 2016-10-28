@@ -6,6 +6,19 @@
   min-height: 100vh;
 }
 
+a.active {
+  color: #2e3d49 !important;
+  border-bottom: 2px solid #7d97ad;
+}
+
+.section {
+  padding: 200px 0 !important;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .main-text {
   p {
     font-size: 20px;

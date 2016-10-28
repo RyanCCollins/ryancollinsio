@@ -47,10 +47,11 @@ class CreateProjectContainer extends Component {
       mutate,
       fields,
       actions,
+      authToken,
     } = this.props;
     const user = {
       id: 1,
-      authToken: '3Qh2sqCfhWU6iYm3qN26',
+      authToken,
     };
     mutate(
       fieldsToSubmission(
@@ -121,6 +122,7 @@ CreateProjectContainer.propTypes = {
   message: PropTypes.string,
   actions: PropTypes.object.isRequired,
   selectedTags: PropTypes.array.isRequired,
+  authToken: PropTypes.string.isRequired,
 };
 
 CreateProjectContainer.contextTypes = {
@@ -132,6 +134,7 @@ const mapStateToProps = (state) => ({
   createEventError: state.createProject.error,
   message: state.createProject.message,
   selectedTags: state.createProject.selectedTags,
+  authToken: state.app.authToken,
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}

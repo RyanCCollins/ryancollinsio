@@ -1,0 +1,13 @@
+.innerContainer {
+  width: 768px;
+  max-width: 100vw;
+  padding: 40px 0;
+  @media screen and (max-width: 768px) {
+    padding: 0;
+  }
+}
+
+
+.invertedHeader {
+  color: white;
+}

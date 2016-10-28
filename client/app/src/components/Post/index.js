@@ -25,7 +25,7 @@ const Post = ({
       className={styles.articleWrapper}
       pad="large"
     >
-      <Article className={`${styles.post} markdown-body`}>
+      <Article align="center" className={`${styles.post} markdown-body`}>
         <Markdown
           components={{
             h1: { props: { strong: true } },

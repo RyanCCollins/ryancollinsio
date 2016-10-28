@@ -39,7 +39,7 @@ const Project = ({
       <Divider />
       <Box align="center" justify="center" pad="large">
         <Box className="card">
-          <Box pad="medium" className="main-text">
+          <Box pad="medium" align="center" className="main-text">
             <Markdown content={project.description} />
           </Box>
         </Box>
@@ -67,7 +67,7 @@ const Project = ({
       <Divider />
       <Box align="center" justify="center" pad="large">
         <Box className="card">
-          <Box pad="medium" className="main-text">
+          <Box align="center" pad="medium" className="main-text">
             <Markdown content={project.milestones} />
           </Box>
         </Box>
@@ -97,7 +97,7 @@ const Project = ({
       <Divider />
       <Box align="center" justify="center" pad="large">
         <Box className="card">
-          <Box pad="medium" className="main-text">
+          <Box align="center" pad="medium" className="main-text">
             <Markdown content={project.technicalInformation} />
           </Box>
         </Box>
@@ -110,7 +110,7 @@ const Project = ({
       <Divider />
       <Box align="center" justify="center" pad="large">
         <Box className="card">
-          <Box pad="medium" className="main-text">
+          <Box align="center" pad="medium" className="main-text">
             <Markdown content={project.designPatterns} />
           </Box>
         </Box>

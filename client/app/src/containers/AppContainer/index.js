@@ -7,9 +7,12 @@ import { Navbar, AppFooter } from 'components';
 
 class AppContainer extends Component { // eslint-disable-line react/prefer-stateless-function
   render() {
+    const {
+      location,
+    } = this.props;
     return (
       <App inline centered={false}>
-        <Navbar />
+        <Navbar pathname={location.pathname} />
         {React.cloneElement(this.props.children, this.props)}
         <AppFooter />
       </App>
@@ -18,8 +21,10 @@ class AppContainer extends Component { // eslint-disable-line react/prefer-state
 }
 
 AppContainer.propTypes = {
+  location: PropTypes.object.isRequired,
   children: PropTypes.node.isRequired,
 };
+
 
 // mapStateToProps :: {State} -> {Props}
 const mapStateToProps = (state) => ({

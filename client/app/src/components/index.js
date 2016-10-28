@@ -1,4 +1,11 @@
 /* Assemble all components for export */
+export TechStackSection from './StaticLandingSections/TechStackSection';
+export ReferencesSection from './StaticLandingSections/ReferencesSection';
+export LanguageSection from './StaticLandingSections/LanguageSection';
+export MilestonesSection from './StaticLandingSections/MilestonesSection';
+export FocusSection from './StaticLandingSections/FocusSection';
+export SummarySection from './StaticLandingSections/SummarySection';
+export HeroSection from './StaticLandingSections/HeroSection';
 export PostMeta from './PostMeta';
 export CreatePostForm from './CreatePostForm';
 export AppFooter from './AppFooter';

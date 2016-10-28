@@ -31,8 +31,8 @@ class CreatePostContainer extends Component {
       submitPostMutation,
       fields,
       selectedTags,
+      authToken,
     } = this.props;
-    const authToken = '3Qh2sqCfhWU6iYm3qN26';
     const data = {
       variables: serializer(fields, selectedTags, authToken),
     };
@@ -107,6 +107,7 @@ CreatePostContainer.propTypes = {
   invalid: PropTypes.bool.isRequired,
   selectedTags: PropTypes.array.isRequired,
   errorMessage: PropTypes.object,
+  authToken: PropTypes.string.isRequired,
 };
 
 CreatePostContainer.contextTypes = {
@@ -115,6 +116,7 @@ CreatePostContainer.contextTypes = {
 
 // mapStateToProps :: {State} -> {Props}
 const mapStateToProps = (state) => ({
+  authToken: state.app.authToken,
   selectedTags: state.createPost.selectedTags,
   message: state.createPost.message,
   errorMessage: state.createPost.error ? { message: state.createPost.error } : null,

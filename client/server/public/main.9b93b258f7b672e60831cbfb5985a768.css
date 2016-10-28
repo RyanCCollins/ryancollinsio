@@ -88,6 +88,10 @@
 }.app-src-components-Navbar-___index-module__logo___1rSh0 {
   max-height: 45px;
   margin-left: 6%;
+}
+
+.app-src-components-Navbar-___index-module__rightMenu___2ljaI {
+  margin-right: 20px !important;
 }.app-src-components-LogoImage-___index-module__logoImage___7wki5 {
   max-height: 40px;
   min-height: 40px;
@@ -24721,6 +24725,10 @@ section:not(.grommetux-section) {
 
 .full-height {
   min-height: 100vh; }
+
+a.active {
+  color: #2e3d49 !important;
+  border-bottom: 2px solid #7d97ad; }
 
 .main-text p {
   font-size: 20px;

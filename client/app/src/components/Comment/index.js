@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import LikeIcon from 'grommet-udacity/components/icons/base/Like';
-import DislikeIcon from 'grommet-udacity/components/icons/base/Dislike';
 import Menu from 'grommet-udacity/components/Menu';
 import Button from 'grommet-udacity/components/Button';
 import Heading from 'grommet-udacity/components/Heading';
