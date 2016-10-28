@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import * as ProjectActionCreators from './actions';
 import cssModules from 'react-css-modules';
 import styles from './index.module.scss';
-import { WithLoading, Project } from 'components';
+import { WithLoading, WithToast, Project } from 'components';
 import projectData from './graph/fragments';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
@@ -18,12 +18,18 @@ class ProjectContainer extends Component { // eslint-disable-line react/prefer-s
       isLoading,
       project,
       loadingError,
+      actions,
     } = this.props;
     return (
       <WithLoading isLoading={isLoading}>
-        {project &&
-          <Project project={project} />
-        }
+        <WithToast
+          error={loadingError}
+          onClose={(type) => actions.clearProjectToast(type)}
+        >
+          {project &&
+            <Project project={project} />
+          }
+        </WithToast>
       </WithLoading>
     );
   }
@@ -33,6 +39,7 @@ ProjectContainer.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   project: PropTypes.object,
   loadingError: PropTypes.object,
+  actions: PropTypes.object.isRequired,
 };
 
 ProjectContainer.propTypes = {

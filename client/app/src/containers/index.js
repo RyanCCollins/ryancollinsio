@@ -1,4 +1,5 @@
 /* Assemble all containers for export */
+export AppContainer from './AppContainer';
 export CreatePostContainer from './CreatePostContainer';
 export BlogContainer from './BlogContainer';
 export PostContainer from './PostContainer';

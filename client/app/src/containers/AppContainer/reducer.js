@@ -4,12 +4,14 @@ export const initialState = {
   // Initial State goes here!
 };
 
-const projectReducer =
+const appContainerReducer =
   (state = initialState, action) => {
     switch (action.type) {
+      case types.DEFAULT_ACTION:
+        return state;
       default:
         return state;
     }
   };
 
-export default projectReducer;
+export default appContainerReducer;

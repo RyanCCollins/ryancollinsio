@@ -33,13 +33,13 @@ const Project = ({
       </Box>
     </Hero>
     <Section pad="large" primary>
-      <Heading align="center">
+      <Heading align="center" className="heading">
         About the Project
       </Heading>
       <Divider />
       <Box align="center" justify="center" pad="large">
         <Box className="card">
-          <Box pad="medium">
+          <Box pad="medium" className="main-text">
             <Markdown content={project.description} />
           </Box>
         </Box>
@@ -61,13 +61,13 @@ const Project = ({
       </Footer>
     </Section>
     <Section>
-      <Heading align="center">
+      <Heading align="center" className="heading">
         Milestones
       </Heading>
       <Divider />
       <Box align="center" justify="center" pad="large">
         <Box className="card">
-          <Box pad="medium">
+          <Box pad="medium" className="main-text">
             <Markdown content={project.milestones} />
           </Box>
         </Box>
@@ -75,13 +75,13 @@ const Project = ({
     </Section>
     {project.technicalReview && project.reviewerName &&
       <Section>
-        <Heading align="center">
+        <Heading align="center" className="heading">
           Expert Technical Review
         </Heading>
         <Divider />
         <Box align="center" justify="center" pad="large">
           <Box className="card" align="center">
-            <Box pad="medium" align="center">
+            <Box pad="medium" align="center" className="main-text">
               <Quote credit={`- ${project.reviewerName}`}>
                 <Markdown content={project.technicalReview} />
               </Quote>
@@ -91,26 +91,26 @@ const Project = ({
       </Section>
     }
     <Section>
-      <Heading align="center">
+      <Heading align="center" className="heading">
         Technical Information
       </Heading>
       <Divider />
       <Box align="center" justify="center" pad="large">
         <Box className="card">
-          <Box pad="medium">
+          <Box pad="medium" className="main-text">
             <Markdown content={project.technicalInformation} />
           </Box>
         </Box>
       </Box>
     </Section>
     <Section>
-      <Heading align="center">
+      <Heading align="center" className="heading">
         Design Patterns
       </Heading>
       <Divider />
       <Box align="center" justify="center" pad="large">
         <Box className="card">
-          <Box pad="medium">
+          <Box pad="medium" className="main-text">
             <Markdown content={project.designPatterns} />
           </Box>
         </Box>
@@ -118,7 +118,7 @@ const Project = ({
     </Section>
     {project.images && project.images.length > 0 &&
       <Section full="hortizontal">
-        <Heading align="center">
+        <Heading align="center" className="heading">
           Project Gallery
         </Heading>
         <Divider />
