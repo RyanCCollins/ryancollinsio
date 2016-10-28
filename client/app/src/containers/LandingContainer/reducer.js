@@ -4,7 +4,6 @@ import update from 'react-addons-update';
 export const initialState = {
   image: false,
   headline: false,
-  subheadline: false,
 };
 
 const landingReducer =
@@ -19,12 +18,6 @@ const landingReducer =
       case types.LANDING_SHOW_HEADLINE:
         return update(state, {
           headline: {
-            $set: true,
-          },
-        });
-      case types.LANDING_SHOW_SUBHEADLINE:
-        return update(state, {
-          subheadline: {
             $set: true,
           },
         });

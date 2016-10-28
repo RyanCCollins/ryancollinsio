@@ -3,12 +3,20 @@ import * as actions from '../actions';
 import * as types from '../constants';
 
 describe('Landing actions', () => {
-  describe('Default Action', () => {
-    it('has a type of DEFAULT_ACTION', () => {
-      const expected = {
-        type: types.LANDING_DEFAULT_ACTION,
-      };
-      expect(actions.landingDefaultAction()).toEqual(expected);
-    });
+  it('should have a type of LANDING_SHOW_IMAGE', () => {
+    const expected = {
+      type: types.LANDING_SHOW_IMAGE,
+    };
+    expect(
+      actions.landingShowImage()
+    ).toEqual(expected);
+  });
+  it('should have a type of LANDING_SHOW_HEADLINE', () => {
+    const expected = {
+      type: types.LANDING_SHOW_HEADLINE,
+    };
+    expect(
+      actions.landingShowHeadline()
+    ).toEqual(expected);
   });
 });

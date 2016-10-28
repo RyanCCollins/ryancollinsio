@@ -255,7 +255,6 @@ LandingContainer.propTypes = {
   actions: PropTypes.object.isRequired,
   image: PropTypes.bool.isRequired,
   headline: PropTypes.bool.isRequired,
-  subheadline: PropTypes.bool.isRequired,
   references: PropTypes.array,
 };
 
@@ -263,7 +262,6 @@ LandingContainer.propTypes = {
 const mapStateToProps = (state) => ({
   image: state.landing.image,
   headline: state.landing.headline,
-  subheadline: state.landing.subheadline,
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}
