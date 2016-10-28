@@ -6,11 +6,8 @@ import cssModules from 'react-css-modules';
 import styles from './index.module.scss';
 import { WithLoading, Project } from 'components';
 import projectData from './graph/fragments';
-import Section from 'grommet-udacity/components/Section';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import Heading from 'grommet-udacity/components/Heading';
-
 
 class ProjectContainer extends Component { // eslint-disable-line react/prefer-stateless-function
   constructor() {
@@ -31,6 +28,12 @@ class ProjectContainer extends Component { // eslint-disable-line react/prefer-s
     );
   }
 }
+
+ProjectContainer.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  project: PropTypes.object,
+  loadingError: PropTypes.object,
+};
 
 ProjectContainer.propTypes = {
   params: PropTypes.object.isRequired,

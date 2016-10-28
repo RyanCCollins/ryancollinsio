@@ -15,7 +15,7 @@ import Footer from 'grommet-udacity/components/Footer';
 import Columns from 'grommet-udacity/components/Columns';
 import List from 'grommet-udacity/components/List';
 import ListItem from 'grommet-udacity/components/ListItem';
-import { WithLoading, Post, Divider, Comment } from 'components';
+import { WithLoading, Post, Divider, Comment, PostMeta } from 'components';
 import RTE from 'react-rte';
 
 
@@ -76,9 +76,14 @@ class PostContainer extends Component { // eslint-disable-line react/prefer-stat
       <Section className={styles.postPage}>
         <WithLoading isLoading={isLoading}>
           {post &&
-            <Post post={post} />
+            <Post
+              post={post}
+            />
           }
         </WithLoading>
+        {post &&
+          <PostMeta post={post} />
+        }
         <Section>
           <Heading align="center">
             Comments
@@ -152,6 +157,10 @@ const loadPostQuery = gql`
       slug
       created_at
       image: feature_image
+      tags {
+        id
+        title
+      }
       comments {
         id
         total_votes
