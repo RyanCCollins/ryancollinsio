@@ -4,6 +4,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import routes from './routes';
 import '../styles/styles.scss';
+import 'antd/dist/antd.css';
 import RedBox from 'redbox-react';
 const isDev = process.env.NODE_ENV !== 'production';
 const node = document.getElementById('app');

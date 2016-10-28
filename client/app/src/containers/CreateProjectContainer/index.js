@@ -10,7 +10,7 @@ import { reduxForm } from 'redux-form';
 import Box from 'grommet-udacity/components/Box';
 import Section from 'grommet-udacity/components/Section';
 import Headline from 'grommet-udacity/components/Headline';
-import { Divider, CreateProjectForm, WithToast } from 'components';
+import { Divider, CreateProjectForm, WithToast, WithLoading } from 'components';
 import fieldsToSubmission from './model/serialization';
 
 export const formFields = [
@@ -33,6 +33,14 @@ class CreateProjectContainer extends Component {
   constructor() {
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleTags = this.handleTags.bind(this);
+  }
+  handleTags(value) {
+    const {
+      tags,
+    } = this.props;
+    const newTags = value.map((tag) => tags[tag] || { title: tag });
+    this.props.actions.createProjectAddTag(newTags);
   }
   handleSubmit() {
     const {
@@ -68,38 +76,51 @@ class CreateProjectContainer extends Component {
       actions,
       message,
       createEventError,
+      tagsLoading,
+      tagsError,
+      tags,
     } = this.props;
     return (
-      <WithToast
-        message={message}
-        error={createEventError}
-        onClose={(type) => actions.clearCreateProjectToast(type)}
+      <WithLoading
+        isLoading={tagsLoading}
       >
-        <Box className={styles.createProject}>
-          <Headline align="center">
-            Create Project
-          </Headline>
-          <Divider />
-          <Section align="center" justify="center">
-            <CreateProjectForm
-              invalid={invalid}
-              onSubmit={this.handleSubmit}
-              fields={fields}
-            />
-          </Section>
-        </Box>
-      </WithToast>
+        <WithToast
+          message={message}
+          error={createEventError || tagsError}
+          onClose={(type) => actions.clearCreateProjectToast(type)}
+        >
+          <Box className={styles.createProject}>
+            <Headline align="center">
+              Create Project
+            </Headline>
+            <Divider />
+            <Section align="center" justify="center">
+              <CreateProjectForm
+                invalid={invalid}
+                onSubmit={this.handleSubmit}
+                fields={fields}
+                pastTags={tags}
+                onChangeTags={this.handleTags}
+              />
+            </Section>
+          </Box>
+        </WithToast>
+      </WithLoading>
     );
   }
 }
 
 CreateProjectContainer.propTypes = {
   fields: PropTypes.object.isRequired,
+  tags: PropTypes.array,
+  tagsError: PropTypes.object,
+  tagsLoading: PropTypes.bool.isRequired,
   invalid: PropTypes.bool.isRequired,
   mutate: PropTypes.func.isRequired,
   createEventError: PropTypes.object,
   message: PropTypes.string,
   actions: PropTypes.object.isRequired,
+  selectedTags: PropTypes.array.isRequired,
 };
 
 CreateProjectContainer.contextTypes = {
@@ -110,6 +131,7 @@ CreateProjectContainer.contextTypes = {
 const mapStateToProps = (state) => ({
   createEventError: state.createProject.error,
   message: state.createProject.message,
+  selectedTags: state.createProject.selectedTags,
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}
@@ -122,6 +144,23 @@ const mapDispatchToProps = (dispatch) => ({
 
 const Container = cssModules(CreateProjectContainer, styles);
 
+const loadPastTagsQuery = gql`
+  query loadPastTags {
+    projectTags {
+      id
+      title
+    }
+  }
+`;
+
+const ContainerWithData = graphql(loadPastTagsQuery, {
+  props: ({ data: { projectTags, error, loading } }) => ({
+    tags: projectTags,
+    tagsError: error,
+    tagsLoading: loading,
+  }),
+})(Container);
+
 const createProjectMutation = gql`
 mutation createProject($authToken: String!, $project: ProjectInput) {
   CreateProject(input: { auth_token: $authToken, project: $project }) {
@@ -132,7 +171,7 @@ mutation createProject($authToken: String!, $project: ProjectInput) {
 }
 `;
 
-const ContainerWithMutation = graphql(createProjectMutation)(Container);
+const ContainerWithMutation = graphql(createProjectMutation)(ContainerWithData);
 
 const FormContainer = reduxForm({
   form: 'CreateProject',

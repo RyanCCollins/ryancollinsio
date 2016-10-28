@@ -7,7 +7,17 @@ module PostMutations
     return_field :post, PostType
     resolve -> (inputs, ctx) do
       user = User.find_by(auth_token: inputs[:auth_token])
-      post = user.posts.create(inputs[:post].to_h)
+      post_hash = inputs[:post].to_h
+      if inputs[:post][:tags]
+        tags = inputs[:post][:tags].to_a.uniq
+        post_hash = post_hash.delete(:tags)
+      end
+      post = user.posts.build(post_hash)
+      if tags
+        tags.each do |tag|
+          post.tags << Tag.find_or_create_by(title: tag.to_h["title"])
+        end
+      end
       if post.save!
         {
           post: post

@@ -4,11 +4,18 @@ import update from 'react-addons-update';
 export const initialState = {
   error: null,
   message: null,
+  selectedTags: [],
 };
 
 const createProjectReducer =
   (state = initialState, action) => {
     switch (action.type) {
+      case types.CREATE_PROJECT_ADD_TAG:
+        return update(state, {
+          selectedTags: {
+            $set: action.value,
+          },
+        });
       case types.CREATE_PROJECT_ERROR:
         return update(state, {
           error: {

@@ -39,3 +39,9 @@ export const clearCreateProjectToast = (type) =>
         break;
     }
   };
+
+// createProjectAddTag :: String -> {Action}
+export const createProjectAddTag = (value) => ({
+  type: types.CREATE_PROJECT_ADD_TAG,
+  value,
+});

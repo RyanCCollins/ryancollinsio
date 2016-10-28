@@ -73,10 +73,15 @@ const CreatePostForm = ({
         <legend>
           Tags
         </legend>
-        <FormField>
+        <FormField
+          label="Tags"
+          help="Start Typing to Add Tags for the post"
+          htmlFor="tag-input"
+        >
           <Select
             tags
             style={{ width: '100%' }}
+            id="tag-input"
             searchPlaceholder="Start Typing to add a tag."
             onChange={onChangeTags}
           >
@@ -98,7 +103,11 @@ const CreatePostForm = ({
 );
 
 CreatePostForm.propTypes = {
-
+  fields: PropTypes.object.isRequired,
+  pastTags: PropTypes.array.isRequired,
+  onChangeTags: PropTypes.func.isRequired,
+  invalid: PropTypes.bool.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default CreatePostForm;

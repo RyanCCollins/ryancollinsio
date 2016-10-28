@@ -13,8 +13,8 @@ const CreateProjectForm = ({
   fields,
   invalid,
   onSubmit,
-  onSetTechnicalInfoTags,
-  technicalInfoTags,
+  pastTags,
+  onChangeTags,
 }) => (
   <Form>
     <FormFields>
@@ -204,15 +204,26 @@ const CreateProjectForm = ({
             aria-invalid={fields.technicalInformationInput.error}
           />
         </FormField>
-        <FormField>
-          <Select
+        <FormField
+          label="Tags"
+          help="Select tags for the project"
+          htmlFor="tag-input"
+        >
+          <TagSelect
             tags
             style={{ width: '100%' }}
-            searchPlaceholder="Start Typing to add a tag."
-            onChange={onSetTag}
+            id="tag-input"
+            searchPlaceholder="Start typing to add a tag."
+            onChange={onChangeTags}
           >
-            {children}
-          </Select>
+            {pastTags.map((tag, i) =>
+              <Option
+                key={i}
+              >
+                {tag.title}
+              </Option>
+            )}
+          </TagSelect>
         </FormField>
       </fieldset>
       <fieldset>
