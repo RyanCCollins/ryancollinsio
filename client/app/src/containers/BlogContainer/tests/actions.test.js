@@ -3,12 +3,40 @@ import * as actions from '../actions';
 import * as types from '../constants';
 
 describe('Blog actions', () => {
-  describe('Default Action', () => {
-    it('has a type of DEFAULT_ACTION', () => {
-      const expected = {
-        type: types.BLOG_DEFAULT_ACTION,
-      };
-      expect(actions.blogDefaultAction()).toEqual(expected);
-    });
+  it('should have a type of BLOG_ERROR', () => {
+    const error = new Error('Oops');
+    const expected = {
+      type: types.BLOG_ERROR,
+      error,
+    };
+    expect(
+      actions.blogError(error)
+    ).toEqual(expected);
+  });
+  it('should have a type of BLOG_MESSAGE', () => {
+    const message = 'Hello world';
+    const expected = {
+      type: types.BLOG_MESSAGE,
+      message,
+    };
+    expect(
+      actions.blogMessage(message)
+    ).toEqual(expected);
+  });
+  it('should have a type of CLEAR_BLOG_ERROR', () => {
+    const expected = {
+      type: types.CLEAR_BLOG_ERROR,
+    };
+    expect(
+      actions.clearBlogError()
+    ).toEqual(expected);
+  });
+  it('should have a type of CLEAR_BLOG_MESSAGE', () => {
+    const expected = {
+      type: types.CLEAR_BLOG_MESSAGE,
+    };
+    expect(
+      actions.clearBlogMessage()
+    ).toEqual(expected);
   });
 });
