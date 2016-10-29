@@ -24,11 +24,11 @@ const initialState = {
 
 /* Commonly used middlewares and enhancers */
 /* See: http://redux.js.org/docs/advanced/Middleware.html*/
-const loggerMiddleware = createLogger();
 const routingMiddleware = routerMiddleware(browserHistory);
 const middlewares = [thunk, routingMiddleware, client.middleware()];
 
 if (isDeveloping) {
+  const loggerMiddleware = createLogger();
   middlewares.push(loggerMiddleware);
 }
 
