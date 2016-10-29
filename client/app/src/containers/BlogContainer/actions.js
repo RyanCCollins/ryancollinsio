@@ -40,11 +40,13 @@ export const clearBlogToast = (type) =>
     }
   };
 
+// blogSetSearchTerm :: String -> {Action}
 export const blogSetSearchTerm = (value) => ({
   type: types.BLOG_SET_SEARCH_TERM,
   value,
 });
 
+// blogClearSearchTerm :: String -> {Action}
 export const blogClearSearchTerm = () => ({
   type: types.BLOG_CLEAR_SEARCH_TERM,
 });
