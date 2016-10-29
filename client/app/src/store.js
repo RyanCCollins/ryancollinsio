@@ -1,8 +1,7 @@
 import { createStore, compose, applyMiddleware } from 'redux';
-import { syncHistoryWithStore, routerActions, routerMiddleware  } from 'react-router-redux';
+import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
 import { browserHistory } from 'react-router';
-import createLogger from 'redux-logger';
 import rootReducer from './reducers';
 import client from './apolloClient';
 const isClient = typeof document !== 'undefined';
@@ -28,6 +27,7 @@ const routingMiddleware = routerMiddleware(browserHistory);
 const middlewares = [thunk, routingMiddleware, client.middleware()];
 
 if (isDeveloping && isClient) {
+  const createLogger = require('redux-logger');
   const loggerMiddleware = createLogger();
   middlewares.push(loggerMiddleware);
 }
