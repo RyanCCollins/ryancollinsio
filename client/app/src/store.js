@@ -27,7 +27,7 @@ const initialState = {
 const routingMiddleware = routerMiddleware(browserHistory);
 const middlewares = [thunk, routingMiddleware, client.middleware()];
 
-if (isDeveloping) {
+if (isDeveloping && isClient) {
   const loggerMiddleware = createLogger();
   middlewares.push(loggerMiddleware);
 }
