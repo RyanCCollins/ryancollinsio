@@ -2,7 +2,6 @@ import webpack from 'webpack';
 import path from 'path';
 import HtmlwebpackPlugin from 'html-webpack-plugin';
 import NpmInstallPlugin from 'npm-install-webpack-plugin';
-import Visualizer from 'webpack-visualizer-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import OfflinePlugin from 'offline-plugin';
 import autoprefixer from 'autoprefixer';
@@ -176,7 +175,6 @@ module.exports = {
       new HtmlwebpackPlugin({
         title: 'RyanCollins.io',
         template: 'index.html'
-      }),
-      new Visualizer()
+      })
     ]
 };
