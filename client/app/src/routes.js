@@ -80,6 +80,17 @@ export const routes = {
         });
       },
     },
+    {
+      path: '/blog/archive',
+      getComponent(location, callback) {
+        require.ensure([], () => {
+          const ArchivePage = require(
+            './pages/ArchivePage'
+        ).default;
+          callback(null, ArchivePage);
+        });
+      },
+    },
 /* Newly generated Routes go here */
     {
       path: '*',

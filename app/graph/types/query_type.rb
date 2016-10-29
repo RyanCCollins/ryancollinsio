@@ -39,8 +39,14 @@ QueryType = GraphQL::ObjectType.define do
     end
   end
   field :posts, types[PostType] do
+    argument :tag, types.String
     resolve -> (obj, args, ctx) do
-      Post.all
+      if args[:tag]
+        tag = Tag.where(title: args[:tag])
+        tag.posts.all
+      else
+        Post.all
+      end
     end
   end
   field :references, types[ReferenceType] do

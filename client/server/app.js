@@ -23,9 +23,7 @@ const baseUrl = typeof process.env.BASE_URL !== 'undefined' ?
 const apiUrl = `${baseUrl}graphql`;
 
 app.use(morgan('combined'));
-
 app.use(express.static(__dirname + '/public'));
-
 app.use((req, res) => {
   match({ routes, location: req.url },
     (error, redirectLocation, renderProps) => {
@@ -44,15 +42,13 @@ app.use((req, res) => {
             headers: req.headers,
           }),
         });
-
         const component = (
           <ApolloProvider client={client} store={store}>
             <RouterContext {...renderProps} />
           </ApolloProvider>
         );
         getDataFromTree(component).then((context) => {
-          const content = renderToString(component);
-
+          const content = renderToString(component)
           const html = (
             <Html
               content={content}

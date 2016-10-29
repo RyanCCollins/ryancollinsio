@@ -1,3 +1,66 @@
-.techStackSection {
-  
+.techStackItem {
+  background-color: rgba(23, 57, 67, 0.69);
+  position: relative;
+  opacity: 0.7;
+  margin: 5px 0;
+  max-width: 970px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 200px;
+}
+
+.techStackWrapper {
+  color: white;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.techStackItemWrapper {
+  background: rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.techStackImageWrapper {
+  max-width: 300px;
+  max-height: 200px;
+  margin-left: 5px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  flex-direction: row;
+}
+
+.techStackItemTitle {
+  padding-left: 120px;
+}
+
+.techStackItemOverlay {
+  opacity: 0;
+  top: 0;
+  left: 0;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: #237ed2;
+  cursor: pointer;
+  .content {
+    text-align: center;
+    color: white;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  &:hover {
+    opacity: 1.0;
+    transition: opacity 1s;
+  }
 }

@@ -1,17 +1,14 @@
 ## TechStackSection Component
-A component that ...
+A static component that shows tech stack data.
 
 ### Example
 
 ```js
-<TechStackSection />
+<TechStackSection techItems={techData} />
 ```
 
 ### Props
 
 | Prop          | Type     | Default     | Possible Values
 | ------------- | -------- | ----------- | ---------------------------------------------
-| **myProp**    | String   |             | Any string value
-
-
-### Other Information
+| **techItems**    | Array   |             | An array containing data for tech items.

@@ -29,31 +29,33 @@ const ReferencesSection = ({
       fullscreen={false}
       isLoading={isLoading}
     >
-      <Carousel autoplay>
-        {references && references.length > 0 && references.map((reference, i) =>
-          <div
-            className={`${styles.carouselItem} small-12`}
-            key={i}
-          >
-            <img src={reference.avatar} className={styles.avatar} />
-            <Box className={styles.referenceText}>
-              <Heading className="heading">
-                {reference.name}
-              </Heading>
-              <Label uppercase className={styles.labelText}>
-                {reference.title}
-              </Label>
-              <Label uppercase className={styles.labelBottom}>
-                {reference.company}
-              </Label>
-              <hr className={styles.seperator} />
-              <Paragraph>
-                {reference.body}
-              </Paragraph>
-            </Box>
-          </div>
-        )}
-      </Carousel>
+      {references && references.length > 0 &&
+        <Carousel autoplay className={styles.carousel}>
+            {references.map((reference, i) =>
+              <Box
+                className={`${styles.carouselItem}`}
+                key={i}
+              >
+                <img src={reference.avatar} className={styles.avatar} />
+                <Box className={styles.referenceText}>
+                  <Heading className="heading">
+                    {reference.name}
+                  </Heading>
+                  <Label uppercase className={styles.labelText}>
+                    {reference.title}
+                  </Label>
+                  <Label uppercase className={styles.labelBottom}>
+                    {reference.company}
+                  </Label>
+                  <hr className={styles.seperator} />
+                  <Paragraph>
+                    {reference.body}
+                  </Paragraph>
+                </Box>
+              </Box>
+            )}
+        </Carousel>
+      }
     </WithLoading>
   </Section>
 );

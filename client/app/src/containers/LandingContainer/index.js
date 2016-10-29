@@ -55,6 +55,7 @@ class LandingContainer extends Component {
 
 LandingContainer.propTypes = {
   isLoading: PropTypes.bool.isRequired,
+  referenceError: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,
   image: PropTypes.bool.isRequired,
   headline: PropTypes.bool.isRequired,
@@ -77,25 +78,6 @@ const mapDispatchToProps = (dispatch) => ({
 
 const Container = cssModules(LandingContainer, styles);
 
-const getProjectsQuery = gql`
-  query loadProjects {
-    projects {
-      title
-      slug
-      caption
-      featureImage
-    }
-  }
-`;
-
-const ContainerWithData = graphql(getProjectsQuery, {
-  props: ({ data: { projects, loading, error } }) => ({
-    projects,
-    isLoading: loading,
-    error,
-  }),
-})(Container);
-
 const loadReferencesQuery = gql`
 query loadReferences {
   references {
@@ -109,10 +91,12 @@ query loadReferences {
 `;
 
 const ContainerWithReferences = graphql(loadReferencesQuery, {
-  props: ({ data: { references } }) => ({
+  props: ({ data: { references, loading, error } }) => ({
     references,
+    isLoading: loading,
+    referenceError: error,
   }),
-})(ContainerWithData);
+})(Container);
 
 export default connect(
   mapStateToProps,

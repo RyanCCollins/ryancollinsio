@@ -10,7 +10,7 @@ const TechStackSection = ({
   techItems,
 }) => (
   <Section
-    className={styles.section}
+    className="section"
     colorIndex="light-1"
     full="horizontal"
     align="center"

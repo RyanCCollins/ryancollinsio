@@ -17,19 +17,16 @@ import List from 'grommet-udacity/components/List';
 import ListItem from 'grommet-udacity/components/ListItem';
 import { WithLoading, Post, Divider, Comment, PostMeta } from 'components';
 const isClient = typeof document !== 'undefined';
-let RTE;
-if (isClient) {
-  RTE = require('react-rte');
-}
+import RichTextEditor from 'react-rte';
 
 class PostContainer extends Component { // eslint-disable-line react/prefer-stateless-function
   constructor() {
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUpvote = this.handleUpvote.bind(this);
-    if (RTE) {
+    if (RichTextEditor) {
       this.state = {
-        value: RTE.createEmptyValue(),
+        value: RichTextEditor.createEmptyValue(),
       };
     }
   }
@@ -79,52 +76,53 @@ class PostContainer extends Component { // eslint-disable-line react/prefer-stat
     } = this.props;
     return (
       <Section className={styles.postPage}>
-        <WithLoading isLoading={isLoading}>
+        <WithLoading isLoading={isLoading || !post} fullscreen>
           {post &&
-            <Post
-              post={post}
-            />
+            <div>
+              <Post
+                post={post}
+              />
+              <PostMeta post={post} />
+            </div>
           }
         </WithLoading>
-        {post &&
-          <PostMeta post={post} />
-        }
         <Section>
           <Heading align="center">
             Comments
           </Heading>
           <Divider />
-          {RTE &&
-            <Box className="container">
-              <Article className="panel">
-                <RTE value={this.state.value} onChange={(value) => this.setState({ value }) } />
-                <Footer
-                  align="center"
-                  justify="center"
-                  pad="medium"
-                >
-                  <Button label="Submit Comment" onClick={this.handleSubmit} />
-                </Footer>
-              </Article>
-              <Article className="panel">
-                <Columns size="large" justify="center">
-                  <List>
-                    {post &&
-                      post.comments
-                        .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-                        .map((comment, i) =>
-                      <ListItem key={i}>
-                        <Comment
-                          onUpvote={this.handleUpvote}
-                          comment={comment}
-                        />
-                      </ListItem>
-                    )}
-                  </List>
-                </Columns>
-              </Article>
-            </Box>
-          }
+          <Box className="container">
+            <Article className="panel">
+              <RichTextEditor
+                value={this.state.value}
+                onChange={(value) => this.setState({ value }) }
+              />
+              <Footer
+                align="center"
+                justify="center"
+                pad="medium"
+              >
+                <Button label="Submit Comment" onClick={this.handleSubmit} />
+              </Footer>
+            </Article>
+            <Article className="panel">
+              <Columns size="large" justify="center">
+                <List>
+                  {post &&
+                    post.comments
+                      .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+                      .map((comment, i) =>
+                    <ListItem key={i}>
+                      <Comment
+                        onUpvote={this.handleUpvote}
+                        comment={comment}
+                      />
+                    </ListItem>
+                  )}
+                </List>
+              </Columns>
+            </Article>
+          </Box>
         </Section>
       </Section>
     );
