@@ -1,4 +1,4 @@
-/* Assemble all containers for export */
+/* GENERATOR: Assemble all containers for export */
 export ArchiveContainer from './ArchiveContainer';
 export AppContainer from './AppContainer';
 export CreatePostContainer from './CreatePostContainer';

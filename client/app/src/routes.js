@@ -26,6 +26,7 @@ export const routes = {
     },
   },
   childRoutes: [
+/* GENERATOR: Newly generated Routes go here */
     {
       path: 'projects/:slug',
       getComponent(location, callback) {
@@ -91,7 +92,6 @@ export const routes = {
         });
       },
     },
-/* Newly generated Routes go here */
     {
       path: '*',
       getComponent(location, callback) {

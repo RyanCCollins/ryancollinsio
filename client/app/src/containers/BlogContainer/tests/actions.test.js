@@ -39,4 +39,30 @@ describe('Blog actions', () => {
       actions.clearBlogMessage()
     ).toEqual(expected);
   });
+  it('should have a type of BLOG_INCREMENT_CURRENT_PAGE', () => {
+    const expected = {
+      type: types.BLOG_INCREMENT_CURRENT_PAGE,
+    };
+    expect(
+      actions.blogIncrementCurrentPage()
+    ).toEqual(expected);
+  });
+  it('should have a type of BLOG_DECREMENT_CURRENT_PAGE', () => {
+    const expected = {
+      type: types.BLOG_DECREMENT_CURRENT_PAGE,
+    };
+    expect(
+      actions.blogDecrementCurrentPage()
+    ).toEqual(expected);
+  });
+  it('should have a type of BLOG_SET_CURRENT_PAGE', () => {
+    const page = 2;
+    const expected = {
+      type: types.BLOG_SET_CURRENT_PAGE,
+      page,
+    };
+    expect(
+      actions.blogSetCurrentPage(page)
+    ).toEqual(expected);
+  });
 });

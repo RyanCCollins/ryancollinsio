@@ -94,4 +94,45 @@ describe('blogReducer', () => {
       })
     ).toEqual(stateAfter);
   });
+  it('should handle reducer for BLOG_INCREMENT_CURRENT_PAGE', () => {
+    const stateBefore = {
+      currentPage: 1,
+    };
+    const stateAfter = {
+      currentPage: 2,
+    };
+    expect(
+      blogReducer(stateBefore, {
+        type: types.BLOG_INCREMENT_CURRENT_PAGE,
+      })
+    ).toEqual(stateAfter);
+  });
+  it('should handle reducer for BLOG_DECREMENT_CURRENT_PAGE', () => {
+    const stateBefore = {
+      currentPage: 2,
+    };
+    const stateAfter = {
+      currentPage: 1,
+    };
+    expect(
+      blogReducer(stateBefore, {
+        type: types.BLOG_DECREMENT_CURRENT_PAGE,
+      })
+    ).toEqual(stateAfter);
+  });
+  it('should handle reducer for BLOG_SET_CURRENT_PAGE', () => {
+    const page = 4;
+    const stateBefore = {
+      currentPage: 1,
+    };
+    const stateAfter = {
+      currentPage: 4,
+    };
+    expect(
+      blogReducer(stateBefore, {
+        type: types.BLOG_SET_CURRENT_PAGE,
+        page,
+      })
+    ).toEqual(stateAfter);
+  });
 });

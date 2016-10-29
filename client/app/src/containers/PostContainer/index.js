@@ -16,7 +16,6 @@ import Columns from 'grommet-udacity/components/Columns';
 import List from 'grommet-udacity/components/List';
 import ListItem from 'grommet-udacity/components/ListItem';
 import { WithLoading, Post, Divider, Comment, PostMeta } from 'components';
-const isClient = typeof document !== 'undefined';
 import RichTextEditor from 'react-rte';
 
 class PostContainer extends Component { // eslint-disable-line react/prefer-stateless-function

@@ -7,6 +7,8 @@ import client from './apolloClient';
 const isClient = typeof document !== 'undefined';
 const isDeveloping = process.env.NODE_ENV !== 'production';
 
+/* GENERATOR: Import all of your initial state */
+import { initialState as archive } from './containers/ArchiveContainer/reducer';
 import { initialState as landing } from './containers/LandingContainer/reducer';
 import { initialState as createProject } from './containers/CreateProjectContainer/reducer';
 import { initialState as createPost } from './containers/CreatePostContainer/reducer';
@@ -14,10 +16,12 @@ import { initialState as blog } from './containers/BlogContainer/reducer';
 import { initialState as app } from 'containers/AppContainer/reducer';
 
 const initialState = {
+  /* GENERATOR: Compile all of your initial state */
   landing,
   createProject,
   blog,
   createPost,
+  archive,
   app,
 };
 

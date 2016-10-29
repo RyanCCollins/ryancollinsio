@@ -1,6 +1,7 @@
 import * as types from './constants';
 
-// archivedefaultAction :: None -> {Action}
-export const archiveDefaultAction = () => ({
-  type: types.ARCHIVE_DEFAULT_ACTION,
+// setSelectedTag :: None -> {Action}
+export const setSelectedTag = (tag) => ({
+  type: types.ARCHIVE_SET_SELECTED_TAG,
+  tag,
 });

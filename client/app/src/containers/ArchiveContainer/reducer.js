@@ -1,14 +1,19 @@
 import * as types from './constants';
+import update from 'react-addons-update';
 
 export const initialState = {
-  // Initial State goes here!
+  selectedTag: null,
 };
 
 const archiveReducer =
   (state = initialState, action) => {
     switch (action.type) {
-      case types.DEFAULT_ACTION:
-        return state;
+      case types.ARCHIVE_SET_SELECTED_TAG:
+        return update(state, {
+          selectedTag: {
+            $set: action.tag,
+          },
+        });
       default:
         return state;
     }

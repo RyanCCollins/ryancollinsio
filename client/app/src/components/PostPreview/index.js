@@ -4,7 +4,8 @@ import cssModules from 'react-css-modules';
 import Box from 'grommet-udacity/components/Box';
 import Card from 'grommet-udacity/components/Card';
 import Anchor from 'grommet-udacity/components/Anchor';
-import { ResponsiveImage } from 'components';
+import Heading from 'grommet-udacity/components/Heading';
+import { ResponsiveImage, TagList } from 'components';
 import { highlightContent } from './utils';
 
 const PostPreview = ({
@@ -15,7 +16,14 @@ const PostPreview = ({
   return (
     <Box pad="large">
       <Card
-        heading={post.title}
+        heading={
+          <Box>
+            <TagList tags={post.tags} />
+            <Heading align="start" tag="h2" strong>
+              {post.title}
+            </Heading>
+          </Box>
+        }
         label={post.author.name}
         thumbnail={
           <ResponsiveImage src={post.image} matchHeight />
@@ -34,7 +42,8 @@ const PostPreview = ({
 };
 
 PostPreview.propTypes = {
-
+  post: PropTypes.object.isRequired,
+  searchTerm: PropTypes.string,
 };
 
 export default cssModules(PostPreview, styles);

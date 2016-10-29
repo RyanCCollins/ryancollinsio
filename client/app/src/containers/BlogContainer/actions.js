@@ -50,3 +50,16 @@ export const blogSetSearchTerm = (value) => ({
 export const blogClearSearchTerm = () => ({
   type: types.BLOG_CLEAR_SEARCH_TERM,
 });
+
+export const blogIncrementCurrentPage = () => ({
+  type: types.BLOG_INCREMENT_CURRENT_PAGE,
+});
+
+export const blogDecrementCurrentPage = () => ({
+  type: types.BLOG_DECREMENT_CURRENT_PAGE,
+});
+
+export const blogSetCurrentPage = (page) => ({
+  type: types.BLOG_SET_CURRENT_PAGE,
+  page,
+});

@@ -5,11 +5,30 @@ export const initialState = {
   error: null,
   message: null,
   searchTerm: null,
+  currentPage: 1,
 };
 
 const blogReducer =
   (state = initialState, action) => {
     switch (action.type) {
+      case types.BLOG_INCREMENT_CURRENT_PAGE:
+        return update(state, {
+          currentPage: {
+            $set: state.currentPage + 1,
+          },
+        });
+      case types.BLOG_DECREMENT_CURRENT_PAGE:
+        return update(state, {
+          currentPage: {
+            $set: state.currentPage - 1,
+          },
+        });
+      case types.BLOG_SET_CURRENT_PAGE:
+        return update(state, {
+          currentPage: {
+            $set: action.currentPage,
+          },
+        });
       case types.BLOG_CLEAR_SEARCH_TERM:
         return update(state, {
           searchTerm: {

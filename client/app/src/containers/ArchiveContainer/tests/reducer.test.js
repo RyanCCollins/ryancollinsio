@@ -1,4 +1,5 @@
 import expect from 'expect';
+import * as types from '../constants';
 import archiveReducer, { initialState } from '../reducer';
 
 describe('archiveReducer', () => {

@@ -14,6 +14,8 @@ import CloseIcon from 'grommet-udacity/components/icons/base/Close';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Search from 'grommet-udacity/components/Search';
+import Footer from 'grommet-udacity/components/Footer';
+import { Pagination } from 'antd';
 import { PostPreview, Divider } from 'components';
 
 const SearchData = ({
@@ -42,6 +44,7 @@ class BlogContainer extends Component {
       posts,
       actions,
       searchTerm,
+      currentPage,
     } = this.props;
     const filterableTerm = searchTerm && searchTerm !== '' && searchTerm.toLowerCase();
     const filteredPosts = searchTerm !== null ? (
@@ -96,6 +99,11 @@ class BlogContainer extends Component {
                 )}
               </Columns>
             </Box>
+            {filteredPosts && filteredPosts.length > 6 &&
+              <Footer align="center" justify="center" pad="large">
+                <Pagination defaultCurrent={1} pageSize={6} total={filteredPosts.length} />
+              </Footer>
+            }
           </WithToast>
         </WithLoading>
       </Section>
@@ -109,11 +117,13 @@ BlogContainer.propTypes = {
   posts: PropTypes.array,
   actions: PropTypes.object.isRequired,
   searchTerm: PropTypes.string,
+  currentPage: PropTypes.number.isRequired,
 };
 
 // mapStateToProps :: {State} -> {Props}
 const mapStateToProps = (state) => ({
   searchTerm: state.blog.searchTerm,
+  currentPage: state.blog.currentPage,
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}
@@ -135,6 +145,10 @@ const loadPostsQuery = gql`
       slug
       created_at
       image: feature_image
+      tags {
+        id
+        title
+      }
       author: user {
         name
         avatar

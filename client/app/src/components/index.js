@@ -1,4 +1,5 @@
-/* Assemble all components for export */
+/* GENERATOR: Assemble all components for export */
+export TagList from './TagList';
 export TechStackSection from './StaticLandingSections/TechStackSection';
 export ReferencesSection from './StaticLandingSections/ReferencesSection';
 export LanguageSection from './StaticLandingSections/LanguageSection';

@@ -1,4 +1,4 @@
-/* Assemble all pages for export */
+/* GENERATOR: Assemble all pages for export */
 export ArchivePage from './ArchivePage/index';
 export CreatePostPage from './CreatePostPage/index';
 export PostPage from './PostPage/index';
