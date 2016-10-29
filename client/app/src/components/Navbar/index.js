@@ -24,19 +24,19 @@ const Navbar = ({
         responsive={false}
       >
         <Anchor
-          className={pathname === '/' ? 'active' : ''}
+          className={pathname === '/' ? 'navLink active' : 'navLink'}
           href="/"
         >
           Home
         </Anchor>
         <Anchor
-          className={pathname === '/blog' ? 'active' : ''}
+          className={pathname === '/blog' ? 'navLink active' : 'navLink'}
           href="/blog"
         >
           Blog
         </Anchor>
         <Anchor
-          className={pathname === '/portfolio' ? 'active' : ''}
+          className={pathname === '/portfolio' ? 'active navLink' : 'navLink'}
           href="/portfolio"
         >
           Portfolio

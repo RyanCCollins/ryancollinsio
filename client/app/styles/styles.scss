@@ -6,9 +6,26 @@
   min-height: 100vh;
 }
 
+a.navLink {
+  position: relative;
+  &:hover:before {
+    transform: scaleX(1);
+  }
+  &:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    height: 4px;
+    background: #FF5912;
+    width: 100%;
+    transition: all 0.2s ease-in-out;
+    transform: scaleX(0);
+  }
+}
+
 a.active {
-  color: #2e3d49 !important;
-  border-bottom: 2px solid #7d97ad;
+  border-bottom: 4px solid #FF5912;
 }
 
 .section {
