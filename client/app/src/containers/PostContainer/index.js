@@ -16,17 +16,22 @@ import Columns from 'grommet-udacity/components/Columns';
 import List from 'grommet-udacity/components/List';
 import ListItem from 'grommet-udacity/components/ListItem';
 import { WithLoading, Post, Divider, Comment, PostMeta } from 'components';
-import RTE from 'react-rte';
-
+const isClient = typeof document !== 'undefined';
+let RTE;
+if (isClient) {
+  RTE = require('react-rte');
+}
 
 class PostContainer extends Component { // eslint-disable-line react/prefer-stateless-function
   constructor() {
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUpvote = this.handleUpvote.bind(this);
-    this.state = {
-      value: RTE.createEmptyValue(),
-    };
+    if (RTE) {
+      this.state = {
+        value: RTE.createEmptyValue(),
+      };
+    }
   }
   handleUpvote(id) {
     const {
@@ -89,17 +94,19 @@ class PostContainer extends Component { // eslint-disable-line react/prefer-stat
             Comments
           </Heading>
           <Divider />
-          <Box className="container">
-            <Article className="panel">
-              <RTE value={this.state.value} onChange={(value) => this.setState({ value }) } />
-              <Footer
-                align="center"
-                justify="center"
-                pad="medium"
-              >
-                <Button label="Submit Comment" onClick={this.handleSubmit} />
-              </Footer>
-            </Article>
+          {RTE &&
+            <Box className="container">
+              <Article className="panel">
+                <RTE value={this.state.value} onChange={(value) => this.setState({ value }) } />
+                <Footer
+                  align="center"
+                  justify="center"
+                  pad="medium"
+                >
+                  <Button label="Submit Comment" onClick={this.handleSubmit} />
+                </Footer>
+              </Article>
+          }
             <Article className="panel">
               <Columns size="large" justify="center">
                 <List>
