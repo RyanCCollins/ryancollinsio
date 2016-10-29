@@ -106,25 +106,25 @@ class PostContainer extends Component { // eslint-disable-line react/prefer-stat
                   <Button label="Submit Comment" onClick={this.handleSubmit} />
                 </Footer>
               </Article>
+              <Article className="panel">
+                <Columns size="large" justify="center">
+                  <List>
+                    {post &&
+                      post.comments
+                        .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+                        .map((comment, i) =>
+                      <ListItem key={i}>
+                        <Comment
+                          onUpvote={this.handleUpvote}
+                          comment={comment}
+                        />
+                      </ListItem>
+                    )}
+                  </List>
+                </Columns>
+              </Article>
+            </Box>
           }
-            <Article className="panel">
-              <Columns size="large" justify="center">
-                <List>
-                  {post &&
-                    post.comments
-                      .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-                      .map((comment, i) =>
-                    <ListItem key={i}>
-                      <Comment
-                        onUpvote={this.handleUpvote}
-                        comment={comment}
-                      />
-                    </ListItem>
-                  )}
-                </List>
-              </Columns>
-            </Article>
-          </Box>
         </Section>
       </Section>
     );
