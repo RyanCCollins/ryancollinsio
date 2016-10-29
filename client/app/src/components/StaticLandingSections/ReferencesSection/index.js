@@ -30,7 +30,7 @@ const ReferencesSection = ({
       isLoading={isLoading}
     >
       <Carousel autoplay>
-        {references.map((reference, i) =>
+        {references && references.length > 0 && references.map((reference, i) =>
           <div
             className={`${styles.carouselItem} small-12`}
             key={i}
