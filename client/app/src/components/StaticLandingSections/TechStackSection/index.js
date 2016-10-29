@@ -25,7 +25,7 @@ const TechStackSection = ({
       className={styles.techStackWrapper}
     >
       <div className={styles.techStackItemWrapper}>
-        {techItems.map((item, i) =>
+        {techItems && techItems.length > 0 && techItems.map((item, i) =>
           <div key={i} className={styles.techStackItem}>
             <img src={item.url} className={styles.techStackImageWrapper} />
             <Heading>

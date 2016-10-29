@@ -12,7 +12,7 @@ import {
   summary,
   chartData,
   languages,
-  techStack,
+  techstack,
 } from './data';
 import {
   HeroSection,
@@ -47,7 +47,7 @@ class LandingContainer extends Component {
         <LanguageSection languages={languages} />
         <FocusSection chartData={chartData} />
         <ReferencesSection references={references} isLoading={isLoading} />
-        <TechStackSection techItems={techStack} />
+        <TechStackSection techItems={techstack} />
       </Box>
     );
   }
