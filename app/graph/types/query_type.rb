@@ -42,7 +42,7 @@ QueryType = GraphQL::ObjectType.define do
     argument :tag, types.String
     resolve -> (obj, args, ctx) do
       if args[:tag]
-        tag = Tag.where(title: args[:tag])
+        tag = Tag.where(title: args[:tag]).first
         tag.posts.all
       else
         Post.all
