@@ -51,6 +51,7 @@ class BlogContainer extends Component {
       blogPosts,
       posts,
       searchTerm,
+      currentPage,
     } = this.props;
     const filterableTerm = searchTerm && searchTerm !== '' ?
       searchTerm.toLowerCase() : null;
@@ -102,8 +103,10 @@ class BlogContainer extends Component {
             {posts && posts.length > 6 &&
               <Footer align="center" justify="center" pad="large">
                 <Pagination
+                  onChange={(newPage) => actions.blogSetCurrentPage(newPage)}
                   defaultCurrent={1}
                   pageSize={6}
+                  current={currentPage}
                   total={posts.length}
                 />
               </Footer>

@@ -11,8 +11,11 @@ export const getVisiblePosts = createSelector(
   getPostsPerPage(),
   (posts, currentPage, postsPerPage) => {
     if (posts && posts.length > 0) {
+      const current = currentPage - 1;
+      const from = current * postsPerPage;
+      const to = current * postsPerPage + postsPerPage;
       return posts.filter((_, i) =>
-        i >= currentPage - 1 && i < currentPage - 1 + postsPerPage
+        i >= from && i < to
       );
     }
   }

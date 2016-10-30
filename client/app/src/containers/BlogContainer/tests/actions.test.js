@@ -39,20 +39,14 @@ describe('Blog actions', () => {
       actions.clearBlogMessage()
     ).toEqual(expected);
   });
-  it('should have a type of BLOG_INCREMENT_CURRENT_PAGE', () => {
+  it('should have a type of SET_BLOG_POSTS', () => {
+    const posts = [];
     const expected = {
-      type: types.BLOG_INCREMENT_CURRENT_PAGE,
+      type: types.SET_BLOG_POSTS,
+      posts,
     };
     expect(
-      actions.blogIncrementCurrentPage()
-    ).toEqual(expected);
-  });
-  it('should have a type of BLOG_DECREMENT_CURRENT_PAGE', () => {
-    const expected = {
-      type: types.BLOG_DECREMENT_CURRENT_PAGE,
-    };
-    expect(
-      actions.blogDecrementCurrentPage()
+      actions.setBlogPosts(posts)
     ).toEqual(expected);
   });
   it('should have a type of BLOG_SET_CURRENT_PAGE', () => {
