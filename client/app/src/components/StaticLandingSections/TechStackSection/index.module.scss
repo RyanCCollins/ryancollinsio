@@ -8,6 +8,20 @@
   align-items: center;
   justify-content: space-between;
   height: 200px;
+  transform: skew(45deg) scale(0.5) rotate(-25deg);
+  transition: transform 5s;
+  z-index: 50;
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  &:hover {
+    z-index: 100;
+    transform: rotate(0deg) scale(0.0) skew(0deg);
+    transition: transform 5s;
+  }
 }
 
 .techStackWrapper {
@@ -22,6 +36,10 @@
 .techStackItemWrapper {
   background: rgba(0, 0, 0, 0.1);
   padding: 20px;
+  position: relative;
+  height: 30rem;
+  margin-top: 15rem;
+  width: 100vw;
 }
 
 .techStackImageWrapper {
@@ -60,6 +78,7 @@
     margin-right: auto;
   }
   &:hover {
+    z-index: 100;
     opacity: 1.0;
     transition: opacity 1s;
   }

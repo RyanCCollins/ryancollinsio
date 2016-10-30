@@ -8,21 +8,34 @@ import { AppContainer } from 'containers';
 import * as Pages from 'pages';
 /* eslint-enable */
 
-if (typeof module !== 'undefined' && module.require) {
-  if (typeof require.ensure === 'undefined') {
-    require.ensure = require('node-ensure');
-  }
+/* eslint-disable */
+// Polyfill for the System.import
+if (typeof System === 'undefined') {
+  var System = {
+    import(path) {
+      return Promise.resolve(require(path));
+    },
+  };
 }
+/* eslint-enable */
+
+// Switching to system.import to make use of dynamic tree shaking
+// https://medium.com/modus-create-front-end-development/automatic-code-splitting-for-react-router-w-es6-imports-a0abdaa491e9#.msrxv8fwd
+const errorLoading = (err) =>
+  console.error('Dynamic loading failed' + err); // eslint-disable-line
+
+const loadRoute = (cb) =>
+  (module) =>
+    cb(null, module.default);
 
 export const routes = {
   component: AppContainer,
   path: '/',
   indexRoute: {
     getComponent(location, callback) {
-      require.ensure([], () => {
-        const LandingPage = require('./pages/LandingPage').default;
-        callback(null, LandingPage);
-      });
+      System.import('./pages/LandingPage') // eslint-disable-line block-scoped-var
+        .then(loadRoute(callback))
+        .catch((err) => errorLoading(err));
     },
   },
   childRoutes: [
@@ -30,75 +43,65 @@ export const routes = {
     {
       path: 'projects/:slug',
       getComponent(location, callback) {
-        require.ensure([], () => {
-          const ProjectPage = require('./pages/ProjectPage').default;
-          callback(null, ProjectPage);
-        });
+        System.import('./pages/ProjectPage') // eslint-disable-line block-scoped-var
+          .then(loadRoute(callback))
+          .catch((err) => errorLoading(err));
       },
     },
     {
       path: 'portfolio',
       getComponent(location, callback) {
-        require.ensure([], () => {
-          const PortfolioPage = require('./pages/PortfolioPage').default;
-          callback(null, PortfolioPage);
-        });
+        System.import('./pages/PortfolioPage') // eslint-disable-line block-scoped-var
+          .then(loadRoute(callback))
+          .catch((err) => errorLoading(err));
       },
     },
     {
       path: 'blog',
       getComponent(location, callback) {
-        require.ensure([], () => {
-          const BlogPage = require('./pages/BlogPage').default;
-          callback(null, BlogPage);
-        });
+        System.import('./pages/BlogPage') // eslint-disable-line block-scoped-var
+          .then(loadRoute(callback))
+          .catch((err) => errorLoading(err));
       },
     },
     {
       path: 'blog/posts/:slug',
       getComponent(location, callback) {
-        require.ensure([], () => {
-          const PostPage = require('./pages/PostPage').default;
-          callback(null, PostPage);
-        });
+        System.import('./pages/PostPage') // eslint-disable-line block-scoped-var
+          .then(loadRoute(callback))
+          .catch((err) => errorLoading(err));
       },
     },
     {
       path: 'admin/create-post',
       getComponent(location, callback) {
-        require.ensure([], () => {
-          const CreatePostPage = require('./pages/CreatePostPage').default;
-          callback(null, CreatePostPage);
-        });
+        System.import('./pages/CreatePostPage') // eslint-disable-line block-scoped-var
+          .then(loadRoute(callback))
+          .catch((err) => errorLoading(err));
       },
     },
     {
       path: 'admin/create-project',
       getComponent(location, callback) {
-        require.ensure([], () => {
-          const CreateProjectPage = require('./pages/CreateProjectPage').default;
-          callback(null, CreateProjectPage);
-        });
+        System.import('./pages/CreateProjectPage') // eslint-disable-line block-scoped-var
+          .then(loadRoute(callback))
+          .catch((err) => errorLoading(err));
       },
     },
     {
       path: '/blog/archive',
       getComponent(location, callback) {
-        require.ensure([], () => {
-          const ArchivePage = require(
-            './pages/ArchivePage'
-        ).default;
-          callback(null, ArchivePage);
-        });
+        System.import('./pages/ArchivePage') // eslint-disable-line block-scoped-var
+          .then(loadRoute(callback))
+          .catch((err) => errorLoading(err));
       },
     },
     {
       path: '*',
       getComponent(location, callback) {
-        require.ensure([], () => {
-          const NotFoundPage = require('./pages/NotFoundPage').default;
-          callback(null, NotFoundPage);
-        });
+        System.import('./pages/NotFoundPage') // eslint-disable-line block-scoped-var
+          .then(loadRoute(callback))
+          .catch((err) => errorLoading(err));
       },
     },
   ],
@@ -114,25 +117,5 @@ const RouterApp = (props) => (
     </Router>
   </ApolloProvider>
 );
-//
-// const routes = (
-//   <ApolloProvider client={client} store={store}>
-//     <Router
-//       history={history} // Scroll to top on route transitions
-//       onUpdate={() => window.scrollTo(0, 0)} // eslint-disable-line
-//     >
-//       <Route path="/" component={AppContainer}>
-//         <IndexRoute component={Pages.LandingPage} />
-//         <Route path="/portfolio" component={Pages.PortfolioPage} />
-//         <Route path="/projects/:slug" component={Pages.ProjectPage} />
-//         <Route path="/admin/create-project" component={Pages.CreateProjectPage} />
-//         <Route path="/blog" component={Pages.BlogPage} />
-//         <Route path="/blog/posts/:slug" component={Pages.PostPage} />
-//         <Route path="/admin/create-post" component={Pages.CreatePostPage} />
-//         <Route path="*" component={Pages.NotFoundPage} />
-//       </Route>
-//     </Router>
-//   </ApolloProvider>
-// );
 
 export default RouterApp;

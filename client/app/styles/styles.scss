@@ -160,6 +160,35 @@ a.active {
 }
 
 
+.item0 {
+  top: 0em !important;
+  z-index: 60 !important;
+}
+.item1 {
+  top: 5em !important;
+  z-index: 55 !important;
+}
+.item2 {
+  top: 10em !important;
+  z-index: 50 !important;
+}
+.item3 {
+  top: 15em !important;
+  z-index: 45 !important;
+}
+.item4 {
+  top: 20em !important;
+  z-index: 40 !important;
+}
+.item5 {
+  top: 25em !important;
+  z-index: 35 !important;
+}
+.item6 {
+  top: 30em !important;
+  z-index: 30 !important;
+}
+
 body, html { overflow-x:hidden; }
 
 input, textarea {
@@ -187,6 +216,25 @@ input, textarea {
 
 textarea {
   resize: none !important;
+}
+
+.float-animation {
+  animation: float 2.8s forwards ease infinite;
+}
+
+@keyframes float {
+  0% {
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+  }
+  40% {
+      -webkit-transform: translate3d(0, -6px, 0);
+      transform: translate3d(0, -6px, 0);
+  }
+  100% {
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+  }
 }
 
 .grommetux-form-field {

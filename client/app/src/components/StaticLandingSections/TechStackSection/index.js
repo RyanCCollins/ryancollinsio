@@ -10,11 +10,11 @@ const TechStackSection = ({
   techItems,
 }) => (
   <Section
-    className="section"
+    className="section full-height"
     colorIndex="light-1"
     full="horizontal"
     align="center"
-    justify="center"
+    justify="start"
     texture="http://wallpapercave.com/wp/uDIy1Pt.jpg"
   >
     <Headline align="center" className="heading heading__light">
@@ -22,11 +22,11 @@ const TechStackSection = ({
     </Headline>
     <Divider />
     <div
-      className={styles.techStackWrapper}
+      className={`${styles.techStackWrapper} float-animation`}
     >
       <div className={styles.techStackItemWrapper}>
         {techItems && techItems.length > 0 && techItems.map((item, i) =>
-          <div key={i} className={styles.techStackItem}>
+          <div key={i} className={`${styles.techStackItem} item${i}`}>
             <img src={item.url} className={styles.techStackImageWrapper} />
             <Heading>
               {item.label}

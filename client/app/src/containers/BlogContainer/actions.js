@@ -12,6 +12,11 @@ export const blogMessage = (message) => ({
   message,
 });
 
+export const setBlogPosts = (posts) => ({
+  type: types.SET_BLOG_POSTS,
+  posts,
+});
+
 // clearblogError :: None -> {Action}
 export const clearBlogError = () => ({
   type: types.CLEAR_BLOG_ERROR,

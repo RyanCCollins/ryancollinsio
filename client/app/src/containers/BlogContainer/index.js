@@ -17,6 +17,7 @@ import Search from 'grommet-udacity/components/Search';
 import Footer from 'grommet-udacity/components/Footer';
 import { Pagination } from 'antd';
 import { PostPreview, Divider } from 'components';
+import { getVisiblePostsFilteredBySearchTerm } from './selectors';
 
 const SearchData = ({
   searchTerm,
@@ -37,27 +38,22 @@ const SearchData = ({
 );
 
 class BlogContainer extends Component {
+  componentWillReceiveProps({ posts }) {
+    if (posts !== this.props.posts) {
+      this.props.actions.setBlogPosts(posts);
+    }
+  }
   render() {
     const {
       isLoading,
       postError,
-      posts,
       actions,
+      blogPosts,
+      posts,
       searchTerm,
-      currentPage,
     } = this.props;
-    const filterableTerm = searchTerm && searchTerm !== '' && searchTerm.toLowerCase();
-    const filteredPosts = searchTerm !== null ? (
-      posts && posts.filter(post =>
-      post.title.toLowerCase().includes(filterableTerm) ||
-        post.body.toLowerCase().includes(filterableTerm) ||
-          post.author.name.toLowerCase().includes(filterableTerm)
-        )
-      )
-    :
-      (
-        posts
-      );
+    const filterableTerm = searchTerm && searchTerm !== '' ?
+      searchTerm.toLowerCase() : null;
     return (
       <Section className={styles.blog} colorIndex="light-2">
         <WithLoading isLoading={isLoading}>
@@ -69,7 +65,9 @@ class BlogContainer extends Component {
               <Heading align="center">
                 Blog
               </Heading>
-              <SearchData searchTerm={searchTerm} posts={filteredPosts} />
+              {blogPosts &&
+                <SearchData searchTerm={searchTerm} posts={blogPosts} />
+              }
               <Divider />
               <Box direction="row">
                 <Search
@@ -84,24 +82,30 @@ class BlogContainer extends Component {
                   />
                 }
               </Box>
-              <Columns
-                masonry
-                maxCount={2}
-                align="center"
-                justify="center"
-              >
-                {filteredPosts && filteredPosts.length > 0 && filteredPosts.map((post, i) =>
-                  <PostPreview
-                    searchTerm={filterableTerm}
-                    key={i}
-                    post={post}
-                  />
-                )}
-              </Columns>
+              {blogPosts && blogPosts.length > 0 &&
+                <Columns
+                  masonry
+                  maxCount={2}
+                  align="center"
+                  justify="center"
+                >
+                  {blogPosts.map((post, i) =>
+                    <PostPreview
+                      searchTerm={filterableTerm}
+                      key={i}
+                      post={post}
+                    />
+                  )}
+                </Columns>
+              }
             </Box>
-            {filteredPosts && filteredPosts.length > 6 &&
+            {posts && posts.length > 6 &&
               <Footer align="center" justify="center" pad="large">
-                <Pagination defaultCurrent={1} pageSize={6} total={filteredPosts.length} />
+                <Pagination
+                  defaultCurrent={1}
+                  pageSize={6}
+                  total={posts.length}
+                />
               </Footer>
             }
           </WithToast>
@@ -115,6 +119,7 @@ BlogContainer.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   postError: PropTypes.object,
   posts: PropTypes.array,
+  blogPosts: PropTypes.array,
   actions: PropTypes.object.isRequired,
   searchTerm: PropTypes.string,
   currentPage: PropTypes.number.isRequired,
@@ -124,6 +129,7 @@ BlogContainer.propTypes = {
 const mapStateToProps = (state) => ({
   searchTerm: state.blog.searchTerm,
   currentPage: state.blog.currentPage,
+  blogPosts: getVisiblePostsFilteredBySearchTerm(state.blog),
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}

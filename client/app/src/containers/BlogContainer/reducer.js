@@ -6,11 +6,19 @@ export const initialState = {
   message: null,
   searchTerm: null,
   currentPage: 1,
+  postsPerPage: 6,
+  posts: [],
 };
 
 const blogReducer =
   (state = initialState, action) => {
     switch (action.type) {
+      case types.SET_BLOG_POSTS:
+        return update(state, {
+          posts: {
+            $set: action.posts,
+          },
+        });
       case types.BLOG_INCREMENT_CURRENT_PAGE:
         return update(state, {
           currentPage: {
