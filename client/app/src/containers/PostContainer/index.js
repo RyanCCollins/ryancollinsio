@@ -18,8 +18,7 @@ import ListItem from 'grommet-udacity/components/ListItem';
 import { WithLoading, Post, Divider, Comment, PostMeta } from 'components';
 let RichTextEditor;
 if (typeof window !== 'undefined') {
-  const RTE = require('react-rte');
-  RichTextEditor = RTE;
+  RichTextEditor = require('react-rte').default;
 }
 
 class PostContainer extends Component { // eslint-disable-line react/prefer-stateless-function
@@ -37,10 +36,11 @@ class PostContainer extends Component { // eslint-disable-line react/prefer-stat
     const {
       upvoteComment,
       refetch,
+      authToken,
     } = this.props;
     const data = {
       variables: {
-        auth_token: '_qABAmYzDj2MVq2jePih',
+        authToken,
         id,
       },
     };
@@ -52,10 +52,11 @@ class PostContainer extends Component { // eslint-disable-line react/prefer-stat
     const {
       mutate,
       refetch,
+      authToken,
     } = this.props;
     const user = {
       id: 1,
-      authToken: '_qABAmYzDj2MVq2jePih',
+      authToken,
     };
     const data = {
       variables: {
@@ -94,7 +95,7 @@ class PostContainer extends Component { // eslint-disable-line react/prefer-stat
             Comments
           </Heading>
           <Divider />
-          {RichTextEditor &&
+          {RichTextEditor != null && // eslint-disable-line
             <Box className="container">
               <Article className="panel">
                 <RichTextEditor
@@ -141,11 +142,12 @@ PostContainer.propTypes = {
   postError: PropTypes.object,
   mutate: PropTypes.func.isRequired,
   refetch: PropTypes.func.isRequired,
+  authToken: PropTypes.string.isRequired,
 };
 
 // mapStateToProps :: {State} -> {Props}
 const mapStateToProps = (state) => ({
-  // myProp: state.myProp,
+  authToken: state.app.authToken,
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}
@@ -219,7 +221,7 @@ const createCommentMutation = gql`
 const ContainerWithMutation = graphql(createCommentMutation)(ContainerWithData);
 
 const upvoteCommentMutation = gql`
-  mutation upvoteComment($auth_token: String!, $id: ID!) {
+  mutation upvoteComment($authToken: String!, $id: ID!) {
     VotePostComment(input: { auth_token: $auth_token, post_comment_id: $id }) {
       total_votes
     }

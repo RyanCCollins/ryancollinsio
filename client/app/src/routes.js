@@ -3,10 +3,7 @@ import { Router } from 'react-router';
 import { ApolloProvider } from 'react-apollo';
 import store, { history } from './store';
 import client from './apolloClient';
-/* eslint-disable */
 import { AppContainer } from 'containers';
-import * as Pages from 'pages';
-/* eslint-enable */
 
 /* eslint-disable */
 // Polyfill for the System.import

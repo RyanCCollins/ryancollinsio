@@ -135,7 +135,7 @@ module.exports = {
       new webpack.optimize.CommonsChunkPlugin({
         name: 'vendor',
         children: true,
-        minChunks: Infinity,
+        minChunks: 2,
         async: true,
       }),
       new OfflinePlugin({
