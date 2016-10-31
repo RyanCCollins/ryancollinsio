@@ -16,7 +16,11 @@ import Columns from 'grommet-udacity/components/Columns';
 import List from 'grommet-udacity/components/List';
 import ListItem from 'grommet-udacity/components/ListItem';
 import { WithLoading, Post, Divider, Comment, PostMeta } from 'components';
-import RichTextEditor from 'react-rte';
+let RichTextEditor;
+if (typeof window !== 'undefined') {
+  const RTE = require('react-rte');
+  RichTextEditor = RTE;
+}
 
 class PostContainer extends Component { // eslint-disable-line react/prefer-stateless-function
   constructor() {
@@ -90,38 +94,40 @@ class PostContainer extends Component { // eslint-disable-line react/prefer-stat
             Comments
           </Heading>
           <Divider />
-          <Box className="container">
-            <Article className="panel">
-              <RichTextEditor
-                value={this.state.value}
-                onChange={(value) => this.setState({ value }) }
-              />
-              <Footer
-                align="center"
-                justify="center"
-                pad="medium"
-              >
-                <Button label="Submit Comment" onClick={this.handleSubmit} />
-              </Footer>
-            </Article>
-            <Article className="panel">
-              <Columns size="large" justify="center">
-                <List>
-                  {post &&
-                    post.comments
-                      .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-                      .map((comment, i) =>
-                    <ListItem key={i}>
-                      <Comment
-                        onUpvote={this.handleUpvote}
-                        comment={comment}
-                      />
-                    </ListItem>
-                  )}
-                </List>
-              </Columns>
-            </Article>
-          </Box>
+          {RichTextEditor &&
+            <Box className="container">
+              <Article className="panel">
+                <RichTextEditor
+                  value={this.state.value}
+                  onChange={(value) => this.setState({ value }) }
+                />
+                <Footer
+                  align="center"
+                  justify="center"
+                  pad="medium"
+                >
+                  <Button label="Submit Comment" onClick={this.handleSubmit} />
+                </Footer>
+              </Article>
+              <Article className="panel">
+                <Columns size="large" justify="center">
+                  <List>
+                    {post &&
+                      post.comments
+                        .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+                        .map((comment, i) =>
+                      <ListItem key={i}>
+                        <Comment
+                          onUpvote={this.handleUpvote}
+                          comment={comment}
+                        />
+                      </ListItem>
+                    )}
+                  </List>
+                </Columns>
+              </Article>
+            </Box>
+          }
         </Section>
       </Section>
     );
