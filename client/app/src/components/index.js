@@ -1,4 +1,5 @@
 /* GENERATOR: Assemble all components for export */
+export SearchMeta from './SearchMeta';
 export PaginatorFooter from './PaginatorFooter';
 export TagList from './TagList';
 export TechStackSection from './StaticLandingSections/TechStackSection';

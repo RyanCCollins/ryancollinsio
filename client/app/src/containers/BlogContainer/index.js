@@ -8,33 +8,14 @@ import { WithLoading, WithToast } from 'components';
 import Section from 'grommet-udacity/components/Section';
 import Box from 'grommet-udacity/components/Box';
 import Columns from 'grommet-udacity/components/Columns';
-import Heading from 'grommet-udacity/components/Heading';
 import Headline from 'grommet-udacity/components/Headline';
 import Button from 'grommet-udacity/components/Button';
 import CloseIcon from 'grommet-udacity/components/icons/base/Close';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Search from 'grommet-udacity/components/Search';
-import { PostPreview, Divider, PaginatorFooter } from 'components';
+import { PostPreview, Divider, PaginatorFooter, SearchMeta } from 'components';
 import { getVisiblePostsFilteredBySearchTerm } from './selectors';
-
-const SearchData = ({
-  searchTerm,
-  posts,
-}) => (
-  <Box>
-    {posts && posts.length > 0 && searchTerm &&
-      <Heading align="center" tag="h3">
-        {`Search Term: ${searchTerm}`}
-      </Heading>
-    }
-    {searchTerm && !posts || !posts.length > 0 &&
-      <Heading align="center" tag="h3">
-        No Posts Found
-      </Heading>
-    }
-  </Box>
-);
 
 class BlogContainer extends Component {
   componentWillReceiveProps({ allPosts }) {
@@ -51,7 +32,7 @@ class BlogContainer extends Component {
       posts,
       searchTerm,
       currentPage,
-      postsPerPage,
+      perPage,
     } = this.props;
     const filterableTerm = searchTerm && searchTerm !== '' ?
       searchTerm.toLowerCase() : null;
@@ -66,9 +47,7 @@ class BlogContainer extends Component {
               <Headline align="center">
                 Blog
               </Headline>
-              {posts &&
-                <SearchData searchTerm={searchTerm} posts={posts} />
-              }
+              <SearchMeta searchTerm={searchTerm} array={posts} />
               <Divider />
               <Box direction="row">
                 <Search
@@ -100,12 +79,12 @@ class BlogContainer extends Component {
                 </Columns>
               }
             </Box>
-            {allPosts && allPosts.length > 6 &&
+            {allPosts && allPosts.length > perPage &&
               <PaginatorFooter
                 onChange={(newPage) => actions.blogSetCurrentPage(newPage)}
                 currentPage={currentPage}
                 total={allPosts.length}
-                pageSize={postsPerPage}
+                pageSize={perPage}
               />
             }
           </WithToast>
@@ -123,14 +102,14 @@ BlogContainer.propTypes = {
   actions: PropTypes.object.isRequired,
   searchTerm: PropTypes.string,
   currentPage: PropTypes.number.isRequired,
-  postsPerPage: PropTypes.number.isRequired,
+  perPage: PropTypes.number.isRequired,
 };
 
 // mapStateToProps :: {State} -> {Props}
 const mapStateToProps = (state) => ({
   searchTerm: state.blog.searchTerm,
   currentPage: state.blog.currentPage,
-  postsPerPage: state.blog.postsPerPage,
+  perPage: state.blog.perPage,
   posts: getVisiblePostsFilteredBySearchTerm(state.blog),
 });
 

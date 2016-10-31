@@ -4,7 +4,13 @@ import { bindActionCreators } from 'redux';
 import * as PortfolioActionCreators from './actions';
 import cssModules from 'react-css-modules';
 import styles from './index.module.scss';
-import { WithLoading, Divider, PaginatorFooter } from 'components';
+import {
+  WithLoading,
+  Divider,
+  PaginatorFooter,
+  SearchMeta,
+  ResponsiveImage,
+} from 'components';
 import Section from 'grommet-udacity/components/Section';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
@@ -15,7 +21,7 @@ import Headline from 'grommet-udacity/components/Headline';
 import Search from 'grommet-udacity/components/Search';
 import Button from 'grommet-udacity/components/Button';
 import CloseIcon from 'grommet-udacity/components/icons/base/Close';
-import { getVisibleProjectsFilteredBySearchTerm } from 'selectors';
+import { getVisibleProjectsFilteredBySearchTerm } from './selectors';
 
 class PortfolioContainer extends Component { // eslint-disable-line react/prefer-stateless-function
   componentWillReceiveProps({ allProjects }) {
@@ -45,6 +51,7 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
           <Headline align="center">
             Portfolio
           </Headline>
+          <SearchMeta array={projects} searchTerm={searchTerm} />
           <Divider />
           <Section direction="row">
             <Search
@@ -54,7 +61,7 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
             />
             {searchTerm !== '' &&
               <Button
-                onClick={actions.blogClearSearchTerm}
+                onClick={actions.portfolioClearSearchTerm}
                 icon={<CloseIcon />}
               />
             }
@@ -71,22 +78,26 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
                 {projects.map((project, i) =>
                   <Box className={styles.card} size="medium" key={i}>
                     <Anchor href={`/projects/${project.slug}`}>
-                      <img src={project.featureImage} className={styles.image} />
+                      <ResponsiveImage
+                        matchHeight={false}
+                        src={project.featureImage}
+                        className={styles.image}
+                      />
                     </Anchor>
                   </Box>
                 )}
               </Columns>
             }
           </Section>
+          {allProjects && allProjects.length > perPage &&
+            <PaginatorFooter
+              onChange={(newPage) => actions.portfolioSetCurrentPage(newPage)}
+              currentPage={currentPage}
+              total={allProjects.length}
+              pageSize={perPage}
+            />
+          }
         </Box>
-        {allProjects && allProjects.length > 6 &&
-          <PaginatorFooter
-            onChange={(newPage) => actions.blogSetCurrentPage(newPage)}
-            current={currentPage}
-            total={allProjects.length}
-            pageSize={perPage}
-          />
-        }
       </WithLoading>
     );
   }

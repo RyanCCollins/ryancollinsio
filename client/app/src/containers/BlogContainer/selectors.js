@@ -2,18 +2,18 @@ import { createSelector } from 'reselect';
 
 const getPosts = () => (state) => state.posts;
 const getCurrentPage = () => (state) => state.currentPage;
-const getPostsPerPage = () => (state) => state.postsPerPage;
+const getPerPage = () => (state) => state.perPage;
 const getSearchTerm = () => (state) => state.searchTerm;
 
 export const getVisiblePosts = createSelector(
   getPosts(),
   getCurrentPage(),
-  getPostsPerPage(),
-  (posts, currentPage, postsPerPage) => {
+  getPerPage(),
+  (posts, currentPage, perPage) => {
     if (posts && posts.length > 0) {
       const current = currentPage - 1;
-      const from = current * postsPerPage;
-      const to = current * postsPerPage + postsPerPage;
+      const from = current * perPage;
+      const to = current * perPage + perPage;
       return posts.filter((_, i) =>
         i >= from && i < to
       );

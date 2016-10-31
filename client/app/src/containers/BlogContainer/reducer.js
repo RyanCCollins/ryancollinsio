@@ -6,7 +6,7 @@ export const initialState = {
   message: null,
   searchTerm: null,
   currentPage: 1,
-  postsPerPage: 6,
+  perPage: 6,
   posts: [],
 };
 

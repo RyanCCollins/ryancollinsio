@@ -21,6 +21,7 @@ class ResponsiveImage extends Component {
     const {
       src,
       matchHeight,
+      className,
     } = this.props;
     return (
       <Animate
@@ -32,6 +33,7 @@ class ResponsiveImage extends Component {
           className={matchHeight ? styles.responsiveImageMatchHeight : styles.responsiveImage}
         >
           <img
+            className={className}
             onLoad={this.setImageLoadedState}
             src={src || MissingVisual}
           />
@@ -44,10 +46,12 @@ class ResponsiveImage extends Component {
 ResponsiveImage.propTypes = {
   src: PropTypes.string.isRequired,
   matchHeight: PropTypes.bool.isRequired,
+  className: PropTypes.string.isRequired,
 };
 
 ResponsiveImage.defaultProps = {
   matchHeight: true,
+  className: 'img',
 };
 
 export default cssModules(ResponsiveImage, styles);

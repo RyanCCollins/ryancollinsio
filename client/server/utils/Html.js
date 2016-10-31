@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-function Html({ content, state, scriptHash, cssHash }) {
+function Html({ content, state, scriptHash, vendorHash, cssHash }) {
   return (
     <html lang="en">
       <head>
@@ -31,6 +31,7 @@ function Html({ content, state, scriptHash, cssHash }) {
         <meta name="theme-color" content="#ffffff" />
         <title>RyanCollins.io</title>
         <link href="https://fonts.googleapis.com/css?family=Oswald|Merriweather" rel="stylesheet" type="text/css" />
+        <script src={`/vendor.${vendorHash}.js`} type="text/javascript" />
         <link href={`/main.${cssHash}.css`} rel="stylesheet" />
       </head>
       <body>
@@ -48,6 +49,7 @@ function Html({ content, state, scriptHash, cssHash }) {
 Html.propTypes = {
   scriptHash: PropTypes.string.isRequired,
   cssHash: PropTypes.string.isRequired,
+  vendorHash: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   state: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
