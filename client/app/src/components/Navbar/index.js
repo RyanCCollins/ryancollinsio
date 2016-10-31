@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Header from 'grommet-udacity/components/Header';
 import Title from 'grommet-udacity/components/Title';
 import Menu from 'grommet-udacity/components/Menu';
@@ -9,10 +9,11 @@ import { LogoImage } from 'components';
 
 const Navbar = ({
   pathname,
+  navLinks,
 }) => (
   <div className={styles.navbar}>
     <Header justify="between">
-      <Title>
+      <Title className={styles.leftMenu}>
         <Anchor href="/">
           <LogoImage />
         </Anchor>
@@ -23,27 +24,23 @@ const Navbar = ({
         align="center"
         responsive={false}
       >
-        <Anchor
-          className={pathname === '/' ? 'navLink active' : 'navLink'}
-          href="/"
-        >
-          Home
-        </Anchor>
-        <Anchor
-          className={pathname === '/blog' ? 'navLink active' : 'navLink'}
-          href="/blog"
-        >
-          Blog
-        </Anchor>
-        <Anchor
-          className={pathname === '/portfolio' ? 'active navLink' : 'navLink'}
-          href="/portfolio"
-        >
-          Portfolio
-        </Anchor>
+        {navLinks.map((item, i) =>
+          <Anchor
+            key={i}
+            className={pathname === item.url ? 'navLink active' : 'navLink'}
+            href={item.url}
+          >
+            {item.name}
+          </Anchor>
+        )}
       </Menu>
     </Header>
   </div>
 );
+
+Navbar.propTypes = {
+  navLinks: PropTypes.array.isRequired,
+  pathname: PropTypes.string.isRequired,
+};
 
 export default cssModules(Navbar, styles);

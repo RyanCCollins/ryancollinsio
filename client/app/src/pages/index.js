@@ -1,4 +1,7 @@
 /* GENERATOR: Assemble all pages for export */
+export LogoutPage from './LogoutPage/index';
+export LoginPage from './LoginPage/index';
+export SignupPage from './SignupPage/index';
 export ArchivePage from './ArchivePage/index';
 export CreatePostPage from './CreatePostPage/index';
 export PostPage from './PostPage/index';

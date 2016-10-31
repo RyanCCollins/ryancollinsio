@@ -1,0 +1,19 @@
+.signupForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  padding: 24px;
+  max-width: 100vw;
+  box-sizing: border-box;
+}
+
+.formField {
+  max-width: 480px !important;
+}
+
+.listItem {
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+  color: black !important;
+}

@@ -36,6 +36,39 @@ export const routes = {
     },
   },
   childRoutes: [
+    {
+      path: '/signup',
+      getComponent(location, callback) {
+        require.ensure([], () => {
+          const SignupPage = require(
+            './pages/SignupPage'
+        ).default;
+          callback(null, SignupPage);
+        });
+      },
+    },
+    {
+      path: '/login',
+      getComponent(location, callback) {
+        require.ensure([], () => {
+          const LoginPage = require(
+            './pages/LoginPage'
+        ).default;
+          callback(null, LoginPage);
+        });
+      },
+    },
+    {
+      path: '/logout',
+      getComponent(location, callback) {
+        require.ensure([], () => {
+          const LogoutPage = require(
+            './pages/LogoutPage'
+        ).default;
+          callback(null, LogoutPage);
+        });
+      },
+    },
 /* GENERATOR: Newly generated Routes go here */
     {
       path: 'projects/:slug',

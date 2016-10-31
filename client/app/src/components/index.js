@@ -1,4 +1,7 @@
 /* GENERATOR: Assemble all components for export */
+export SignupForm from './SignupForm';
+export AuthFormFooter from './AuthFormFooter';
+export LoginForm from './LoginForm';
 export SearchMeta from './SearchMeta';
 export PaginatorFooter from './PaginatorFooter';
 export TagList from './TagList';

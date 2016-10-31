@@ -4,6 +4,8 @@ import { reducer as formReducer } from 'redux-form';
 import client from './apolloClient';
 
 /* GENERATOR: Import all of your reducers */
+import login from './containers/LoginContainer/reducer';
+import signup from './containers/SignupContainer/reducer';
 import archive from './containers/ArchiveContainer/reducer';
 import landing from 'containers/LandingContainer/reducer';
 import createProject from 'containers/CreateProjectContainer/reducer';
@@ -21,6 +23,8 @@ const rootReducer = combineReducers({
   archive,
   portfolio,
   /* GENERATOR: Compile all of your reducers */
+  login,
+  signup,
   routing: routerReducer,
   form: formReducer,
   apollo: client.reducer(),

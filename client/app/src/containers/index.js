@@ -1,4 +1,6 @@
 /* GENERATOR: Assemble all containers for export */
+export LoginContainer from './LoginContainer';
+export SignupContainer from './SignupContainer';
 export ArchiveContainer from './ArchiveContainer';
 export AppContainer from './AppContainer';
 export CreatePostContainer from './CreatePostContainer';

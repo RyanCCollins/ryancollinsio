@@ -35,6 +35,11 @@ class CreateProjectContainer extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleTags = this.handleTags.bind(this);
   }
+  componentDidMount() {
+    if (!this.props.user.authToken) {
+      this.context.router.push('/');
+    }
+  }
   handleTags(value) {
     const {
       tags,
@@ -47,12 +52,8 @@ class CreateProjectContainer extends Component {
       mutate,
       fields,
       actions,
-      authToken,
+      user,
     } = this.props;
-    const user = {
-      id: 1,
-      authToken,
-    };
     mutate(
       fieldsToSubmission(
         fields,
@@ -63,7 +64,7 @@ class CreateProjectContainer extends Component {
       const message = 'The project has successfully been created.';
       actions.createProjectMessage(message);
       setTimeout(() => {
-        this.context.router.push('/portfolio');
+        this.context.router.push('/user/portfolio');
       }, 3000);
     })
     .catch((err) => {
@@ -122,7 +123,7 @@ CreateProjectContainer.propTypes = {
   message: PropTypes.string,
   actions: PropTypes.object.isRequired,
   selectedTags: PropTypes.array.isRequired,
-  authToken: PropTypes.string.isRequired,
+  user: PropTypes.object.isRequired,
 };
 
 CreateProjectContainer.contextTypes = {
@@ -134,7 +135,7 @@ const mapStateToProps = (state) => ({
   createEventError: state.createProject.error,
   message: state.createProject.message,
   selectedTags: state.createProject.selectedTags,
-  authToken: state.app.authToken,
+  user: state.app.user,
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}

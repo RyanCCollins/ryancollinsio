@@ -26,15 +26,20 @@ class CreatePostContainer extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCurrentTags = this.handleCurrentTags.bind(this);
   }
+  componentDidMount() {
+    if (!this.props.user.authToken) {
+      this.context.router.push('/');
+    }
+  }
   handleSubmit() {
     const {
       submitPostMutation,
       fields,
       selectedTags,
-      authToken,
+      user,
     } = this.props;
     const data = {
-      variables: serializer(fields, selectedTags, authToken),
+      variables: serializer(fields, selectedTags, user.authToken),
     };
     submitPostMutation(data)
       .then(() => {
@@ -107,7 +112,7 @@ CreatePostContainer.propTypes = {
   invalid: PropTypes.bool.isRequired,
   selectedTags: PropTypes.array.isRequired,
   errorMessage: PropTypes.object,
-  authToken: PropTypes.string.isRequired,
+  user: PropTypes.object.isRequired,
 };
 
 CreatePostContainer.contextTypes = {
@@ -116,7 +121,7 @@ CreatePostContainer.contextTypes = {
 
 // mapStateToProps :: {State} -> {Props}
 const mapStateToProps = (state) => ({
-  authToken: state.app.authToken,
+  user: state.app.user,
   selectedTags: state.createPost.selectedTags,
   message: state.createPost.message,
   errorMessage: state.createPost.error ? { message: state.createPost.error } : null,
