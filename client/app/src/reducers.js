@@ -10,6 +10,7 @@ import createProject from 'containers/CreateProjectContainer/reducer';
 import createPost from 'containers/CreatePostContainer/reducer';
 import blog from 'containers/BlogContainer/reducer';
 import app from 'containers/AppContainer/reducer';
+import portfolio from 'containers/PortfolioContainer/reducer';
 
 const rootReducer = combineReducers({
   landing,
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   createPost,
   app,
   archive,
+  portfolio,
   /* GENERATOR: Compile all of your reducers */
   routing: routerReducer,
   form: formReducer,

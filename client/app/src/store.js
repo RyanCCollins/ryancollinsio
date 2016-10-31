@@ -14,6 +14,7 @@ import { initialState as createProject } from './containers/CreateProjectContain
 import { initialState as createPost } from './containers/CreatePostContainer/reducer';
 import { initialState as blog } from './containers/BlogContainer/reducer';
 import { initialState as app } from 'containers/AppContainer/reducer';
+import { initialState as portfolio } from 'containers/PortfolioContainer/reducer';
 
 const initialState = {
   /* GENERATOR: Compile all of your initial state */
@@ -23,6 +24,7 @@ const initialState = {
   createPost,
   archive,
   app,
+  portfolio,
 };
 
 /* Commonly used middlewares and enhancers */

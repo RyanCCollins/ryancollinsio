@@ -15,7 +15,16 @@ const HOST = '0.0.0.0'; // Set to localhost if need be.
 
 module.exports = {
   devtool: isProduction ? '' : 'source-map',
-  entry: [
+  entry: isProduction ? {
+    main: [
+      path.resolve(ROOT_PATH, 'app/src/index')
+    ],
+    vendor: [
+      'react',
+      'react-dom',
+      'grommet-udacity'
+    ]
+  } : [
     path.resolve(ROOT_PATH,'app/src/index')
   ],
   module: {
@@ -126,7 +135,7 @@ module.exports = {
       new webpack.optimize.CommonsChunkPlugin({
         name: 'vendor',
         children: true,
-        minChunks: 2,
+        minChunks: Infinity,
         async: true,
       }),
       new OfflinePlugin({
@@ -174,7 +183,7 @@ module.exports = {
       new NpmInstallPlugin(),
       new HtmlwebpackPlugin({
         title: 'RyanCollins.io',
-        template: 'index.html'
+        template: 'config/templates/_index.dev.html'
       })
     ]
 };

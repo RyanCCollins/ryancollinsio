@@ -1,14 +1,40 @@
 import * as types from './constants';
+import update from 'react-addons-update';
 
 export const initialState = {
-  // Initial State goes here!
+  projects: [],
+  currentPage: 1,
+  perPage: 3,
+  searchTerm: null,
 };
 
 const portfolioReducer =
   (state = initialState, action) => {
     switch (action.type) {
-      case types.DEFAULT_ACTION:
-        return state;
+      case types.PORTFOLIO_SET_SEARCH_TERM:
+        return update(state, {
+          searchTerm: {
+            $set: action.term,
+          },
+        });
+      case types.PORTFOLIO_CLEAR_SEARCH_TERM:
+        return update(state, {
+          searchTerm: {
+            $set: null,
+          },
+        });
+      case types.PORTFOLIO_SET_CURRENT_PAGE:
+        return update(state, {
+          currentPage: {
+            $set: action.page,
+          },
+        });
+      case types.PORTFOLIO_SET_PROJECTS:
+        return update(state, {
+          projects: {
+            $set: action.projects,
+          },
+        });
       default:
         return state;
     }

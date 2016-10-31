@@ -5,6 +5,7 @@ import { render } from 'react-dom';
 import RouterApp, { routes } from './routes';
 import { match } from 'react-router';
 import { history } from './store';
+import 'antd/dist/antd.css';
 import '../styles/styles.scss';
 import { install } from 'offline-plugin/runtime';
 const isProduction = process.env.NODE_ENV === 'production';

@@ -3268,6 +3268,9 @@ samp {
   padding-left: 6px;
   padding-bottom: 4px;
 }
+.ant-select-selection--multiple .ant-select-selection__rendered > ul {
+  margin-left: 0;
+}
 .ant-select-selection--multiple > ul > li,
 .ant-select-selection--multiple .ant-select-selection__rendered > ul > li {
   margin-top: 4px;
@@ -3372,10 +3375,10 @@ samp {
   height: 100%;
 }
 .ant-select-combobox .ant-select-search__field {
-  padding: 0 10px;
-  width: 100%;
-  height: 100%;
-  position: relative;
+  padding: 0 10px !important;
+  width: 100% !important;
+  height: 100% !important;
+  position: relative !important;
   z-index: 1;
   -webkit-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);

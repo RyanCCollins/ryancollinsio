@@ -9,14 +9,13 @@ import Section from 'grommet-udacity/components/Section';
 import Box from 'grommet-udacity/components/Box';
 import Columns from 'grommet-udacity/components/Columns';
 import Heading from 'grommet-udacity/components/Heading';
+import Headline from 'grommet-udacity/components/Headline';
 import Button from 'grommet-udacity/components/Button';
 import CloseIcon from 'grommet-udacity/components/icons/base/Close';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Search from 'grommet-udacity/components/Search';
-import Footer from 'grommet-udacity/components/Footer';
-import { Pagination } from 'antd';
-import { PostPreview, Divider } from 'components';
+import { PostPreview, Divider, PaginatorFooter } from 'components';
 import { getVisiblePostsFilteredBySearchTerm } from './selectors';
 
 const SearchData = ({
@@ -38,9 +37,9 @@ const SearchData = ({
 );
 
 class BlogContainer extends Component {
-  componentWillReceiveProps({ posts }) {
-    if (posts !== this.props.posts) {
-      this.props.actions.setBlogPosts(posts);
+  componentWillReceiveProps({ allPosts }) {
+    if (allPosts !== this.props.allPosts) {
+      this.props.actions.setBlogPosts(allPosts);
     }
   }
   render() {
@@ -48,10 +47,11 @@ class BlogContainer extends Component {
       isLoading,
       postError,
       actions,
-      blogPosts,
+      allPosts,
       posts,
       searchTerm,
       currentPage,
+      postsPerPage,
     } = this.props;
     const filterableTerm = searchTerm && searchTerm !== '' ?
       searchTerm.toLowerCase() : null;
@@ -63,11 +63,11 @@ class BlogContainer extends Component {
             onClose={() => actions.clearBlogToast('error')}
           >
             <Box pad="large" align="center" justify="center">
-              <Heading align="center">
+              <Headline align="center">
                 Blog
-              </Heading>
-              {blogPosts &&
-                <SearchData searchTerm={searchTerm} posts={blogPosts} />
+              </Headline>
+              {posts &&
+                <SearchData searchTerm={searchTerm} posts={posts} />
               }
               <Divider />
               <Box direction="row">
@@ -83,14 +83,14 @@ class BlogContainer extends Component {
                   />
                 }
               </Box>
-              {blogPosts && blogPosts.length > 0 &&
+              {posts && posts.length > 0 &&
                 <Columns
                   masonry
                   maxCount={2}
                   align="center"
                   justify="center"
                 >
-                  {blogPosts.map((post, i) =>
+                  {posts.map((post, i) =>
                     <PostPreview
                       searchTerm={filterableTerm}
                       key={i}
@@ -100,16 +100,13 @@ class BlogContainer extends Component {
                 </Columns>
               }
             </Box>
-            {posts && posts.length > 6 &&
-              <Footer align="center" justify="center" pad="large">
-                <Pagination
-                  onChange={(newPage) => actions.blogSetCurrentPage(newPage)}
-                  defaultCurrent={1}
-                  pageSize={6}
-                  current={currentPage}
-                  total={posts.length}
-                />
-              </Footer>
+            {allPosts && allPosts.length > 6 &&
+              <PaginatorFooter
+                onChange={(newPage) => actions.blogSetCurrentPage(newPage)}
+                currentPage={currentPage}
+                total={allPosts.length}
+                pageSize={postsPerPage}
+              />
             }
           </WithToast>
         </WithLoading>
@@ -122,17 +119,19 @@ BlogContainer.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   postError: PropTypes.object,
   posts: PropTypes.array,
-  blogPosts: PropTypes.array,
+  allPosts: PropTypes.array,
   actions: PropTypes.object.isRequired,
   searchTerm: PropTypes.string,
   currentPage: PropTypes.number.isRequired,
+  postsPerPage: PropTypes.number.isRequired,
 };
 
 // mapStateToProps :: {State} -> {Props}
 const mapStateToProps = (state) => ({
   searchTerm: state.blog.searchTerm,
   currentPage: state.blog.currentPage,
-  blogPosts: getVisiblePostsFilteredBySearchTerm(state.blog),
+  postsPerPage: state.blog.postsPerPage,
+  posts: getVisiblePostsFilteredBySearchTerm(state.blog),
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}
@@ -177,7 +176,7 @@ const loadPostsQuery = gql`
 
 const ContainerWithData = graphql(loadPostsQuery, {
   props: ({ data: { posts, loading, error } }) => ({
-    posts,
+    allPosts: posts,
     isLoading: loading,
     postError: error,
   }),

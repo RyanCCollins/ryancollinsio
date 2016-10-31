@@ -4,11 +4,13 @@ import * as types from '../constants';
 
 describe('Portfolio actions', () => {
   describe('Default Action', () => {
-    it('has a type of DEFAULT_ACTION', () => {
+    it('has a type of PORTFOLIO_SET_PROJECTS', () => {
+      const projects = [];
       const expected = {
-        type: types.PORTFOLIO_DEFAULT_ACTION,
+        type: types.PORTFOLIO_SET_PROJECTS,
+        projects,
       };
-      expect(actions.portfolioDefaultAction()).toEqual(expected);
+      expect(actions.portfolioSetProjects(projects)).toEqual(expected);
     });
   });
 });
