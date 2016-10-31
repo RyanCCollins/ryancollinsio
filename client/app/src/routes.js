@@ -39,34 +39,25 @@ export const routes = {
     {
       path: '/signup',
       getComponent(location, callback) {
-        require.ensure([], () => {
-          const SignupPage = require(
-            './pages/SignupPage'
-        ).default;
-          callback(null, SignupPage);
-        });
+        System.import('./pages/SignupPage')  // eslint-disable-line block-scoped-var
+          .then(loadRoute(callback))
+          .catch((err) => errorLoading(err));
       },
     },
     {
       path: '/login',
       getComponent(location, callback) {
-        require.ensure([], () => {
-          const LoginPage = require(
-            './pages/LoginPage'
-        ).default;
-          callback(null, LoginPage);
-        });
+        System.import('./pages/LoginPage')  // eslint-disable-line block-scoped-var
+          .then(loadRoute(callback))
+          .catch((err) => errorLoading(err));
       },
     },
     {
       path: '/logout',
       getComponent(location, callback) {
-        require.ensure([], () => {
-          const LogoutPage = require(
-            './pages/LogoutPage'
-        ).default;
-          callback(null, LogoutPage);
-        });
+        System.import('./pages/LogoutPage')  // eslint-disable-line block-scoped-var
+          .then(loadRoute(callback))
+          .catch((err) => errorLoading(err));
       },
     },
 /* GENERATOR: Newly generated Routes go here */
