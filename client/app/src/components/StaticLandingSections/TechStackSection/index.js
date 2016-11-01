@@ -15,7 +15,7 @@ const TechStackSection = ({
     full="horizontal"
     align="center"
     justify="start"
-    texture="http://wallpapercave.com/wp/uDIy1Pt.jpg"
+    texture="https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/milky-way.jpg?raw=true"
   >
     <Headline align="center" className="heading heading__light">
       Tech Stack

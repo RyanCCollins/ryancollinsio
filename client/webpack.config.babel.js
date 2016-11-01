@@ -22,7 +22,10 @@ module.exports = {
     vendor: [
       'react',
       'react-dom',
-      'grommet-udacity'
+      'grommet-udacity',
+      'antd',
+      'react-rte',
+      'recharts'
     ]
   } : [
     path.resolve(ROOT_PATH,'app/src/index')

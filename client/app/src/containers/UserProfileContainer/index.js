@@ -18,7 +18,7 @@ class UserProfileContainer extends Component { // eslint-disable-line react/pref
 
 UserProfileContainer.propTypes = {
   // isLoading: PropTypes.bool.isRequired,
-}
+};
 
 // mapStateToProps :: {State} -> {Props}
 const mapStateToProps = (state) => ({
