@@ -54,6 +54,9 @@ class PostContainer extends Component { // eslint-disable-line react/prefer-stat
       refetch,
       authToken,
     } = this.props;
+    if (!authToken) {
+      this.context.router.push('/login');
+    }
     const user = {
       id: 1,
       authToken,
@@ -222,7 +225,7 @@ const ContainerWithMutation = graphql(createCommentMutation)(ContainerWithData);
 
 const upvoteCommentMutation = gql`
   mutation upvoteComment($authToken: String!, $id: ID!) {
-    VotePostComment(input: { auth_token: $auth_token, post_comment_id: $id }) {
+    VotePostComment(input: { auth_token: $authToken, post_comment_id: $id }) {
       total_votes
     }
   }
