@@ -13,7 +13,6 @@ module UserMutations
         password: input_args[:password],
         password_confirmation: input_args[:password_confirmation]
       )
-      @user.bio = input_args[:bio] if input_args[:bio]
       if @user.save
         {
           user: @user
