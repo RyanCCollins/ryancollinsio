@@ -4,7 +4,7 @@ import update from 'react-addons-update';
 export const initialState = {
   projects: [],
   currentPage: 1,
-  perPage: 3,
+  perPage: 9,
   searchTerm: null,
 };
 
