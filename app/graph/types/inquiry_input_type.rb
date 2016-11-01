@@ -4,5 +4,5 @@ InquiryInputType = GraphQL::InputObjectType.define do
   input_field :name, !types.String, 'The name of the person'
   input_field :email, !types.String, 'The email of the person'
   input_field :message, !types.String, 'The message of the inquiry'
-  input_field :category, InquiryCategoyEnum, 'The category of the inquiry'
+  input_field :category, InquiryCategoyEnumType, 'The category of the inquiry'
 end

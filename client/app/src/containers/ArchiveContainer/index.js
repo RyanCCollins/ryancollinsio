@@ -10,7 +10,6 @@ import Section from 'grommet-udacity/components/Section';
 import Heading from 'grommet-udacity/components/Heading';
 import Box from 'grommet-udacity/components/Box';
 import Columns from 'grommet-udacity/components/Columns';
-import Anchor from 'grommet-udacity/components/Anchor';
 import { Divider, WithToast, WithLoading, PostPreview } from 'components';
 import postDataFragment from './graph/fragments';
 
@@ -112,15 +111,7 @@ const ContainerWithData = graphql(archiveQuery, {
   }),
 })(Container);
 
-const archiveMutation = gql`
-  mutation archive {
-    id
-  }
-`;
-
-const ContainerWithMutation = graphql(archiveMutation)(ContainerWithData);
-
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ContainerWithMutation);
+)(ContainerWithData);
