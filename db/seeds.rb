@@ -36,7 +36,7 @@ ProjectImage.create(
   src: "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/main-images/data-page-filter.png?raw=true",
 )
 
-Project.create(
+p = Project.create(
   title: 'Corporate Dashboard',
   user: User.all.first,
   featureImage: "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/main-mockup.jpg?raw=true",
@@ -52,15 +52,43 @@ Project.create(
   category: "frontend",
 )
 
-p = Project.first
 images = ProjectImage.all
-
 images.each do |i|
   p.images << i
 end
+
+tags = ['React', 'GraphQL', 'Redux', 'Flux', 'Grommet', 'ES6', 'Server-rendering', 'Code Chunking', 'Apollo']
+tags.each do |tag|
+  Tag.find_or_create_by(title: tag)
+end
+
 p.save
 
-Project.create(
+
+p = Project.create(
+  title: 'Restaurant Reviewer',
+  user: User.all.first,
+  featureImage: "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/restaurant-reviewer-swnd/new/restaurantreviewermock.jpg?raw=true",
+  caption: "Restaurant Reviewer A11y Best Practices App and performance optimized React single page app",
+  description: "Full Stack web application built with a focus on UX and A11y Accessibility best practices. Shows a list of restaurants retrieved through a web scraper and corresponding reviews for the restaurants. The application allows users to submit new reviews for restaurants and focuses on providing a world-class user experience no matter the end-user's device.",
+  projectUrl: "http://meetup-event-planner.herokuapp.com/",
+  repoUrl: "https://github.com/RyanCCollins/meetup-event-planner",
+  milestones: "## Front End Milestones: \n - Followed the feature-first approach, whereby components exist in isolation from the app, encouraging encapsulation and reusability. \n - Wrote dozens of scalable react components and connected containers. \n - Followed functional programming best practices, utilizing the immutable architecture and encapsulating business logic in the Redux store. \n - As always, followed the AirBnB JSX and JavaScript style guides and utilized ESLint to provide exceptional style and code quality \n ## Back End Milestones: \n - Wrote unit tests using RSpec, providing a solid framework for the app \n - Utilized the Ruby on Rails v.5 API only mode in an effort to build a micro-service oriented API to serve JSON data to the front end. \n - Utilized Docker to encourage maximum scalability and build automation. \n - As always, followed the Ruby style guide and best practices.",
+  designPatterns: "Most notably, the app utilizes A11y accessibility and UX best practices. It also uses the Flux unidirectional data-flow architecture and functional reactive programming techniques. On the back end, it follows the micro-service architecture, serving custom endpoints via a RESTful API. The application uses Docker to automate the build process.",
+  technicalInformation: "Built with functional JavaScript, ES2015, React, Redux, CSS Modules, following the unidirectional data-flow architecture. Utilizes best practices for scaling of React Apps. Unit tests written with Expect and Mocha / JSDOM to provide high quality code. Built a Rails API to serve and persist data for the application.",
+  technicalReview: "I really appreciate your hard work with both Backend and Frontend! Very professionally built app and very enjoyable to use. Keep it up!",
+  reviewerName: "Expert Code Reviewer",
+  category: "fullstack"
+)
+
+tags = ['React', 'Ruby on Rails', 'Redux', 'Flux', 'Grommet', 'ES6', 'Functional Reactive Programming']
+tags.each do |tag|
+  Tag.find_or_create_by(title: tag)
+end
+
+p.save
+
+p = Project.create(
   title: 'Meetup Event Planner',
   user: User.all.first,
   featureImage: "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/meetup-event-planner/meetup-event-planner/main-mock.png?raw=true",
@@ -76,7 +104,14 @@ Project.create(
   category: "fullstack"
 )
 
-Project.create(
+tags = ['React', 'GraphQL', 'Redux', 'Flux', 'Server-rendering', 'Code Chunking', 'Apollo', 'Grommet', 'ES6', 'Ruby on Rails']
+tags.each do |tag|
+  Tag.find_or_create_by(title: tag)
+end
+
+p.save
+
+p = Project.create(
   title: 'React Weekly',
   user: User.all.first,
   featureImage: "https://github.com/RyanCCollins/cdn/blob/master/react-weekly/images/main-mockup-2.jpg?raw=true",
@@ -89,6 +124,170 @@ Project.create(
   technicalInformation: "Built with functional JavaScript, ES2015, React, Redux, Grommet, CSS Modules, following the unidirectional data-flow architecture. Utilizes best practices for scaling of React Apps. Unit tests written with Expect and Mocha / JSDOM to provide high quality code. Built a custom GraphQL back end schema.",
   category: "frontend"
 )
+
+tags = ['React', 'GraphQL', 'Redux', 'Flux', 'Grommet', 'Server-rendering', 'Code Chunking', 'Apollo', 'ES6', 'Node']
+tags.each do |tag|
+  Tag.find_or_create_by(title: tag)
+end
+
+p.save
+
+p = Project.create(
+  title: 'Scalable React Boilerplate',
+  user: User.all.first,
+  featureImage: "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/main-mockup.jpg?raw=true",
+  caption: "Best practices React boilerplate, code generation tools and microframework",
+  description: "Released an open-source boilerplate, multiple scaffolding tools and React component generators using the knowledge and best practices gained from working on several large-scale React projects. The boilerplate aims to implement best practices for developing with cutting-edge JavaScript in 2016 and both provide a useful starting place for any of my projects going forward. The generators automate all of the most time consuming parts of working with React, scaffolding out components, containers, action creators, reducers and tests in a similar fashion to Rails. The two projects showcase seperate organizational strategies, offering multiple options for different situations.",
+  projectUrl: "https://github.com/RyanCCollins/scalable-react-boilerplate",
+  repoUrl: "https://github.com/RyanCCollins/scalable-react-boilerplate",
+  milestones: "- Used the experience gained from scaling several large-scale React projects to create multiple open source projects for others to use to learn the best practices. \n - Created demo applications using React and Redux to showcase the projects \n - Wrote slush generators that scaffolds out the starter projects \n - Created scaffolding generators to automate the creation of react / redux components and containers \n - Wrote a contribution guide and maintained an open-source community that uses the best practices outlined in the boilerplate project \n - As always, followed the AirBnB JSX and JavaScript style guides and utilized ESLint to provide exceptional style and code quality",
+  designPatterns: "Utilize the Flux unidirectional data flow architecture. The scalable project implements the feature-first organizational pattern, providing maximum scalability.  It integrates Reselect, Webpack Code-chunking and Server-rendered React for maxium performance.  It also integrates GraphQL and Apollo for declarative query collocation",
+  technicalInformation: "Built with functional JavaScript, ES2015, React, Redux, CSS Modules, following the unidirectional data-flow architecture. Utilizes best practices for scaling of React Apps. Unit tests written with Expect and Mocha / JSDOM to provide high quality code. Uses the react-redux connect method to hook up react components to the redux store.",
+  category: "frontend",
+)
+
+tags = ['React', 'GraphQL', 'Redux', 'Flux', 'GraphQL', 'Server-rendering', 'Code Chunking', 'Apollo', 'ES6']
+tags.each do |tag|
+  Tag.find_or_create_by(title: tag)
+end
+
+p.save
+
+p = Project.create(
+  title: 'Public Transportation',
+  user: User.all.first,
+  featureImage: "https://github.com/RyanCCollins/cdn/blob/master/public-transportation/map.png?raw=true",
+  caption: "Project 2 for Senior Web Nanodegree.",
+  description: "Developed an offline-first, progressive web application that allows selection of train stations from a map and loads a train schedule in real-time. Using cutting edge offline technologies such as Service Worker, the application intelligently caches all of the data and assets, making the application function both on and offline.",
+  projectUrl: "http://public-transporation-sw.herokuapp.com/",
+  repoUrl: "https://github.com/RyanCCollins/public-transportation",
+  milestones: "- Built a dynamic single page application using offline first technologies \n - Transpiled cutting edge JavaScript with ES6 using Babel \n - Implemented service worker and IDB to provide persistent offline data \n - Utilized reachability to determine when the app was offline \n - Wrote several dozen reusable React components \n - Utilized Redux and unidirectional data-flow to manage dynamic state predictably \n - Wrote tests to eliminate regressions and provide a solid user experience \n - As always, followed the AirBnB JSX and JavaScript style guides and utilized ESLint to provide exceptional style and code quality",
+  designPatterns: "Most notably, this app uses the Flux unidirectional data-flow architecture and functional reactive programming techniques. Follows best practices for stateless functional components.",
+  technicalInformation: "Built with functional JavaScript, ES2015, React, Redux, CSS Modules, following the unidirectional data-flow architecture. Utilizes best practices for scaling of React Apps. Unit tests written with Expect and Mocha / JSDOM to provide high quality code. Uses the react-redux connect method to hook up react components to the redux store.",
+  category: "frontend"
+)
+tags = ['Functional Programming', 'Flux', 'React', 'Redux', 'Material UI']
+tags.each do |tag|
+  p.tags << Tag.find_or_create_by(title: tag)
+end
+p.save!
+
+p = Project.create(
+  title: 'Hacksmiths.io',
+  user: User.all.first,
+  featureImage: "https://raw.githubusercontent.com/RyanCCollins/cdn/master/portfolio-image-gallery-images/hacksmiths-web/main-mockup-web.png",
+  caption: "Web API and Front End built for the Hacksmiths members.",
+  description: "Implemented the Foundation web framework and React JS to design and develop a multi user web application for the members of the Hacksmiths. Built a multi-user blog for members of the site and implemented both server rendered Jade views and dynamic React JS components.",
+  projectUrl: "http://hacksmiths.io/",
+  repoUrl: "https://github.com/RyanCCollins/hacksmiths-website",
+  milestones: "- Built an authentication system to allow for multi users on the site \n - Built a web API to provide data to multiple clients \n - Implemented a custom designed Front End web site \n - Utilized the Foundation web framework to build an attractive front end web application \n - Automated the build process, using Gulp and Webpack \n - Implemented server-rendered Jade views",
+  designPatterns: "Built with server rendered Jade views, utilizing the MVC architecture and the Foundation responsive web framework. Implemented several React JS components, utilizing ES6 and Webpack. Utilized Gulp to automate the build process and allow for the usage of preprocessors, including Sass.",
+  technicalInformation: "Implements the Model View Controller design pattern, 12 Factor Micro-Services, build automation.",
+  category: "fullstack"
+)
+tags = ['React', 'Sass', 'Foundation', 'Gulp', 'ES6', 'Webpack']
+tags.each do |tag|
+  p.tags << Tag.find_or_create_by(title: tag)
+end
+p.save!
+
+p = Project.create(
+  title: 'Hacksmiths App',
+  user: User.all.first,
+  featureImage: "https://raw.githubusercontent.com/RyanCCollins/hacksmiths-app/master/IMG_0408%202_iphone6plus_gold_side2.png",
+  caption: "iOS Mobile Application built for the Hacksmiths.",
+  description: "Followed best practices to design and develop the Hacksmiths.io app, a professional iOS mobile app built for the members of the Hacksmiths. Implemented best practices for design and user experience, creating a functional and aesthetically appealing application.  Founded by Ryan Collins and Sean Craig, the Hacksmiths are a group of software professionals working collaboratively in a virtual environment in an effort to solve real world problems through the development of software. We build tools designed to help non-profit organizations streamline their philanthropic efforts, utilizing industry best practices and advanced software development methodologies.",
+  projectUrl: "http://hacksmiths.io/",
+  repoUrl: "https://github.com/RyanCCollins/hacksmiths-app",
+  milestones: "- Designed a polished User Interface using Apple's UIKit libraries, Cocoapods and custom views. \n - Implemented a scalable Node.js API with a persistent MongoDB store to synch server data in real-time to the app. \n - Integrated push notifications both app and server-side \n - Implemented a complex Core Data model to persist data on the device, providing a seamless offline experience. \n - Utilized Promises via the PromiseKit library to provide an elegant Asynchronous experience. \n - Implemented the Model View Presenter and Model View Controller patterns. \n - Utilized custom Protocols to create modular components. \n - Developed an extremely elegant and complex networking client, creating a fast and reliable service layer for the application.",
+  designPatterns: "Utilizes the Model View Presenter and Model View Controller paradigms, along with the Delegate / Protocol Pattern.",
+  technicalInformation: "Built in Swift 2.2 using a multitude of Apple Libraries and Cocoapods. Implements Promises to create a seamless Asynchronous experience.",
+  technicalReview: "This is one of the best apps I've reviewed. Your coding style is amazing and reading the code was a breeze. Also the design was especially professional.",
+  reviewerName: "Spiros Raptis",
+  category: "ios"
+)
+tags = ['MVC', 'MVP', 'Delegate Pattern', 'Protocol Oriented']
+tags.each do |tag|
+  p.tags << Tag.find_or_create_by(title: tag)
+end
+p.save!
+
+p = Project.create(
+  title: 'Hacksmiths Admin Dashboard',
+  user: User.all.first,
+  featureImage: "https://raw.githubusercontent.com/RyanCCollins/cdn/master/portfolio-image-gallery-images/hacksmiths-web/admin-hacksmiths-main.jpg",
+  caption: "Admin Dashboard and API for the Hacksmiths Project",
+  description: "Followed best practices to build a Node JS web API containing data driven microservices and React JS / Keystone JS Admin Dashboard. Backed by MongoDB, the API serves multiple clients, including the web app and the iOS app.  Built a ReactJS powered Admin Dashboard.",
+  projectUrl: "http://hacksmiths.io/",
+  repoUrl: "https://github.com/RyanCCollins/hacksmiths-website",
+  milestones: "- Built a scalable backend using Node JS, Express JS \n - Implemented a custom admin dashboard using React and KeystoneJS \n - Automated the build process, following the 12 factor guidelines to build a scalable app \n - Implemented server-rendered Jade views \n - Architected a data system utilizing MongoDB, serving data to multiple clients via a REST API",
+  designPatterns: "Implements the Model View Controller design pattern, 12 Factor Micro-Services, build automation.",
+  technicalInformation: "Built with NodeJS, Express, MongoDB and KeystoneJS, utilizing the MVC architecture. Utilized Jade to render views server side and implemented a fast and functional admin dashboard to provide easy access to the site's data. Utilized the Twitter and Github APIs as OAuth providers for the app and deployed via Docker, automating the process of Continuous Delivery.",
+  category: "fullstack"
+)
+tags = ['React', 'Foundation', '12 Factor', 'Docker', 'Node', 'MVC', 'REST']
+tags.each do |tag|
+  p.tags << Tag.find_or_create_by(title: tag)
+end
+p.save!
+
+
+p = Project.create(
+  title: 'Food Drivr - React Front End App',
+  user: User.all.first,
+  featureImage: "https://raw.githubusercontent.com/RyanCCollins/cdn/master/portfolio-image-gallery-images/food-drivr-web/wastenotmock.jpg",
+  caption: "React JS Application built to streamline food donations via the Food Drivr platform.",
+  description: "Coordinated collaborative efforts and contributed to the development of a React JS web application for the Food Drivr project.",
+  projectUrl: "http://fooddrivr.com/",
+  repoUrl: "https://github.com/teamhacksmiths/food-drivr-frontend",
+  milestones: "- Implemented cutting-edge Javascript, including React, ES6 and Webpack. \n - Wrote a client-side API layer utilizing a Promise based approach, providing a seamless asynchronous experience. \n - Implemented Material-UI and custom React components, providing a reactive experience.",
+  designPatterns: "Utilizes the AirBnB JS Style Guide, the Flux and Model View Controller Architectures, HTML 5 and CSS best practices.",
+  technicalInformation: "Built with React JS the application is a Single Page App that compiles via Webpack Hot Module Reloading. It is truly as cutting edge as it gets, implementing the best parts of ES6 through the use of Babel. It utilizes a number of NPM modules, Post CSS and boasts custom design by the Hacksmiths resident designer, Sean Craig.",
+  category: "frontend"
+)
+tags = ['React', 'Promises', 'Webpack', 'HTML5', 'CSS', 'AirBnb Styleguide']
+tags.each do |tag|
+  p.tags << Tag.find_or_create_by(title: tag)
+end
+p.save!
+
+p = Project.create(
+  title: 'Food Drivr - API',
+  user: User.all.first,
+  featureImage: "https://raw.githubusercontent.com/teamhacksmiths/food-drivr-frontend/master/food-drivr-donate-mock.jpg",
+  caption: "Rails JSON API and Back End built to drive the Food Drivr project.",
+  description: "Coordinated collaborative efforts and lead the development team of the Food Drivr food donation web and mobile applications. The Food Drivr website and mobile app serves to make it dead simple to donate edible food to the hungry. Open the app, press a button and a driver will come pick it up, bringing it to the less fortunate",
+  projectUrl: "http://fooddrivr.com/",
+  repoUrl: "https://github.com/teamhacksmiths/food-drivr",
+  milestones: "- Led the development of a scalable REST API utilizing the Ruby on Rails web framework. \n - Utilized Docker to completely automate the deployment and allow for maximum scalability. \n - Implemented a PostgreSQL database, providing an API to persist data for the project. \n - Wrote tests utilizing Rspec to eliminate regressions. \n - Wrote comprehensive documentation to provide sustainability to the project.",
+  designPatterns: "Utilizes the Model View Controller pattern and the AirBnb Ruby Style Guide. Followed the REST architecture, implementing a modern and stable API.",
+  technicalInformation: "Utilizes the Model View Controller pattern and the AirBnb Ruby Style Guide. Followed the REST architecture, implementing a modern and stable API.",
+  category: "backend"
+)
+tags = ['Ruby on Rails', 'MVC', 'REST']
+tags.each do |tag|
+  p.tags << Tag.find_or_create_by(title: tag)
+end
+p.save!
+
+p = Project.create(
+  title: 'Food Drivr - iOS App',
+  user: User.all.first,
+  featureImage: "https://s3.amazonaws.com/accredible-api-projects/previews/5329/large/1465160757326?1465160244",
+  caption: "iOS Mobile application, utilizing an Uber model to combat food waste.",
+  description: "Coordinated collaborative efforts to create open source software with 18 experienced software developers from no less than 5 countries across the world. Leading the team in creating the Food Drivr project and building a JSON REST API for the project utilizing the Ruby on Rails web framework. Orchestrated the creation of multiple software clients for the project, including an iOS Mobile App, REST API, Data Analytic platform, Admin Dashboard and ReactJS web Frontend. The Food Drivr website and mobile app serves to make it dead simple to donate edible food to the hungry. Open the app, press a button and a driver will come pick it up, bringing it to the less fortunate.",
+  projectUrl: "http://fooddrivr.com/",
+  repoUrl: "https://github.com/teamhacksmiths/food-drivr-ios",
+  milestones: "- Utilized the Model View Controller and Model View Presenter architectures \n - Led a team of 18 developers to build the project from the ground up \n - Provided support and guidance to the team, coordinating the creation of a multi-client application and API.",
+  designPatterns: "Utilizes the Model View Presenter and Model View Controller paradigms, along with the Delegate / Protocol Pattern.",
+  technicalInformation: "Built in Swift using XCode, the application was built using best practices and design patterns.",
+  category: "ios"
+)
+tags = ['MVP', 'MVC', 'Object Oriented', 'Protocol Oriented', 'Delegate Pattern']
+tags.each do |tag|
+  p.tags << Tag.find_or_create_by(title: tag)
+end
+p.save!
 
 Post.create(
   user: User.first,

@@ -26,6 +26,7 @@ class PostContainer extends Component { // eslint-disable-line react/prefer-stat
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUpvote = this.handleUpvote.bind(this);
+    this.checkAuthToken = this.checkAuthToken.bind(this);
     if (RichTextEditor) {
       this.state = {
         value: RichTextEditor.createEmptyValue(),
@@ -38,6 +39,7 @@ class PostContainer extends Component { // eslint-disable-line react/prefer-stat
       refetch,
       authToken,
     } = this.props;
+    this.checkAuthToken();
     const data = {
       variables: {
         authToken,
@@ -54,9 +56,7 @@ class PostContainer extends Component { // eslint-disable-line react/prefer-stat
       refetch,
       authToken,
     } = this.props;
-    if (!authToken) {
-      this.context.router.push('/login');
-    }
+    this.checkAuthToken();
     const user = {
       id: 1,
       authToken,
@@ -75,6 +75,14 @@ class PostContainer extends Component { // eslint-disable-line react/prefer-stat
     }).catch((err) => {
       console.log(`It failed ${err}`);
     });
+  }
+  checkAuthToken() {
+    const {
+      authToken,
+    } = this.props;
+    if (!authToken) {
+      this.context.router.push('/login');
+    }
   }
   render() {
     const {
