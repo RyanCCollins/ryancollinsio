@@ -7,7 +7,9 @@ import styles from './index.module.scss';
 import Box from 'grommet-udacity/components/Box';
 import Section from 'grommet-udacity/components/Section';
 import Headline from 'grommet-udacity/components/Headline';
-import { WithLoading, Divider, ContactForm } from 'components';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
+import { WithLoading, Divider, ContactForm, WithToast } from 'components';
 import { reduxForm } from 'redux-form';
 
 export const formFields = [
@@ -23,13 +25,34 @@ class ContactContainer extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleSubmit() {
-    
+    const {
+      fields,
+      submitInquiry,
+      actions,
+    } = this.props;
+    actions.contactInitiateLoading();
+    submitInquiry({
+      name: fields.nameInput.value,
+      email: fields.emailInput.value,
+      category: fields.categoryInput.value,
+      message: fields.messageInput.value,
+    }).then(() => {
+      const message = 'Thanks so much for contacting me!' +
+        '  I will get back with you as soon as possible';
+      actions.contactSuccess(message);
+    }).catch((err) => {
+      actions.contactFailure(err);
+    });
   }
   render() {
     const {
       isLoading,
       fields,
+      isSubmitting,
       invalid,
+      message,
+      errorLoading,
+      actions,
     } = this.props;
     return (
       <Box
@@ -38,35 +61,48 @@ class ContactContainer extends Component {
         align="center"
         justify="center"
       >
-        <WithLoading isLoading={isLoading}>
-          <Section pad="large" align="center" justify="center">
-            <Headline align="center">
-              Contact Me
-            </Headline>
-            <Divider />
-          </Section>
-          <Section pad="large" align="center" justify="center">
-            <ContactForm
-              {...fields}
-              invalid={invalid}
-              onSubmit={this.handleSubmit}
-            />
-          </Section>
-        </WithLoading>
+        <WithToast
+          message={message}
+          error={errorLoading}
+          onClose={(type) => actions.clearContactToast(type)}
+        >
+          <WithLoading isLoading={isLoading || isSubmitting}>
+            <Section pad="large" align="center" justify="center">
+              <Headline align="center">
+                Contact Me
+              </Headline>
+              <Divider />
+            </Section>
+            <Section pad="large" align="center" justify="center">
+              <ContactForm
+                {...fields}
+                invalid={invalid}
+                onSubmit={this.handleSubmit}
+              />
+            </Section>
+          </WithLoading>
+        </WithToast>
       </Box>
     );
   }
 }
 
 ContactContainer.propTypes = {
+  actions: PropTypes.object.isRequired,
   isLoading: PropTypes.bool.isRequired,
   fields: PropTypes.object.isRequired,
   invalid: PropTypes.bool.isRequired,
+  submitInquiry: PropTypes.func.isRequired,
+  isSubmitting: PropTypes.bool.isRequired,
+  message: PropTypes.string,
+  errorLoading: PropTypes.object,
 };
 
 // mapStateToProps :: {State} -> {Props}
 const mapStateToProps = (state) => ({
-  // myProp: state.myProp,
+  errorLoading: state.contact.error,
+  message: state.contact.message,
+  isSubmitting: state.contact.isLoading,
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}
@@ -84,7 +120,35 @@ const FormContainer = reduxForm({
   fields: formFields,
 })(Container);
 
+const loadCategoriesQuery = gql`
+  query loadCategories {
+    inquiryCategories
+  }
+`;
+
+const ContainerWithData = graphql(loadCategoriesQuery, {
+  props: ({ loading, inquiryCategories, error }) => ({
+    isLoading: loading,
+    categories: inquiryCategories,
+    loadingError: error,
+  }),
+})(FormContainer);
+
+const submitInquiryMutation = gql`
+  mutation submitInquiry($inquiry: InquiryInput) {
+    CreateInquiry(input: { inquiry: $inquiry }) {
+      id
+    }
+  }
+`;
+
+const ContainerWithMutation = graphql(submitInquiryMutation, {
+  props: ({ mutate }) => ({
+    submitInquiry: mutate,
+  }),
+})(ContainerWithData);
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(FormContainer);
+)(ContainerWithMutation);
