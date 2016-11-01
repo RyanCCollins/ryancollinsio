@@ -64,4 +64,18 @@ QueryType = GraphQL::ObjectType.define do
       Tag.joins("join project_tags on project_tags.tag_id = tags.id").uniq
     end
   end
+  field :inquiryCategories, types[types.String] do
+    resolve -> (_obj, args, _ctx) do
+      Inquiry.categories.map{ |a| a[0] }
+    end
+  end
+  field :inquiries, types[InquiryType] do
+    argument :auth_token, !types.String
+    resolve -> (_obj, args, _ctx) do
+      user = User.find_by(auth_token: args[:auth_token])
+      if user.role == 'admin'
+        Inquiry.all
+      end
+    end
+  end
 end

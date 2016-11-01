@@ -1,4 +1,5 @@
 /* GENERATOR: Assemble all components for export */
+export ContactForm from './ContactForm';
 export SignupForm from './SignupForm';
 export AuthFormFooter from './AuthFormFooter';
 export LoginForm from './LoginForm';
