@@ -10,7 +10,7 @@ const HeroSection = ({
   headline,
 }) => (
   <Hero
-    backgroundImage="https://github.com/RyanCCollins/cdn/blob/master/misc/rc-full.png?raw=true"
+    colorIndex="grey-1"
     justify="start"
     size="small"
   >
@@ -31,10 +31,10 @@ const HeroSection = ({
       enter={{ animation: 'slide-up', duration: 2500 }}
       keep
     >
-      <Headline strong justify="end" style={{ flex: 1 }}>
+      <Headline strong justify="end" style={{ flex: 1 }} className="lobster">
         Ryan Collins
       </Headline>
-      <Heading tag="h3" strong justify="end">
+      <Heading tag="h3" strong justify="end" className="lobster">
         Software Engineer
       </Heading>
     </Animate>

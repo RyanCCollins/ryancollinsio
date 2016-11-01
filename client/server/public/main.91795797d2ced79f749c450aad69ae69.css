@@ -23714,6 +23714,9 @@ a.navLink {
     -webkit-transform: scaleX(0);
             transform: scaleX(0); }
 
+.lobster {
+  font-family: 'Lobster', cursive; }
+
 a.active {
   border-bottom: 4px solid #FF5912; }
 
