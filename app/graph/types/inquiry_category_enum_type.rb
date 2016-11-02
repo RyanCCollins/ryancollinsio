@@ -1,5 +1,5 @@
-InquiryCategoyEnumType = GraphQL::EnumType.define do
-  name 'InquiryCategoyEnum'
+InquiryCategoryEnumType = GraphQL::EnumType.define do
+  name 'InquiryCategoryEnum'
   description 'The status of the event'
   value 'job'
   value 'tutorial'

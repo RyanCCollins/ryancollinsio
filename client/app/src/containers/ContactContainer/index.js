@@ -36,7 +36,7 @@ class ContactContainer extends Component {
         inquiry: {
           name: fields.nameInput.value,
           email: fields.emailInput.value,
-          category: fields.categoryInput.value,
+          category: fields.categoryInput.value.option,
           message: fields.messageInput.value,
         },
       },
