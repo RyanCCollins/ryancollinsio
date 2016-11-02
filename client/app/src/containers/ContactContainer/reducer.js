@@ -2,13 +2,11 @@ import * as types from './constants';
 import update from 'react-addons-update';
 
 export const initialState = {
-  // Initial State goes here!
+  isLoading: false,
+  message: null,
+  error: null,
 };
-export const CONTACT_INITIATE_LOADING = 'CONTACT_INITIATE_LOADING';
-export const CONTACT_SUCCESS = 'CONTACT_SUCCESS';
-export const CONTACT_ERROR = 'CONTACT_ERROR';
-export const CONTACT_CLEAR_ERROR = 'CONTACT_CLEAR_ERROR';
-export const CONTACT_CLEAR_MESSAGE = 'CONTACT_CLEAR_MESSAGE';
+
 const contactReducer =
   (state = initialState, action) => {
     switch (action.type) {

@@ -35,7 +35,7 @@ const ContactForm = ({
         RyanCollins.io
       </Heading>
       <Heading align="center" tag="h5">
-        Signup
+        Contact Me
       </Heading>
       <FormFields>
         <FormField
@@ -94,25 +94,17 @@ const ContactForm = ({
             type="text"
             aria-invalid={categoryInput.error}
             aria-required
-            onBlur={() => categoryInput.onBlur(categoryInput.value)}
-            onChange={(option) => {
-              if (option && option.value) {
-                categoryInput.onChange(option.value);
-              } else {
-                categoryInput.onChange(null);
-              }
-            }}
-            options={categories.map(i =>
-              ({
-                value: `${i.charAt(0).toUpperCase()}${i.slice(1)}`,
-                label: `${i.charAt(0).toUpperCase()}${i.slice(1)}`,
-              }))
-            }
+            value={{ value: categoryInput.value.option, label: categoryInput.value.option }}
+            onSelect={({ suggestion }) => categoryInput.onChange(suggestion.option)}
+            options={categories.map(category =>
+              `${category.charAt(0).toUpperCase()}${category.slice(1)}`
+            )}
           />
         </FormField>
       </FormFields>
       <FormField
         label="Message"
+        className={styles.formField}
         htmlFor="message-input"
       >
         <MarkdownInput

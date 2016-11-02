@@ -32,10 +32,14 @@ class ContactContainer extends Component {
     } = this.props;
     actions.contactInitiateLoading();
     submitInquiry({
-      name: fields.nameInput.value,
-      email: fields.emailInput.value,
-      category: fields.categoryInput.value,
-      message: fields.messageInput.value,
+      variables: {
+        inquiry: {
+          name: fields.nameInput.value,
+          email: fields.emailInput.value,
+          category: fields.categoryInput.value,
+          message: fields.messageInput.value,
+        },
+      },
     }).then(() => {
       const message = 'Thanks so much for contacting me!' +
         '  I will get back with you as soon as possible';
@@ -53,6 +57,7 @@ class ContactContainer extends Component {
       message,
       errorLoading,
       actions,
+      categories,
     } = this.props;
     return (
       <Box
@@ -67,15 +72,16 @@ class ContactContainer extends Component {
           onClose={(type) => actions.clearContactToast(type)}
         >
           <WithLoading isLoading={isLoading || isSubmitting}>
-            <Section pad="large" align="center" justify="center">
+            <Section align="center" justify="center">
               <Headline align="center">
                 Contact Me
               </Headline>
               <Divider />
             </Section>
-            <Section pad="large" align="center" justify="center">
+            <Section pad={{ horizontal: 'large' }} align="center">
               <ContactForm
                 {...fields}
+                categories={categories}
                 invalid={invalid}
                 onSubmit={this.handleSubmit}
               />
@@ -96,6 +102,7 @@ ContactContainer.propTypes = {
   isSubmitting: PropTypes.bool.isRequired,
   message: PropTypes.string,
   errorLoading: PropTypes.object,
+  categories: PropTypes.array.isRequired,
 };
 
 // mapStateToProps :: {State} -> {Props}
@@ -127,7 +134,7 @@ const loadCategoriesQuery = gql`
 `;
 
 const ContainerWithData = graphql(loadCategoriesQuery, {
-  props: ({ loading, inquiryCategories, error }) => ({
+  props: ({ data: { loading, inquiryCategories, error } }) => ({
     isLoading: loading,
     categories: inquiryCategories,
     loadingError: error,
