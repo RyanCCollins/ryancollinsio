@@ -51,6 +51,7 @@ class BlogContainer extends Component {
               <Divider />
               <Box direction="row">
                 <Search
+                  placeHolder="React, GraphQL, Rails, etc."
                   inline
                   value={searchTerm || ''}
                   onDOMChange={({ target }) => actions.blogSetSearchTerm(target.value)}

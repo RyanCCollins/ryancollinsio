@@ -10,6 +10,7 @@ import {
   PaginatorFooter,
   SearchMeta,
   ResponsiveImage,
+  SearchForm,
 } from 'components';
 import Section from 'grommet-udacity/components/Section';
 import { graphql } from 'react-apollo';
@@ -18,10 +19,12 @@ import Columns from 'grommet-udacity/components/Columns';
 import Box from 'grommet-udacity/components/Box';
 import Anchor from 'grommet-udacity/components/Anchor';
 import Headline from 'grommet-udacity/components/Headline';
-import Search from 'grommet-udacity/components/Search';
-import Button from 'grommet-udacity/components/Button';
-import CloseIcon from 'grommet-udacity/components/icons/base/Close';
+import { reduxForm } from 'redux-form';
 import { getVisibleProjectsFilteredBySearchTerm } from './selectors';
+
+export const formFields = [
+  'tagSelectionInput',
+];
 
 class PortfolioContainer extends Component { // eslint-disable-line react/prefer-stateless-function
   componentWillReceiveProps({ allProjects }) {
@@ -38,6 +41,8 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
       perPage,
       actions,
       searchTerm,
+      projectTags,
+      fields,
     } = this.props;
     return (
       <WithLoading isLoading={isLoading}>
@@ -53,18 +58,18 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
           </Headline>
           <SearchMeta array={projects} searchTerm={searchTerm} />
           <Divider />
-          <Section direction="row">
-            <Search
-              inline
-              value={searchTerm || ''}
-              onDOMChange={({ target }) => actions.portfolioSetSearchTerm(target.value)}
-            />
-            {searchTerm !== '' &&
-              <Button
-                onClick={actions.portfolioClearSearchTerm}
-                icon={<CloseIcon />}
-              />
-            }
+          <Section direction="column" full="horizontal" justify="center" align="center">
+            <Box>
+              {projectTags && projectTags.length > 0 &&
+                <SearchForm
+                  tagSelectionInput={fields.tagSelectionInput}
+                  tags={projectTags}
+                  onClear={actions.portfolioClearSearchTerm}
+                  searchTerm={searchTerm}
+                  onChange={({ target }) => actions.portfolioSetSearchTerm(target.value)}
+                />
+              }
+            </Box>
           </Section>
           <Section className={styles.innerBox}>
             {projects && projects.length > 0 &&
@@ -104,6 +109,7 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
 }
 
 PortfolioContainer.propTypes = {
+  projectTags: PropTypes.array.isRequired,
   allProjects: PropTypes.array,
   isLoading: PropTypes.bool.isRequired,
   loadingError: PropTypes.object,
@@ -112,6 +118,7 @@ PortfolioContainer.propTypes = {
   currentPage: PropTypes.number.isRequired,
   perPage: PropTypes.number.isRequired,
   searchTerm: PropTypes.string,
+  fields: PropTypes.object.isRequired,
 };
 
 // mapStateToProps :: {State} -> {Props}
@@ -144,18 +151,28 @@ const getProjectsQuery = gql`
       caption
       featureImage
     }
+    projectTags {
+      id
+      title
+    }
   }
 `;
 
 const ContainerWithData = graphql(getProjectsQuery, {
-  props: ({ data: { projects, loading, error } }) => ({
+  props: ({ data: { projects, projectTags, loading, error } }) => ({
     allProjects: projects,
     isLoading: loading,
     loadingError: error,
+    projectTags,
   }),
 })(Container);
 
-export default connect(
+const ConnectedContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(ContainerWithData);
+
+export default reduxForm({
+  name: 'ProjectTags',
+  fields: formFields
+})(ConnectedContainer);

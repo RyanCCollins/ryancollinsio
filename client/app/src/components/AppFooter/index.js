@@ -4,8 +4,11 @@ import cssModules from 'react-css-modules';
 import Footer from 'grommet-udacity/components/Footer';
 import Box from 'grommet-udacity/components/Box';
 import Heading from 'grommet-udacity/components/Heading';
-import SocialShare from 'grommet-udacity/components/SocialShare';
 import Anchor from 'grommet-udacity/components/Anchor';
+import Button from 'grommet-udacity/components/Button';
+import MailIcon from 'grommet-udacity/components/icons/base/Mail';
+import { SocialIcon } from 'components';
+import socialIcons from './data';
 
 const AppFooter = () => (
   <Footer pad="large" colorIndex="light-2">
@@ -42,6 +45,14 @@ const AppFooter = () => (
           source code.
         </Anchor>
       </Heading>
+      <Box align="center" justify="center" pad="medium">
+        <Button
+          icon={<MailIcon />}
+          plain
+          href="/contact"
+          label="Contact Me"
+        />
+      </Box>
       <nav
         aria-hidden
         className={
@@ -50,25 +61,11 @@ const AppFooter = () => (
           'grommetux-menu grommetux-menu--row grommetux-menu--inline'
         }
       >
-        <SocialShare
-          a11yTitle="Go to Facebook to Share this website"
-          type="facebook"
-          link="http://www.ryancollins.io"
-          text="RyanCollins.io"
-        />
-        <SocialShare
-          a11yTitle="Go to Twitter to Share this website"
-          type="twitter"
-          link="http://www.ryancollins.io"
-          text="RyanCollins.io"
-        />
-        <SocialShare
-          a11yTitle="Go to Linkedin to Share this website"
-          type="linkedin"
-          link="http://www.ryancollins.io"
-          title="Restaurant Reviewer"
-          text="RyanCollins.io"
-        />
+        {socialIcons.map((item, i) =>
+          <Anchor key={i} href={item.url}>
+            <SocialIcon type={item.type} />
+          </Anchor>
+        )}
       </nav>
     </Box>
   </Footer>

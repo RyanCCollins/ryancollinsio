@@ -11,6 +11,7 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { WithLoading, Divider, ContactForm, WithToast } from 'components';
 import { reduxForm } from 'redux-form';
+import contactValidation from './utils/validation';
 
 export const formFields = [
   'nameInput',
@@ -36,7 +37,7 @@ class ContactContainer extends Component {
         inquiry: {
           name: fields.nameInput.value,
           email: fields.emailInput.value,
-          category: fields.categoryInput.value.option,
+          category: fields.categoryInput.value.option.toLowerCase(),
           message: fields.messageInput.value,
         },
       },
@@ -125,6 +126,7 @@ const Container = cssModules(ContactContainer, styles);
 const FormContainer = reduxForm({
   form: 'Contact',
   fields: formFields,
+  validate: contactValidation,
 })(Container);
 
 const loadCategoriesQuery = gql`

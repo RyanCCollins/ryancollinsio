@@ -4,6 +4,8 @@ import Headline from 'grommet-udacity/components/Headline';
 import Heading from 'grommet-udacity/components/Heading';
 import Box from 'grommet-udacity/components/Box';
 import Animate from 'grommet-udacity/components/Animate';
+import Footer from 'grommet-udacity/components/Footer';
+import Button from 'grommet-udacity/components/Button';
 
 const HeroSection = ({
   image,
@@ -12,7 +14,7 @@ const HeroSection = ({
   <Hero
     colorIndex="grey-1"
     justify="start"
-    size="small"
+    size="large"
   >
     <Animate
       visible={image}
@@ -38,6 +40,9 @@ const HeroSection = ({
         Software Engineer
       </Heading>
     </Animate>
+    <Footer>
+      <Button href="/contact" label="Get in Touch" />
+    </Footer>
   </Hero>
 );
 

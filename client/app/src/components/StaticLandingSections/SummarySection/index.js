@@ -5,6 +5,8 @@ import Section from 'grommet-udacity/components/Section';
 import Headline from 'grommet-udacity/components/Headline';
 import Box from 'grommet-udacity/components/Box';
 import Markdown from 'grommet-udacity/components/Markdown';
+import Heading from 'grommet-udacity/components/Heading';
+import Label from 'grommet-udacity/components/Label';
 import { Divider } from 'components';
 
 const SummarySection = ({
@@ -15,6 +17,19 @@ const SummarySection = ({
       Summary
     </Headline>
     <Divider />
+    <Box align="center">
+      <img
+        src="https://github.com/RyanCCollins/cdn/blob/master/misc/ryanc.jpg?raw=true"
+        className={styles.avatar}
+      />
+      <Heading className="heading">
+        Ryan Collins
+      </Heading>
+      <Label uppercase className={styles.labelText}>
+        Full Stack & UI Engineer
+      </Label>
+      <hr className={styles.seperator} />
+    </Box>
     <Box align="center" justify="center" className={styles.innerContainer}>
       <Box className="main-text">
         <Markdown content={summary} className="paragraph" />

@@ -1,4 +1,6 @@
 /* GENERATOR: Assemble all components for export */
+export SearchForm from './SearchForm';
+export SocialIcon from './SocialIcon';
 export ContactForm from './ContactForm';
 export SignupForm from './SignupForm';
 export AuthFormFooter from './AuthFormFooter';
