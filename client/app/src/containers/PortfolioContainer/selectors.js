@@ -27,11 +27,10 @@ export const getVisibleProjectsFiltered = createSelector(
   getSearchTerm(),
   getTags(),
   (visibleProjects, searchTerm, tags) => {
-    let projects = visibleProjects;
     const filterableTerm = searchTerm && searchTerm !== '' ?
       searchTerm.toLowerCase() : null;
     if (filterableTerm) {
-      projects = visibleProjects.filter(project =>
+      return visibleProjects.filter(project =>
         project.title.toLowerCase().includes(filterableTerm) ||
           project.caption.toLowerCase().includes(filterableTerm) ||
             project.description.toLowerCase().includes(filterableTerm) ||
@@ -39,16 +38,12 @@ export const getVisibleProjectsFiltered = createSelector(
       );
     }
     if (tags && tags.length > 0) {
-      projects = projects.filter(project => {
-        project.tags.forEach(tag => {
-          const included = tags.indexOf(tag.title) > 0;
-          if (included) {
-            return true;
-          }
-        });
-        return false;
+      return visibleProjects.filter(project => {
+        const projectTags = project.tags;
+        const includeTag = tags.map(tag => projectTags.includes(tag));
+        return includeTag.indexOf(true) >= 0;
       });
     }
-    return projects;
+    return visibleProjects;
   }
 );
