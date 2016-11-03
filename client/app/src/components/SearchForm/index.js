@@ -8,17 +8,20 @@ import CloseIcon from 'grommet-udacity/components/icons/base/Close';
 import Filter from 'grommet-udacity/components/icons/base/Filter';
 import Menu from 'grommet-udacity/components/Menu';
 import { Select as TagSelect } from 'antd';
+import FormField from 'grommet-udacity/components/FormField';
+const Option = TagSelect.Option;
 
 const SearchForm = ({
   onClear,
   onChange,
   searchTerm,
-  tagSelectionInput,
+  inputTags,
   tags,
+  onChangeTags,
 }) => (
-  <Menu label="Search / Filter" closeOnClick={false} icon={<Filter />}>
-    <Box alignSelf="center" direction="column">
-      <Box direction="row" alignSelf="center">
+  <Menu id="menu-nav" label="Search / Filter" closeOnClick={false} icon={<Filter />}>
+    <Box alignSelf="center" direction="column" colorIndex="light-1">
+      <Box direction="row" alignSelf="center" pad="medium" align="center">
         <Search
           inline
           placeHolder="React, GraphQL, Rails, etc."
@@ -32,15 +35,28 @@ const SearchForm = ({
           />
         }
       </Box>
-      <Box>
-        <TagSelect
-          {...tagSelectionInput}
-          onChange={({ option }) => tagSelectionInput.onChange(option.label)}
-          id="category-input"
-          options={tags.map(({ title }) =>
-            ({ value: title, label: title })
-          )}
-        />
+      <Box pad="medium" direction="column">
+        <FormField label="Tags" htmlFor="tag-input">
+          <TagSelect
+            tags
+            multiple
+            value={inputTags}
+            style={{ width: '100%' }}
+            id="tag-input"
+            searchPlaceholder="Start typing to add find a tag."
+            onChange={onChangeTags}
+            id="tag-input"
+          >
+            {tags.map(({ title, id }) =>
+              <Option
+                key={id}
+                value={title}
+              >
+                {title}
+              </Option>
+            )}
+          </TagSelect>
+        </FormField>
       </Box>
     </Box>
   </Menu>
@@ -49,7 +65,9 @@ const SearchForm = ({
 SearchForm.propTypes = {
   onClear: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
-  searchTerm: PropTypes.string.isRequired,
+  searchTerm: PropTypes.string,
+  onChangeTags: PropTypes.func.isRequired,
+  inputTags: PropTypes.array.isRequired,
 };
 
 export default cssModules(SearchForm, styles);

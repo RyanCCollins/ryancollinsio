@@ -22,3 +22,8 @@ export const portfolioSetSearchTerm = (term) => ({
 export const portfolioClearSearchTerm = () => ({
   type: types.PORTFOLIO_CLEAR_SEARCH_TERM,
 });
+
+export const portfolioSetTags = (tags) => ({
+  type: types.PORTFOLIO_SET_TAGS,
+  tags,
+});

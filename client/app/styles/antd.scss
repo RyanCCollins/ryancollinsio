@@ -3261,6 +3261,8 @@ samp {
 }
 .ant-select-selection--multiple .ant-select-search--inline .ant-select-search__field {
   width: 0.75em;
+  border: none !important;
+  width: 100% !important;
 }
 .ant-select-selection--multiple .ant-select-selection__rendered {
   overflow: hidden;

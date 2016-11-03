@@ -6,11 +6,18 @@ export const initialState = {
   currentPage: 1,
   perPage: 9,
   searchTerm: null,
+  tags: [],
 };
 
 const portfolioReducer =
   (state = initialState, action) => {
     switch (action.type) {
+      case types.PORTFOLIO_SET_TAGS:
+        return update(state, {
+          tags: {
+            $set: action.tags,
+          },
+        });
       case types.PORTFOLIO_SET_SEARCH_TERM:
         return update(state, {
           searchTerm: {

@@ -20,7 +20,7 @@ import Box from 'grommet-udacity/components/Box';
 import Anchor from 'grommet-udacity/components/Anchor';
 import Headline from 'grommet-udacity/components/Headline';
 import { reduxForm } from 'redux-form';
-import { getVisibleProjectsFilteredBySearchTerm } from './selectors';
+import { getVisibleProjectsFiltered } from './selectors';
 
 export const formFields = [
   'tagSelectionInput',
@@ -30,7 +30,15 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
   componentWillReceiveProps({ allProjects }) {
     if (allProjects !== this.props.allProjects) {
       this.props.actions.portfolioSetProjects(allProjects);
+      this.handleTags = this.handleTags.bind(this);
     }
+  }
+  handleTags(value) {
+    const {
+      tags,
+    } = this.props;
+    const newTags = value.map((tag) => tags[tag] || tag);
+    this.props.actions.portfolioSetTags(newTags);
   }
   render() {
     const {
@@ -42,7 +50,7 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
       actions,
       searchTerm,
       projectTags,
-      fields,
+      tags,
     } = this.props;
     return (
       <WithLoading isLoading={isLoading}>
@@ -59,10 +67,11 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
           <SearchMeta array={projects} searchTerm={searchTerm} />
           <Divider />
           <Section direction="column" full="horizontal" justify="center" align="center">
-            <Box>
+            <Box pad="medium" align="center">
               {projectTags && projectTags.length > 0 &&
                 <SearchForm
-                  tagSelectionInput={fields.tagSelectionInput}
+                  inputTags={tags}
+                  onChangeTags={this.handleTags}
                   tags={projectTags}
                   onClear={actions.portfolioClearSearchTerm}
                   searchTerm={searchTerm}
@@ -109,7 +118,7 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
 }
 
 PortfolioContainer.propTypes = {
-  projectTags: PropTypes.array.isRequired,
+  projectTags: PropTypes.array,
   allProjects: PropTypes.array,
   isLoading: PropTypes.bool.isRequired,
   loadingError: PropTypes.object,
@@ -119,14 +128,16 @@ PortfolioContainer.propTypes = {
   perPage: PropTypes.number.isRequired,
   searchTerm: PropTypes.string,
   fields: PropTypes.object.isRequired,
+  tags: PropTypes.array,
 };
 
 // mapStateToProps :: {State} -> {Props}
 const mapStateToProps = (state) => ({
-  projects: getVisibleProjectsFilteredBySearchTerm(state.portfolio),
+  projects: getVisibleProjectsFiltered(state.portfolio),
   currentPage: state.portfolio.currentPage,
   perPage: state.portfolio.perPage,
   searchTerm: state.portfolio.searchTerm,
+  tags: state.portfolio.tags,
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}
@@ -150,6 +161,9 @@ const getProjectsQuery = gql`
       slug
       caption
       featureImage
+      tags {
+        title
+      }
     }
     projectTags {
       id
@@ -173,6 +187,6 @@ const ConnectedContainer = connect(
 )(ContainerWithData);
 
 export default reduxForm({
-  name: 'ProjectTags',
-  fields: formFields
+  form: 'ProjectTags',
+  fields: formFields,
 })(ConnectedContainer);
