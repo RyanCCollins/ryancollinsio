@@ -8,11 +8,18 @@ export const initialState = {
   currentPage: 1,
   perPage: 6,
   posts: [],
+  tags: [],
 };
 
 const blogReducer =
   (state = initialState, action) => {
     switch (action.type) {
+      case types.BLOG_SET_TAGS:
+        return update(state, {
+          tags: {
+            $set: action.tags,
+          },
+        });
       case types.SET_BLOG_POSTS:
         return update(state, {
           posts: {

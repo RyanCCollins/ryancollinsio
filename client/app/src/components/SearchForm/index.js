@@ -43,7 +43,8 @@ const SearchForm = ({
             value={inputTags}
             style={{ width: '100%' }}
             id="tag-input"
-            searchPlaceholder="Start typing to add find a tag."
+            placeholder="Start typing to find projects by Tag."
+            allowClear
             onChange={onChangeTags}
             id="tag-input"
           >

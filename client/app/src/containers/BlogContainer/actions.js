@@ -60,3 +60,8 @@ export const blogSetCurrentPage = (page) => ({
   type: types.BLOG_SET_CURRENT_PAGE,
   page,
 });
+
+export const blogSetTags = (tags) => ({
+  type: types.BLOG_SET_TAGS,
+  tags,
+});

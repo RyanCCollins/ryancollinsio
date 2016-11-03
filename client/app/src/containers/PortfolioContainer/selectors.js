@@ -39,7 +39,7 @@ export const getVisibleProjectsFiltered = createSelector(
     }
     if (tags && tags.length > 0) {
       return visibleProjects.filter(project => {
-        const projectTags = project.tags;
+        const projectTags = project.tags.map(tag => tag.title);
         const includeTag = tags.map(tag => projectTags.includes(tag));
         return includeTag.indexOf(true) >= 0;
       });

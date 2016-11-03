@@ -9,19 +9,27 @@ import Section from 'grommet-udacity/components/Section';
 import Box from 'grommet-udacity/components/Box';
 import Columns from 'grommet-udacity/components/Columns';
 import Headline from 'grommet-udacity/components/Headline';
-import Button from 'grommet-udacity/components/Button';
-import CloseIcon from 'grommet-udacity/components/icons/base/Close';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import Search from 'grommet-udacity/components/Search';
-import { PostPreview, Divider, PaginatorFooter, SearchMeta } from 'components';
-import { getVisiblePostsFilteredBySearchTerm } from './selectors';
+import { PostPreview, Divider, PaginatorFooter, SearchMeta, SearchForm } from 'components';
+import { getVisiblePostsFiltered } from './selectors';
 
 class BlogContainer extends Component {
+  constructor() {
+    super();
+    this.handleTags = this.handleTags.bind(this);
+  }
   componentWillReceiveProps({ allPosts }) {
     if (allPosts !== this.props.allPosts) {
       this.props.actions.setBlogPosts(allPosts);
     }
+  }
+  handleTags(value) {
+    const {
+      tags,
+    } = this.props;
+    const newTags = value.map((tag) => tags[tag] || tag);
+    this.props.actions.blogSetTags(newTags);
   }
   render() {
     const {
@@ -33,6 +41,8 @@ class BlogContainer extends Component {
       searchTerm,
       currentPage,
       perPage,
+      postTags,
+      tags,
     } = this.props;
     const filterableTerm = searchTerm && searchTerm !== '' ?
       searchTerm.toLowerCase() : null;
@@ -49,20 +59,20 @@ class BlogContainer extends Component {
               </Headline>
               <SearchMeta searchTerm={searchTerm} array={posts} />
               <Divider />
-              <Box direction="row">
-                <Search
-                  placeHolder="React, GraphQL, Rails, etc."
-                  inline
-                  value={searchTerm || ''}
-                  onDOMChange={({ target }) => actions.blogSetSearchTerm(target.value)}
-                />
-                {searchTerm !== '' &&
-                  <Button
-                    onClick={actions.blogClearSearchTerm}
-                    icon={<CloseIcon />}
-                  />
-                }
-              </Box>
+              <Section direction="column" full="horizontal" justify="center" align="center">
+                <Box pad="medium" align="center">
+                  {postTags && postTags.length > 0 &&
+                    <SearchForm
+                      inputTags={tags}
+                      onChangeTags={this.handleTags}
+                      tags={postTags}
+                      onClear={actions.blogClearSearchTerm}
+                      searchTerm={searchTerm}
+                      onChange={({ target }) => actions.blogSetSearchTerm(target.value)}
+                    />
+                  }
+                </Box>
+              </Section>
               {posts && posts.length > 0 &&
                 <Columns
                   masonry
@@ -97,6 +107,7 @@ class BlogContainer extends Component {
 
 BlogContainer.propTypes = {
   isLoading: PropTypes.bool.isRequired,
+  postTags: PropTypes.array,
   postError: PropTypes.object,
   posts: PropTypes.array,
   allPosts: PropTypes.array,
@@ -104,6 +115,7 @@ BlogContainer.propTypes = {
   searchTerm: PropTypes.string,
   currentPage: PropTypes.number.isRequired,
   perPage: PropTypes.number.isRequired,
+  tags: PropTypes.array,
 };
 
 // mapStateToProps :: {State} -> {Props}
@@ -111,7 +123,8 @@ const mapStateToProps = (state) => ({
   searchTerm: state.blog.searchTerm,
   currentPage: state.blog.currentPage,
   perPage: state.blog.perPage,
-  posts: getVisiblePostsFilteredBySearchTerm(state.blog),
+  tags: state.blog.tags,
+  posts: getVisiblePostsFiltered(state.blog),
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}
@@ -151,14 +164,18 @@ const loadPostsQuery = gql`
         }
       }
     }
+    postTags {
+      title
+    }
   }
 `;
 
 const ContainerWithData = graphql(loadPostsQuery, {
-  props: ({ data: { posts, loading, error } }) => ({
+  props: ({ data: { posts, loading, error, postTags } }) => ({
     allPosts: posts,
     isLoading: loading,
     postError: error,
+    postTags,
   }),
 })(Container);
 
