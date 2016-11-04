@@ -315,7 +315,582 @@ tags.each do |tag|
 end
 p.save!
 
-Post.create(
+the_post = Post.create(
+  user: User.first,
+  title: "Performance Optimizing A React Single Page App — Part 2",
+  feature_image: 'https://cdn-images-1.medium.com/max/800/1*vgmd53ACeiyX_JbYF6geQg.png',
+  body: "This is a brief followup to my [past
+article](https://medium.com/front-end-hacking/performance-optimizing-a-react-single-page-app-a68985fa72cc#.v0k8ln44k)
+on the same subject.
+\n
+I’ve been working with React for nearly 12 months, full-time for the last 8, and
+over that time have learned a ton about performance optimization and how it
+relates to functional programming concepts. In my past article, I chose to leave
+out these ideas to make the article specific to React, but lately have been
+itching to write about this stuff. Hopefully you will find this article and the
+linked resources useful!
+\n
+\n
+### Immutable Data
+\n
+In general, immutable data structures are less performant than their mutable
+brethren. However, there are several incredible performance enhancements that
+are completely dependent of the use of immutable data structures.
+\n
+According to Lee Byron, the author of Immutable.js, a mutable push operation
+with a million items was benchmarked at 83 ms, whereas an immutable data
+structure (without CS magic) was benchmarked at 288ms.
+\n
+![](https://cdn-images-1.medium.com/max/800/1*2WgwvkLKjupqDNjhFA4EvA.png)
+<span class="figcaption_hack">Lee Byron, Using Immutable.js with React</span>
+\n
+It might seem like immutable data structures are doomed, but I assure you they
+are not.
+\n
+\n
+### Structural Sharing
+\n
+Six months ago, I came across a very famous white paper on [Persistent Immutable
+Data Structures](https://www.cs.cmu.edu/~rwh/theses/okasaki.pdf), written as a
+thesis by Chris Okasaki. This paper, written in September of 1996 is way ahead
+of its time. It took me a whole 6 months to read through it and understand it,
+but it was well worth it. This white paper holds many of the secrets that I will
+discuss here, so it is well worth the read if you want to take a deep dive into
+this subject.
+\n
+Thanks to Lee Byron, we now have access to [persistent immutable data-structures
+in JavaScript](https://facebook.github.io/immutable-js/). In Lee’s [Using
+Immutable with React talk](https://youtu.be/YFP8lbdZ0cs) at devConf, he breaks
+down a key architectural choice of his Immutable.js library: structural sharing.
+\n
+By using an [Directed Acyclic
+Graph](https://en.wikipedia.org/wiki/Directed_acyclic_graph) (DAG) data
+structure, namely an indexed Trie, immutable data structure mutations can share
+the structure of the initial data and only copy over the nodes that were changed
+in the operation. One of the main benefits of using a Trie is that we can
+perform efficient graph traversal algorithms, specifically Depth First
+Traversal, which gives us essentially the same performance as an Array lookup.
+\n
+Lee’s Immutable library uses these performance enhancements behind the scene’s
+while maintaining a similar API to JavaScript Arrays. Using similar data
+structures, such as a Hash Trie, we can also mimic the behavior of JavaScript
+objects with Immutable data structures.
+\n
+We have yet to talk about how this benefits a React application, but if you bear
+with me we will get there shortly. The important piece to take away is that
+using computer science, we can optimize immutable data structures to have a
+similar performance overhead to their mutable counter-parts.
+\n
+\n
+### Memoization
+\n
+Another fantastic performance optimization that we can deploy is Memoization.
+There is one important concept that you first must grasp before memoization can
+be use effectively and that is referential transparency. Often referred to as
+pure functions, a function is said to be referentially transparent if it can be
+replaced with its corresponding return value without changing the software’s
+behavior. Put differently, given the same input, you will always get the same
+ouput.
+\n
+By maintaining this rule, we get a very convenient side-effect. Not only do pure
+functions make it easier for humans to reason about their functionality, but
+they also make it easier for tooling to reason about them. Memoization is one of
+the main performance enhancements that we can use when we employ pure-functions.
+\n
+Memoization, according to Wikipedia, is defined as an
+\n
+> …optimization technique that can be used to speed up computer programs by
+> storing the results of expensive function calls and returning the cached results
+when the same input occurs again.
+\n
+With pure-functions we can always be assured that given the same input, a
+function will return the same output, so we can use our tooling to speed up our
+applications by storing the results of these functions in memory. Any time the
+same function is called, instead of re-running the function, a potentially
+expensive operation, we can instead use the cached value.
+\n
+\n
+### The problems with Mutable state
+\n
+The main problem with mutable state is that it makes it very hard to keep track
+of how your values change over time. It makes it very hard to keep all of your
+code in your head, which leads to bugs and the loss of performance.
+\n
+For me, when I gave in to immutable data, I had a pink cloud over my head for
+months. I told all of my friends and pushed it on everyone, trying to get them
+to switch to this paradigm. The reason for this is that I had eliminated the
+biggest source of bugs and complexity, all in one fell-swoop. It made my code
+easier to write, easier to maintain, and cut runtime exceptions almost
+completely out of my programs.
+\n
+All this is really theoretical, so why don’t we take a look at how React uses
+these optimization techniques and also talk about how these ideas can be used in
+other domains.
+\n
+\n
+### Putting it to Good Use
+\n
+There are a few significant performance gains that we can get right out of the
+box by employing immutable data structures and memoization.
+\n
+For one, using the
+[React.PureComponent](https://facebook.github.io/react/docs/react-api.html#react.purecomponent)
+(formerly the pure-render-mixin), along with immutable data, we can optimize the
+rendering of our entire component hierarchy. The default implementation to the
+shouldComponentUpdate lifecycle method in React is to return true always.
+\n
+What this means is that by default, React will continuously update your UI
+anytime data in your entire application changes. In fact, this has been a very
+difficult problem in the past in web frameworks. That is, how do they keep the
+UI updated with data when it changes. Angular 1 had the [digest
+cycle](https://www.thinkful.com/projects/understanding-the-digest-cycle-528/),
+along with two-way data binding. With React, our views are pure functions of
+data, so why do we have to be constantly re-rendering? Can’t we use memoization?
+\n
+By comparing the data (props and state) in the componentWillUpdate function, we
+can optimize the entire rendering cycle of our React applications. The only
+problem, however, is that the equality check to determine if our data has
+changed at the component level is only possible with immutable data. With
+mutable data, we miss out on an incredible performance optimization because it
+is impossible to guarantee that our shall0w-check is accurate.
+\n
+According to the React Documentation, the React.PureComponent
+\n
+> only shallowly compares the objects. If these contain complex data structures,
+> it may produce false-negatives for deeper differences. Only mix into components
+which have simple props and state, or use  when you know deep data structures
+have changed. Or, consider using [immutable
+objects](https://facebook.github.io/immutable-js/) to facilitate fast
+comparisons of nested data.
+\n
+With immutable data structures, we can avoid expensive re-renders by doing a
+shallow comparison of the old vs. new state within components and avoiding
+re-rendering entire branches of the component hierarchy when no data has
+changed.
+\n
+<span class="figcaption_hack">React Component Hierarchy Optimizations with Pure Rendering</span>
+\n
+Another huge performance gain can be seen when using Redux, along with
+[Reselect](https://github.com/reactjs/reselect). Before we get into that, let me
+first just say that when using Redux, it’s incredibly important to structure
+your state correctly. According to the [Redux
+documentation](http://redux.js.org/docs/faq/Performance.html)
+\n
+> For maximum rendering performance in a React application, state should be stored
+> in a normalized shape, many individual components should be connected to the
+store instead of just a few, and connected list components should pass item IDs
+to their connected child list items (allowing the list items to look up their
+own data by ID). This minimizes the overall amount of rendering to be done.
+\n
+Now, back to our big performance optimization. By combining the idea of having a
+normalized state tree with the subject of Memoization, we can seriously optimize
+the rendering pipeline of our React Redux applications. Because much of the
+performance drain in an application comes from the expensive rendering cycle of
+the UI, especially when complex computation to the state needs to occur, it’s
+not hard to see how memoization can be a killer performance enhancement.
+\n
+By applying the Reselect library to our React Redux applications, we can avoid
+complex re-rendering cycles by caching the output of the derived data
+manipulations. It is often the case that the structure of our data in the Redux
+store doesn’t completely match what we need for the UI. For example, we may need
+to combine values into a template string, adding labels, or we may need to
+filter or sort a list in the UI. Rather than calculating this derived data for
+every render, we intelligently cache it using a selector.
+\n
+I am not going to give an example here, but I implore you to read the Redux
+documentation and also take a look at [this
+article](http://blog.rangle.io/react-and-redux-performance-with-reselect/) on
+the same subject, as it contains some awesome examples.
+\n
+The final benefit, of course, to using Redux and Reselect is how darn easy it is
+to keep track of what is happening in your application. A picture tells a
+thousand words.
+\n
+\n
+### Summing it Up
+\n
+Hopefully this article has convinced you that it’s worth it to use immutable
+data and memoization, along with pure functions. Not only do these concepts make
+your programs easier and more fun to write, but they have exceptional
+performance benefits.
+\n
+Up until a year ago, I had never considered all of the implications of using
+functional paradigms in my projects. Now, there is just no way that I can go
+back to writing applications with mutable state and imperative mechanisms. If
+you are working in a domain that is still predominantly imperative, I implore
+you to consider all of the benefits of the functional paradigm. If the
+JavaScript ecosystem can transition, any language or domain can.
+\n
+\n
+### Coming Next
+\n
+In Part3, I will take a deep dive into how we can optimize server round-trips
+using GraphQL and some intelligent tooling. The gist is that by collocating
+data-fetching with GraphQL, we can optimize data-fetching to the extreme. I will
+look into how Facebook does this with Relay and the similarities and differences
+to how ApolloStack optimizes GraphQL data-fetching."
+)
+
+tags = ['React', 'Performance', 'Front End']
+tags.each do |tag|
+  the_post.tags << Tag.find_or_create_by(title: tag)
+end
+the_post.save!
+
+the_post = Post.create(
+  user: User.first,
+  title: 'Performance Optimizing a React Single Page App-Part 1',
+  feature_image: 'https://cdn-images-1.medium.com/max/800/1*b3JmmosHi_E1aVEzF2MalA.png',
+  body: "Note, this is part one in a two-part series about React performance
+optimization. Part 2 can be [found
+here](https://medium.com/@ryancollinsio/performance-optimizing-a-react-single-page-app-part-2-92a0f0c83202#.vhywyzera).
+\n
+This is a brief story of how I took a React application from a 15 second total
+loading time to less than 2 second total rendering time.
+\n
+*****
+\n
+I like to use my [portfolio
+website](https://github.com/RyanCCollins/ryancollins.io) as my testing bed for
+new libraries and methodologies. Several months ago, I rewrote it using React,
+Redux and Node. Along the way, I learned many of the secrets to performance
+optimizing React Single Page Applications. I’d like to tell you about some of
+the strategies I took and the drastic performance improvements I saw both in
+this app and others.
+\n
+*****
+\n
+### Server Rendering
+\n
+Performance is more about psychology than anything, in my experience. There are
+many UX tricks that can be used to make waiting more bearable to the user. One
+of those is to use optimistic UI, whereby you render a part of your UI before
+the rest of it is ready.
+\n
+With React, the only time your user generally will be waiting is before React is
+loaded. Once it is loaded, as we all know, it is extremely fast. So fast, in
+fact, that sometimes I even need to fake server latency to allow the loading
+indicator a chance to appear for a second or two.
+\n
+The big problem, however, is that a large application like my portfolio, which
+includes dozens of complex routes, produces a gigantic JavaScript file that
+takes a very long time to get from the server to the client. We will go into how
+to handle this later, but for now what I would like to describe is how we can go
+about making it seem like we are loading things faster than we actually are.
+\n
+We have an opportunity to send a very small and simple HTML file that will be
+loaded while the rest of our bundle loads. This is a tactic that is used in both
+web and mobile. For example, with iOS apps Apple will load a single
+non-interactive view as the rest of your app loads. This makes the perceived
+loading time much more bearable.
+\n
+One option would be to send a pre-loader, which is something I have done in the
+past on numerous websites. This is a great option, but I wanted to try something
+new. I chose to use server rendering to take care of sending a bit of UI that we
+can look at while the rest of the page loads. To do so, I had to do some complex
+React Router setup. I will outline the steps I took below and leave it to you to
+[dig through the repository](https://github.com/RyanCCollins/ryancollins.io) if
+you are interested in more detailed implementation details.
+\n
+  ```
+    // /routes/index.js
+    import express from 'express';
+
+    // Note, the creatTemplate helper takes html and renders it into
+    // your index.html template file, sending off a pre-rendered representation
+    // of the part of the application your user is requesting.
+    // See here:
+    import createTemplate from './utils/createTemplate';
+
+    import React from 'react';
+    import { renderToString } from 'react-dom/server';
+    import { match, RouterContext } from 'react-router';
+    import { Provider } from 'react-redux';
+    import store from '../app/src/store/store.js';
+    import { routes } from '../app/src/utils/routes.jsx';
+
+    // Other server stuff here removed for brevity
+    exports = module.exports = function (app) {
+      app.all('/api*', keystone.middleware.api);
+      // More server api routes here.
+
+    app.use(express.static('./public'));
+
+      // The important bits.  More info here:
+      //
+      app.use((req, res) => {
+        match({ routes, location: req.url },
+          (error, redirectLocation, renderProps) => {
+            if (error) {
+              res.status(500).send(error.message);
+            } else if (redirectLocation) {
+              res.redirect(
+                302,
+                redirectLocation.pathname + redirectLocation.search
+              );
+            } else if (renderProps) {
+              const body = renderToString(
+                <Provider store={store}>
+                  <RouterContext {...renderProps} />
+                </Provider>
+              );
+              res.status(200)
+                .send(createTemplate(body, store.getState()));
+            } else {
+              res.status(400).send('Not Found 🤔');
+            }
+          });
+      });
+    };
+```
+\n
+Next, we need to also wrap our client-side render function with the React Router
+Match function. This part needs to be done with care, less we end up with
+obscure error messages.
+\n
+```
+    // /app/src/index.js
+    import React from 'react';
+    import { render } from 'react-dom';
+    import RouterApp from './utils/routes';
+    import { history } from './store/store';
+    import { routes } from './utils/routes';
+    import { match } from 'react-router';
+    import '../styles/styles.scss';
+
+    match({ history, routes },
+      (error, redirectLocation, renderProps) => {
+        if (error) {
+          return console.error('Require.ensure error'); // eslint-disable-line
+        }
+        render(<RouterApp {...renderProps} />, document.getElementById('app'));
+      });
+```
+\n
+Notice how in both cases, I need to import my routes. I will go into the routing
+bit in a later section, but take a look at the
+[repo](https://github.com/RyanCCollins/ryancollins.io/blob/master/app/src/utils/routes.jsx)
+if you’re impatient.
+\n
+At this point, we have the basic server rendering working. It’s sending down a
+rendered representation that looks pretty awful, to be honest, but our
+performance has already been increased from the perspective of our end-users.
+Let’s see what else we can do!
+\n
+*****
+\n
+### Code Chunking
+\n
+Webpack is a powerful beast of a platform for building complex web applications.
+One of its more advanced features is the ability to break down your bundle into
+multiple pieces, called Chunks and to only load the chunks that you need at any
+given time.
+\n
+This feature works fantastically with React Router and server rendering. We can
+essentially tell React Router to lazy load these chunks only when they are
+requested by a Route in our application.
+\n
+Webpack Chunking is extremely complex so that you can control the process. For
+example, I have seen people setup Webpack to load the “above the fold” content
+of their website, including the assets, first and then send down the rest of the
+content afterwards. I did not choose this approach, however and will need to dig
+deeper into advanced Webpack configuration to figure out how to do so.
+\n
+Some people recommend breaking your Webpack configuration into multiple files,
+but I chose to leave the production and development configuration in [one
+file](https://github.com/RyanCCollins/ryancollins.io/blob/master/webpack.config.js).
+I enabled the chunking plugin for the production environment, as shown below.
+\n
+```
+    plugins: process.env.NODE_ENV === 'production' ?
+      [
+        new webpack.optimize.CommonsChunkPlugin({
+          name: 'vendor',
+          children: true,
+          minChunks: 2,
+          async: true,
+        }),
+    ...
+    ];
+```
+\n
+The next time I ran `npm run production`, my public folder ended up looking like
+the image below. Nice!
+\n
+Along with using
+[require.ensure](https://webpack.github.io/docs/code-splitting.html) within my
+React Router configuration, our performance is looking a whole heck of a lot
+better.
+\n
+In the file where my routes were defined, I use a Shim to use the require.ensure
+syntax in node.
+\n
+```
+    if (typeof module !== 'undefined' && module.require) {
+      if (typeof require.ensure === 'undefined') {
+        require.ensure = require('node-ensure');
+      }
+    }
+```
+\n
+And then, when a route is referenced, I require the component asynchronously
+\n
+```
+    export const routes = {
+      component: App,
+      path: '/',
+      indexRoute: {
+        getComponent(location, callback) {
+          require.ensure([], () => {
+            const LandingPage = require('../containers/LandingPage/LandingPage').default;
+            callback(null, LandingPage);
+          });
+        }
+      },
+      childRoutes: [
+        {
+          path: 'portfolio',
+          getComponent(location, callback) {
+            require.ensure([], () => {
+              const Portfolio = require('../containers/Portfolio/Portfolio').default;
+              callback(null, Portfolio);
+            });
+          }
+        },
+        ... other routes go here
+      ];
+    }
+```
+\n
+Wow, so our performance now is so much better! Not only that, one embarrassing
+problem that I had before setting this all up was that when a user refreshed the
+page manually, the Express server would fail with a 500. Now, it will send down
+server rendered HTML that represents the requested page’s content and will
+continue to incrementally load up the rest of the JavaScript and remaining
+assets. The time to first byte now is just a few seconds, rather than half a
+minute.
+\n
+Our UX just went up a whole lot, but we still have one small problem. Our CSS
+seems to be the last thing to load, providing a flash of un-styled content that
+is a bit ugly. We can fix this, however, with a nifty Webpack plugin called the
+ExtractTextPlugin.
+\n
+Typically when using CSS modules, Webpack will put your css right into Style
+tags in the generated bundle. This works well in Development, especially with
+Hot Module Reloading, but we can use the ExtractTextPlugin to generate css files
+for us so that we can have more control over how we load the styles in our
+Production bundle.
+\n
+We add the plugin to our Webpack configuration like so:
+\n
+```
+        {
+          test: /\.scss$/,
+          loader: ExtractTextPlugin.extract({
+            loader: 'style-loader!css-loader!postcss-loader!sass-loader'
+          })
+        },
+```
+\n
+*****
+\n
+### Asset Optimization
+\n
+The final part I will touch on is optimizing your assets. This is something that
+I always do, no matter if I am developing a single page app or not, but it still
+deserves a place in this article.
+\n
+Performance, beyond the psychological part, really comes down to how much work
+the browser needs to do to get a webpage in front of the end-user. Typically,
+this can be very easily quantified using the tools in your browser.
+\n
+In the case of my portfolio, I am loading a ton of images over the network. In
+this case, I don’t have control over optimizing the image during the build
+process, so it is so very important that your backend take care of optimization.
+In other words, you need to ensure that not only are you optimizing your assets
+at your build step, with a tool like [Webpack Image
+Loader](https://github.com/tcoopman/image-webpack-loader), but you also need to
+talk to your Back End team and see that they take asset optimization seriously.
+\n
+Let me show you an example of what happens when you do not optimize the assets
+that you request from the server.
+\n
+<span class="figcaption_hack">Quantifying the perceived loading time using Chrome Network Panel</span>
+\n
+As you can see above, everything is going very well with the loading until we
+get to 3/4 of the way down (about-all.png). We are requesting three images that
+are not compressed and they are taking a ton of time and resources to load. Can
+you spot them? Here, let me zoom in.
+\n
+![](https://cdn-images-1.medium.com/max/800/1*Pt6LlNUJuh5MzNps2IlZ9g.png)
+<span class="figcaption_hack">Performance Hogging Images</span>
+\n
+Looking at the statistics, it is just staggering. Our biggest chunk took less
+than 500 MS to load and just ONE of these images took 1.3 seconds. So how do we
+fix this?
+\n
+Using [Optimizilla](http://optimizilla.com/), an online service that runs the
+same compression algorithms as the tools we use during our build process, we
+have the ability to greatly increase our performance while maintaining most of
+the clarity of our PNG and JPG images. When possible, using SVG is the [right
+choice](http://stackoverflow.com/questions/24433640/svg-icons-vs-png-icons-in-modern-web-sites)
+for icons and other small pictorials.
+\n
+Using Optimizilla, we were able to take our biggest file, 1.9 MB, and chop it
+down to ~400KB without losing any clarity to our end-users. Let’s take a look at
+what this looks like now.
+\n
+Nice! We are doing a whole lot better. Let’s zoom in on the biggest offenders
+from earlier.
+\n
+![](https://cdn-images-1.medium.com/max/800/1*6qO9so3xwXTOpA2HkzwZjg.png)
+\n
+As we can see, we have cut down the loading of those images by more than a
+factor of 10. Awesome!
+\n
+*****
+\n
+### Summing it up
+\n
+What I hope to have shown you from this article is that performance isn’t a big
+mystery. Just like testing, it is something that all of us need to pay attention
+to. I hope that this article offered some insight into my performance
+optimization process. That said, there are a ton of great resources that you
+should check out to become a web performance ninja.
+\n
+There are a ton of awesome techniques that this article did not touch on, such
+as utilizing Immutable data structures with the Pure Render option in React,
+implementing DLLs with Webpack, and much more. Please take a look at the
+resources below and remember, with great power comes great responsibility!
+\n
+*****
+\n
+### More Resources
+\n
+* Kyle Simpson’s [Web Performance
+Course](https://frontendmasters.com/courses/website-performance/)
+* [Optimizing Webpack with
+DLLs](https://robertknight.github.io/posts/webpack-dll-plugins/)
+* React Server Rendering:
+[Here](https://github.com/reactjs/redux/blob/master/docs/recipes/ServerRendering.md),
+[here](https://github.com/ReactTraining/react-router/blob/master/docs/guides/ServerRendering.md)
+and
+[here](https://www.smashingmagazine.com/2016/03/server-side-rendering-react-node-express/).
+* [Advanced React
+Performance](https://facebook.github.io/react/docs/advanced-performance.html)
+* Joe Eame’s [Webpack
+Course](https://zombiecodekill.com/2016/06/03/webpack-fundamentals-advanced-builds/)
+* Pluralsight [Course on Web
+Performance](https://app.pluralsight.com/library/courses/web-performance/table-of-contents)"
+)
+
+tags = ['React', 'Performance', 'Front End']
+tags.each do |tag|
+  the_post.tags << Tag.find_or_create_by(title: tag)
+end
+the_post.save!
+
+post = Post.create(
   user: User.first,
   feature_image: "http://res.cloudinary.com/dc1qjoyvn/image/upload/v1472925105/ciqbx025nb8gmmkpuc1w.png",
   title: "Embracing Immutable Architecture",
@@ -392,7 +967,13 @@ Also, searching for [Immutable Architecture][12] and [Functional JavaScript][13]
 [13]: https://medium.com/search?q=functional%20javascript"
 )
 
-Post.create(
+tags = ['Immutable Architecture', 'Functional Programming', 'Front End']
+tags.each do |tag|
+  post.tags << Tag.find_or_create_by(title: tag)
+end
+post.save!
+
+post = Post.create(
   user: User.first,
   feature_image: "http://res.cloudinary.com/dc1qjoyvn/image/upload/v1472593988/ge3wvwgvomm5tc04zjsz.png",
   title: "Feature First Organization",
@@ -476,7 +1057,14 @@ In my opinion, having worked as an iOS and a Rails developer, along with other s
 )
 
 
-Post.create(
+tags = ['Functional Programming', 'Front End']
+tags.each do |tag|
+  post.tags << Tag.find_or_create_by(title: tag)
+end
+post.save!
+
+
+post = Post.create(
   user: User.first,
   feature_image: "http://res.cloudinary.com/dc1qjoyvn/image/upload/v1468092213/efjetjkyzb6b9tcxrxqp.png",
   title: "Lessons Learned From Functional Reactive Programming",
@@ -630,6 +1218,12 @@ Whether you are a seasoned engineer / developer, or are just starting your journ
 \n
 With great power comes great responsibility, so if like me, you do find that Functional Programming opens your eyes to powerful new ideas, please share the knowledge and insights that you have gained through the experience of learning it."
 )
+
+tags = ['Functional Programming', 'Front End']
+tags.each do |tag|
+  post.tags << Tag.find_or_create_by(title: tag)
+end
+post.save!
 
 Reference.create(
   avatar: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAaFAAAAJGFiZTQxNmE5LTZhY2ItNDgwNS1iMzgyLTU4ODAxZGM0MTE0OA.jpg',

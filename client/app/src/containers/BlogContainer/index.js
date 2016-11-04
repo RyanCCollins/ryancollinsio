@@ -44,6 +44,7 @@ class BlogContainer extends Component {
       perPage,
       postTags,
       tags,
+      isFiltering,
     } = this.props;
     const filterableTerm = searchTerm && searchTerm !== '' ?
       searchTerm.toLowerCase() : null;
@@ -122,6 +123,7 @@ BlogContainer.propTypes = {
   currentPage: PropTypes.number.isRequired,
   perPage: PropTypes.number.isRequired,
   tags: PropTypes.array,
+  isFiltering: PropTypes.bool.isRequired,
 };
 
 // mapStateToProps :: {State} -> {Props}
@@ -130,6 +132,7 @@ const mapStateToProps = (state) => ({
   currentPage: state.blog.currentPage,
   perPage: state.blog.perPage,
   tags: state.blog.tags,
+  isFiltering: state.blog.isFiltering,
   posts: getVisiblePostsFiltered(state.blog),
 });
 

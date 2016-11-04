@@ -9,6 +9,7 @@ export const initialState = {
   perPage: 6,
   posts: [],
   tags: [],
+  isFiltering: false,
 };
 
 const blogReducer =
@@ -18,6 +19,9 @@ const blogReducer =
         return update(state, {
           tags: {
             $set: action.tags,
+          },
+          isFiltering: {
+            $set: action.tags.length > 0,
           },
         });
       case types.SET_BLOG_POSTS:
@@ -37,11 +41,17 @@ const blogReducer =
           searchTerm: {
             $set: null,
           },
+          isFiltering: {
+            $set: false,
+          },
         });
       case types.BLOG_SET_SEARCH_TERM:
         return update(state, {
           searchTerm: {
             $set: action.value === '' ? null : action.value,
+          },
+          isFiltering: {
+            $set: action.value && action.value !== '',
           },
         });
       case types.BLOG_ERROR:

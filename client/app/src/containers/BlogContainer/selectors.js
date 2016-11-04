@@ -5,19 +5,24 @@ const getCurrentPage = () => (state) => state.currentPage;
 const getPerPage = () => (state) => state.perPage;
 const getSearchTerm = () => (state) => state.searchTerm;
 const getTags = () => (state) => state.tags;
+const getIsFiltering = () => (state) => state.isFiltering;
 
 export const getVisiblePosts = createSelector(
   getPosts(),
   getCurrentPage(),
   getPerPage(),
-  (posts, currentPage, perPage) => {
+  getIsFiltering(),
+  (posts, currentPage, perPage, isFiltering) => {
     if (posts && posts.length > 0) {
-      const current = currentPage - 1;
-      const from = current * perPage;
-      const to = current * perPage + perPage;
-      return posts.filter((_, i) =>
-        i >= from && i < to
-      );
+      if (!isFiltering) {
+        const current = currentPage - 1;
+        const from = current * perPage;
+        const to = current * perPage + perPage;
+        return posts.filter((_, i) =>
+          i >= from && i < to
+        );
+      }
+      return posts;
     }
   }
 );
