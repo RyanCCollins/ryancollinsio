@@ -83,7 +83,7 @@ images.each do |i|
   p.images << i
 end
 
-tags = ['React', 'GraphQL', 'Redux', 'Flux', 'Grommet', 'ES6', 'Apollo', 'Node']
+tags = ['React', 'GraphQL', 'Redux', 'Grommet', 'ES6', 'Apollo', 'Node']
 tags.each do |tag|
   p.tags << Tag.find_or_create_by(title: tag)
 end
@@ -172,7 +172,7 @@ p = Project.create(
   category: "frontend",
 )
 
-tags = ['React', 'GraphQL', 'Redux', 'Flux', 'GraphQL', 'Apollo', 'ES6', 'Grommet', 'Node']
+tags = ['React', 'GraphQL', 'Redux', 'Apollo', 'ES6', 'Grommet', 'Node']
 tags.each do |tag|
   p.tags << Tag.find_or_create_by(title: tag)
 end

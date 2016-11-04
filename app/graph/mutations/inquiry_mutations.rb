@@ -14,6 +14,12 @@ module InquiryMutations
         category: parsed_inputs[:category]
       )
       if inquiry.save!
+        InquiryMailer.inquiry_email({
+          name: parsed_inputs[:name],
+          email: parsed_inputs[:email],
+          message: parsed_inputs[:message],
+          category: parsed_inputs[:category]
+        }).deliver_now
         {
           id: inquiry.id
         }
