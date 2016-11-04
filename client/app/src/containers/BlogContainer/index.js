@@ -9,9 +9,10 @@ import Section from 'grommet-udacity/components/Section';
 import Box from 'grommet-udacity/components/Box';
 import Columns from 'grommet-udacity/components/Columns';
 import Headline from 'grommet-udacity/components/Headline';
+import Heading from 'grommet-udacity/components/Heading';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import { PostPreview, Divider, PaginatorFooter, SearchMeta, SearchForm } from 'components';
+import { PostPreview, Divider, PaginatorFooter, SearchForm } from 'components';
 import { getVisiblePostsFiltered } from './selectors';
 
 class BlogContainer extends Component {
@@ -57,7 +58,6 @@ class BlogContainer extends Component {
               <Headline align="center">
                 Blog
               </Headline>
-              <SearchMeta searchTerm={searchTerm} array={posts} />
               <Divider />
               <Section direction="column" full="horizontal" justify="center" align="center">
                 <Box pad="medium" align="center">
@@ -73,7 +73,7 @@ class BlogContainer extends Component {
                   }
                 </Box>
               </Section>
-              {posts && posts.length > 0 &&
+              {posts && posts.length > 0 ?
                 <Columns
                   masonry
                   maxCount={2}
@@ -88,6 +88,12 @@ class BlogContainer extends Component {
                     />
                   )}
                 </Columns>
+              :
+                <Section align="center" justify="center" pad="large">
+                  <Heading align="center">
+                    No posts found
+                  </Heading>
+                </Section>
               }
             </Box>
             {allPosts && allPosts.length > perPage &&

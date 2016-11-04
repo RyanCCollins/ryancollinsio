@@ -4,6 +4,32 @@ User.create(
   password: "Password123!"
 )
 
+p = Project.create(
+  title: 'RyanCollins.io',
+  user: User.all.first,
+  featureImage: "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/portfolio.jpg?raw=true",
+  caption: "Progressive Offline-first Web App",
+  description: "A complete rewrite of RyanCollins.io, built with the latest and greatest technologies.  The application will be used for me to broadcast online courses, blog, post about my recent work, etc.",
+  projectUrl: "https://ryancollins.herokuapp.com/",
+  repoUrl: "https://github.com/RyanCCollins/ryancollinsio",
+  milestones: "- Built a GraphQL on Rails API to allow for declarative query collocation \n  - Developed a cutting edge React single page application that utilizes incredibly performant server rendering. \n  - Implemented webpack code-chunking, lazy loading, and other similar performance optimization techniques to cut the time-to-first-byte loading time to milliseconds \n  - Built an accompanying React Native app",
+  designPatterns: "The app utilizes service worker and app cache to provide an offline experience.  It utilizes accessibility and UX best practices and contains many dynamic UI components. It uses many performance enhancement techniques, including Server-rendering, code-chunking, lazy-loading, et. al. to make it blindingly performant. It also uses the Flux unidirectional data-flow architecture and functional reactive programming techniques. On the back end, it follows the micro-service architecture, serving data via a single endpoint with GraphQL, allowing for declarative collocated queries and performant network requests.",
+  technicalInformation: "Built with functional JavaScript, ES2015, React, Redux, Grommet, CSS Modules, following the unidirectional data-flow architecture. Utilizes best practices for scaling of React Apps. Unit tests written with Jest and Enzyme to provide high quality code. Built a custom GraphQL back end running on Ruby on Rails.",
+  category: "fullstack",
+)
+
+images = ProjectImage.all
+images.each do |i|
+  p.images << i
+end
+
+tags = ['React', 'GraphQL', 'Redux', 'Flux', 'Grommet', 'ES6', 'Apollo', 'Ruby on Rails']
+tags.each do |tag|
+  Tag.find_or_create_by(title: tag)
+end
+
+p.save!
+
 ProjectImage.create(
   src: "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/main-images/home-nav.png?raw=true",
 )
@@ -57,12 +83,12 @@ images.each do |i|
   p.images << i
 end
 
-tags = ['React', 'GraphQL', 'Redux', 'Flux', 'Grommet', 'ES6', 'Server-rendering', 'Code Chunking', 'Apollo']
+tags = ['React', 'GraphQL', 'Redux', 'Flux', 'Grommet', 'ES6', 'Apollo', 'Node']
 tags.each do |tag|
-  Tag.find_or_create_by(title: tag)
+  p.tags << Tag.find_or_create_by(title: tag)
 end
 
-p.save
+p.save!
 
 
 p = Project.create(
@@ -81,12 +107,12 @@ p = Project.create(
   category: "fullstack"
 )
 
-tags = ['React', 'Ruby on Rails', 'Redux', 'Flux', 'Grommet', 'ES6', 'Functional Reactive Programming']
+tags = ['React', 'Ruby on Rails', 'Redux', 'GraphQL', 'Apollo', 'Grommet', 'ES6']
 tags.each do |tag|
-  Tag.find_or_create_by(title: tag)
+  p.tags << Tag.find_or_create_by(title: tag)
 end
 
-p.save
+p.save!
 
 p = Project.create(
   title: 'Meetup Event Planner',
@@ -104,12 +130,12 @@ p = Project.create(
   category: "fullstack"
 )
 
-tags = ['React', 'GraphQL', 'Redux', 'Flux', 'Server-rendering', 'Code Chunking', 'Apollo', 'Grommet', 'ES6', 'Ruby on Rails']
+tags = ['React', 'GraphQL', 'Redux', 'Apollo', 'Grommet', 'ES6', 'Ruby on Rails']
 tags.each do |tag|
-  Tag.find_or_create_by(title: tag)
+  p.tags << Tag.find_or_create_by(title: tag)
 end
 
-p.save
+p.save!
 
 p = Project.create(
   title: 'React Weekly',
@@ -125,12 +151,12 @@ p = Project.create(
   category: "frontend"
 )
 
-tags = ['React', 'GraphQL', 'Redux', 'Flux', 'Grommet', 'Server-rendering', 'Code Chunking', 'Apollo', 'ES6', 'Node']
+tags = ['React', 'GraphQL', 'Apollo', 'Redux', 'Grommet', 'ES6', 'Node', 'Python']
 tags.each do |tag|
-  Tag.find_or_create_by(title: tag)
+  p.tags << Tag.find_or_create_by(title: tag)
 end
 
-p.save
+p.save!
 
 p = Project.create(
   title: 'Scalable React Boilerplate',
@@ -146,9 +172,9 @@ p = Project.create(
   category: "frontend",
 )
 
-tags = ['React', 'GraphQL', 'Redux', 'Flux', 'GraphQL', 'Server-rendering', 'Code Chunking', 'Apollo', 'ES6']
+tags = ['React', 'GraphQL', 'Redux', 'Flux', 'GraphQL', 'Apollo', 'ES6', 'Grommet', 'Node']
 tags.each do |tag|
-  Tag.find_or_create_by(title: tag)
+  p.tags << Tag.find_or_create_by(title: tag)
 end
 
 p.save
@@ -166,7 +192,7 @@ p = Project.create(
   technicalInformation: "Built with functional JavaScript, ES2015, React, Redux, CSS Modules, following the unidirectional data-flow architecture. Utilizes best practices for scaling of React Apps. Unit tests written with Expect and Mocha / JSDOM to provide high quality code. Uses the react-redux connect method to hook up react components to the redux store.",
   category: "frontend"
 )
-tags = ['Functional Programming', 'Flux', 'React', 'Redux', 'Material UI']
+tags = ['React', 'Redux', 'Material UI']
 tags.each do |tag|
   p.tags << Tag.find_or_create_by(title: tag)
 end
@@ -185,7 +211,7 @@ p = Project.create(
   technicalInformation: "Implements the Model View Controller design pattern, 12 Factor Micro-Services, build automation.",
   category: "fullstack"
 )
-tags = ['React', 'Sass', 'Foundation', 'Gulp', 'ES6', 'Webpack']
+tags = ['React', 'Sass', 'Foundation', 'ES6', 'Docker']
 tags.each do |tag|
   p.tags << Tag.find_or_create_by(title: tag)
 end
@@ -206,7 +232,7 @@ p = Project.create(
   reviewerName: "Spiros Raptis",
   category: "ios"
 )
-tags = ['MVC', 'MVP', 'Delegate Pattern', 'Protocol Oriented']
+tags = ['Model View Controller', 'Swift', 'Core Data', 'Model View Presenter']
 tags.each do |tag|
   p.tags << Tag.find_or_create_by(title: tag)
 end
@@ -225,7 +251,7 @@ p = Project.create(
   technicalInformation: "Built with NodeJS, Express, MongoDB and KeystoneJS, utilizing the MVC architecture. Utilized Jade to render views server side and implemented a fast and functional admin dashboard to provide easy access to the site's data. Utilized the Twitter and Github APIs as OAuth providers for the app and deployed via Docker, automating the process of Continuous Delivery.",
   category: "fullstack"
 )
-tags = ['React', 'Foundation', '12 Factor', 'Docker', 'Node', 'MVC', 'REST']
+tags = ['React', 'Foundation', 'Docker', 'Node', 'REST']
 tags.each do |tag|
   p.tags << Tag.find_or_create_by(title: tag)
 end
@@ -245,7 +271,7 @@ p = Project.create(
   technicalInformation: "Built with React JS the application is a Single Page App that compiles via Webpack Hot Module Reloading. It is truly as cutting edge as it gets, implementing the best parts of ES6 through the use of Babel. It utilizes a number of NPM modules, Post CSS and boasts custom design by the Hacksmiths resident designer, Sean Craig.",
   category: "frontend"
 )
-tags = ['React', 'Promises', 'Webpack', 'HTML5', 'CSS', 'AirBnb Styleguide']
+tags = ['React', 'Axios', 'ES6']
 tags.each do |tag|
   p.tags << Tag.find_or_create_by(title: tag)
 end
@@ -264,7 +290,7 @@ p = Project.create(
   technicalInformation: "Utilizes the Model View Controller pattern and the AirBnb Ruby Style Guide. Followed the REST architecture, implementing a modern and stable API.",
   category: "backend"
 )
-tags = ['Ruby on Rails', 'MVC', 'REST']
+tags = ['Ruby on Rails', 'REST']
 tags.each do |tag|
   p.tags << Tag.find_or_create_by(title: tag)
 end
@@ -283,7 +309,7 @@ p = Project.create(
   technicalInformation: "Built in Swift using XCode, the application was built using best practices and design patterns.",
   category: "ios"
 )
-tags = ['MVP', 'MVC', 'Object Oriented', 'Protocol Oriented', 'Delegate Pattern']
+tags = ['Model View Controller', 'Swift', 'Core Data', 'Model View Presenter']
 tags.each do |tag|
   p.tags << Tag.find_or_create_by(title: tag)
 end
