@@ -19,7 +19,13 @@ const SearchForm = ({
   tags,
   onChangeTags,
 }) => (
-  <Menu id="menu-nav" label="Search / Filter" closeOnClick={false} icon={<Filter />}>
+  <Menu
+    dropAlign={{ top: 'top', left: 'left' }}
+    id="menu-nav"
+    label="Search / Filter"
+    closeOnClick={false}
+    icon={<Filter />}
+  >
     <Box alignSelf="center" direction="column" colorIndex="light-1">
       <Box direction="row" alignSelf="center" pad="medium" align="center">
         <Search

@@ -65,7 +65,7 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
           <Headline align="center">
             Portfolio
           </Headline>
-          <SearchMeta array={projects} searchTerm={searchTerm} />
+          <SearchMeta tags={tags} array={projects} searchTerm={searchTerm} />
           <Divider />
           <Section direction="column" full="horizontal" justify="center" align="center">
             <Box pad="medium" align="center">

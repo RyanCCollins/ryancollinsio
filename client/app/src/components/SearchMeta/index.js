@@ -4,17 +4,23 @@ import Heading from 'grommet-udacity/components/Heading';
 
 const SearchMeta = ({
   searchTerm,
+  tags,
   array,
 }) => (
   <Box>
     {array && array.length > 0 && searchTerm &&
       <Heading align="center" tag="h3">
-        {`Search Term: ${searchTerm}`}
+        {`${array.length} items found for: ${searchTerm}`}
+      </Heading>
+    }
+    {tags && tags.length > 0 &&
+      <Heading align="center" tag="h3">
+        {`${array.length} items found for: ${tags.map((tag) => tag.title).join(', ')}`}
       </Heading>
     }
     {searchTerm && !array || array && !array.length > 0 &&
       <Heading align="center" tag="h3">
-        No Posts Found
+        None Found
       </Heading>
     }
   </Box>
