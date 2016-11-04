@@ -40,10 +40,7 @@ export const getFilteredProjects = createSelector(
           project.title.toLowerCase().includes(filterableTerm) ||
             project.caption.toLowerCase().includes(filterableTerm) ||
               project.description.toLowerCase().includes(filterableTerm) ||
-                project.user.name.toLowerCase().includes(filterableTerm) ||
-                  project.tags
-                    .map((tag) => tag.title.toLowerCase())
-                    .contains(filterableTerm)
+                project.user.name.toLowerCase().includes(filterableTerm)
         );
       }
       if (tags && tags.length > 0) {
