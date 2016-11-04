@@ -342,7 +342,7 @@ with a million items was benchmarked at 83 ms, whereas an immutable data
 structure (without CS magic) was benchmarked at 288ms.
 \n
 ![](https://cdn-images-1.medium.com/max/800/1*2WgwvkLKjupqDNjhFA4EvA.png)
-<span class="figcaption_hack">Lee Byron, Using Immutable.js with React</span>
+<span class='figcaption_hack'>Lee Byron, Using Immutable.js with React</span>
 \n
 It might seem like immutable data structures are doomed, but I assure you they
 are not.
@@ -468,7 +468,7 @@ shallow comparison of the old vs. new state within components and avoiding
 re-rendering entire branches of the component hierarchy when no data has
 changed.
 \n
-<span class="figcaption_hack">React Component Hierarchy Optimizations with Pure Rendering</span>
+<span class='figcaption_hack'>React Component Hierarchy Optimizations with Pure Rendering</span>
 \n
 Another huge performance gain can be seen when using Redux, along with
 [Reselect](https://github.com/reactjs/reselect). Before we get into that, let me
@@ -815,15 +815,13 @@ talk to your Back End team and see that they take asset optimization seriously.
 Let me show you an example of what happens when you do not optimize the assets
 that you request from the server.
 \n
-<span class="figcaption_hack">Quantifying the perceived loading time using Chrome Network Panel</span>
-\n
 As you can see above, everything is going very well with the loading until we
 get to 3/4 of the way down (about-all.png). We are requesting three images that
 are not compressed and they are taking a ton of time and resources to load. Can
 you spot them? Here, let me zoom in.
 \n
 ![](https://cdn-images-1.medium.com/max/800/1*Pt6LlNUJuh5MzNps2IlZ9g.png)
-<span class="figcaption_hack">Performance Hogging Images</span>
+<span class='figcaption_hack'>Performance Hogging Images</span>
 \n
 Looking at the statistics, it is just staggering. Our biggest chunk took less
 than 500 MS to load and just ONE of these images took 1.3 seconds. So how do we
