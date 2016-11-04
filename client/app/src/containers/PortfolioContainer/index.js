@@ -20,7 +20,7 @@ import Box from 'grommet-udacity/components/Box';
 import Anchor from 'grommet-udacity/components/Anchor';
 import Headline from 'grommet-udacity/components/Headline';
 import { reduxForm } from 'redux-form';
-import { getVisibleProjectsFiltered } from './selectors';
+import { getFilteredProjects } from './selectors';
 
 export const formFields = [
   'tagSelectionInput',
@@ -51,6 +51,7 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
       searchTerm,
       projectTags,
       tags,
+      isFiltering,
     } = this.props;
     return (
       <WithLoading isLoading={isLoading}>
@@ -103,7 +104,7 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
               </Columns>
             }
           </Section>
-          {allProjects && allProjects.length > perPage &&
+          {!isFiltering && allProjects && allProjects.length > perPage &&
             <PaginatorFooter
               onChange={(newPage) => actions.portfolioSetCurrentPage(newPage)}
               currentPage={currentPage}
@@ -118,6 +119,7 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
 }
 
 PortfolioContainer.propTypes = {
+  isFiltering: PropTypes.bool.isRequired,
   projectTags: PropTypes.array,
   allProjects: PropTypes.array,
   isLoading: PropTypes.bool.isRequired,
@@ -133,11 +135,12 @@ PortfolioContainer.propTypes = {
 
 // mapStateToProps :: {State} -> {Props}
 const mapStateToProps = (state) => ({
-  projects: getVisibleProjectsFiltered(state.portfolio),
+  projects: getFilteredProjects(state.portfolio),
   currentPage: state.portfolio.currentPage,
   perPage: state.portfolio.perPage,
   searchTerm: state.portfolio.searchTerm,
   tags: state.portfolio.tags,
+  isFiltering: state.portfolio.isFiltering,
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}

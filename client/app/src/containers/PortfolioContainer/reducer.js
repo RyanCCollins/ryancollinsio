@@ -7,6 +7,7 @@ export const initialState = {
   perPage: 9,
   searchTerm: null,
   tags: [],
+  isFiltering: false,
 };
 
 const portfolioReducer =
@@ -17,17 +18,26 @@ const portfolioReducer =
           tags: {
             $set: action.tags,
           },
+          isFiltering: {
+            $set: action.tags.length > 0,
+          },
         });
       case types.PORTFOLIO_SET_SEARCH_TERM:
         return update(state, {
           searchTerm: {
             $set: action.term,
           },
+          isFiltering: {
+            $set: action.term && action.term !== '',
+          },
         });
       case types.PORTFOLIO_CLEAR_SEARCH_TERM:
         return update(state, {
           searchTerm: {
             $set: null,
+          },
+          isFiltering: {
+            $set: false,
           },
         });
       case types.PORTFOLIO_SET_CURRENT_PAGE:
