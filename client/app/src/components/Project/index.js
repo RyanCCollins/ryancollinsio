@@ -14,7 +14,7 @@ import Footer from 'grommet-udacity/components/Footer';
 import Button from 'grommet-udacity/components/Button';
 import SocialGithubIcon from 'grommet-udacity/components/icons/base/SocialGithub';
 import ViewIcon from 'grommet-udacity/components/icons/base/View';
-import { Divider } from 'components';
+import { Divider, ProjectMeta } from 'components';
 
 const Project = ({
   project,
@@ -116,6 +116,7 @@ const Project = ({
         </Box>
       </Box>
     </Section>
+    <ProjectMeta project={project} />
     {project.images && project.images.length > 0 &&
       <Section full="hortizontal">
         <Heading align="center" className="heading">

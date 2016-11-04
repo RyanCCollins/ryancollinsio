@@ -97,7 +97,7 @@ class BlogContainer extends Component {
                 </Section>
               }
             </Box>
-            {allPosts && allPosts.length > perPage &&
+            {!isFiltering && allPosts && allPosts.length > perPage &&
               <PaginatorFooter
                 onChange={(newPage) => actions.blogSetCurrentPage(newPage)}
                 currentPage={currentPage}

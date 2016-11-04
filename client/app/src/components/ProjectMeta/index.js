@@ -5,13 +5,12 @@ import Article from 'grommet-udacity/components/Article';
 import Box from 'grommet-udacity/components/Box';
 import Tag from 'grommet-udacity/components/Tag';
 import Tags from 'grommet-udacity/components/Tags';
-import Anchor from 'grommet-udacity/components/Anchor';
 import Menu from 'grommet-udacity/components/Menu';
 import SocialShare from 'grommet-udacity/components/SocialShare';
 import { Divider } from 'components';
 
-const PostMeta = ({
-  post,
+const ProjectMeta = ({
+  project,
 }) => (
   <div>
     <Section>
@@ -22,22 +21,20 @@ const PostMeta = ({
           </Heading>
           <Divider />
           <Tags align="center" justify="center">
-            {post.tags && post.tags.map((tag, i) =>
-              <Anchor key={i} href={`/blog/archive?tag=${encodeURIComponent(tag.title)}`}>
-                <Tag label={tag.title} />
-              </Anchor>
+            {project.tags && project.tags.map((tag, i) =>
+              <Tag key={i} label={tag.title} />
             )}
           </Tags>
         </Article>
       </Box>
     </Section>
     <Section>
-    <Box className="container">
-      <Article className="panel">
-        <Heading align="center">
-          Share this Article
-        </Heading>
-        <Divider />
+      <Box className="container">
+        <Article className="panel">
+          <Heading align="center">
+            Share this Article
+          </Heading>
+          <Divider />
           <Box align="center">
             <Menu
               inline
@@ -45,28 +42,28 @@ const PostMeta = ({
               responsive={false}
             >
               <SocialShare
-                a11yTitle="Go to Twitter to Share this article"
+                a11yTitle="Go to Twitter to Share this project"
                 type="twitter"
-                link={`http://www.ryancollins.io/blog/posts/${post.slug}`}
-                text={post.title}
+                link={`http://www.ryancollins.io/projects/${project.slug}`}
+                text={project.title}
               />
               <SocialShare
-                a11yTitle="Go to Facebook to Share this article"
+                a11yTitle="Go to Facebook to Share this project"
                 type="facebook"
-                link={`http://www.ryancollins.io/blog/posts/${post.slug}`}
-                text={post.title}
+                link={`http://www.ryancollins.io/projects/${project.slug}`}
+                text={project.title}
               />
               <SocialShare
-                a11yTitle="Go to linkedin to Share this article"
+                a11yTitle="Go to linkedin to Share this project"
                 type="linkedin"
-                link={`http://www.ryancollins.io/blog/posts/${post.slug}`}
-                text={post.title}
+                link={`http://www.ryancollins.io/projects/${project.slug}`}
+                text={project.title}
               />
               <SocialShare
-                a11yTitle="Go to google to Share this article"
+                a11yTitle="Go to google to Share this project"
                 type="google"
-                link={`http://www.ryancollins.io/blog/posts/${post.slug}`}
-                text={post.title}
+                link={`http://www.ryancollins.io/projects/${project.slug}`}
+                text={project.title}
               />
             </Menu>
           </Box>
@@ -76,7 +73,7 @@ const PostMeta = ({
   </div>
 );
 
-PostMeta.propTypes = {
+ProjectMeta.propTypes = {
   post: PropTypes.shape({
     title: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,
@@ -85,4 +82,4 @@ PostMeta.propTypes = {
   }),
 };
 
-export default PostMeta;
+export default ProjectMeta;

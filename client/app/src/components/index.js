@@ -1,4 +1,5 @@
 /* GENERATOR: Assemble all components for export */
+export ProjectMeta from './ProjectMeta';
 export SearchForm from './SearchForm';
 export SocialIcon from './SocialIcon';
 export ContactForm from './ContactForm';

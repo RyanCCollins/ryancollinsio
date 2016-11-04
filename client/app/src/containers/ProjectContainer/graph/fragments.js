@@ -24,6 +24,9 @@ export const projectData = createFragment(
         avatar
         bio
       }
+      tags {
+        title
+      }
       images {
         src
       }
