@@ -28,7 +28,9 @@ const PostPreview = ({
         thumbnail={
           <ResponsiveImage src={post.image} matchHeight />
         }
-        description={`${formattedDescription.slice(0, 300)}...`}
+        description={
+          `${searchTerm ? formattedDescription.slice(0, 300) : post.body.slice(0, 300)}...`
+        }
         link={
           <Anchor
             primary
