@@ -8,6 +8,7 @@ export const projectData = createFragment(
       title
       slug
       caption
+      status
       featureImage
       description
       milestones

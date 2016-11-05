@@ -78,4 +78,13 @@ QueryType = GraphQL::ObjectType.define do
       end
     end
   end
+  field :users, types[AuthUserType] do
+    argument :auth_token, !types.String
+    resolve -> (_obj, args, _ctx) do
+      user = User.find_by(auth_token: args[:auth_token])
+      if user.role == 'admin'
+        User.all
+      end
+    end
+  end
 end

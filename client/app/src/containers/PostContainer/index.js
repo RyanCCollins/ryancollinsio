@@ -15,6 +15,7 @@ import Footer from 'grommet-udacity/components/Footer';
 import Columns from 'grommet-udacity/components/Columns';
 import List from 'grommet-udacity/components/List';
 import ListItem from 'grommet-udacity/components/ListItem';
+import postData from 'fragments/postData';
 import { WithLoading, Post, Divider, Comment, PostMeta } from 'components';
 let RichTextEditor;
 if (typeof window !== 'undefined') {
@@ -178,33 +179,14 @@ const Container = cssModules(PostContainer, styles);
 const loadPostQuery = gql`
   query loadPost($slug: String) {
     post(slug: $slug) {
-      id
-      title
-      body
-      slug
-      created_at
-      image: feature_image
-      tags {
-        id
-        title
-      }
-      comments {
-        id
-        total_votes
-        body
-        created_at
-        user {
-          name
-          bio
-          avatar
-        }
-      }
+      ...postData
     }
   }
 `;
 
 const ContainerWithData = graphql(loadPostQuery, {
   options: (ownProps) => ({
+    fragments: [postData],
     skip: !ownProps.params.slug,
     variables: {
       slug: ownProps.params.slug,

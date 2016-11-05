@@ -5,7 +5,7 @@ import * as ProjectActionCreators from './actions';
 import cssModules from 'react-css-modules';
 import styles from './index.module.scss';
 import { WithLoading, WithToast, Project } from 'components';
-import projectData from './graph/fragments';
+import projectData from 'fragments/projectData';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
