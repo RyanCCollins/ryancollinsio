@@ -1,4 +1,7 @@
 /* GENERATOR: Assemble all components for export */
+export SessionMenu from './SessionMenu';
+export UserProfile from './UserProfile';
+export EditableText from './EditableText';
 export ProjectMeta from './ProjectMeta';
 export SearchForm from './SearchForm';
 export SocialIcon from './SocialIcon';

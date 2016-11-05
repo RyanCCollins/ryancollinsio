@@ -5,11 +5,12 @@ import Menu from 'grommet-udacity/components/Menu';
 import Anchor from 'grommet-udacity/components/Anchor';
 import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
-import { LogoImage } from 'components';
+import { LogoImage, SessionMenu } from 'components';
 
 const Navbar = ({
   pathname,
   navLinks,
+  user,
 }) => (
   <div className={styles.navbar}>
     <Header justify="between">
@@ -34,6 +35,7 @@ const Navbar = ({
           </Anchor>
         )}
       </Menu>
+      <SessionMenu pathname={pathname} user={user} />
     </Header>
   </div>
 );

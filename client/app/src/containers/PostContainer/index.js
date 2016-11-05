@@ -156,6 +156,10 @@ PostContainer.propTypes = {
   authToken: PropTypes.string.isRequired,
 };
 
+PostContainer.contextTypes = {
+  router: PropTypes.object.isRequired,
+};
+
 // mapStateToProps :: {State} -> {Props}
 const mapStateToProps = (state) => ({
   authToken: state.app.authToken,

@@ -18,14 +18,6 @@ export const initialState = {
       url: '/portfolio',
       name: 'Portfolio',
     },
-    {
-      url: '/login',
-      name: 'Login',
-    },
-    {
-      url: '/signup',
-      name: 'Signup',
-    },
   ],
 };
 

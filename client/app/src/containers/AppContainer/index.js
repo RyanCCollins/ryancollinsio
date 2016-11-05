@@ -13,10 +13,11 @@ class AppContainer extends Component {
     const {
       location,
       navLinks,
+      user,
     } = this.props;
     return (
       <App inline centered={false}>
-        <Navbar pathname={location.pathname} navLinks={navLinks} />
+        <Navbar pathname={location.pathname} user={user} navLinks={navLinks} />
         {React.cloneElement(this.props.children, this.props)}
         <AppFooter />
       </App>
@@ -25,6 +26,7 @@ class AppContainer extends Component {
 }
 
 AppContainer.propTypes = {
+  user: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
   children: PropTypes.node.isRequired,
   navLinks: PropTypes.array.isRequired,
@@ -34,7 +36,7 @@ AppContainer.propTypes = {
 
 // mapStateToProps :: {State} -> {Props}
 const mapStateToProps = (state) => ({
-  authToken: state.app.authToken,
+  user: state.app.user,
   navLinks: state.app.navLinks,
 });
 

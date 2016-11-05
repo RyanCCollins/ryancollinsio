@@ -10,10 +10,8 @@ export const authUserDataFragment = createFragment(
       name
       avatar
       role
-      authToken: auth_token
     }
   `
 );
-
 
 export default authUserDataFragment;

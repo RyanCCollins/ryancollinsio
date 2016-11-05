@@ -117,6 +117,10 @@ LoginContainer.propTypes = {
   user: PropTypes.object.isRequired,
 };
 
+LoginContainer.contextTypes = {
+  router: PropTypes.object.isRequired,
+};
+
 // mapStateToProps :: {State} -> {Props}
 const mapStateToProps = (state) => ({
   loadingError: state.login.error,
