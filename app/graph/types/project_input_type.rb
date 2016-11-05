@@ -5,6 +5,7 @@ ProjectInputType = GraphQL::InputObjectType.define do
   input_field :description, types.String, 'The description of the project'
   input_field :caption, types.String, 'The caption of the project'
   input_field :featureImage, types.String, 'The featureImage of the project'
+  input_field :status, !types.String, 'The status for the project'
   input_field :projectUrl, types.String, 'The projectUrl of the project'
   input_field :repoUrl, types.String, 'The repoUrl of the project'
   input_field :milestones, types.String, 'The milestones of the project'

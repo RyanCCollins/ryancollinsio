@@ -56,7 +56,7 @@ class BlogContainer extends Component {
             onClose={() => actions.clearBlogToast('error')}
           >
             <Box pad="large" align="center" justify="center">
-              <Headline align="center">
+              <Headline className="heading" align="center">
                 Blog
               </Headline>
               <Divider />

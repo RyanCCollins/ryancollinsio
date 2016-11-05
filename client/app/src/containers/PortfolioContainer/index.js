@@ -62,7 +62,7 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
           justify="center"
           pad="large"
         >
-          <Headline align="center">
+          <Headline className="heading" align="center">
             Portfolio
           </Headline>
           <SearchMeta tags={tags} array={projects} searchTerm={searchTerm} />

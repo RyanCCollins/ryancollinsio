@@ -4,6 +4,8 @@ class Post < ApplicationRecord
   has_many :post_comments, class_name: 'PostComment'
   alias_attribute :comments, :post_comments
   has_and_belongs_to_many :tags, join_table: :post_tags
+  enum status: [:draft, :published, :archived]
+
   def create_slug
     self.slug = self.title.parameterize
   end

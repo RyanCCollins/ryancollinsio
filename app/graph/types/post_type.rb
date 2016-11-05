@@ -5,6 +5,7 @@ PostType = GraphQL::ObjectType.define do
   field :title, !types.String, 'The title of the post'
   field :slug, !types.String, 'The slug for the post'
   field :body, types.String, 'The body of the post'
+  field :status, !types.String, 'The status for the project'
   field :comments, types[PostCommentType], 'Associated comments'
   field :user, UserType, 'The user who made the post'
   field :feature_image, types.String, 'The url to the featured image'

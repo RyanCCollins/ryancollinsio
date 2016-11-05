@@ -5,6 +5,7 @@ import Heading from 'grommet-udacity/components/Heading';
 import Box from 'grommet-udacity/components/Box';
 import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
+const noAvatar = 'http://bit.ly/2dqCGdd';
 
 const NoUserMenu = ({ pathname }) => (
   <Menu
@@ -38,7 +39,7 @@ const SessionIcon = ({
     justify="center"
   >
     <img
-      src={user.avatar}
+      src={user.avatar || noAvatar}
       className={styles.userAvatar}
     />
     <Heading tag="h4" className={styles.profileName}>
@@ -61,8 +62,8 @@ const SessionMenu = ({
               <Menu
                 icon={<SessionIcon user={user} />}
                 inline={false}
-                dropAlign={{ bottom: 'bottom' }}
-                a11yTitle="Session"
+                dropAlign={{ top: 'top', right: 'right' }}
+                a11yTitle="Session Menu"
                 className={styles.rightMenu}
               >
                 <Anchor href="/user/profile">

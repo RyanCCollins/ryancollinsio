@@ -1,4 +1,5 @@
 /* GENERATOR: Assemble all pages for export */
+export AdminDashboardPage from './AdminDashboardPage/index';
 export ContactPage from './ContactPage/index';
 export UserProfilePage from './UserProfilePage/index';
 export LogoutPage from './LogoutPage/index';
