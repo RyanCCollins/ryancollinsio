@@ -7,8 +7,13 @@ export const getSearchTerm = () => (state) => state.searchTerm;
 export const getIsFiltering = () => (state) => state.isFiltering;
 export const getTags = () => (state) => state.tags;
 
-export const getVisibleProjects = createSelector(
+export const getPublishedProjects = createSelector(
   getProjects(),
+  (projects) => projects.filter(proj => proj.status === 'published')
+);
+
+export const getVisibleProjects = createSelector(
+  getPublishedProjects,
   getCurrentPage(),
   getPerPage(),
   getIsFiltering(),

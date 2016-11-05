@@ -6,8 +6,30 @@ import App from 'grommet-udacity/components/App';
 import { Navbar, AppFooter } from 'components';
 
 class AppContainer extends Component {
+  constructor() {
+    super();
+    this.handleMobile = this.handleMobile.bind(this);
+  }
   componentDidMount() {
     this.props.actions.loadPersistedUser();
+    this.handleMobile();
+    if (window) {
+      window.addEventListener('resize', this.handleMobile);
+    }
+  }
+  componentWillUnmount() {
+    if (window) {
+      window.removeEventListener('resize', this.handleMobile);
+    }
+  }
+  handleMobile() {
+    const isMobile = window.innerWidth <= 768;
+    const {
+      appSetMobile,
+    } = this.props.actions;
+    if (isMobile !== this.props.isMobile) {
+      appSetMobile(isMobile);
+    }
   }
   render() {
     const {
@@ -31,12 +53,14 @@ AppContainer.propTypes = {
   children: PropTypes.node.isRequired,
   navLinks: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired,
+  isMobile: PropTypes.bool.isRequired,
 };
 
 
 // mapStateToProps :: {State} -> {Props}
 const mapStateToProps = (state) => ({
   user: state.app.user,
+  isMobile: state.app.isMobile,
   navLinks: state.app.navLinks,
 });
 

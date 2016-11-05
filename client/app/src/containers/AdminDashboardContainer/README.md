@@ -1,11 +1,8 @@
 ## AdminDashboardContainer
-A container that does ...
+A crazy complex dashboard container
 
 ### Example Usage
 
 ```js
 <AdminDashboardContainer  />
 ```
-
-
-### Other Information

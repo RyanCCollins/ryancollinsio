@@ -157,6 +157,7 @@ const getProjectsQuery = gql`
   query loadProjects {
     projects {
       title
+      status
       description
       user {
         name

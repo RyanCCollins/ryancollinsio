@@ -15,6 +15,11 @@ export const postData = createFragment(
         id
         title
       }
+      user {
+        name
+        avatar
+        bio
+      }
       comments {
         id
         total_votes

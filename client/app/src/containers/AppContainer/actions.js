@@ -9,6 +9,11 @@ export const invalidateUser = () => ({
   type: types.INVALIDATE_USER,
 });
 
+export const appSetMobile = (isMobile) => ({
+  type: types.APP_SET_MOBILE,
+  isMobile,
+});
+
 export const logoutUser = () => (dispatch) => {
   localStorage.setItem('user', null);
   dispatch(

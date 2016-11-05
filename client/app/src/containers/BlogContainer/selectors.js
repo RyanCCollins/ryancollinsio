@@ -7,8 +7,13 @@ const getSearchTerm = () => (state) => state.searchTerm;
 const getTags = () => (state) => state.tags;
 const getIsFiltering = () => (state) => state.isFiltering;
 
-export const getVisiblePosts = createSelector(
+export const getPublishedPosts = createSelector(
   getPosts(),
+  (posts) => posts.filter(post => post.status === 'published')
+);
+
+export const getVisiblePosts = createSelector(
+  getPublishedPosts,
   getCurrentPage(),
   getPerPage(),
   getIsFiltering(),

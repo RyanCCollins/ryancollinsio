@@ -151,6 +151,7 @@ const loadPostsQuery = gql`
     posts {
       id
       title
+      status
       body
       slug
       created_at
