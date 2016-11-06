@@ -1,6 +1,6 @@
 TutorialType = GraphQL::ObjectType.define do
   name 'Tutorial'
-  desription 'A tutorial'
+  description 'A tutorial'
   field :title, !types.String, 'The title of the tutorial'
   field :description, types.String, 'The description of the tutorial'
   field :title, !types.String, 'The title of the tutorial'

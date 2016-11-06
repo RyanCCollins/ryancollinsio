@@ -1,6 +1,6 @@
 TutorialInputType = GraphQL::InputObjectType.define do
   name 'TutorialInput'
-  desription 'A tutorial'
+  description 'A tutorial'
   input_field :title, !types.String, 'The title of the tutorial'
   input_field :description, types.String, 'The description of the tutorial'
   input_field :title, !types.String, 'The title of the tutorial'
