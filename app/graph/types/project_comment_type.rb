@@ -1,6 +1,9 @@
 ProjectCommentType = GraphQL::ObjectType.define do
   name 'ProjectComment'
   description 'A comment on a post'
-  field :comment, CommentType, 'The actual comment'
+  field :id, !types.ID, 'The ID of the comment'
+  field :body, types.String, 'The body of the comment'
   field :project, ProjectType, 'The related project'
+  field :user, UserType, 'The user who made the comment'
+  field :created_at, types.String, 'The time the comment was created'
 end

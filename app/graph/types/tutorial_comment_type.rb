@@ -1,6 +1,6 @@
  TutorialCommentType = GraphQL::ObjectType.define do
   name 'TutorialComment'
-  description 'A comment on a post'
+  description 'A comment on a tutorial'
   field :id, !types.ID, 'The ID of the comment'
   field :body, types.String, 'The body of the comment'
   field :tutorial, TutorialType, 'The related tutorial'
