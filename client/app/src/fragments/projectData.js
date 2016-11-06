@@ -34,6 +34,7 @@ export const projectData = createFragment(
       comments {
         id
         body
+        total_votes
         user {
           name
           avatar
