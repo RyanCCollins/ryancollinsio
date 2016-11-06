@@ -10,4 +10,5 @@ TutorialType = GraphQL::ObjectType.define do
   field :body, types.String, 'The body of the tutorial'
   field :user, UserType, 'The user who created the tutorial'
   field :slug, types.String, 'The slug for the tutorial'
+  field :comments, types[TutorialCommentType], 'Associated comments'
 end
