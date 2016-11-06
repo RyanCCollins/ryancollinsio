@@ -52,28 +52,6 @@ module ProjectMutations
     end
   end
 
-  module ProjectCommentVotes
-    Vote = GraphQL::Relay::Mutation.define do
-      name 'CreateProjectCommentVote'
-      description 'Run this when a user upvotes a comment'
-      input_field :auth_token, !types.String, 'The user auth token'
-      input_field :project_comment_id, !types.ID, 'The ID of the project comment'
-      return_field :total_votes, !types.Int, 'The new total number of votes'
-      resolve -> (inputs, ctx) do
-        comment = ProjectComment.find_by(id: inputs[:project_comment_id])
-        vote = ProjectCommentVote.new(
-          user: User.find_by(auth_token: inputs[:auth_token]),
-          project_comment: comment
-        )
-        if vote.save!
-          {
-            total_votes: comment.total_votes
-          }
-        end
-      end
-    end
-  end
-
   module ProjectComments
     Create = GraphQL::Relay::Mutation.define do
       name 'CreateProjectComment'
@@ -129,6 +107,28 @@ module ProjectMutations
           {
             deleted_id: comment.id
           }
+        end
+      end
+    end
+
+    module ProjectCommentVotes
+      Vote = GraphQL::Relay::Mutation.define do
+        name 'VoteProjectComment'
+        description 'Run this when a user upvotes a comment'
+        input_field :auth_token, !types.String, 'The user auth token'
+        input_field :project_comment_id, !types.ID, 'The ID of the project comment'
+        return_field :total_votes, !types.Int, 'The new total number of votes'
+        resolve -> (inputs, ctx) do
+          comment = ProjectComment.find_by(id: inputs[:project_comment_id])
+          vote = ProjectCommentVote.new(
+            user: User.find_by(auth_token: inputs[:auth_token]),
+            project_comment: comment
+          )
+          if vote.save!
+            {
+              total_votes: comment.total_votes
+            }
+          end
         end
       end
     end

@@ -23,8 +23,14 @@ class TutorialContainer extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUpvote = this.handleUpvote.bind(this);
     this.checkAuthToken = this.checkAuthToken.bind(this);
+    this.handleResettingComment = this.handleResettingComment.bind(this);
+  }
+  componentDidMount() {
+    this.handleResettingComment();
+  }
+  handleResettingComment() {
     if (RichTextEditor) {
-      props.actions.tutorialEditComment(RichTextEditor.createEmptyValue());
+      this.props.actions.tutorialEditComment(RichTextEditor.createEmptyValue());
     }
   }
   handleUpvote(id) {
@@ -37,7 +43,7 @@ class TutorialContainer extends Component {
     const data = {
       variables: {
         authToken: user.authToken,
-        id,
+        id: parseInt(id, 10),
       },
     };
     upvoteComment(data).then(() => {
@@ -60,12 +66,13 @@ class TutorialContainer extends Component {
         comment: {
           body: commentInput.toString('markdown'),
         },
-        id: this.props.tutorial.id,
+        id: parseInt(this.props.tutorial.id, 10),
       },
     };
     mutate(data).then(() => {
       refetch();
       this.props.actions.tutorialMessage('Comment successfully submitted!');
+      this.handleResettingComment();
     }).catch((err) => {
       this.props.actions.tutorialError(err);
     });

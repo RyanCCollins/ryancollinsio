@@ -23,10 +23,13 @@ const Post = ({
       </Headline>
     </Hero>
     <Section
-      className={styles.articleWrapper}
-      pad="large"
+      className="container"
     >
-      <Article align="center" className={`${styles.post} markdown-body`}>
+      <Article
+        align="center"
+        justify="center"
+        className="panel markdown-body"
+      >
         <Markdown
           components={{
             h1: { props: { strong: true } },

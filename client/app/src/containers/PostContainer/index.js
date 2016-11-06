@@ -20,8 +20,14 @@ class PostContainer extends Component { // eslint-disable-line react/prefer-stat
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUpvote = this.handleUpvote.bind(this);
     this.checkAuthToken = this.checkAuthToken.bind(this);
+    this.handleResettingComment = this.handleResettingComment.bind(this);
+  }
+  componentDidMount() {
+    this.handleResettingComment();
+  }
+  handleResettingComment() {
     if (RichTextEditor) {
-      props.actions.postEditComment(RichTextEditor.createEmptyValue());
+      this.props.actions.postEditComment(RichTextEditor.createEmptyValue());
     }
   }
   handleUpvote(id) {
@@ -34,7 +40,7 @@ class PostContainer extends Component { // eslint-disable-line react/prefer-stat
     const data = {
       variables: {
         authToken: user.authToken,
-        id,
+        id: parseInt(id, 10),
       },
     };
     upvoteComment(data).then(() => {
@@ -55,12 +61,13 @@ class PostContainer extends Component { // eslint-disable-line react/prefer-stat
         comment: {
           body: commentInput.toString('markdown'),
         },
-        id: this.props.post.id,
+        id: parseInt(this.props.post.id, 10),
       },
     };
     mutate(data).then(() => {
       refetch();
       this.props.actions.postMessage('Comment successfully submitted!');
+      this.handleResettingComment();
     }).catch((err) => {
       this.props.actions.postError(err);
     });
@@ -85,13 +92,13 @@ class PostContainer extends Component { // eslint-disable-line react/prefer-stat
       commentInput,
     } = this.props;
     return (
-      <Box className={styles.postPage}>
-        <WithToast
-          error={loadingError || postError}
-          message={message}
-          onClose={() => actions.postClearToast()}
-        >
-          <WithLoading isLoading={isLoading || !post} fullscreen>
+      <WithToast
+        error={loadingError || postError}
+        message={message}
+        onClose={() => actions.postClearToast()}
+      >
+        <WithLoading isLoading={isLoading || !post} fullscreen>
+          <Box className={styles.postPage} colorIndex="light-2">
             {post &&
               <Post
                 post={post}
@@ -105,9 +112,9 @@ class PostContainer extends Component { // eslint-disable-line react/prefer-stat
               onUpvote={this.handleUpvote}
               user={user}
             />
-          </WithLoading>
-        </WithToast>
-      </Box>
+          </Box>
+        </WithLoading>
+      </WithToast>
     );
   }
 }

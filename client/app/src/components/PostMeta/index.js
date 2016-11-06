@@ -16,12 +16,12 @@ const PostMeta = ({
   <div>
     <Section>
       <Box className="container">
-        <Article className="panel">
+        <Article className="panel" align="center">
           <Heading align="center">
             Tags
           </Heading>
           <Divider />
-          <Tags align="center" justify="center">
+          <Tags align="center" justify="center" style={{ maxWidth: '80%' }}>
             {post.tags && post.tags.map((tag, i) =>
               <Anchor key={i} href={`/blog/archive?tag=${encodeURIComponent(tag.title)}`}>
                 <Tag label={tag.title} />

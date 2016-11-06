@@ -19,7 +19,7 @@ MutationType = GraphQL::ObjectType.define do
   field :EditTutorialComment, field: TutorialMutations::TutorialComments::Edit.field
   field :DeleteTutorialComment, field: TutorialMutations::TutorialComments::Delete.field
 
-  field :VoteTutorialComment, field: TutorialMutations::TutorialCommentVotes::Vote.field
+  field :VoteTutorialComment, field: TutorialMutations::TutorialComments::TutorialCommentVotes::Vote.field
 
   field :CreateInquiry, field: InquiryMutations::Create.field
 
@@ -27,12 +27,12 @@ MutationType = GraphQL::ObjectType.define do
   field :EditPostComment, field: PostMutations::PostComments::Edit.field
   field :DeletePostComment, field: PostMutations::PostComments::Delete.field
 
-  field :VotePostComment, field: PostMutations::PostCommentVotes::Vote.field
+  field :VotePostComment, field: PostMutations::PostComments::PostCommentVotes::Vote.field
 
   field :CreateProjectComment, field: ProjectMutations::ProjectComments::Create.field
   field :EditProjectComment, field: ProjectMutations::ProjectComments::Edit.field
   field :DeleteProjectComment, field: ProjectMutations::ProjectComments::Delete.field
 
-  field :VoteProjectComment, field: ProjectMutations::ProjectCommentVotes::Vote.field
+  field :VoteProjectComment, field: ProjectMutations::ProjectComments::ProjectCommentVotes::Vote.field
 
 end

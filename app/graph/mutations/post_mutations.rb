@@ -63,28 +63,6 @@ module PostMutations
     end
   end
 
-  module PostCommentVotes
-    Vote = GraphQL::Relay::Mutation.define do
-      name 'CreatePostCommentVote'
-      description 'Run this when a user upvotes a comment'
-      input_field :auth_token, !types.String, 'The user auth token'
-      input_field :post_comment_id, !types.ID, 'The ID of the post comment'
-      return_field :total_votes, !types.Int, 'The new total number of votes'
-      resolve -> (inputs, ctx) do
-        comment = PostComment.find_by(id: inputs[:post_comment_id])
-        vote = PostCommentVote.new(
-          user: User.find_by(auth_token: inputs[:auth_token]),
-          post_comment: comment
-        )
-        if vote.save!
-          {
-            total_votes: comment.total_votes
-          }
-        end
-      end
-    end
-  end
-
   module PostComments
     # mutation createPostComment($auth_token: String!, $comment: CommentInput, $id: ID!) {
     #   CreatePostComment(input: {auth_token: $auth_token, comment: $comment, post_id: $id }) {
@@ -152,6 +130,28 @@ module PostMutations
           {
             deleted_id: comment.id
           }
+        end
+      end
+    end
+
+    module PostCommentVotes
+      Vote = GraphQL::Relay::Mutation.define do
+        name 'VotePostComment'
+        description 'Run this when a user upvotes a comment'
+        input_field :auth_token, !types.String, 'The user auth token'
+        input_field :post_comment_id, !types.ID, 'The ID of the post comment'
+        return_field :total_votes, !types.Int, 'The new total number of votes'
+        resolve -> (inputs, ctx) do
+          comment = PostComment.find_by(id: inputs[:post_comment_id])
+          vote = PostCommentVote.new(
+            user: User.find_by(auth_token: inputs[:auth_token]),
+            post_comment: comment
+          )
+          if vote.save!
+            {
+              total_votes: comment.total_votes
+            }
+          end
         end
       end
     end

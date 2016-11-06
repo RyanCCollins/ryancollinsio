@@ -6,6 +6,7 @@ import cssModules from 'react-css-modules';
 import styles from './index.module.scss';
 import { WithLoading, WithToast, Project, CommentFeed } from 'components';
 import projectData from 'fragments/projectData';
+import Box from 'grommet-udacity/components/Box';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 let RichTextEditor;
@@ -15,13 +16,19 @@ if (typeof window !== 'undefined') {
 
 
 class ProjectContainer extends Component { // eslint-disable-line react/prefer-stateless-function
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUpvote = this.handleUpvote.bind(this);
     this.checkAuthToken = this.checkAuthToken.bind(this);
+    this.handleResettingComment = this.handleResettingComment.bind(this);
+  }
+  componentDidMount() {
+    this.handleResettingComment();
+  }
+  handleResettingComment() {
     if (RichTextEditor) {
-      props.actions.projectEditComment(RichTextEditor.createEmptyValue());
+      this.props.actions.projectEditComment(RichTextEditor.createEmptyValue());
     }
   }
   handleUpvote(id) {
@@ -34,7 +41,7 @@ class ProjectContainer extends Component { // eslint-disable-line react/prefer-s
     const data = {
       variables: {
         authToken: user.authToken,
-        id,
+        id: parseInt(id, 10),
       },
     };
     upvoteComment(data).then(() => {
@@ -57,12 +64,13 @@ class ProjectContainer extends Component { // eslint-disable-line react/prefer-s
         comment: {
           body: commentInput.toString('markdown'),
         },
-        id: this.props.project.id,
+        id: parseInt(this.props.project.id, 10),
       },
     };
     mutate(data).then(() => {
       refetch();
       this.props.actions.projectMessage('Comment successfully submitted!');
+      this.handleResettingComment();
     }).catch((err) => {
       this.props.actions.projectError(err);
     });
@@ -93,17 +101,19 @@ class ProjectContainer extends Component { // eslint-disable-line react/prefer-s
           message={message}
           onClose={() => actions.projectClearToast()}
         >
-          {project &&
-            <Project project={project} />
-          }
-          <CommentFeed
-            value={commentInput}
-            onChange={(value) => actions.projectEditComment(value)}
-            onSubmit={this.handleSubmit}
-            comments={project && project.comments}
-            onUpvote={this.handleUpvote}
-            user={user}
-          />
+          <Box className={styles.postPage} colorIndex="light-2">
+            {project &&
+              <Project project={project} />
+            }
+            <CommentFeed
+              value={commentInput}
+              onChange={(value) => actions.projectEditComment(value)}
+              onSubmit={this.handleSubmit}
+              comments={project && project.comments}
+              onUpvote={this.handleUpvote}
+              user={user}
+            />
+          </Box>
         </WithToast>
       </WithLoading>
     );
