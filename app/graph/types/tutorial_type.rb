@@ -9,4 +9,5 @@ TutorialType = GraphQL::ObjectType.define do
   field :status, types.String, 'The status of the tutorial'
   field :body, types.String, 'The body of the tutorial'
   field :user, UserType, 'The user who created the tutorial'
+  field :slug, types.String, 'The slug for the tutorial'
 end

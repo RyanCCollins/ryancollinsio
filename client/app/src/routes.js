@@ -84,6 +84,22 @@ export const routes = {
           .catch((err) => errorLoading(err));
       },
     },
+    {
+      path: '/tutorials',
+      getComponent(location, callback) {
+        System.import('./pages/TutorialsPage')  // eslint-disable-line block-scoped-var
+          .then(loadRoute(callback))
+          .catch((err) => errorLoading(err));
+      },
+    },
+    {
+      path: '/tutorial/:slug',
+      getComponent(location, callback) {
+        System.import('./pages/TutorialPage')  // eslint-disable-line block-scoped-var
+          .then(loadRoute(callback))
+          .catch((err) => errorLoading(err));
+      },
+    },
 /* GENERATOR: Newly generated Routes go here */
     {
       path: 'projects/:slug',

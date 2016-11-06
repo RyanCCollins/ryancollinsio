@@ -19,6 +19,10 @@ export const initialState = {
       url: '/portfolio',
       name: 'Portfolio',
     },
+    {
+      url: '/tutorials',
+      name: 'Tutorials',
+    },
   ],
 };
 
