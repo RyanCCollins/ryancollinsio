@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161106173537) do
+ActiveRecord::Schema.define(version: 20161106175101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -124,6 +124,15 @@ ActiveRecord::Schema.define(version: 20161106173537) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "tutorial_comment_votes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "tutorial_comment_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.index ["tutorial_comment_id"], name: "index_tutorial_comment_votes_on_tutorial_comment_id", using: :btree
+    t.index ["user_id"], name: "index_tutorial_comment_votes_on_user_id", using: :btree
+  end
+
   create_table "tutorial_comments", force: :cascade do |t|
     t.integer  "tutorial_id"
     t.integer  "user_id"
@@ -181,6 +190,8 @@ ActiveRecord::Schema.define(version: 20161106173537) do
   add_foreign_key "project_comments", "users"
   add_foreign_key "project_images", "projects"
   add_foreign_key "projects", "users"
+  add_foreign_key "tutorial_comment_votes", "tutorial_comments"
+  add_foreign_key "tutorial_comment_votes", "users"
   add_foreign_key "tutorial_comments", "tutorials"
   add_foreign_key "tutorial_comments", "users"
   add_foreign_key "tutorials", "users"
