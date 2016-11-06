@@ -62,10 +62,10 @@ module TutorialMutations
       input_field :tutorial_comment_id, !types.ID, 'The ID of the tutorial comment'
       return_field :total_votes, !types.Int, 'The new total number of votes'
       resolve -> (inputs, ctx) do
-        comment = TutorialComment.find_by(id: inputs[:post_comment_id])
+        comment = TutorialComment.find_by(id: inputs[:tutorial_comment_id])
         vote = TutorialCommentVote.new(
           user: User.find_by(auth_token: inputs[:auth_token]),
-          post_comment: comment
+          tutorial_comment: comment
         )
         if vote.save!
           {

@@ -31,6 +31,15 @@ export const projectData = createFragment(
       images {
         src
       }
+      comments {
+        id
+        body
+        user {
+          name
+          avatar
+          bio
+        }
+      }
     }
   `
 );
