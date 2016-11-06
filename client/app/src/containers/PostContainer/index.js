@@ -8,22 +8,20 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Box from 'grommet-udacity/components/Box';
 import postData from 'fragments/postData';
-import { WithLoading, Post, PostMeta, CommentFeed } from 'components';
+import { WithLoading, Post, CommentFeed, WithToast } from 'components';
 let RichTextEditor;
 if (typeof window !== 'undefined') {
   RichTextEditor = require('react-rte').default;
 }
 
 class PostContainer extends Component { // eslint-disable-line react/prefer-stateless-function
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUpvote = this.handleUpvote.bind(this);
     this.checkAuthToken = this.checkAuthToken.bind(this);
     if (RichTextEditor) {
-      this.state = {
-        value: RichTextEditor.createEmptyValue(),
-      };
+      props.actions.postEditComment(RichTextEditor.createEmptyValue());
     }
   }
   handleUpvote(id) {
@@ -48,21 +46,23 @@ class PostContainer extends Component { // eslint-disable-line react/prefer-stat
       mutate,
       refetch,
       user,
+      commentInput,
     } = this.props;
     this.checkAuthToken();
     const data = {
       variables: {
         authToken: user.authToken,
         comment: {
-          body: this.state.value.toString('markdown'),
+          body: commentInput.toString('markdown'),
         },
         id: this.props.post.id,
       },
     };
     mutate(data).then(() => {
       refetch();
+      this.props.actions.postMessage('Comment successfully submitted!');
     }).catch((err) => {
-      console.log(`It failed ${err}`);
+      this.props.actions.postError(err);
     });
   }
   checkAuthToken() {
@@ -78,27 +78,35 @@ class PostContainer extends Component { // eslint-disable-line react/prefer-stat
       isLoading,
       post,
       user,
+      actions,
+      loadingError,
+      postError,
+      message,
+      commentInput,
     } = this.props;
     return (
       <Box className={styles.postPage}>
-        <WithLoading isLoading={isLoading || !post} fullscreen>
-          {post &&
-            <div>
+        <WithToast
+          error={loadingError || postError}
+          message={message}
+          onClose={() => actions.postClearToast()}
+        >
+          <WithLoading isLoading={isLoading || !post} fullscreen>
+            {post &&
               <Post
                 post={post}
               />
-              <PostMeta post={post} />
-            </div>
-          }
-        </WithLoading>
-        <CommentFeed
-          value={this.state.value}
-          onChange={(value) => this.setState({ value })}
-          onSubmit={this.handleSubmit}
-          comments={post && post.comments}
-          onUpvote={this.handleUpvote}
-          user={user}
-        />
+            }
+            <CommentFeed
+              value={commentInput}
+              onChange={(value) => actions.postEditComment(value)}
+              onSubmit={this.handleSubmit}
+              comments={post && post.comments}
+              onUpvote={this.handleUpvote}
+              user={user}
+            />
+          </WithLoading>
+        </WithToast>
       </Box>
     );
   }
@@ -109,9 +117,13 @@ PostContainer.propTypes = {
   post: PropTypes.object,
   isLoading: PropTypes.bool.isRequired,
   postError: PropTypes.object,
+  loadingError: PropTypes.object,
   mutate: PropTypes.func.isRequired,
   refetch: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
+  message: PropTypes.string,
+  commentInput: PropTypes.object,
+  actions: PropTypes.object.isRequired,
 };
 
 PostContainer.contextTypes = {
@@ -121,6 +133,9 @@ PostContainer.contextTypes = {
 // mapStateToProps :: {State} -> {Props}
 const mapStateToProps = (state) => ({
   user: state.app.user,
+  postError: state.post.error,
+  message: state.post.message,
+  commentInput: state.post.commentInput,
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}
@@ -152,7 +167,7 @@ const ContainerWithData = graphql(loadPostQuery, {
   props: ({ data: { post, loading, error, refetch } }) => ({
     post,
     isLoading: loading,
-    postError: error,
+    loadingError: error,
     refetch,
   }),
 })(Container);

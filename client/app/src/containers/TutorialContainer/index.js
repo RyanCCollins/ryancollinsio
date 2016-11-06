@@ -142,7 +142,7 @@ class TutorialContainer extends Component {
 
 TutorialContainer.propTypes = {
   tutorial: PropTypes.object,
-  isLoading: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool,
   params: PropTypes.object.isRequired,
   upvoteComment: PropTypes.func,
   mutate: PropTypes.func,
@@ -152,6 +152,10 @@ TutorialContainer.propTypes = {
   actions: PropTypes.object.isRequired,
   commentError: PropTypes.object,
   message: PropTypes.string,
+};
+
+TutorialContainer.contextTypes = {
+  router: PropTypes.object.isRequired,
 };
 
 // mapStateToProps :: {State} -> {Props}

@@ -40,23 +40,24 @@ const CommentFeed = ({
             align="center"
             justify="center"
             pad="medium"
+            direction="column"
           >
             <Button
               label="Submit Comment"
               onClick={user && user.authToken ? onSubmit : null}
             />
-            {!user && !user.authToken &&
+            {!user &&
               <Label>
                 Must be <Link to="/login">logged in</Link> to comment.
               </Label>
             }
           </Footer>
         </Article>
-        <Article className="panel">
-          <Columns size="large" justify="center">
-            <List>
-              {comments &&
-                comments
+        {comments && comments.length > 0 &&
+          <Article className="panel">
+            <Columns size="large" justify="center">
+              <List>
+                {comments && comments
                   .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
                   .map((comment, i) =>
                     <ListItem key={i}>
@@ -65,17 +66,18 @@ const CommentFeed = ({
                         comment={comment}
                       />
                     </ListItem>
-              )}
-            </List>
-          </Columns>
-        </Article>
+                )}
+              </List>
+            </Columns>
+          </Article>
+        }
       </Box>
     }
   </Section>
 );
 
 CommentFeed.propTypes = {
-  value: PropTypes.string,
+  value: PropTypes.object,
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   comments: PropTypes.array,

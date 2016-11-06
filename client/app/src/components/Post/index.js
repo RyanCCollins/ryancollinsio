@@ -7,6 +7,7 @@ import Headline from 'grommet-udacity/components/Headline';
 import Hero from 'grommet-udacity/components/Hero';
 import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
+import { PostMeta } from 'components';
 
 const Post = ({
   post,
@@ -37,6 +38,7 @@ const Post = ({
         />
       </Article>
     </Section>
+    <PostMeta post={post} />
   </Box>
 );
 
