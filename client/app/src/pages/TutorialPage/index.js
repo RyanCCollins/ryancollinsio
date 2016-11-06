@@ -3,9 +3,11 @@ import cssModules from 'react-css-modules';
 import styles from './index.module.scss';
 import { TutorialContainer } from 'containers';
 
-const TutorialPage = (props) => (
+const TutorialPage = ({
+  params,
+}) => (
   <div className={styles.container}>
-    <TutorialContainer />
+    <TutorialContainer params={params} />
   </div>
 );
 

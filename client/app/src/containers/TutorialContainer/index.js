@@ -18,28 +18,30 @@ class TutorialContainer extends Component { // eslint-disable-line react/prefer-
       tutorial,
     } = this.props;
     return (
-      <WithLoading isLoading={isLoading}>
-        <Box
-          className={styles.portfolio}
-          colorIndex="light-2"
-          align="center"
-          justify="center"
-          pad="large"
-        >
-          <Headline className="heading" align="center">
-            {tutorial.title}
-          </Headline>
-          <Divider />
-          <Section pad="large" align="center" justify="center">
-            <iframe
-              width="854"
-              height="480"
-              src={`https://www.youtube.com/embed/${tutorial.link.split('/')[3]}`}
-              frameBorder="0"
-              allowFullScreen
-            />
-          </Section>
-        </Box>
+      <WithLoading fullscreen isLoading={isLoading}>
+        {tutorial &&
+          <Box
+            className={styles.portfolio}
+            colorIndex="light-2"
+            align="center"
+            justify="center"
+            pad="large"
+          >
+            <Headline className="heading" align="center">
+              {tutorial.title}
+            </Headline>
+            <Divider />
+            <Section full="horizontal" align="center" justify="center">
+              <iframe
+                width="1080"
+                height="480"
+                src={`https://www.youtube.com/embed/${tutorial.link.split('/')[3]}`}
+                frameBorder="0"
+                allowFullScreen
+              />
+            </Section>
+          </Box>
+        }
       </WithLoading>
     );
   }
@@ -48,6 +50,7 @@ class TutorialContainer extends Component { // eslint-disable-line react/prefer-
 TutorialContainer.propTypes = {
   tutorial: PropTypes.object.isRequired,
   isLoading: PropTypes.bool.isRequired,
+  params: PropTypes.object.isRequired,
 };
 
 // mapStateToProps :: {State} -> {Props}
@@ -68,7 +71,18 @@ const Container = cssModules(TutorialContainer, styles);
 const tutorialQuery = gql`
   query tutorial($slug: String!) {
     tutorial(slug: $slug) {
-      __typename
+      link
+      title
+      description
+      status
+      slug
+      user {
+        name
+        avatar
+        bio
+      }
+      body
+      image
     }
   }
 `;

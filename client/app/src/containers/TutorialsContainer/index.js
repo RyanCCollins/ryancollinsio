@@ -15,54 +15,58 @@ import ListItem from 'grommet-udacity/components/ListItem';
 import Section from 'grommet-udacity/components/Section';
 import Anchor from 'grommet-udacity/components/Anchor';
 import Footer from 'grommet-udacity/components/Footer';
-import { Divider } from 'components';
+import { Divider, WithLoading } from 'components';
 
 class TutorialsContainer extends Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     const {
       tutorials,
+      isLoading,
     } = this.props;
     return (
-      <Box
-        className={styles.portfolio}
-        colorIndex="light-2"
-        align="center"
-        justify="center"
-        pad="large"
-      >
-        <Headline className="heading" align="center">
-          Tutorials
-        </Headline>
-        <Divider />
-        <Section pad="large" align="center" justify="center">
-          <List>
-            {tutorials && tutorials.map((tutorial, i) =>
-              <ListItem key={i}>
-                <Box align="center" direction="column" pad="large">
-                  <Heading align="center">
-                    {tutorial.title}
-                  </Heading>
-                  <img className={styles.image} src={tutorial.image} />
-                  <Box>
-                    <Paragraph>
-                      {tutorial.description}
-                    </Paragraph>
+      <WithLoading fullscreen isLoading={isLoading}>
+        <Box
+          className={styles.portfolio}
+          colorIndex="light-2"
+          align="center"
+          justify="center"
+          pad="large"
+        >
+          <Headline className="heading" align="center">
+            Tutorials
+          </Headline>
+          <Divider />
+          <Section pad="large" align="center" justify="center">
+            <List>
+              {tutorials && tutorials.map((tutorial, i) =>
+                <ListItem key={i}>
+                  <Box align="center" direction="column" pad="large">
+                    <Heading align="center">
+                      {tutorial.title}
+                    </Heading>
+                    <img className={styles.image} src={tutorial.image} />
+                    <Box>
+                      <Paragraph>
+                        {tutorial.description}
+                      </Paragraph>
+                    </Box>
+                    <Footer align="center" justify="center">
+                      <Anchor primary href={`/tutorial/${tutorial.slug}`} label="View Details" />
+                    </Footer>
                   </Box>
-                  <Footer align="center" justify="center">
-                    <Anchor primary href={`/tutorial/${tutorial.slug}`} label="View Details" />
-                  </Footer>
-                </Box>
-              </ListItem>
-            )}
-          </List>
-        </Section>
-      </Box>
+                </ListItem>
+              )}
+            </List>
+          </Section>
+        </Box>
+      </WithLoading>
     );
   }
 }
 
 TutorialsContainer.propTypes = {
   tutorials: PropTypes.array,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 // mapStateToProps :: {State} -> {Props}
@@ -100,10 +104,9 @@ query loadTutorials {
 `;
 
 const ContainerWithData = graphql(tutorialsQuery, {
-  props: ({ data: { loading, error, tutorials } }) => ({
+  props: ({ data: { loading, tutorials } }) => ({
     tutorials,
-    loading,
-    error,
+    isLoading: loading,
   }),
 })(Container);
 
