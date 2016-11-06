@@ -199,11 +199,11 @@ const createCommentMutation = gql`
 const ContainerWithMutation = graphql(createCommentMutation)(ContainerWithData);
 
 const upvoteCommentMutation = gql`
-mutation upvoteComment($authToken: String!, $id: ID!) {
-  VoteProjectComment(input: { auth_token: $authToken, project_comment_id: $id }) {
-    total_votes
+  mutation upvoteComment($authToken: String!, $id: ID!) {
+    VoteProjectComment(input: { auth_token: $authToken, project_comment_id: $id }) {
+      total_votes
+    }
   }
-}
 `;
 
 const ContainerWithMoreMutations = graphql(upvoteCommentMutation, {
