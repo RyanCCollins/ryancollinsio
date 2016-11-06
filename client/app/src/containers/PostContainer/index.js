@@ -38,12 +38,12 @@ class PostContainer extends Component { // eslint-disable-line react/prefer-stat
     const {
       upvoteComment,
       refetch,
-      authToken,
+      user,
     } = this.props;
     this.checkAuthToken();
     const data = {
       variables: {
-        authToken,
+        authToken: user.authToken,
         id,
       },
     };
@@ -55,13 +55,9 @@ class PostContainer extends Component { // eslint-disable-line react/prefer-stat
     const {
       mutate,
       refetch,
-      authToken,
+      user,
     } = this.props;
     this.checkAuthToken();
-    const user = {
-      id: 1,
-      authToken,
-    };
     const data = {
       variables: {
         authToken: user.authToken,
@@ -79,9 +75,9 @@ class PostContainer extends Component { // eslint-disable-line react/prefer-stat
   }
   checkAuthToken() {
     const {
-      authToken,
+      user,
     } = this.props;
-    if (!authToken) {
+    if (!user.authToken) {
       this.context.router.push('/login');
     }
   }
@@ -154,7 +150,7 @@ PostContainer.propTypes = {
   postError: PropTypes.object,
   mutate: PropTypes.func.isRequired,
   refetch: PropTypes.func.isRequired,
-  authToken: PropTypes.string.isRequired,
+  user: PropTypes.object.isRequired,
 };
 
 PostContainer.contextTypes = {
@@ -163,7 +159,7 @@ PostContainer.contextTypes = {
 
 // mapStateToProps :: {State} -> {Props}
 const mapStateToProps = (state) => ({
-  authToken: state.app.authToken,
+  user: state.app.user,
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}
