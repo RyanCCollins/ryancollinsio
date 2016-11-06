@@ -77,6 +77,7 @@ class PostContainer extends Component { // eslint-disable-line react/prefer-stat
     const {
       isLoading,
       post,
+      user,
     } = this.props;
     return (
       <Box className={styles.postPage}>
@@ -96,6 +97,7 @@ class PostContainer extends Component { // eslint-disable-line react/prefer-stat
           onSubmit={this.handleSubmit}
           comments={post && post.comments}
           onUpvote={this.handleUpvote}
+          user={user}
         />
       </Box>
     );

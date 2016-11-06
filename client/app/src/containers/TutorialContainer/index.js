@@ -11,7 +11,7 @@ import Paragraph from 'grommet-udacity/components/Paragraph';
 import Markdown from 'grommet-udacity/components/Markdown';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import { Divider, WithLoading, CommentFeed } from 'components';
+import { Divider, WithLoading, CommentFeed, WithToast } from 'components';
 let RichTextEditor;
 if (typeof window !== 'undefined') {
   RichTextEditor = require('react-rte').default;
@@ -42,6 +42,8 @@ class TutorialContainer extends Component {
     };
     upvoteComment(data).then(() => {
       refetch();
+    }).catch((err) => {
+      this.props.actions.tutorialError(err);
     });
   }
   handleSubmit() {
@@ -63,8 +65,9 @@ class TutorialContainer extends Component {
     };
     mutate(data).then(() => {
       refetch();
+      this.props.actions.tutorialMessage('Comment successfully submitted!');
     }).catch((err) => {
-      console.log(`It failed ${err}`);
+      this.props.actions.tutorialError(err);
     });
   }
   checkAuthToken() {
@@ -81,47 +84,57 @@ class TutorialContainer extends Component {
       tutorial,
       commentInput,
       actions,
+      commentError,
+      message,
+      user,
     } = this.props;
     return (
       <WithLoading fullscreen isLoading={isLoading}>
-        <Section
-          className={styles.portfolio}
-          colorIndex="light-2"
-          align="center"
-          justify="center"
-          pad="large"
+        <WithToast
+          error={commentError}
+          message={message}
+          onClose={actions.tutorialClearToast}
         >
-          <Headline className="heading" align="center">
-            {tutorial && tutorial.title}
-          </Headline>
-          <Divider />
-        </Section>
-        {tutorial &&
-          <Box align="center" justify="center" colorIndex="light-2">
-            <iframe
-              width="960"
-              height="480"
-              src={`https://www.youtube.com/embed/${tutorial.link.split('/')[3]}`}
-              frameBorder="0"
-              allowFullScreen
-            />
-          </Box>
-        }
-        <Section align="center" colorIndex="light-2">
-          <Paragraph>
-            {tutorial && tutorial.description}
-          </Paragraph>
-          <Box align="center" pad="medium" className="main-text markdown-body">
-            <Markdown content={tutorial && tutorial.body} />
-          </Box>
-        </Section>
-        <CommentFeed
-          value={commentInput}
-          onChange={(value) => actions.tutorialEditComment(value)}
-          onSubmit={this.handleSubmit}
-          comments={tutorial && tutorial.comments}
-          onUpvote={this.handleUpvote}
-        />
+          <Section
+            className={styles.portfolio}
+            colorIndex="light-2"
+            align="center"
+            justify="center"
+            pad="large"
+          >
+            <Headline className="heading" align="center">
+              {tutorial && tutorial.title}
+            </Headline>
+            <Divider />
+          </Section>
+          {tutorial &&
+            <Box align="center" justify="center" colorIndex="light-2">
+              <iframe
+                width="960"
+                height="480"
+                src={`https://www.youtube.com/embed/${tutorial.link.split('/')[3]}`}
+                frameBorder="0"
+                allowFullScreen
+              />
+            </Box>
+          }
+          <Section align="center" colorIndex="light-2">
+            <Paragraph>
+              {tutorial && tutorial.description}
+            </Paragraph>
+            <Box align="center" pad="medium" className="main-text markdown-body">
+              <Markdown content={tutorial && tutorial.body} />
+            </Box>
+          </Section>
+          <CommentFeed
+            value={commentInput}
+            onChange={(value) => actions.tutorialEditComment(value)}
+            onSubmit={this.handleSubmit}
+            comments={tutorial && tutorial.comments}
+            onUpvote={this.handleUpvote}
+            user={user}
+          />
+        </WithToast>
       </WithLoading>
     );
   }
@@ -137,12 +150,16 @@ TutorialContainer.propTypes = {
   user: PropTypes.object.isRequired,
   commentInput: PropTypes.object,
   actions: PropTypes.object.isRequired,
+  commentError: PropTypes.object,
+  message: PropTypes.string,
 };
 
 // mapStateToProps :: {State} -> {Props}
 const mapStateToProps = (state) => ({
   user: state.app.user,
   commentInput: state.tutorial.commentInput,
+  commentError: state.tutorial.error,
+  message: state.tutorial.message,
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}
@@ -165,6 +182,7 @@ const tutorialQuery = gql`
       status
       slug
       comments {
+        id
         body
         user {
           name
@@ -190,9 +208,10 @@ const ContainerWithData = graphql(tutorialQuery, {
       slug: ownProps.params.slug,
     },
   }),
-  props: ({ data: { loading, tutorial } }) => ({
+  props: ({ data: { loading, tutorial, refetch } }) => ({
     tutorial,
     isLoading: loading,
+    refetch,
   }),
 })(Container);
 
