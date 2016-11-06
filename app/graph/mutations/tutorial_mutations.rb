@@ -55,6 +55,27 @@ module TutorialMutations
   end
 
   module TutorialComments
+    Vote = GraphQL::Relay::Mutation.define do
+      name 'VoteTutorialComment'
+      description 'Run this when a user upvotes a comment'
+      input_field :auth_token, !types.String, 'The user auth token'
+      input_field :tutorial_comment_id, !types.ID, 'The ID of the tutorial comment'
+      return_field :total_votes, !types.Int, 'The new total number of votes'
+      resolve -> (inputs, ctx) do
+        user = User.find_by(auth_token: inputs[:auth_token])
+        comment = TutorialComment.find_by(id: inputs[:tutorial_comment_id])
+        vote = TutorialCommentVote.new(
+          user: user,
+          tutorial_comment: comment
+        )
+        if vote.save!
+          {
+            total_votes: comment.total_votes
+          }
+        end
+      end
+    end
+    
     Create = GraphQL::Relay::Mutation.define do
       name 'CreateTutorialComment'
       description 'Create a Tutorial comment'
@@ -110,28 +131,6 @@ module TutorialMutations
           {
             deleted_id: comment.id
           }
-        end
-      end
-    end
-
-    module TutorialCommentVotes
-      Vote = GraphQL::Relay::Mutation.define do
-        name 'VoteTutorialComment'
-        description 'Run this when a user upvotes a comment'
-        input_field :auth_token, !types.String, 'The user auth token'
-        input_field :tutorial_comment_id, !types.ID, 'The ID of the tutorial comment'
-        return_field :total_votes, !types.Int, 'The new total number of votes'
-        resolve -> (inputs, ctx) do
-          comment = TutorialComment.find_by(id: inputs[:tutorial_comment_id])
-          vote = TutorialCommentVote.new(
-            user: User.find_by(auth_token: inputs[:auth_token]),
-            tutorial_comment: comment
-          )
-          if vote.save!
-            {
-              total_votes: comment.total_votes
-            }
-          end
         end
       end
     end
