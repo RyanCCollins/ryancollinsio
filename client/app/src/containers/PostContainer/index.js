@@ -36,16 +36,19 @@ class PostContainer extends Component { // eslint-disable-line react/prefer-stat
       refetch,
       user,
     } = this.props;
-    this.checkAuthToken();
-    const data = {
-      variables: {
-        authToken: user.authToken,
-        id: parseInt(id, 10),
-      },
-    };
-    upvoteComment(data).then(() => {
-      refetch();
-    });
+    if (!user || !user.authToken) {
+      this.checkAuthToken();
+    } else {
+      const data = {
+        variables: {
+          authToken: user.authToken,
+          id: parseInt(id, 10),
+        },
+      };
+      upvoteComment(data).then(() => {
+        refetch();
+      });
+    }
   }
   handleSubmit() {
     const {
@@ -54,29 +57,32 @@ class PostContainer extends Component { // eslint-disable-line react/prefer-stat
       user,
       commentInput,
     } = this.props;
-    this.checkAuthToken();
-    const data = {
-      variables: {
-        authToken: user.authToken,
-        comment: {
-          body: commentInput.toString('markdown'),
+    if (!user || !user.authToken) {
+      this.checkAuthToken();
+    } else {
+      const data = {
+        variables: {
+          authToken: user.authToken,
+          comment: {
+            body: commentInput.toString('markdown'),
+          },
+          id: parseInt(this.props.post.id, 10),
         },
-        id: parseInt(this.props.post.id, 10),
-      },
-    };
-    mutate(data).then(() => {
-      refetch();
-      this.props.actions.postMessage('Comment successfully submitted!');
-      this.handleResettingComment();
-    }).catch((err) => {
-      this.props.actions.postError(err);
-    });
+      };
+      mutate(data).then(() => {
+        refetch();
+        this.props.actions.postMessage('Comment successfully submitted!');
+        this.handleResettingComment();
+      }).catch((err) => {
+        this.props.actions.postError(err);
+      });
+    }
   }
   checkAuthToken() {
     const {
       user,
     } = this.props;
-    if (!user.authToken) {
+    if (!user || !user.authToken) {
       this.context.router.push('/login');
     }
   }

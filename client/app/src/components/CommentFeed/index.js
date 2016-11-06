@@ -62,7 +62,7 @@ const CommentFeed = ({
                   .map((comment, i) =>
                     <ListItem key={i}>
                       <Comment
-                        onUpvote={() => onUpvote(comment.id)}
+                        onUpvote={onUpvote}
                         comment={comment}
                       />
                     </ListItem>

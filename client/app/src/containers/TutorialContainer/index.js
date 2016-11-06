@@ -39,18 +39,21 @@ class TutorialContainer extends Component {
       refetch,
       user,
     } = this.props;
-    this.checkAuthToken();
-    const data = {
-      variables: {
-        authToken: user.authToken,
-        id: parseInt(id, 10),
-      },
-    };
-    upvoteComment(data).then(() => {
-      refetch();
-    }).catch((err) => {
-      this.props.actions.tutorialError(err);
-    });
+    if (!user || !user.authToken) {
+      this.checkAuthToken();
+    } else {
+      const data = {
+        variables: {
+          authToken: user.authToken,
+          id: parseInt(id, 10),
+        },
+      };
+      upvoteComment(data).then(() => {
+        refetch();
+      }).catch((err) => {
+        this.props.actions.tutorialError(err);
+      });
+    }
   }
   handleSubmit() {
     const {
@@ -59,29 +62,32 @@ class TutorialContainer extends Component {
       user,
       commentInput,
     } = this.props;
-    this.checkAuthToken();
-    const data = {
-      variables: {
-        authToken: user.authToken,
-        comment: {
-          body: commentInput.toString('markdown'),
+    if (!user || !user.authToken) {
+      this.checkAuthToken();
+    } else {
+      const data = {
+        variables: {
+          authToken: user.authToken,
+          comment: {
+            body: commentInput.toString('markdown'),
+          },
+          id: parseInt(this.props.tutorial.id, 10),
         },
-        id: parseInt(this.props.tutorial.id, 10),
-      },
-    };
-    mutate(data).then(() => {
-      refetch();
-      this.props.actions.tutorialMessage('Comment successfully submitted!');
-      this.handleResettingComment();
-    }).catch((err) => {
-      this.props.actions.tutorialError(err);
-    });
+      };
+      mutate(data).then(() => {
+        refetch();
+        this.props.actions.tutorialMessage('Comment successfully submitted!');
+        this.handleResettingComment();
+      }).catch((err) => {
+        this.props.actions.tutorialError(err);
+      });
+    }
   }
   checkAuthToken() {
     const {
       user,
     } = this.props;
-    if (!user.authToken) {
+    if (!user || !user.authToken) {
       this.context.router.push('/login');
     }
   }

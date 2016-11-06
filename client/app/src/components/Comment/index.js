@@ -31,7 +31,11 @@ const Comment = ({
     <Menu direction="row" inline responsive={false}>
       <Box align="center" justify="end" style={{ width: '100%' }} direction="row">
         <Value size="small" value={comment.total_votes} />
-        <Button plain icon={<LikeIcon />} onClick={() => onUpvote(comment.id)} />
+        <Button
+          plain
+          icon={<LikeIcon />}
+          onClick={() => onUpvote(comment.id)}
+        />
       </Box>
     </Menu>
   </Box>
@@ -40,6 +44,7 @@ const Comment = ({
 Comment.propTypes = {
   comment: PropTypes.object.isRequired,
   onLike: PropTypes.func.isRequired,
+  user: PropTypes.object,
 };
 
 export default Comment;
