@@ -1,7 +1,7 @@
 module TutorialMutations
   Create = GraphQL::Relay::Mutation.define do
     name 'CreateTutorial'
-    description 'Create a project'
+    description 'Create a tutorial'
     input_field :auth_token, !types.String
     input_field :tutorial, TutorialInputType
 
@@ -50,6 +50,67 @@ module TutorialMutations
         {
           deleted_id: tutorial.id
         }
+      end
+    end
+  end
+
+  module TutorialComments
+    Create = GraphQL::Relay::Mutation.define do
+      name 'CreateTutorialComment'
+      description 'Create a Tutorial comment'
+      input_field :auth_token, !types.String, 'The user auth token'
+      input_field :comment, CommentInputType, 'The comment'
+      input_field :tutorial_id, !types.ID, 'The tutorial id'
+
+      return_field :tutorial_comment, TutorialCommentType, 'The comment that was created'
+      resolve -> (inputs, ctx) do
+        user = User.find_by(auth_token: inputs[:auth_token])
+        tutorial = Tutorial.find_by(id: inputs[:tutorial_id])
+        comment = TutorialComment.new(
+          body: inputs[:comment][:body],
+          user: user,
+          tutorial: tutorial
+        )
+        if comment.save!
+          {
+            tutorial_comment: comment
+          }
+        end
+      end
+    end
+    Edit = GraphQL::Relay::Mutation.define do
+      name 'EditTutorialComment'
+      description 'Edit a Tutorial comment'
+      input_field :auth_token, !types.String, 'The user auth token'
+      input_field :comment, CommentInputType, 'The comment'
+      input_field :comment_id, !types.ID, 'The comment id'
+
+      return_field :tutorial_comment, TutorialCommentType, 'The comment that was created'
+      resolve -> (inputs, ctx) do
+        user = User.find_by(auth_token: inputs[:auth_token])
+        comment = user.tutorial_comments.find_by(id: inputs[:comment_id])
+        if comment.update(inputs[:comment].to_h)
+          {
+            tutorial_comment: comment
+          }
+        end
+      end
+    end
+    Delete = GraphQL::Relay::Mutation.define do
+      name 'DeleteTutorialComment'
+      description 'Delete a tutorial comment'
+      input_field :auth_token, !types.String, 'The user auth token'
+      input_field :comment_id, !types.ID, 'The comment id'
+
+      return_field :deleted_id, types.ID, 'The id of the comment that was deleted'
+      resolve -> (inputs, ctx) do
+        user = User.find_by(auth_token: inputs[:auth_token])
+        comment = user.tutorial_comments.find_by(id: inputs[:comment_id])
+        if comment.destroy
+          {
+            deleted_id: comment.id
+          }
+        end
       end
     end
   end

@@ -2,6 +2,7 @@ class Tutorial < ApplicationRecord
   before_create :create_slug
   after_initialize :set_default_status
   enum status: [:draft, :published, :archived]
+  has_many :tutorial_comments
   belongs_to :user
   def set_default_status
     self.status ||= :draft if self.new_record?

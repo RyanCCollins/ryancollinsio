@@ -15,6 +15,10 @@ MutationType = GraphQL::ObjectType.define do
   field :EditTutorial, field: TutorialMutations::Edit.field
   field :DeleteTutorial, field: TutorialMutations::Delete.field
 
+  field :CreateTutorialComment, field: TutorialMutations::TutorialComments::Create.field
+  field :EditTutorialComment, field: TutorialMutations::TutorialComments::Edit.field
+  field :DeleteTutorialComment, field: TutorialMutations::TutorialComments::Delete.field
+
   field :CreateInquiry, field: InquiryMutations::Create.field
 
   field :CreatePostComment, field: PostMutations::PostComments::Create.field

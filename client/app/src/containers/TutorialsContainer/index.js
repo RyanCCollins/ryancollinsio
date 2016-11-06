@@ -50,6 +50,11 @@ class TutorialsContainer extends Component { // eslint-disable-line react/prefer
                         {tutorial.description}
                       </Paragraph>
                     </Box>
+                    <Box>
+                      <Paragraph>
+                        {tutorial.body}
+                      </Paragraph>
+                    </Box>
                     <Footer align="center" justify="center">
                       <Anchor primary href={`/tutorial/${tutorial.slug}`} label="View Details" />
                     </Footer>

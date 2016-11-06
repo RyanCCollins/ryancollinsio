@@ -7,6 +7,7 @@ import styles from './index.module.scss';
 import Box from 'grommet-udacity/components/Box';
 import Headline from 'grommet-udacity/components/Headline';
 import Section from 'grommet-udacity/components/Section';
+import Paragraph from 'grommet-udacity/components/Paragraph';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { Divider, WithLoading } from 'components';
@@ -19,29 +20,37 @@ class TutorialContainer extends Component { // eslint-disable-line react/prefer-
     } = this.props;
     return (
       <WithLoading fullscreen isLoading={isLoading}>
+        <Section
+          className={styles.portfolio}
+          colorIndex="light-2"
+          align="center"
+          justify="center"
+          pad="large"
+        >
+          <Headline className="heading" align="center">
+            {tutorial && tutorial.title}
+          </Headline>
+          <Divider />
+        </Section>
         {tutorial &&
-          <Box
-            className={styles.portfolio}
-            colorIndex="light-2"
-            align="center"
-            justify="center"
-            pad="large"
-          >
-            <Headline className="heading" align="center">
-              {tutorial.title}
-            </Headline>
-            <Divider />
-            <Section full="horizontal" align="center" justify="center">
-              <iframe
-                width="1080"
-                height="480"
-                src={`https://www.youtube.com/embed/${tutorial.link.split('/')[3]}`}
-                frameBorder="0"
-                allowFullScreen
-              />
-            </Section>
+          <Box align="center" justify="center" colorIndex="light-2">
+            <iframe
+              width="960"
+              height="480"
+              src={`https://www.youtube.com/embed/${tutorial.link.split('/')[3]}`}
+              frameBorder="0"
+              allowFullScreen
+            />
           </Box>
         }
+        <Section align="center" colorIndex="light-2">
+          <Paragraph>
+            {tutorial && tutorial.description}
+          </Paragraph>
+          <Paragraph>
+            {tutorial && tutorial.body}
+          </Paragraph>
+        </Section>
       </WithLoading>
     );
   }
