@@ -10,6 +10,7 @@ import { reduxForm } from 'redux-form';
 import Headline from 'grommet-udacity/components/Headline';
 import Box from 'grommet-udacity/components/Box';
 import { WithToast, Divider, CreatePostForm, WithLoading } from 'components';
+import { postData } from 'fragments';
 import Section from 'grommet-udacity/components/Section';
 import serializer from './model';
 
@@ -25,11 +26,29 @@ class CreatePostContainer extends Component {
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCurrentTags = this.handleCurrentTags.bind(this);
+    this.handleLoadingFromPost = this.handleLoadingFromPost.bind(this);
   }
   componentDidMount() {
     if (!this.props.user.authToken) {
       this.context.router.push('/');
     }
+  }
+  componentWillReceiveProps({ post }) {
+    if (post && post !== this.props.post) {
+      this.handleLoadingFromPost();
+    }
+  }
+  handleLoadingFromPost() {
+    const {
+      fields,
+      post,
+    } = this.props;
+    fields.titleInput.onChange(post.title);
+    fields.bodyInput.onChange(post.body);
+    fields.featureImageInput.onChange(post.image);
+    this.props.actions.createPostSetSelectedTags(
+      post.tags.map(tag => ({ title: tag.title }))
+    );
   }
   handleSubmit() {
     const {
@@ -70,6 +89,7 @@ class CreatePostContainer extends Component {
       invalid,
       tagsError,
       errorMessage,
+      selectedTags,
     } = this.props;
     return (
       <WithLoading
@@ -87,6 +107,7 @@ class CreatePostContainer extends Component {
             <Divider />
             <Section align="center" justify="center">
               <CreatePostForm
+                selectedTags={selectedTags}
                 onSubmit={this.handleSubmit}
                 onChangeTags={this.handleCurrentTags}
                 invalid={invalid}
@@ -103,6 +124,7 @@ class CreatePostContainer extends Component {
 
 CreatePostContainer.propTypes = {
   submitPostMutation: PropTypes.func.isRequired,
+  location: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,
   message: PropTypes.string,
   fields: PropTypes.object.isRequired,
@@ -113,6 +135,7 @@ CreatePostContainer.propTypes = {
   selectedTags: PropTypes.array.isRequired,
   errorMessage: PropTypes.object,
   user: PropTypes.object.isRequired,
+  post: PropTypes.object,
 };
 
 CreatePostContainer.contextTypes = {
@@ -175,7 +198,28 @@ const ContainerWithMutation = graphql(createPostMutation, {
   }),
 })(ContainerWithData);
 
+const loadPostQuery = gql`
+  query loadPost($id: ID!) {
+    post(id: $id) {
+      ...postData
+    }
+  }
+`;
+
+const ContainerWithPost = graphql(loadPostQuery, {
+  options: (ownProps) => ({
+    fragments: [postData],
+    skip: !ownProps.location.query.postId,
+    variables: {
+      id: ownProps.location.query.postId,
+    },
+  }),
+  props: ({ data: { post } }) => ({
+    post,
+  }),
+})(ContainerWithMutation);
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ContainerWithMutation);
+)(ContainerWithPost);

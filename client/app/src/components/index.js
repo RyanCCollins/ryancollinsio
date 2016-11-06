@@ -1,4 +1,5 @@
 /* GENERATOR: Assemble all components for export */
+export UserDashboardTable from './UserDashboardTable';
 export DashboardTableButtonMenu from './DashboardTableButtonMenu';
 export DashboardTable from './DashboardTable';
 export TableHeader from './TableHeader';

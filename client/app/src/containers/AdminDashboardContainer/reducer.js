@@ -4,17 +4,17 @@ import update from 'react-addons-update';
 export const initialState = {
   posts: {
     items: [],
-    perPage: 10,
+    perPage: 6,
     currentPage: 1,
   },
   projects: {
     items: [],
-    perPage: 10,
+    perPage: 6,
     currentPage: 1,
   },
   users: {
     items: [],
-    perPage: 10,
+    perPage: 6,
     currentPage: 1,
   },
   activeTab: 0,

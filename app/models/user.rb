@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :posts
   has_many :project_comments, through: :projects
   has_many :post_comments, through: :posts
+  has_many :tutorials
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   enum role: [:user, :admin]

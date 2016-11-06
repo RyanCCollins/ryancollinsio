@@ -11,7 +11,7 @@ import Headline from 'grommet-udacity/components/Headline';
 import Section from 'grommet-udacity/components/Section';
 import Tabs from 'grommet-udacity/components/Tabs';
 import Tab from 'grommet-udacity/components/Tab';
-import { Divider, DashboardTable, WithLoading } from 'components';
+import { Divider, DashboardTable, UserDashboardTable, WithLoading } from 'components';
 import { authUserDataFragment, postData, projectData } from 'fragments';
 import { getPagedPosts, getPagedUsers, getPagedProjects } from './selectors';
 
@@ -52,52 +52,62 @@ class AdminDashboardContainer extends Component {
             </Headline>
             <Divider />
           </Section>
-          <Section pad={{ horizonal: 'large' }}>
-            <Box className={styles.dashboardWrapper} align="center" justify="center">
-              <Tabs activeIndex={activeTab} onActive={actions.setActiveTab}>
+          <Section className={styles.dashboardWrapper}>
+            <Box className={styles.dashboardTable}>
+              <Tabs
+                responsive={false}
+                onActive={(index) => actions.setActiveTab(index)}
+                activeIndex={activeTab}
+              >
                 {posts && posts.length > 0 &&
                   <Tab title="Posts">
-                    <DashboardTable
-                      items={pagedPosts}
-                      isMobile={isMobile}
-                      perPage={postsConfig.perPage}
-                      currentPage={postsConfig.currentPage}
-                      onChangePage={actions.setPostsPage}
-                      allItems={posts}
-                      onDelete={e => e}
-                      onEdit={e => e}
-                      onShow={e => e}
-                    />
+                    <Box className={styles.innerBox}>
+                      <DashboardTable
+                        items={pagedPosts}
+                        isMobile={isMobile}
+                        perPage={postsConfig.perPage}
+                        currentPage={postsConfig.currentPage}
+                        onChangePage={actions.setPostsPage}
+                        allItems={posts}
+                        onDelete={actions.deletePost}
+                        onEdit={actions.editPost}
+                        onShow={actions.showPost}
+                      />
+                    </Box>
                   </Tab>
                 }
                 {projects &&
-                  <Tab title="Projects">
-                    <DashboardTable
-                      items={pagedProjects}
-                      onChangePage={actions.setProjectsPage}
-                      isMobile={isMobile}
-                      perPage={projectsConfig.perPage}
-                      currentPage={projectsConfig.currentPage}
-                      allItems={projects}
-                      onDelete={e => e}
-                      onEdit={e => e}
-                      onShow={e => e}
-                    />
+                  <Tab title="Projects" onRequestForActive={() => actions.setActiveTab(1)}>
+                    <Box className={styles.innerBox}>
+                      <DashboardTable
+                        items={pagedProjects}
+                        onChangePage={actions.setProjectsPage}
+                        isMobile={isMobile}
+                        perPage={projectsConfig.perPage}
+                        currentPage={projectsConfig.currentPage}
+                        allItems={projects}
+                        onDelete={actions.deleteProject}
+                        onEdit={actions.editProject}
+                        onShow={actions.showProject}
+                      />
+                    </Box>
                   </Tab>
                 }
                 {users &&
-                  <Tab title="Users">
-                    {/* <DashboardTable
-                      items={pagedUsers}
-                      isMobile={isMobile}
-                      perPage={usersConfig.perPage}
-                      onChangePage={actions.setUsersPage}
-                      currentPage={usersConfig.currentPage}
-                      allItems={users}
-                      onDelete={e => e}
-                      onEdit={e => e}
-                      onShow={e => e}
-                    /> */}
+                  <Tab title="Users" onRequestForActive={() => actions.setActiveTab(2)}>
+                    <Box className={styles.innerBox}>
+                      <UserDashboardTable
+                        users={pagedUsers}
+                        isMobile={isMobile}
+                        perPage={usersConfig.perPage}
+                        onChangePage={actions.setUsersPage}
+                        currentPage={usersConfig.currentPage}
+                        allUsers={users}
+                        onDelete={e => e}
+                        onEdit={e => e}
+                        onShow={e => e}
+                      />
+                    </Box>
                   </Tab>
                 }
               </Tabs>

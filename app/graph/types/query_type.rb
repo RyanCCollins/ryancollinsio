@@ -28,6 +28,13 @@ QueryType = GraphQL::ObjectType.define do
   field :post, PostType do
     argument :id, types.ID
     argument :slug, types.String
+    resolve -> (_obj, args, _ctx) do
+      if args[:slug]
+        Tutorial.find_by(slug: args[:slug])
+      else
+        Tutorial.finb_by(id: args[:id])
+      end
+    end
     resolve -> (obj, args, ctx) do
       if args[:id]
         Post.find_by(id: args[:id])
@@ -84,6 +91,22 @@ QueryType = GraphQL::ObjectType.define do
       user = User.find_by(auth_token: args[:auth_token])
       if user.role == 'admin'
         User.all
+      end
+    end
+  end
+  field :tutorials, types[TutorialType] do
+    resolve -> (_oby, args, _ctx) do
+      Tutorial.all
+    end
+  end
+  field :tutorial, TutorialType do
+    argument :id, types.ID
+    argument :slug, types.String
+    resolve -> (_obj, args, _ctx) do
+      if args[:slug]
+        Tutorial.find_by(slug: args[:slug])
+      else
+        Tutorial.finb_by(id: args[:id])
       end
     end
   end

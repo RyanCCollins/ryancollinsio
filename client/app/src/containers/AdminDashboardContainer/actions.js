@@ -1,4 +1,5 @@
 import * as types from './constants';
+import { push } from 'react-router-redux';
 
 export const setPosts = (posts) => ({
   type: types.SET_POSTS,
@@ -34,3 +35,35 @@ export const setActiveTab = (index) => ({
   type: types.SET_ACTIVE_TAB,
   index,
 });
+
+export const editProject = (project) => (dispatch) => {
+  dispatch(
+    push(`/admin/create-project?projectId=${project.id}&action=edit`)
+  );
+};
+
+export const showProject = (project) => (dispatch) => {
+  dispatch(
+    push(`/projects/${project.slug}`)
+  );
+};
+
+export const deleteProject = (project) => (dispatch) => {
+
+};
+
+export const editPost = (post) => (dispatch) => {
+  dispatch(
+    push(`/admin/create-post?postId=${post.id}&action=edit`)
+  );
+};
+
+export const showPost = (post) => (dispatch) => {
+  dispatch(
+    push(`/blog/posts/${post.slug}`)
+  );
+};
+
+export const deletePost = (post) => (dispatch) => {
+
+};

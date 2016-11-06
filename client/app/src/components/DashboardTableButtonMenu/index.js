@@ -6,10 +6,9 @@ import EditIcon from 'grommet-udacity/components/icons/base/Edit';
 import ViewIcon from 'grommet-udacity/components/icons/base/View';
 
 const DashboardTableButtonMenu = ({
-  item,
   onDelete,
   onEdit,
-  onView,
+  onShow,
 }) => (
   <Menu
     inline
@@ -34,17 +33,16 @@ const DashboardTableButtonMenu = ({
     <Button
       style={{ padding: 5 }}
       plain
-      onClick={onView}
+      onClick={onShow}
       icon={<ViewIcon />}
     />
   </Menu>
 );
 
 DashboardTableButtonMenu.propTypes = {
-  item: PropTypes.object.isRequired,
   onDelete: PropTypes.func.isRequired,
   onEdit: PropTypes.func.isRequired,
-  onView: PropTypes.func.isRequired,
+  onShow: PropTypes.func.isRequired,
 };
 
 export default DashboardTableButtonMenu;

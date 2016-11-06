@@ -14,6 +14,7 @@ const CreateProjectForm = ({
   invalid,
   onSubmit,
   pastTags,
+  initialTags,
   onChangeTags,
 }) => (
   <Form>
@@ -213,12 +214,14 @@ const CreateProjectForm = ({
             tags
             style={{ width: '100%' }}
             id="tag-input"
+            defaultValue={initialTags.map((item) => item.title)}
             searchPlaceholder="Start typing to add a tag."
             onChange={onChangeTags}
           >
             {pastTags.map((tag, i) =>
               <Option
                 key={i}
+                label={tag.title}
               >
                 {tag.title}
               </Option>

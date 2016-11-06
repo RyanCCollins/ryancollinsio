@@ -14,6 +14,7 @@ const CreatePostForm = ({
   onChangeTags,
   invalid,
   onSubmit,
+  selectedTags,
 }) => (
   <Form>
     <FormFields>
@@ -82,12 +83,14 @@ const CreatePostForm = ({
             tags
             style={{ width: '100%' }}
             id="tag-input"
+            defaultValue={selectedTags}
             searchPlaceholder="Start Typing to add a tag."
             onChange={onChangeTags}
           >
             {pastTags.map((tag, i) =>
               <Option
                 key={i}
+                label={tag.title}
               >
                 {tag.title}
               </Option>
@@ -108,6 +111,7 @@ CreatePostForm.propTypes = {
   onChangeTags: PropTypes.func.isRequired,
   invalid: PropTypes.bool.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  selectedTags: PropTypes.array,
 };
 
 export default CreatePostForm;

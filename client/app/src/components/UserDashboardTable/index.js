@@ -12,11 +12,11 @@ import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
 import { DashboardTableButtonMenu, PaginatorFooter } from 'components';
 
-const DashboardTable = ({
-  items,
+const UserDashboardTable = ({
+  users,
   perPage,
   currentPage,
-  allItems,
+  allUsers,
   onChangePage,
   onDelete,
   onEdit,
@@ -33,7 +33,7 @@ const DashboardTable = ({
         <List>
           <Box justify="center" align="start" pad="small">
             <tbody>
-              {items && items.length > 0 && items.map((item, i) =>
+              {users && users.length > 0 && users.map((user, i) =>
                 <ListItem>
                   <Tile
                     key={i}
@@ -56,31 +56,31 @@ const DashboardTable = ({
                           className={styles.boxWrapper}
                         >
                           <Heading align="center" tag="h3">
-                            {item.title}
+                            {user.name}
                           </Heading>
                         </Box>
                         <Box
                           className={styles.boxWrapper}
                         >
                           <Label>
-                            Posted By:
+                            Email:
                           </Label>
                           <Heading align="center" tag="h4">
-                            {item.user.name}
+                            {user.email}
                           </Heading>
                         </Box>
                         <Box
                           className={styles.boxWrapper}
                         >
                           <Label style={{ flex: 1 }}>
-                            Status:
+                            Role:
                           </Label>
                           <Heading align="center" tag="h4">
-                            {`${item.status.charAt(0).toUpperCase()}${item.status.slice(1)}`}
+                            {`${user.role.charAt(0).toUpperCase()}${user.role.slice(1)}`}
                           </Heading>
                         </Box>
                         <DashboardTableButtonMenu
-                          item={item}
+                          item={user}
                           onDelete={onDelete}
                           onEdit={onEdit}
                           onShow={onShow}
@@ -97,41 +97,35 @@ const DashboardTable = ({
         <Table>
           <thead>
             <tr>
-              <th>Title</th>
-              <th>Status</th>
-              <th>Author</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Role</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {items && items.length > 0 && items.map((item, i) =>
+            {users && users.length > 0 && users.map((user, i) =>
               <TableRow key={i}>
                 <td>
-                  <Box className={styles.tableItemWrapper}>
-                    <Heading tag="h4">
-                      {item.title}
-                    </Heading>
-                  </Box>
+                  <Heading tag="h4">
+                    {user.name}
+                  </Heading>
                 </td>
                 <td>
-                  <Box className={styles.tableItemWrapper}>
-                    <Heading tag="h5">
-                      {`${item.status.charAt(0).toUpperCase()}${item.status.slice(1)}`}
-                    </Heading>
-                  </Box>
+                  <Heading tag="h5">
+                    {user.email}
+                  </Heading>
                 </td>
                 <td>
-                  <Box className={styles.tableItemWrapper}>
-                    <Heading tag="h5">
-                      {item.user.name}
-                    </Heading>
-                  </Box>
+                  <Heading tag="h5">
+                    {`${user.role.charAt(0).toUpperCase()}${user.role.slice(1)}`}
+                  </Heading>
                 </td>
                 <td>
                   <DashboardTableButtonMenu
-                    onDelete={() => onDelete(item)}
-                    onEdit={() => onEdit(item)}
-                    onShow={() => onShow(item)}
+                    onDelete={onDelete}
+                    onEdit={onEdit}
+                    onShow={onShow}
                   />
                 </td>
               </TableRow>
@@ -143,22 +137,22 @@ const DashboardTable = ({
     <PaginatorFooter
       currentPage={currentPage}
       pageSize={perPage}
-      total={allItems.length}
+      total={allUsers.length}
       onChange={onChangePage}
     />
   </Box>
 );
 
-DashboardTable.propTypes = {
-  items: PropTypes.array.isRequired,
-  isMobile: PropTypes.bool.isRequired,
-  perPage: PropTypes.number.isRequired,
+UserDashboardTable.propTypes = {
+  users: PropTypes.array.isRequired,
+  perPage: PropTypes.bool.isRequired,
   currentPage: PropTypes.number.isRequired,
-  allItems: PropTypes.array.isRequired,
+  allUsers: PropTypes.array.isRequired,
   onChangePage: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
   onEdit: PropTypes.func.isRequired,
   onShow: PropTypes.func.isRequired,
+  isMobile: PropTypes.bool.isRequired,
 };
 
-export default cssModules(DashboardTable, styles);
+export default cssModules(UserDashboardTable, styles);

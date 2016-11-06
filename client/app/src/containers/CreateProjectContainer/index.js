@@ -12,6 +12,7 @@ import Section from 'grommet-udacity/components/Section';
 import Headline from 'grommet-udacity/components/Headline';
 import { Divider, CreateProjectForm, WithToast, WithLoading } from 'components';
 import fieldsToSubmission from './model/serialization';
+import { projectData } from 'fragments';
 
 export const formFields = [
   'titleInput',
@@ -25,7 +26,6 @@ export const formFields = [
   'reviewerNameInput',
   'technicalInformationInput',
   'designPatternsInput',
-  'categoryInput',
   'featureImageInput',
 ];
 
@@ -34,18 +34,45 @@ class CreateProjectContainer extends Component {
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleTags = this.handleTags.bind(this);
+    this.handleLoadingFromProject = this.handleLoadingFromProject.bind(this);
   }
   componentDidMount() {
     if (!this.props.user.authToken) {
       this.context.router.push('/');
     }
   }
+  componentWillReceiveProps({ project }) {
+    if (project && project !== this.props.project) {
+      this.handleLoadingFromProject();
+    }
+  }
+  handleLoadingFromProject() {
+    const {
+      project,
+      fields,
+    } = this.props;
+    fields.titleInput.onChange(project.title);
+    fields.descriptionInput.onChange(project.description);
+    fields.captionInput.onChange(project.caption);
+    fields.descriptionInput.onChange(project.description);
+    fields.repoUrlInput.onChange(project.repoUrl);
+    fields.categoryInput.onChange(
+      `${project.category.charAt(0).toUpperCase()}${project.category.slice(1)}`
+    );
+    fields.milestonesInput.onChange(project.milestones);
+    fields.technicalReviewInput.onChange(project.technicalReview);
+    fields.reviewerNameInput.onChange(project.reviewerName);
+    fields.technicalInformationInput.onChange(project.technicalInformation);
+    fields.designPatternsInput.onChange(project.designPatterns);
+    fields.featureImageInput.onChange(project.featureImage);
+    this.props.actions.createProjectSetTags(project.tags.map((item) => ({ title: item.title })));
+  }
   handleTags(value) {
     const {
       tags,
     } = this.props;
     const newTags = value.map((tag) => tags[tag] || { title: tag });
-    this.props.actions.createProjectAddTag(newTags);
+    this.props.actions.createProjectSetTags(newTags);
   }
   handleSubmit() {
     const {
@@ -81,6 +108,7 @@ class CreateProjectContainer extends Component {
       tagsLoading,
       tagsError,
       tags,
+      selectedTags,
     } = this.props;
     return (
       <WithLoading
@@ -102,6 +130,7 @@ class CreateProjectContainer extends Component {
                 onSubmit={this.handleSubmit}
                 fields={fields}
                 pastTags={tags}
+                initialTags={selectedTags}
                 onChangeTags={this.handleTags}
               />
             </Section>
@@ -124,6 +153,7 @@ CreateProjectContainer.propTypes = {
   actions: PropTypes.object.isRequired,
   selectedTags: PropTypes.array.isRequired,
   user: PropTypes.object.isRequired,
+  project: PropTypes.object,
 };
 
 CreateProjectContainer.contextTypes = {
@@ -165,6 +195,27 @@ const ContainerWithData = graphql(loadPastTagsQuery, {
   }),
 })(Container);
 
+const loadProjectQuery = gql`
+  query loadProject($id: ID!) {
+    project(id: $id) {
+      ...projectData
+    }
+  }
+`;
+
+const ContainerWithProjects = graphql(loadProjectQuery, {
+  options: (ownProps) => ({
+    skip: !ownProps.location.query.projectId,
+    fragments: [projectData],
+    variables: {
+      id: ownProps.location.query.projectId,
+    },
+  }),
+  props: ({ data: { project } }) => ({
+    project,
+  }),
+})(ContainerWithData);
+
 const createProjectMutation = gql`
 mutation createProject($authToken: String!, $project: ProjectInput) {
   CreateProject(input: { auth_token: $authToken, project: $project }) {
@@ -175,7 +226,7 @@ mutation createProject($authToken: String!, $project: ProjectInput) {
 }
 `;
 
-const ContainerWithMutation = graphql(createProjectMutation)(ContainerWithData);
+const ContainerWithMutation = graphql(createProjectMutation)(ContainerWithProjects);
 
 const FormContainer = reduxForm({
   form: 'CreateProject',
