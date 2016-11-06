@@ -6,17 +6,9 @@ import cssModules from 'react-css-modules';
 import styles from './index.module.scss';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import Section from 'grommet-udacity/components/Section';
-import Heading from 'grommet-udacity/components/Heading';
-import Article from 'grommet-udacity/components/Article';
-import Button from 'grommet-udacity/components/Button';
 import Box from 'grommet-udacity/components/Box';
-import Footer from 'grommet-udacity/components/Footer';
-import Columns from 'grommet-udacity/components/Columns';
-import List from 'grommet-udacity/components/List';
-import ListItem from 'grommet-udacity/components/ListItem';
 import postData from 'fragments/postData';
-import { WithLoading, Post, Divider, Comment, PostMeta } from 'components';
+import { WithLoading, Post, PostMeta, CommentFeed } from 'components';
 let RichTextEditor;
 if (typeof window !== 'undefined') {
   RichTextEditor = require('react-rte').default;
@@ -87,7 +79,7 @@ class PostContainer extends Component { // eslint-disable-line react/prefer-stat
       post,
     } = this.props;
     return (
-      <Section className={styles.postPage}>
+      <Box className={styles.postPage}>
         <WithLoading isLoading={isLoading || !post} fullscreen>
           {post &&
             <div>
@@ -98,47 +90,14 @@ class PostContainer extends Component { // eslint-disable-line react/prefer-stat
             </div>
           }
         </WithLoading>
-        <Section>
-          <Heading align="center">
-            Comments
-          </Heading>
-          <Divider />
-          {RichTextEditor != null && // eslint-disable-line
-            <Box className="container">
-              <Article className="panel">
-                <RichTextEditor
-                  value={this.state.value}
-                  onChange={(value) => this.setState({ value }) }
-                />
-                <Footer
-                  align="center"
-                  justify="center"
-                  pad="medium"
-                >
-                  <Button label="Submit Comment" onClick={this.handleSubmit} />
-                </Footer>
-              </Article>
-              <Article className="panel">
-                <Columns size="large" justify="center">
-                  <List>
-                    {post &&
-                      post.comments
-                        .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-                        .map((comment, i) =>
-                      <ListItem key={i}>
-                        <Comment
-                          onUpvote={this.handleUpvote}
-                          comment={comment}
-                        />
-                      </ListItem>
-                    )}
-                  </List>
-                </Columns>
-              </Article>
-            </Box>
-          }
-        </Section>
-      </Section>
+        <CommentFeed
+          value={this.state.value}
+          onChange={(value) => this.setState({ value })}
+          onSubmit={this.handleSubmit}
+          comments={post && post.comments}
+          onUpvote={this.handleUpvote}
+        />
+      </Box>
     );
   }
 }

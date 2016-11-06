@@ -39,7 +39,7 @@ const Project = ({
       <Divider />
       <Box align="center" justify="center" pad="large">
         <Box className="card">
-          <Box pad="medium" align="center" className="main-text">
+          <Box pad="medium" align="center" className="main-text markdown-body">
             <Markdown content={project.description} />
           </Box>
         </Box>
@@ -67,7 +67,7 @@ const Project = ({
       <Divider />
       <Box align="center" justify="center" pad="large">
         <Box className="card">
-          <Box align="center" pad="medium" className="main-text">
+          <Box align="center" pad="medium" className="main-text markdown-body">
             <Markdown content={project.milestones} />
           </Box>
         </Box>
@@ -81,7 +81,7 @@ const Project = ({
         <Divider />
         <Box align="center" justify="center" pad="large">
           <Box className="card" align="center">
-            <Box pad="medium" align="center" className="main-text">
+            <Box pad="medium" align="center" className="main-text markdown-body">
               <Quote credit={`- ${project.reviewerName}`}>
                 <Markdown content={project.technicalReview} />
               </Quote>

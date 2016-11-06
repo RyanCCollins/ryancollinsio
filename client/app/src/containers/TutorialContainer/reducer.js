@@ -1,15 +1,17 @@
 import * as types from './constants';
-import update from 'react-addons-update';
 
 export const initialState = {
-  // Initial State goes here!
+  commentInput: null,
 };
 
 const tutorialReducer =
   (state = initialState, action) => {
     switch (action.type) {
-      case types.DEFAULT_ACTION:
-        return state;
+      case types.ON_EDIT_COMMENT:
+        return {
+          ...state,
+          commentInput: action.value,
+        };
       default:
         return state;
     }

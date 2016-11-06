@@ -6,32 +6,25 @@ import cssModules from 'react-css-modules';
 import styles from './index.module.scss';
 import Box from 'grommet-udacity/components/Box';
 import Section from 'grommet-udacity/components/Section';
-import Article from 'grommet-udacity/components/Article';
-import Button from 'grommet-udacity/components/Button';
-import Footer from 'grommet-udacity/components/Footer';
-import Columns from 'grommet-udacity/components/Columns';
-import List from 'grommet-udacity/components/List';
-import ListItem from 'grommet-udacity/components/ListItem';
 import Headline from 'grommet-udacity/components/Headline';
 import Paragraph from 'grommet-udacity/components/Paragraph';
+import Markdown from 'grommet-udacity/components/Markdown';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import { Divider, WithLoading, Comment } from 'components';
+import { Divider, WithLoading, CommentFeed } from 'components';
 let RichTextEditor;
 if (typeof window !== 'undefined') {
   RichTextEditor = require('react-rte').default;
 }
 
 class TutorialContainer extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUpvote = this.handleUpvote.bind(this);
     this.checkAuthToken = this.checkAuthToken.bind(this);
     if (RichTextEditor) {
-      this.state = {
-        value: RichTextEditor.createEmptyValue(),
-      };
+      props.actions.tutorialEditComment(RichTextEditor.createEmptyValue());
     }
   }
   handleUpvote(id) {
@@ -56,13 +49,14 @@ class TutorialContainer extends Component {
       mutate,
       refetch,
       user,
+      commentInput,
     } = this.props;
     this.checkAuthToken();
     const data = {
       variables: {
         authToken: user.authToken,
         comment: {
-          body: this.state.value.toString('markdown'),
+          body: commentInput.toString('markdown'),
         },
         id: this.props.tutorial.id,
       },
@@ -85,6 +79,8 @@ class TutorialContainer extends Component {
     const {
       isLoading,
       tutorial,
+      commentInput,
+      actions,
     } = this.props;
     return (
       <WithLoading fullscreen isLoading={isLoading}>
@@ -115,64 +111,38 @@ class TutorialContainer extends Component {
           <Paragraph>
             {tutorial && tutorial.description}
           </Paragraph>
-          <Paragraph>
-            {tutorial && tutorial.body}
-          </Paragraph>
+          <Box align="center" pad="medium" className="main-text markdown-body">
+            <Markdown content={tutorial && tutorial.body} />
+          </Box>
         </Section>
-        <Section align="center" colorIndex="light-2">
-          {RichTextEditor != null && // eslint-disable-line
-            <Box className="container">
-              <Article className="panel">
-                <RichTextEditor
-                  value={this.state.value}
-                  onChange={(value) => this.setState({ value }) }
-                />
-                <Footer
-                  align="center"
-                  justify="center"
-                  pad="medium"
-                >
-                  <Button label="Submit Comment" onClick={this.handleSubmit} />
-                </Footer>
-              </Article>
-              <Article className="panel">
-                <Columns size="large" justify="center">
-                  <List>
-                    {tutorial && tutorial.comments &&
-                      tutorial.comments
-                        .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-                        .map((comment, i) =>
-                      <ListItem key={i}>
-                        <Comment
-                          onUpvote={this.handleUpvote}
-                          comment={comment}
-                        />
-                      </ListItem>
-                    )}
-                  </List>
-                </Columns>
-              </Article>
-            </Box>
-          }
-        </Section>
+        <CommentFeed
+          value={commentInput}
+          onChange={(value) => actions.tutorialEditComment(value)}
+          onSubmit={this.handleSubmit}
+          comments={tutorial && tutorial.comments}
+          onUpvote={this.handleUpvote}
+        />
       </WithLoading>
     );
   }
 }
 
 TutorialContainer.propTypes = {
-  tutorial: PropTypes.object.isRequired,
+  tutorial: PropTypes.object,
   isLoading: PropTypes.bool.isRequired,
   params: PropTypes.object.isRequired,
-  upvoteComment: PropTypes.func.isRequired,
-  mutate: PropTypes.func.isRequired,
-  refetch: PropTypes.func.isRequired,
+  upvoteComment: PropTypes.func,
+  mutate: PropTypes.func,
+  refetch: PropTypes.func,
   user: PropTypes.object.isRequired,
+  commentInput: PropTypes.object,
+  actions: PropTypes.object.isRequired,
 };
 
 // mapStateToProps :: {State} -> {Props}
 const mapStateToProps = (state) => ({
   user: state.app.user,
+  commentInput: state.tutorial.commentInput,
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}
@@ -188,6 +158,7 @@ const Container = cssModules(TutorialContainer, styles);
 const tutorialQuery = gql`
   query tutorial($slug: String!) {
     tutorial(slug: $slug) {
+      id
       link
       title
       description

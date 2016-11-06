@@ -1,4 +1,5 @@
 /* GENERATOR: Assemble all components for export */
+export CommentFeed from './CommentFeed';
 export UserDashboardTable from './UserDashboardTable';
 export DashboardTableButtonMenu from './DashboardTableButtonMenu';
 export DashboardTable from './DashboardTable';
