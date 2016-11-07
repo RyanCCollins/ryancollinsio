@@ -9,7 +9,7 @@ QueryType = GraphQL::ObjectType.define do
   end
   field :projects, types[ProjectType] do
     resolve -> (obj, args, ctx) do
-      Project.all
+      Project.all.sort_by{ |i| i.updated_at }.reverse.sort_by{ |i| -i.sort_priority }
     end
   end
   field :project, ProjectType do
