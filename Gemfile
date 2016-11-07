@@ -8,6 +8,7 @@ gem 'rack-cors'
 gem 'ffaker'
 gem 'graphql'
 gem 'graphiql-rails'
+gem 'twitter'
 
 group :test do
   gem 'database_cleaner', '~> 1.5.3'

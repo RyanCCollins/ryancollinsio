@@ -28,13 +28,6 @@ QueryType = GraphQL::ObjectType.define do
   field :post, PostType do
     argument :id, types.ID
     argument :slug, types.String
-    resolve -> (_obj, args, _ctx) do
-      if args[:slug]
-        Tutorial.find_by(slug: args[:slug])
-      else
-        Tutorial.finb_by(id: args[:id])
-      end
-    end
     resolve -> (obj, args, ctx) do
       if args[:id]
         Post.find_by(id: args[:id])
