@@ -8,8 +8,13 @@ QueryType = GraphQL::ObjectType.define do
     end
   end
   field :projects, types[ProjectType] do
+    argument :status, types.String
     resolve -> (obj, args, ctx) do
-      Project.all.sort_by{ |i| i.updated_at }.reverse.sort_by{ |i| -i.sort_priority }
+      if args[:status]
+        Project.where(status: args[:status]).all.sort_by{ |i| i.updated_at }.reverse.sort_by{ |i| -i.sort_priority }
+      else
+        Project.all.sort_by{ |i| i.updated_at }.reverse.sort_by{ |i| -i.sort_priority }
+      end
     end
   end
   field :project, ProjectType do
@@ -40,12 +45,15 @@ QueryType = GraphQL::ObjectType.define do
   end
   field :posts, types[PostType] do
     argument :tag, types.String
+    argument :status, types.String
     resolve -> (obj, args, ctx) do
       if args[:tag]
         tag = Tag.where(title: args[:tag]).first
-        tag.posts.all
+        tag.posts.all.sort_by{ |i| i.updated_at }.reverse
+      elsif args[:status]
+        Post.where(status: args[:status]).all.sort_by{ |i| i.updated_at }.reverse
       else
-        Post.all
+        Post.all.sort_by{ |i| i.updated_at }.reverse
       end
     end
   end
@@ -88,8 +96,13 @@ QueryType = GraphQL::ObjectType.define do
     end
   end
   field :tutorials, types[TutorialType] do
+    argument :status, types.String
     resolve -> (_oby, args, _ctx) do
-      Tutorial.all
+      if args[:status]
+        Tutorial.where(status: args[:status]).all.sort_by{ |i| i.updated_at }.reverse
+      else
+        Tutorial.all.sort_by{ |i| i.updated_at }.reverse
+      end
     end
   end
   field :tutorial, TutorialType do
