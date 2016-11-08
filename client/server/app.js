@@ -41,10 +41,8 @@ app.use((req, res) => {
             headers: req.headers,
           }),
         });
-        const css = new Set();
-        const context = { insertCss: (...styles) => styles.forEach(style => css.add(style._getCss())) };
         const component = (
-          <ApolloProvider client={client} store={store} context={context}>
+          <ApolloProvider client={client} store={store}>
             <RouterContext {...renderProps} />
           </ApolloProvider>
         );
@@ -53,7 +51,6 @@ app.use((req, res) => {
           const html = (
             <Html
               content={content}
-              css={css}
               scriptHash="f375fff097121d20a81e"
               vendorHash="c53e7dcfef3bf0286228"
               cssHash="7debbdcb7faf2e6bea67e74a0c9c6a4c"

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-function Html({ content, state, scriptHash, vendorHash, cssHash, css }) {
+function Html({ content, state, scriptHash, vendorHash, cssHash }) {
   return (
     <html lang="en">
       <head>
@@ -33,7 +33,6 @@ function Html({ content, state, scriptHash, vendorHash, cssHash, css }) {
         <link href="https://fonts.googleapis.com/css?family=Oswald|Merriweather" rel="stylesheet" type="text/css" />
         <script src={`/vendor.${vendorHash}.js`} type="text/javascript" />
         <link href={`/main.${cssHash}.css`} rel="stylesheet" />
-        <style type="text/css">${[...css].join('')}</style>
       </head>
       <body>
         <div id="app" dangerouslySetInnerHTML={{ __html: content }} />
