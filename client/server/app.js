@@ -33,6 +33,13 @@ app.use((req, res) => {
         console.error('ROUTER ERROR:', error); // eslint-disable-line no-console
         res.status(500);
       } else if (renderProps) {
+        const css = new Set();
+        const context = {
+          insertCss(...styles) {
+            styles.forEach(style => css.add(style._getCss()));
+          },
+        };
+        const styles = [...css].join('');
         const client = createApolloClient({
           ssrMode: true,
           networkInterface: createNetworkInterface({
@@ -42,7 +49,7 @@ app.use((req, res) => {
           }),
         });
         const component = (
-          <ApolloProvider client={client} store={store}>
+          <ApolloProvider client={client} store={store} context={context}>
             <RouterContext {...renderProps} />
           </ApolloProvider>
         );
@@ -51,9 +58,10 @@ app.use((req, res) => {
           const html = (
             <Html
               content={content}
-              scriptHash="f375fff097121d20a81e"
-              vendorHash="c53e7dcfef3bf0286228"
+              scriptHash="1b85f95e49aa1668f9c0"
+              vendorHash="aab9e44f2993b9a8a47c"
               cssHash="7debbdcb7faf2e6bea67e74a0c9c6a4c"
+              styles={styles}
               state={{ data: context.store.getState().apollo.data }}
             />
           );
