@@ -15,7 +15,7 @@ const SearchMeta = ({
     }
     {tags && tags.length > 0 &&
       <Heading align="center" tag="h3">
-        {`${array.length} items found for: ${tags.map((tag) => tag.title).join(', ')}`}
+        {`${array.length} items found for: ${tags.join(', ')}`}
       </Heading>
     }
     {searchTerm && !array || array && !array.length > 0 &&

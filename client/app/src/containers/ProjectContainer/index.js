@@ -2,8 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as ProjectActionCreators from './actions';
-import cssModules from 'react-css-modules';
-import styles from './index.module.scss';
 import { WithLoading, WithToast, Project, CommentFeed } from 'components';
 import projectData from 'fragments/projectData';
 import Box from 'grommet-udacity/components/Box';
@@ -104,7 +102,7 @@ class ProjectContainer extends Component { // eslint-disable-line react/prefer-s
           message={message}
           onClose={() => actions.projectClearToast()}
         >
-          <Box className={styles.postPage} colorIndex="light-2">
+          <Box className="main-content" colorIndex="light-2">
             {project &&
               <Project project={project} />
             }
@@ -158,8 +156,6 @@ const mapDispatchToProps = (dispatch) => ({
   ),
 });
 
-const Container = cssModules(ProjectContainer, styles);
-
 const getProjectsQuery = gql`
   query loadProject($slug: String!) {
     project(slug: $slug) {
@@ -182,7 +178,7 @@ const ContainerWithData = graphql(getProjectsQuery, {
     loadingError: error,
     refetch,
   }),
-})(Container);
+})(ProjectContainer);
 
 const createCommentMutation = gql`
   mutation createProjectComment($authToken: String!,

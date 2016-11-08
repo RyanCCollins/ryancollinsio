@@ -6,3 +6,11 @@
 .heroHeader {
   text-shadow: 0 2px 4px 0 rgba(46,61,73,0.86);
 }
+
+.button {
+  margin-right: 10px;
+  @media screen and (max-width: 600px) {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}

@@ -15,7 +15,7 @@ const Comment = ({
 }) => (
   <Box direction="column" style={{ width: '100%' }}>
     <Box direction="row">
-      <Box align="center" justify="center" style={{ marginRight: 40 }}>
+      <Box align="center" justify="center" className="avatar-box">
         <img className="avatar avatar__small" src={comment.user.avatar} />
         <Label uppercase>
           {comment.user.name}

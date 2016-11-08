@@ -43,7 +43,6 @@ export const getFilteredProjects = createSelector(
       if (filterableTerm) {
         return visibleProjects.filter(project =>
           project.title.toLowerCase().includes(filterableTerm) ||
-            project.caption.toLowerCase().includes(filterableTerm) ||
               project.description.toLowerCase().includes(filterableTerm) ||
                 project.user.name.toLowerCase().includes(filterableTerm)
         );

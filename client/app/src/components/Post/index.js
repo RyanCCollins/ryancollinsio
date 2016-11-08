@@ -26,6 +26,7 @@ const Post = ({
     </Hero>
     <Section
       className="container"
+      primary
     >
       <Article
         align="center"

@@ -11,7 +11,7 @@ import { SocialIcon } from 'components';
 import socialIcons from './data';
 
 const AppFooter = () => (
-  <Footer pad="large" colorIndex="light-2">
+  <Footer pad="large" colorIndex="light-2" className={styles.appFooter}>
     <Box
       direction="column"
       align="center"

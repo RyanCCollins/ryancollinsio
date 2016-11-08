@@ -12,6 +12,8 @@ import Headline from 'grommet-udacity/components/Headline';
 import Image from 'grommet-udacity/components/Image';
 import Footer from 'grommet-udacity/components/Footer';
 import Button from 'grommet-udacity/components/Button';
+import Article from 'grommet-udacity/components/Article';
+import Menu from 'grommet-udacity/components/Menu';
 import SocialGithubIcon from 'grommet-udacity/components/icons/base/SocialGithub';
 import ViewIcon from 'grommet-udacity/components/icons/base/View';
 import { Divider, ProjectMeta } from 'components';
@@ -32,89 +34,92 @@ const Project = ({
         </Heading>
       </Box>
     </Hero>
-    <Section pad="large" primary>
-      <Heading align="center" className="heading">
-        About the Project
-      </Heading>
-      <Divider />
-      <Box align="center" justify="center" pad="large">
-        <Box className="card">
-          <Box pad="medium" align="center" className="main-text markdown-body">
-            <Markdown content={project.description} />
-          </Box>
-        </Box>
-      </Box>
-      <Footer align="center" justify="center">
-        <Button
-          label="View Live"
-          icon={<ViewIcon />}
-          style={{ marginRight: 10 }}
-          primary
-          href={project.projectUrl}
-        />
-        <Button
-          label="View Repo"
-          primary
-          icon={<SocialGithubIcon />}
-          href={project.repoUrl}
-        />
-      </Footer>
-    </Section>
-    <Section>
-      <Heading align="center" className="heading">
-        Milestones
-      </Heading>
-      <Divider />
-      <Box align="center" justify="center" pad="large">
-        <Box className="card">
-          <Box align="center" pad="medium" className="main-text markdown-body">
-            <Markdown content={project.milestones} />
-          </Box>
-        </Box>
-      </Box>
-    </Section>
-    {project.technicalReview && project.reviewerName &&
-      <Section>
+    <Section
+      primary
+      className="container"
+    >
+      <Article className="panel">
         <Heading align="center" className="heading">
-          Expert Technical Review
+          About the Project
         </Heading>
         <Divider />
-        <Box align="center" justify="center" pad="large">
-          <Box className="card" align="center">
-            <Box pad="medium" align="center" className="main-text markdown-body">
-              <Quote credit={`- ${project.reviewerName}`}>
-                <Markdown content={project.technicalReview} />
-              </Quote>
-            </Box>
-          </Box>
+        <Box pad="medium" align="center" className="main-text markdown-body">
+          <Markdown content={project.description} />
         </Box>
+        <Footer direction="row" align="center" justify="center">
+          <Menu inline responsive={false}>
+            <Button
+              label="View Live"
+              icon={<ViewIcon />}
+              className={styles.button}
+              primary
+              href={project.projectUrl}
+            />
+            <Button
+              label="View Repo"
+              primary
+              icon={<SocialGithubIcon />}
+              href={project.repoUrl}
+            />
+          </Menu>
+        </Footer>
+      </Article>
+    </Section>
+    <Section
+      className="container"
+    >
+      <Article className="panel">
+        <Heading align="center" className="heading">
+          Milestones
+        </Heading>
+        <Divider />
+        <Box align="center" pad="medium" className="main-text markdown-body">
+          <Markdown content={project.milestones} />
+        </Box>
+      </Article>
+    </Section>
+    {project.technicalReview && project.reviewerName &&
+      <Section
+        className="container"
+      >
+        <Article className="panel">
+          <Heading align="center" className="heading">
+            Expert Technical Review
+          </Heading>
+          <Divider />
+          <Box pad="medium" align="center" className="main-text markdown-body">
+            <Quote credit={`- ${project.reviewerName}`}>
+              <Markdown content={project.technicalReview} />
+            </Quote>
+          </Box>
+        </Article>
       </Section>
     }
-    <Section>
-      <Heading align="center" className="heading">
-        Technical Information
-      </Heading>
-      <Divider />
-      <Box align="center" justify="center" pad="large">
-        <Box className="card">
-          <Box align="center" pad="medium" className="main-text">
-            <Markdown content={project.technicalInformation} />
-          </Box>
+    <Section
+      className="container"
+    >
+      <Article className="panel">
+        <Heading align="center" className="heading">
+          Technical Information
+        </Heading>
+        <Divider />
+        <Box align="center" pad="medium" className="main-text">
+          <Markdown content={project.technicalInformation} />
         </Box>
-      </Box>
+      </Article>
     </Section>
-    <Section>
-      <Heading align="center" className="heading">
-        Design Patterns
-      </Heading>
-      <Divider />
-      <Box align="center" justify="center" pad="large">
-        <Box className="card">
-          <Box align="center" pad="medium" className="main-text">
-            <Markdown content={project.designPatterns} />
-          </Box>
+    <Section
+      className="container"
+    >
+      <Article className="panel">
+        <Heading align="center" className="heading">
+          Design Patterns
+        </Heading>
+        <Divider />
+        <Box align="center" pad="medium" className="main-text">
+          <Markdown content={project.designPatterns} />
         </Box>
-      </Box>
+      </Article>
     </Section>
     <ProjectMeta project={project} />
     {project.images && project.images.length > 0 &&

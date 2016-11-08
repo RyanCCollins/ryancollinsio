@@ -27,9 +27,16 @@ const SearchForm = ({
     icon={<Filter />}
   >
     <Box alignSelf="center" direction="column" colorIndex="light-1">
-      <Box direction="row" alignSelf="center" pad="medium" align="center">
+      <Box
+        direction="row"
+        responsive={false}
+        alignSelf="center"
+        pad="medium"
+        align="center"
+      >
         <Search
           inline
+          responsive={false}
           placeHolder="React, GraphQL, Rails, etc."
           value={searchTerm || ''}
           onDOMChange={onChange}
@@ -37,6 +44,7 @@ const SearchForm = ({
         {searchTerm !== '' &&
           <Button
             onClick={onClear}
+            className={styles.button}
             icon={<CloseIcon />}
           />
         }

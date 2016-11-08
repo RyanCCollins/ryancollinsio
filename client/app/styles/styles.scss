@@ -6,6 +6,10 @@
   min-height: 100vh;
 }
 
+.main-content {
+  padding-bottom: 60px;
+}
+
 a.navLink {
   position: relative;
   &:hover:before {
@@ -66,6 +70,9 @@ a.active {
     line-height: 1.75rem;
     letter-spacing: 1.3px;
     font-family: 'Merriweather', serif;
+    @media screen and (max-width: 600px) {
+      padding: 10px 10px;
+    }
   }
 }
 
@@ -172,6 +179,14 @@ a.active {
   height: 50px;
 }
 
+
+.avatar-box {
+  margin-right: 40px;
+  @media screen and (max-width: 600px) {
+    margin-right: 0;
+  }
+}
+
 .panel {
   width: 100%;
   background: #fff;
@@ -179,7 +194,13 @@ a.active {
   border: 1px solid #dbe2e8;
   max-width: 100vw;
   box-sizing: border-box;
-  padding: 60px 60px !important;
+  padding: 60px 120px !important;
+  @media screen and (max-width: 768px) {
+    padding: 60px 60px !important;
+  }
+  @media screen and (max-width: 600px) {
+    padding: 30px 20px !important;
+  }
 }
 
 
@@ -290,6 +311,13 @@ textarea {
   font-size: 16px;
   line-height: 1.5;
   word-wrap: break-word;
+  div {
+    width: 100%;
+  }
+}
+
+.grommet p:not(.grommetux-paragraph) {
+  max-width: 776px;
 }
 
 .markdown-body .pl-c {
@@ -575,6 +603,25 @@ textarea {
 .markdown-body ol ul ol,
 .markdown-body ol ol ol {
   list-style-type: lower-alpha;
+}
+
+.markdown-body ul li {
+  position: relative;
+  font-size: 16px;
+  line-height: 1.75rem;
+  letter-spacing: 1.3px;
+  font-family: 'Merriweather', serif;
+  color: #666;
+}
+
+.markdown-body ul li:before {
+  content: '✭';
+  margin: 0 1em;
+  display: inline-block;
+  position: absolute;
+  left: -40px;
+  padding: 10px 0;
+  top: -12px;
 }
 
 .markdown-body dd {
