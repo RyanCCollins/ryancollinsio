@@ -48,10 +48,13 @@ app.use((req, res) => {
           </ApolloProvider>
         );
         getDataFromTree(component).then((context) => {
+          const css = new Set();
+          const context = { insertCss: (...styles) => styles.forEach(style => css.add(style._getCss())) };
           const content = renderToString(component)
           const html = (
             <Html
               content={content}
+              css={css}
               scriptHash="f375fff097121d20a81e"
               vendorHash="c53e7dcfef3bf0286228"
               cssHash="7debbdcb7faf2e6bea67e74a0c9c6a4c"

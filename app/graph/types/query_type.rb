@@ -112,7 +112,7 @@ QueryType = GraphQL::ObjectType.define do
       if args[:slug]
         Tutorial.find_by(slug: args[:slug])
       else
-        Tutorial.finb_by(id: args[:id])
+        Tutorial.find_by(id: args[:id])
       end
     end
   end

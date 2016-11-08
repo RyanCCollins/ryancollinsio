@@ -17,7 +17,8 @@
     "test": {
       "plugins": [
         [
-          "babel-plugin-webpack-loaders", {
+          "babel-plugin-webpack-loaders",
+          {
             "config": "./config/testing/webpack.test.config.js",
             "verbose": false
           }
@@ -107,6 +108,7 @@
     "html-webpack-plugin": "^2.7.1",
     "immutable": "^3.8.1",
     "isomorphic-fetch": "^2.2.0",
+    "isomorphic-style-loader": "^1.1.0",
     "jest": "^15.1.1",
     "jest-cli": "^15.1.1",
     "json-loader": "^0.5.4",
