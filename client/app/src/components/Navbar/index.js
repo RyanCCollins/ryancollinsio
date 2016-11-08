@@ -2,8 +2,6 @@ import React, { PropTypes } from 'react';
 import Header from 'grommet-udacity/components/Header';
 import Menu from 'grommet-udacity/components/Menu';
 import Anchor from 'grommet-udacity/components/Anchor';
-import styles from './index.inline.scss';
-import cssModules from 'react-css-modules';
 import { SessionMenu, NavTitle } from 'components';
 
 const Navbar = ({
@@ -11,11 +9,11 @@ const Navbar = ({
   navLinks,
   user,
 }) => (
-  <div className={styles.navbar}>
+  <nav>
     <Header justify="between">
       <NavTitle />
       <Menu
-        className={styles.rightMenu}
+        style={{ flex: 1, justifyContent: 'flex-end', marginRight: 20 }}
         direction="row"
         align="center"
         responsive={false}
@@ -32,7 +30,7 @@ const Navbar = ({
       </Menu>
       <SessionMenu pathname={pathname} user={user} />
     </Header>
-  </div>
+  </nav>
 );
 
 Navbar.propTypes = {
@@ -40,5 +38,4 @@ Navbar.propTypes = {
   pathname: PropTypes.string.isRequired,
 };
 
-const Container = cssModules(Navbar, styles);
-export default Container;
+export default Navbar;
