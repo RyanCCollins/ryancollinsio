@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import Header from 'grommet-udacity/components/Header';
 import Menu from 'grommet-udacity/components/Menu';
 import Anchor from 'grommet-udacity/components/Anchor';
-import styles from './index.module.scss';
+import styles from './index.inline.scss';
 import cssModules from 'react-css-modules';
 import { SessionMenu, NavTitle } from 'components';
 

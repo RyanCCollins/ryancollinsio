@@ -52,9 +52,9 @@ app.use((req, res) => {
           const html = (
             <Html
               content={content}
-              scriptHash="4d847041881648ed385d"
-              vendorHash="26f30c02ceb5d380f7f9"
-              cssHash="49d244d29913a56bbffc2cd38ea6a4f1"
+              scriptHash="f375fff097121d20a81e"
+              vendorHash="c53e7dcfef3bf0286228"
+              cssHash="7debbdcb7faf2e6bea67e74a0c9c6a4c"
               state={{ data: context.store.getState().apollo.data }}
             />
           );
