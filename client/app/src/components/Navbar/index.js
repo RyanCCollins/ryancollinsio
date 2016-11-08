@@ -4,7 +4,6 @@ import Menu from 'grommet-udacity/components/Menu';
 import Anchor from 'grommet-udacity/components/Anchor';
 import styles from './index.inline.scss';
 import cssModules from 'react-css-modules';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { SessionMenu, NavTitle } from 'components';
 
 const Navbar = ({
@@ -42,4 +41,4 @@ Navbar.propTypes = {
 };
 
 const Container = cssModules(Navbar, styles);
-export default withStyles(styles)(Container);
+export default Container;
