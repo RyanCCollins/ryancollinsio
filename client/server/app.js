@@ -41,14 +41,14 @@ app.use((req, res) => {
             headers: req.headers,
           }),
         });
+        const css = new Set();
+        const context = { insertCss: (...styles) => styles.forEach(style => css.add(style._getCss())) };
         const component = (
-          <ApolloProvider client={client} store={store}>
+          <ApolloProvider client={client} store={store} context={context}>
             <RouterContext {...renderProps} />
           </ApolloProvider>
         );
-        getDataFromTree(component).then((_context) => {
-          const css = new Set();
-          const context = { ..._context, insertCss: (...styles) => styles.forEach(style => css.add(style._getCss())) };
+        getDataFromTree(component).then((context) => {
           const content = renderToString(component)
           const html = (
             <Html
