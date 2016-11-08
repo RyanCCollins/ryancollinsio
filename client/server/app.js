@@ -33,7 +33,6 @@ app.use((req, res) => {
         console.error('ROUTER ERROR:', error); // eslint-disable-line no-console
         res.status(500);
       } else if (renderProps) {
-        console.log(`Called match with renderProps: ${renderProps}`);
         const client = createApolloClient({
           ssrMode: true,
           networkInterface: createNetworkInterface({
@@ -47,9 +46,9 @@ app.use((req, res) => {
             <RouterContext {...renderProps} />
           </ApolloProvider>
         );
-        getDataFromTree(component).then((context) => {
+        getDataFromTree(component).then((_context) => {
           const css = new Set();
-          const context = { insertCss: (...styles) => styles.forEach(style => css.add(style._getCss())) };
+          const context = { ..._context, insertCss: (...styles) => styles.forEach(style => css.add(style._getCss())) };
           const content = renderToString(component)
           const html = (
             <Html
