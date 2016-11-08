@@ -32,7 +32,7 @@ const ProjectMeta = ({
       <Box className="container">
         <Article className="panel">
           <Heading align="center">
-            Share this Article
+            Share this Project
           </Heading>
           <Divider />
           <Box align="center">

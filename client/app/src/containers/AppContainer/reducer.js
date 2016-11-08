@@ -6,6 +6,7 @@ export const initialState = {
   user: {
     authToken: null,
   },
+  navIsActive: false,
   navLinks: [
     {
       url: '/',
@@ -29,6 +30,12 @@ export const initialState = {
 const appContainerReducer =
   (state = initialState, action) => {
     switch (action.type) {
+      case types.APP_ON_TOGGLE_NAV:
+        return update(state, {
+          navIsActive: {
+            $set: !state.navIsActive,
+          },
+        });
       case types.APP_SET_MOBILE:
         return update(state, {
           isMobile: {

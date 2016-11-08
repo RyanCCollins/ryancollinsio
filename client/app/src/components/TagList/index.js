@@ -12,10 +12,9 @@ const TagList = ({
     {tags.map((tag, i) => {
       const s = i < tags.length - 1 ? `${seperator} ` : '';
       return (
-        <span>
+        <span key={i}>
           <Anchor
             label={`${tag.title}`}
-            key={i}
             className={i !== 0 ? styles.tagLinkWithMargin : styles.tagLink}
             href={`/blog/archive?tag=${encodeURIComponent(tag.title)}`}
           />

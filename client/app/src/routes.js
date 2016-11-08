@@ -93,7 +93,7 @@ export const routes = {
       },
     },
     {
-      path: '/tutorial/:slug',
+      path: '/tutorials/tutorial/:slug',
       getComponent(location, callback) {
         System.import('./pages/TutorialPage')  // eslint-disable-line block-scoped-var
           .then(loadRoute(callback))
@@ -102,7 +102,7 @@ export const routes = {
     },
 /* GENERATOR: Newly generated Routes go here */
     {
-      path: 'projects/:slug',
+      path: '/portfolio/projects/:slug',
       getComponent(location, callback) {
         System.import('./pages/ProjectPage') // eslint-disable-line block-scoped-var
           .then(loadRoute(callback))

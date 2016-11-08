@@ -25,13 +25,13 @@ const CommentFeed = ({
   user,
 }) => (
   <Section align="center" colorIndex="light-2">
-    <Heading align="center">
-      Comments
-    </Heading>
-    <Divider />
     {RichTextEditor != null && // eslint-disable-line
       <Box className="container">
         <Article className="panel">
+          <Heading align="center">
+            Comments
+          </Heading>
+          <Divider />
           <RichTextEditor
             value={value}
             onChange={(val) => onChange(val)}

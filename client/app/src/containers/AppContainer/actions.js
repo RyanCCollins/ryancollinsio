@@ -14,6 +14,10 @@ export const appSetMobile = (isMobile) => ({
   isMobile,
 });
 
+export const appToggleNav = () => ({
+  type: types.APP_ON_TOGGLE_NAV,
+});
+
 export const logoutUser = () => (dispatch) => {
   localStorage.setItem('user', null);
   dispatch(

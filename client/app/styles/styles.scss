@@ -24,6 +24,13 @@ a.navLink {
   }
 }
 
+.hero-image {
+  @media screen and (max-width: 768px) {
+    height: 200px;
+    width: 200px;
+  }
+}
+
 label {
   font-size: 20px !important;
 }
@@ -205,7 +212,13 @@ a.active {
   z-index: 30 !important;
 }
 
-body, html { overflow-x:hidden; }
+body, html {
+  overflow-x:hidden;
+}
+
+html {
+  overflow-y: hidden;
+}
 
 input, textarea {
   max-width: 380px;

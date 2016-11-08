@@ -148,7 +148,7 @@ const Container = cssModules(BlogContainer, styles);
 
 const loadPostsQuery = gql`
   query loadPosts {
-    posts {
+    posts(status: "published") {
       id
       title
       status

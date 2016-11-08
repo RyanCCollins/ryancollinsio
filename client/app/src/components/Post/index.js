@@ -18,9 +18,11 @@ const Post = ({
     <Hero
       backgroundImage={post.image}
     >
-      <Headline strong className={styles.headline} align="center">
-        {post.title}
-      </Headline>
+      <Box colorIndex="grey-1-a" pad="large" style={{ width: '100%' }}>
+        <Headline strong className={styles.headline} align="center">
+          {post.title}
+        </Headline>
+      </Box>
     </Hero>
     <Section
       className="container"

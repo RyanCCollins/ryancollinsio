@@ -15,6 +15,7 @@ const HeroSection = ({
     colorIndex="grey-1"
     justify="start"
     size="large"
+    backgroundImage="https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/texture-5.jpg?raw=true"
   >
     <Animate
       visible={image}
@@ -23,7 +24,7 @@ const HeroSection = ({
     >
       <Box>
         <img
-          className="spin-image"
+          className="spin-image hero-image"
           src="https://github.com/RyanCCollins/cdn/blob/master/ryancollinsio-v3/react.png?raw=true"
         />
       </Box>
@@ -33,15 +34,15 @@ const HeroSection = ({
       enter={{ animation: 'slide-up', duration: 2500 }}
       keep
     >
-      <Headline strong justify="end" style={{ flex: 1 }} className="lobster">
+      <Headline strong justify="end" style={{ flex: 1, color: 'white' }} className="lobster">
         Ryan Collins
       </Headline>
-      <Heading tag="h3" strong justify="end" className="lobster">
+      <Heading tag="h3" strong justify="end" style={{ color: 'white' }} className="lobster">
         Software Engineer
       </Heading>
     </Animate>
     <Footer>
-      <Button href="/contact" label="Get in Touch" />
+      <Button style={{ color: 'white' }} href="/contact" label="Get in Touch" />
     </Footer>
   </Hero>
 );

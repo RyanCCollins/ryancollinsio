@@ -66,6 +66,7 @@ LandingContainer.propTypes = {
 const mapStateToProps = (state) => ({
   image: state.landing.image,
   headline: state.landing.headline,
+  isMobile: state.app.isMobile,
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}

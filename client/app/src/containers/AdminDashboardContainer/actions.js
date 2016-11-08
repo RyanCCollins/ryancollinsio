@@ -44,7 +44,7 @@ export const editProject = (project) => (dispatch) => {
 
 export const showProject = (project) => (dispatch) => {
   dispatch(
-    push(`/projects/${project.slug}`)
+    push(`/portfolio/projects/${project.slug}`)
   );
 };
 

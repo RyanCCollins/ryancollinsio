@@ -15,7 +15,7 @@ import ListItem from 'grommet-udacity/components/ListItem';
 import Section from 'grommet-udacity/components/Section';
 import Anchor from 'grommet-udacity/components/Anchor';
 import Footer from 'grommet-udacity/components/Footer';
-import { Divider, WithLoading } from 'components';
+import { Divider, WithLoading, ResponsiveImage } from 'components';
 
 class TutorialsContainer extends Component { // eslint-disable-line react/prefer-stateless-function
   render() {
@@ -44,7 +44,11 @@ class TutorialsContainer extends Component { // eslint-disable-line react/prefer
                     <Heading align="center">
                       {tutorial.title}
                     </Heading>
-                    <img className={styles.image} src={tutorial.image} />
+                    <ResponsiveImage
+                      src={tutorial.image}
+                      matchHeight={false}
+                      className={styles.image}
+                    />
                     <Box>
                       <Paragraph>
                         {tutorial.description}
@@ -56,7 +60,11 @@ class TutorialsContainer extends Component { // eslint-disable-line react/prefer
                       </Paragraph>
                     </Box>
                     <Footer align="center" justify="center">
-                      <Anchor primary href={`/tutorial/${tutorial.slug}`} label="View Details" />
+                      <Anchor
+                        primary
+                        href={`/tutorials/tutorial/${tutorial.slug}`}
+                        label="View Details"
+                      />
                     </Footer>
                   </Box>
                 </ListItem>
@@ -91,7 +99,7 @@ const Container = cssModules(TutorialsContainer, styles);
 
 const tutorialsQuery = gql`
 query loadTutorials {
-  tutorials {
+  tutorials(status: "published") {
     link
     title
     description

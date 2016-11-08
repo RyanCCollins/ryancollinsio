@@ -92,7 +92,7 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
               >
                 {projects.map((project, i) =>
                   <Box className={styles.card} size="medium" key={i}>
-                    <Anchor href={`/projects/${project.slug}`}>
+                    <Anchor href={`/portfolio/projects/${project.slug}`}>
                       <ResponsiveImage
                         matchHeight={false}
                         src={project.featureImage}
@@ -155,7 +155,7 @@ const Container = cssModules(PortfolioContainer, styles);
 
 const getProjectsQuery = gql`
   query loadProjects {
-    projects {
+    projects(status: "published") {
       title
       status
       description
