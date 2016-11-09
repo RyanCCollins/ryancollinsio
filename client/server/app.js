@@ -58,9 +58,9 @@ app.use((req, res) => {
           const html = (
             <Html
               content={content}
-              scriptHash="e93fecffaf596d0fa9b1"
-              vendorHash="8e863fc3db84e5c542ab"
-              cssHash="9abd83ef4cdea3d747a1b7e4540f7ce2"
+              scriptHash="fc87bbb533f3acaf4428"
+              vendorHash="cbe00af115d6c858e7be"
+              cssHash="2b6bae49c1b33046b69147416d52b8e2"
               styles={styles}
               state={{ data: context.store.getState().apollo.data }}
             />
@@ -70,7 +70,7 @@ app.use((req, res) => {
       } else {
         res.status(404).send('Not found');
       }
-    })
+    });
 });
 
 app.listen(port, '0.0.0.0', (err) => {

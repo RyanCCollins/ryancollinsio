@@ -46,8 +46,8 @@ const Project = ({
         <Box pad="medium" align="center" className="main-text markdown-body">
           <Markdown content={project.description} />
         </Box>
-        <Footer direction="row" align="center" justify="center">
-          <Menu inline responsive={false}>
+        <Footer align="center" justify="center">
+          <Menu inline direction="row" responsive={false}>
             <Button
               label="View Live"
               icon={<ViewIcon />}
