@@ -53,11 +53,10 @@ const OpenSourceContributions = ({
   gitData,
 }) => (
   <Section
-    className="section"
-    colorIndex="light-2"
     full="horizontal"
     align="center"
     justify="center"
+    className={cn(styles.section, 'section')}
   >
     <Headline align="center" className="heading">
       Open Source Contributions
@@ -71,6 +70,7 @@ const OpenSourceContributions = ({
           <div
             key={i}
             className={cn(
+              styles.timeLineItem,
               'timeline-item',
               i % 2 === 0 ? 'timeline-item--odd' : 'timeline-item--even'
             )}

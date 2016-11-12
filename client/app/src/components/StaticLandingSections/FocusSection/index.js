@@ -57,8 +57,8 @@ const FocusSection = ({
     <Footer align="center" justify="center" pad="large">
       <Button
         primary
-        href="https://github.com/ryanccollins"
-        label="View Open Source"
+        href="https://medium.com/@ryancollinsio"
+        label="Follow Me on Medium"
       />
     </Footer>
   </Section>

@@ -1110,6 +1110,7 @@ textarea {
       width: 20px;
       &:after {
         margin-left: -0.5em;
+        left: 0;
       }
     }
   }
@@ -1145,6 +1146,7 @@ textarea {
     .timeline-item-node {
       left: 0;
       &:after {
+        left: 0;
         margin-left: -0.5em;
       }
     }

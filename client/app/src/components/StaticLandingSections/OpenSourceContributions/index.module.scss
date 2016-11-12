@@ -1,4 +1,6 @@
 .container {
+  padding-top: 3em;
+  padding-bottom: 3em;
   margin-right: auto;
   margin-left: auto;
   padding-left: 15px;
@@ -12,4 +14,14 @@
   @media (min-width: 1200px) {
     width: 1170px;
   }
+}
+
+.timeLineItem {
+  min-height: 200px;
+}
+
+.section {
+  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+  background-color: #fafbfc;
 }
