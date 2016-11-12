@@ -41,6 +41,7 @@ class LandingContainer extends Component {
       gitData,
       loadingData,
       errorLoadingData,
+      actions,
     } = this.props;
     return (
       <Box
@@ -57,6 +58,7 @@ class LandingContainer extends Component {
           gitData={gitData}
           isLoading={loadingData}
           error={errorLoadingData}
+          onClearError={actions.clearLandingError}
         />
         <ReferencesSection references={references} isLoading={isLoading} />
         <TechStackSection techItems={techstack} />

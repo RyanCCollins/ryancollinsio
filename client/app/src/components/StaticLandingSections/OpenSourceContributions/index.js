@@ -10,7 +10,7 @@ import Heading from 'grommet-udacity/components/Heading';
 import Anchor from 'grommet-udacity/components/Anchor';
 import List from 'grommet-udacity/components/List';
 import ListItem from 'grommet-udacity/components/ListItem';
-import { Divider } from 'components';
+import { Divider, WithLoading, WithToast } from 'components';
 import cn from 'classnames';
 
 const CommitsList = ({ commits }) => (
@@ -51,53 +51,66 @@ const CommitHeading = ({ item }) => (
 
 const OpenSourceContributions = ({
   gitData,
+  isLoading,
+  error,
+  onClearError,
 }) => (
-  <Section
-    full="horizontal"
-    align="center"
-    justify="center"
-    className={cn(styles.section, 'section')}
-  >
-    <Headline align="center" className="heading">
-      Open Source Contributions
-    </Headline>
-    <Divider />
-    <Box className={styles.container}>
-      <div className="timeline">
-        <div className="timeline-path" />
-        <div className="timeline-item--offset" />
-        {gitData && gitData.length > 0 && gitData.map((item, i) =>
-          <div
-            key={i}
-            className={cn(
-              styles.timeLineItem,
-              'timeline-item',
-              i % 2 === 0 ? 'timeline-item--odd' : 'timeline-item--even'
+  <WithLoading isLoading={isLoading}>
+    <WithToast
+      error={error}
+      onClose={onClearError}
+    >
+      <Section
+        full="horizontal"
+        align="center"
+        justify="center"
+        className={cn(styles.section, 'section')}
+      >
+        <Headline align="center" className="heading">
+          Open Source Contributions
+        </Headline>
+        <Divider />
+        <Box className={styles.container}>
+          <div className="timeline">
+            <div className="timeline-path" />
+            <div className="timeline-item--offset" />
+            {gitData && gitData.length > 0 && gitData.map((item, i) =>
+              <div
+                key={i}
+                className={cn(
+                  styles.timeLineItem,
+                  'timeline-item',
+                  i % 2 === 0 ? 'timeline-item--odd' : 'timeline-item--even'
+                )}
+              >
+                <div className="timeline-item-node" />
+                <div className="timeline-item-inner">
+                  <CommitHeading item={item} />
+                  {item.payload.commits &&
+                    <CommitsList commits={item.payload.commits} />
+                  }
+                </div>
+              </div>
             )}
-          >
-            <div className="timeline-item-node" />
-            <div className="timeline-item-inner">
-              <CommitHeading item={item} />
-              {item.payload.commits &&
-                <CommitsList commits={item.payload.commits} />
-              }
-            </div>
           </div>
-        )}
-      </div>
-    </Box>
-    <Footer align="center" justify="center" pad="large">
-      <Button
-        primary
-        href="https://github.com/ryanccollins"
-        label="View Open Source"
-      />
-    </Footer>
-  </Section>
+        </Box>
+        <Footer align="center" justify="center" pad="large">
+          <Button
+            primary
+            href="https://github.com/ryanccollins"
+            label="View Open Source"
+          />
+        </Footer>
+      </Section>
+    </WithToast>
+  </WithLoading>
 );
 
 OpenSourceContributions.propTypes = {
   gitData: PropTypes.array,
+  isLoading: PropTypes.bool.isRequired,
+  onClearError: PropTypes.func.isRequired,
+  error: PropTypes.object,
 };
 
 export default cssModules(OpenSourceContributions, styles);

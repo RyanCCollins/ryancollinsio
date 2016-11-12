@@ -21,6 +21,9 @@ export const performLandingAnimation = () => (dispatch) => {
   }, 2000);
 };
 
+export const clearLandingError = () => ({
+  type: types.CLEAR_LANDING_ERROR,
+});
 
 export const loadGitDataInitation = () => ({
   type: types.LOAD_GIT_DATA_INITIATION,
@@ -35,7 +38,6 @@ export const loadGitDataFailure = (error) => ({
   type: types.LOAD_GIT_DATA_FAILURE,
   error,
 });
-
 
 export const loadGitData = () => (dispatch) => {
   dispatch(

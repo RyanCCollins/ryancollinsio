@@ -12,6 +12,11 @@ export const initialState = {
 const landingReducer =
   (state = initialState, action) => {
     switch (action.type) {
+      case types.CLEAR_LANDING_ERROR:
+        return {
+          ...state,
+          error: null,
+        };
       case types.LOAD_GIT_DATA_INITIATION:
         return {
           ...state,
