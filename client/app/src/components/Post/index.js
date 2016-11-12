@@ -19,7 +19,7 @@ const Post = ({
       backgroundImage={post.image}
     >
       <Box colorIndex="grey-1-a" pad="large" style={{ width: '100%' }}>
-        <Headline strong className={styles.headline} align="center">
+        <Headline className={styles.headline} align="center">
           {post.title}
         </Headline>
       </Box>

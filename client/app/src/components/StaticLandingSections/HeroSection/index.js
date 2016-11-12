@@ -15,7 +15,7 @@ const HeroSection = ({
     colorIndex="grey-1"
     justify="start"
     size="large"
-    backgroundImage="https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/texture-5.jpg?raw=true"
+    backgroundImage="https://github.com/RyanCCollins/cdn/blob/master/misc/pattern-2.png?raw=true"
   >
     <Animate
       visible={image}

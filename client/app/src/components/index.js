@@ -27,6 +27,7 @@ export MilestonesSection from './StaticLandingSections/MilestonesSection';
 export FocusSection from './StaticLandingSections/FocusSection';
 export SummarySection from './StaticLandingSections/SummarySection';
 export HeroSection from './StaticLandingSections/HeroSection';
+export OpenSourceContributions from './StaticLandingSections/OpenSourceContributions';
 export PostMeta from './PostMeta';
 export CreatePostForm from './CreatePostForm';
 export AppFooter from './AppFooter';

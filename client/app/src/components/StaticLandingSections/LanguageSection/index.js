@@ -6,7 +6,7 @@ import Headline from 'grommet-udacity/components/Headline';
 import Box from 'grommet-udacity/components/Box';
 import Meter from 'grommet-udacity/components/Meter';
 import Value from 'grommet-udacity/components/Value';
-import Label from 'grommet-udacity/components/Label';
+import Heading from 'grommet-udacity/components/Heading';
 import Columns from 'grommet-udacity/components/Columns';
 import Footer from 'grommet-udacity/components/Footer';
 import Button from 'grommet-udacity/components/Button';
@@ -32,10 +32,14 @@ const LanguageSection = ({
             colorIndex="brand"
             value={language.value}
             label={
-              <Label>{language.label}</Label>
+              <Box align="center" direction="column">
+                <Value value={`${language.value}%`} size="medium" />
+                <Heading align="center" tag="h2" strong>
+                  {`${language.label} `}
+                </Heading>
+              </Box>
             }
           />
-          <Value value={language.value} />
         </Box>
       )}
     </Columns>

@@ -17,17 +17,17 @@ const languages = [
   {
     id: 3,
     label: 'Swift',
-    value: 92,
+    value: 90,
   },
   {
     id: 4,
     label: 'Elixir',
-    value: 83,
+    value: 70,
   },
   {
     id: 5,
-    label: 'Haskell',
-    value: 78,
+    label: 'Elm',
+    value: 68,
   },
 ];
 

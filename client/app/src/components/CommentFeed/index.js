@@ -46,7 +46,7 @@ const CommentFeed = ({
               label="Submit Comment"
               onClick={user && user.authToken ? onSubmit : null}
             />
-            {!user &&
+            {!user && !user.authToken &&
               <Label>
                 Must be <Link to="/login">logged in</Link> to comment.
               </Label>

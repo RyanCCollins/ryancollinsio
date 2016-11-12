@@ -7,17 +7,20 @@ import styles from './index.module.scss';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Box from 'grommet-udacity/components/Box';
+import { filteredGitDataSelector } from './selectors';
 import {
   milestones,
   summary,
   chartData,
   languages,
   techstack,
+  milestoneData,
 } from './data';
 import {
   HeroSection,
   SummarySection,
   FocusSection,
+  OpenSourceContributions,
   MilestonesSection,
   LanguageSection,
   ReferencesSection,
@@ -27,6 +30,7 @@ import {
 class LandingContainer extends Component {
   componentDidMount() {
     this.props.actions.performLandingAnimation();
+    this.props.actions.loadGitData();
   }
   render() {
     const {
@@ -34,6 +38,9 @@ class LandingContainer extends Component {
       headline,
       references,
       isLoading,
+      gitData,
+      loadingData,
+      errorLoadingData,
     } = this.props;
     return (
       <Box
@@ -43,9 +50,14 @@ class LandingContainer extends Component {
       >
         <HeroSection image={image} headline={headline} />
         <SummarySection summary={summary} />
-        <MilestonesSection milestones={milestones} />
+        <MilestonesSection milestones={milestones} data={milestoneData} />
         <LanguageSection languages={languages} />
         <FocusSection chartData={chartData} />
+        <OpenSourceContributions
+          gitData={gitData}
+          isLoading={loadingData}
+          error={errorLoadingData}
+        />
         <ReferencesSection references={references} isLoading={isLoading} />
         <TechStackSection techItems={techstack} />
       </Box>
@@ -60,6 +72,9 @@ LandingContainer.propTypes = {
   image: PropTypes.bool.isRequired,
   headline: PropTypes.bool.isRequired,
   references: PropTypes.array,
+  loadingData: PropTypes.bool.isRequired,
+  errorLoadingData: PropTypes.object,
+  gitData: PropTypes.array,
 };
 
 // mapStateToProps :: {State} -> {Props}
@@ -67,6 +82,9 @@ const mapStateToProps = (state) => ({
   image: state.landing.image,
   headline: state.landing.headline,
   isMobile: state.app.isMobile,
+  loadingData: state.landing.isLoading,
+  errorLoadingData: state.landing.error,
+  gitData: filteredGitDataSelector(state.landing),
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}

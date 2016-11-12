@@ -1004,3 +1004,149 @@ textarea {
 .markdown-body hr {
   border-bottom-color: #eee;
 }
+
+.timeline {
+  padding-bottom: 6em;
+  padding-top: 3em;
+  position: relative;
+  &:before {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    content: " ";
+    display: table;
+    clear: both;
+  }
+  &:before {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    content: " ";
+    display: table;
+    clear: both;
+  }
+}
+
+.timeline-path {
+  bottom: 0;
+  left: 50%;
+  background-color: rgba(0, 0, 0, 0.1);
+  margin-left: -0.125em;
+  position: absolute;
+  top: 0;
+  width: .25em;
+  z-index: 1;
+  &:before, &:after {
+    width: 1em;
+    height: 1em;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    content: "";
+    left: 50%;
+    margin-left: -0.5em;
+    position: absolute;
+    z-index: 3;
+  }
+  &:before {
+    top: -1em;
+  }
+  &:after {
+    bottom: -1em;
+  }
+}
+
+.timeline-item-node {
+  width: 10%;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 25px;
+  &:after {
+    -webkit-box-shadow: 0 0 0 4px #f7f7f7;
+    box-shadow: 0 0 0 4px #f7f7f7;
+    width: 1em;
+    height: 1em;
+    background-color: #f7f7f7;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    content: "";
+    margin-top: -0.5em;
+    position: absolute;
+    z-index: 3;
+  }
+}
+
+.timeline-item-inner {
+  background-color: white;
+  border-radius: .15em;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04), 0 2px 0 rgba(0, 0, 0, 0.04);
+  color: #555;
+  display: block;
+  padding: 1em;
+  &:hover, &:focus {
+    color: #555;
+    outline: none;
+    text-decoration: none;
+  }
+  &:hover h3, &:focus h3 {
+    text-decoration: underline;
+  }
+}
+
+@media (max-width: 767px) {
+  .timeline-path {
+    left: 5px;
+  }
+  .timeline-item {
+    margin-top: 30px;
+    position: relative;
+    float: right;
+    margin-left: 5px;
+    padding-left: 20px;
+    .timeline-item-node {
+      left: 0;
+      width: 20px;
+      &:after {
+        margin-left: -0.5em;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .timeline-item--offset {
+    float: right;
+    height: 6em;
+    width: 40%;
+  }
+  .timeline-item {
+    margin-top: 3em;
+    position: relative;
+    width: 50%;
+  }
+  .timeline-item--odd {
+    clear: left;
+    float: left;
+    padding-right: 5%;
+    .timeline-item-node {
+      right: 0;
+      &:after {
+        margin-right: -0.5em;
+        right: 0;
+      }
+    }
+  }
+  .timeline-item--even {
+    clear: right;
+    float: right;
+    padding-left: 5%;
+    .timeline-item-node {
+      left: 0;
+      &:after {
+        margin-left: -0.5em;
+      }
+    }
+  }
+}

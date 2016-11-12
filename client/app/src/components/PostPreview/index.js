@@ -26,7 +26,9 @@ const PostPreview = ({
         }
         label={post.author.name}
         thumbnail={
-          <ResponsiveImage src={post.image} matchHeight />
+          <Anchor href={`/blog/posts/${post.slug}`}>
+            <ResponsiveImage src={post.image} matchHeight />
+          </Anchor>
         }
         description={
           `${searchTerm ? formattedDescription.slice(0, 300) : post.body.slice(0, 300)}...`

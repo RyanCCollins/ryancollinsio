@@ -1,11 +1,5 @@
-
-/* eslint-disable */
-const isDeveloping = process.env.NODE_ENV !== 'production';
-const port = isDeveloping ? 1338 : process.env.PORT;
-const path = require('path');
-const express = require('express');
-const app = express();
-
+import express from 'express';
+import compression from 'compression';
 import morgan from 'morgan';
 import React from 'react';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
@@ -18,12 +12,17 @@ import { createNetworkInterface } from 'apollo-client';
 import Html from './utils/Html';
 import createApolloClient from './utils/create-apollo-client';
 
+const isDeveloping = process.env.NODE_ENV !== 'production';
+const port = isDeveloping ? 1338 : process.env.PORT;
+const app = express();
 const baseUrl = typeof process.env.BASE_URL !== 'undefined' ?
   process.env.BASE_URL : 'https://ryancollinsio.herokuapp.com/';
 const apiUrl = `${baseUrl}graphql`;
 
 app.use(morgan('combined'));
+app.use(compression());
 app.use(express.static(__dirname + '/public'));
+
 app.use((req, res) => {
   match({ routes, location: req.url },
     (error, redirectLocation, renderProps) => {
@@ -53,8 +52,8 @@ app.use((req, res) => {
             <RouterContext {...renderProps} />
           </ApolloProvider>
         );
-        getDataFromTree(component).then((context) => {
-          const content = renderToString(component)
+        getDataFromTree(component).then((ctx) => {
+          const content = renderToString(component);
           const html = (
             <Html
               content={content}
@@ -62,7 +61,7 @@ app.use((req, res) => {
               vendorHash="cbe00af115d6c858e7be"
               cssHash="2b6bae49c1b33046b69147416d52b8e2"
               styles={styles}
-              state={{ data: context.store.getState().apollo.data }}
+              state={{ data: ctx.store.getState().apollo.data }}
             />
           );
           res.status(200).send(`<!doctype html>\n${renderToStaticMarkup(html)}`);
@@ -75,7 +74,7 @@ app.use((req, res) => {
 
 app.listen(port, '0.0.0.0', (err) => {
   if (err) {
-    return console.warn(err);
+    return console.warn(err); // eslint-disable-line
   }
-  return console.info(`==> 😎 Listening on port ${port}. Open http://0.0.0.0:${port}/ in your browser.`);
+  return console.info(`==> 😎 Listening on port ${port}. Open http://localhost:${port}/ in your browser.`); // eslint-disable-line
 });
