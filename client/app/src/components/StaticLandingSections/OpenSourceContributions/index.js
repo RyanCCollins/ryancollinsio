@@ -18,7 +18,7 @@ const CommitsList = ({ commits }) => (
     {commits.map((item, i) =>
       <ListItem key={i}>
         <Anchor href={item.url}>
-          {`${item.sha.slice(0, 5)} - ${item.message.slice(0, 80)}`}
+          {`${item.sha.slice(0, 5)} - ${item.message.slice(0, 60)}`}
         </Anchor>
       </ListItem>
     )}
