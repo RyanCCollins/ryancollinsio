@@ -11,6 +11,7 @@ import { routes } from '../app/src/routes.js';
 import { createNetworkInterface } from 'apollo-client';
 import Html from './utils/Html';
 import createApolloClient from './utils/create-apollo-client';
+import manifest from './public/manifest.json';
 
 const isDeveloping = process.env.NODE_ENV !== 'production';
 const port = isDeveloping ? 1338 : process.env.PORT;
@@ -57,9 +58,9 @@ app.use((req, res) => {
           const html = (
             <Html
               content={content}
-              scriptHash="fc87bbb533f3acaf4428"
-              vendorHash="cbe00af115d6c858e7be"
-              cssHash="2b6bae49c1b33046b69147416d52b8e2"
+              scriptHash={manifest['/main.js']}
+              vendorHash={manifest['/vendor.js']}
+              cssHash={manifest['/main.css']}
               styles={styles}
               state={{ data: ctx.store.getState().apollo.data }}
             />

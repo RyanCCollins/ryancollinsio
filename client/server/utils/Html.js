@@ -31,13 +31,13 @@ function Html({ content, state, scriptHash, vendorHash, cssHash, styles }) {
         <meta name="theme-color" content="#ffffff" />
         <title>RyanCollins.io</title>
         <link href="https://fonts.googleapis.com/css?family=Oswald|Merriweather" rel="stylesheet" type="text/css" />
-        <script src={`/vendor.${vendorHash}.js`} type="text/javascript" />
-        <link href={`/main.${cssHash}.css`} rel="stylesheet" />
+        <script src={`${vendorHash}`} type="text/javascript" />
+        <link href={`${cssHash}`} rel="stylesheet" />
         <style type="text/css">{styles}</style>
       </head>
       <body>
         <div id="app" dangerouslySetInnerHTML={{ __html: content }} />
-        <script src={`/main.${scriptHash}.js`} charSet="UTF-8" />
+        <script src={`${scriptHash}`} charSet="UTF-8" />
         <script
           dangerouslySetInnerHTML={{ __html: `window.__APOLLO_STATE__=${JSON.stringify(state)};` }}
           charSet="UTF-8"
