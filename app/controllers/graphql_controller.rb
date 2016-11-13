@@ -9,7 +9,9 @@ class GraphqlController < ApplicationController
     result = CapstoneSchema.execute(
       query_string,
       variables: query_variables,
-      context: { }
+      context: {
+        optics_agent: env[:optics_agent].with_document(query_string)
+      }
     )
     render json: result
   end
