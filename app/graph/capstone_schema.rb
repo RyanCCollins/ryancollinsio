@@ -1,4 +1,4 @@
-CapstoneSchema = GraphQL::Schema.new(
+CapstoneSchema = GraphQL::Schema.define(
   query: QueryType,
   mutation: MutationType
 )
