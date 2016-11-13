@@ -1,4 +1,4 @@
-optics_agent = OpticAgent::Agent.new
+optics_agent = OpticsAgent::Agent.new
 optics_agent.configure do
   schema CapstoneSchema
   api_key ENV['OPTICS_API_KEY']
