@@ -19,7 +19,8 @@
     "production": {
       "plugins": [
         [
-          "babel-plugin-webpack-alias", {
+          "babel-plugin-webpack-alias",
+          {
             "config": "./webpack.config.prod.js"
           }
         ]
@@ -28,7 +29,8 @@
     "test": {
       "plugins": [
         [
-          "babel-plugin-webpack-loaders", {
+          "babel-plugin-webpack-loaders",
+          {
             "config": "./config/testing/webpack.test.config.js",
             "verbose": false
           }
@@ -106,6 +108,7 @@
     "babel-preset-stage-0": "^6.3.13",
     "babel-register": "^6.16.3",
     "components": "^0.1.0",
+    "compression": "^1.6.2",
     "css-loader": "^0.23.0",
     "expect": "^1.20.2",
     "expect-jsx": "^2.6.0",
