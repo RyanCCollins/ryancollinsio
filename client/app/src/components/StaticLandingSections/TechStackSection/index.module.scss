@@ -17,6 +17,9 @@
     transform: scale(1.0);
     transition: transform 5s;
   }
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+  }
 }
 
 .techStackWrapper {
@@ -76,4 +79,8 @@
     opacity: 1.0;
     transition: opacity 1s;
   }
+}
+
+.heading {
+  margin-right: 10px;
 }

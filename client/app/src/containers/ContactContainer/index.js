@@ -45,6 +45,9 @@ class ContactContainer extends Component {
       const message = 'Thanks so much for contacting me!' +
         '  I will get back with you as soon as possible';
       actions.contactSuccess(message);
+      setTimeout(() => {
+        this.props.history.goBack();
+      }, 2000);
     }).catch((err) => {
       actions.contactFailure(err);
     });
@@ -73,13 +76,13 @@ class ContactContainer extends Component {
           onClose={(type) => actions.clearContactToast(type)}
         >
           <WithLoading isLoading={isLoading || isSubmitting}>
-            <Section align="center" justify="center">
-              <Headline align="center">
+            <Section align="center" justify="center" className={styles.sectionOne}>
+              <Headline align="center" className="heading">
                 Contact Me
               </Headline>
               <Divider />
             </Section>
-            <Section pad={{ horizontal: 'large' }} align="center">
+            <Section pad={{ horizontal: 'large' }} align="center" className={styles.sectionTwo}>
               <ContactForm
                 {...fields}
                 categories={categories}
@@ -104,6 +107,7 @@ ContactContainer.propTypes = {
   message: PropTypes.string,
   errorLoading: PropTypes.object,
   categories: PropTypes.array.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
 // mapStateToProps :: {State} -> {Props}

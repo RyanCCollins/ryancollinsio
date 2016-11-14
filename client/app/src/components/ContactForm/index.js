@@ -106,6 +106,7 @@ const ContactForm = ({
         label="Message"
         className={styles.formField}
         htmlFor="message-input"
+        error={calculatedError(messageInput)}
       >
         <MarkdownInput
           required

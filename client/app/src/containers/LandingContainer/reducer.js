@@ -8,11 +8,17 @@ export const initialState = {
   gitData: null,
   isLoading: false,
   error: null,
+  isHovered: false,
 };
 
 const landingReducer =
   (state = initialState, action) => {
     switch (action.type) {
+      case types.TOGGLE_LANDING_LOGO_HOVERED:
+        return {
+          ...state,
+          isHovered: !state.isHovered,
+        };
       case types.CLEAR_LANDING_ERROR:
         return {
           ...state,

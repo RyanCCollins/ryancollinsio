@@ -28,7 +28,7 @@ const TechStackSection = ({
         {techItems && techItems.length > 0 && techItems.map((item, i) =>
           <div key={i} className={styles.techStackItem}>
             <img src={item.url} className={styles.techStackImageWrapper} />
-            <Heading>
+            <Heading className={styles.heading}>
               {item.label}
             </Heading>
             <div className={styles.techStackItemOverlay}>

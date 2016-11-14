@@ -38,12 +38,12 @@ const AppFooter = () => (
         </a>
         {' '}Take a peak at the{' '}
         <br />
-        <Anchor
+        <a
           className={styles.footerAnchor}
           href="https://github.com/RyanCCollins/ryancollinsio"
         >
           source code.
-        </Anchor>
+        </a>
       </Heading>
       <Box align="center" justify="center" pad="medium">
         <Button

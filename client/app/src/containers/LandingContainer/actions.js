@@ -64,3 +64,16 @@ export const loadGitData = () => (dispatch) => {
       );
     });
 };
+
+export const toggleLogoHovered = () => ({
+  type: types.TOGGLE_LANDING_LOGO_HOVERED,
+});
+
+export const cycleThroughLogoHovered = () => (dispatch) => {
+  dispatch(toggleLogoHovered());
+  setInterval(() => {
+    dispatch(
+      toggleLogoHovered()
+    );
+  }, 8000);
+};

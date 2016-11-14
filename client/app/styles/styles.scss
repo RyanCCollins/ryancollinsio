@@ -10,6 +10,10 @@
   padding-bottom: 60px;
 }
 
+.section__last {
+  padding-bottom: 200px;
+}
+
 a.navLink {
   position: relative;
   &:hover:before {
@@ -27,6 +31,8 @@ a.navLink {
     transform: scaleX(0);
   }
 }
+
+@keyframes fadeInAnimation { from { opacity:0; } to { opacity:1; } }
 
 .hero-image {
   @media screen and (max-width: 768px) {
@@ -98,52 +104,6 @@ a.active {
   animation-iteration-count:infinite;
   animation-timing-function:linear;
 }
-
-$color: #469898;
-
-%center{
-  background-image: radial-gradient(circle farthest-corner at 120px 45px , $color 0, $color 10px, transparent 12px);
-}
-
-%main-circle{
-  content:'';
-  width: 240px;
-  height: 90px;
-  border: 10px solid $color;
-  border-radius:100%;
-  position: absolute;
-}
-
-.react{
-  margin: 150px auto;
-  position: relative;
-  @extend %main-circle;
-  @extend %center;
-  @include spin(1);
-  transform:scale(0.8, 0.8);
-  &:before, &:after{
-    @extend %main-circle;
-    @include spin(1);
-    top:-10px;
-    left:-10px;
-  }
-  &:before{
-    transform:rotate(60deg);
-    animation-delay:0.5s;
-  }
-  &:after{
-    transform:rotate(-60deg);
-    animation-delay:1.0s;
-  }
-}
-
-@keyframes spin-1{
-  20%{border-top:0px;}
-  40%{border-right:0px; opacity:0.7}
-  60%{border-bottom: 0px;}
-  90%{border-left: 0px;}
-}
-
 
 .spin-image {
   -webkit-animation-name: spin;
@@ -1162,7 +1122,6 @@ textarea {
   .timeline-item {
     margin-top: 30px;
     position: relative;
-    float: right;
     margin-left: 5px;
     padding-left: 20px;
     .timeline-item-node {
@@ -1210,5 +1169,22 @@ textarea {
         margin-left: -0.5em;
       }
     }
+  }
+}
+
+.Typist .Cursor--blinking {
+  opacity: 1;
+  animation: blink 1s linear infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

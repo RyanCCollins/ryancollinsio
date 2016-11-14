@@ -10,6 +10,7 @@ import List from 'grommet-udacity/components/List';
 import ListItem from 'grommet-udacity/components/ListItem';
 import Label from 'grommet-udacity/components/Label';
 import { Comment, Divider } from 'components';
+import Status from 'grommet-udacity/components/icons/Status';
 import { Link } from 'react-router';
 let RichTextEditor;
 if (typeof window !== 'undefined') {
@@ -24,7 +25,7 @@ const CommentFeed = ({
   onUpvote,
   user,
 }) => (
-  <Section align="center" colorIndex="light-2">
+  <Section align="center" colorIndex="light-2" className="section__last">
     {RichTextEditor != null && // eslint-disable-line
       <Box className="container">
         <Article className="panel">
@@ -46,9 +47,15 @@ const CommentFeed = ({
               label="Submit Comment"
               onClick={user && user.authToken ? onSubmit : null}
             />
-            {!user && !user.authToken &&
+            {!(user && user.authToken) &&
               <Label>
-                Must be <Link to="/login">logged in</Link> to comment.
+                <Status
+                  a11yTitle="Please Login to Comment"
+                  value="critical"
+                />
+                <span style={{ marginLeft: 10 }}>
+                  Must be <Link to="/login">logged in</Link> to comment.
+                </span>
               </Label>
             }
           </Footer>

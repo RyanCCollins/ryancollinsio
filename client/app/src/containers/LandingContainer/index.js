@@ -31,6 +31,7 @@ class LandingContainer extends Component {
   componentDidMount() {
     this.props.actions.performLandingAnimation();
     this.props.actions.loadGitData();
+    this.props.actions.cycleThroughLogoHovered();
   }
   render() {
     const {
@@ -43,6 +44,7 @@ class LandingContainer extends Component {
       loadingData,
       errorLoadingData,
       actions,
+      isHovered,
     } = this.props;
     return (
       <Box
@@ -50,7 +52,7 @@ class LandingContainer extends Component {
         justify="center"
         className={styles.landing}
       >
-        <HeroSection button={button} image={image} headline={headline} />
+        <HeroSection isHovered={isHovered} button={button} image={image} headline={headline} />
         <SummarySection summary={summary} />
         <MilestonesSection milestones={milestones} data={milestoneData} />
         <LanguageSection languages={languages} />
@@ -79,6 +81,7 @@ LandingContainer.propTypes = {
   errorLoadingData: PropTypes.object,
   gitData: PropTypes.array,
   button: PropTypes.bool.isRequired,
+  isHovered: PropTypes.bool.isRequired,
 };
 
 // mapStateToProps :: {State} -> {Props}
@@ -87,6 +90,7 @@ const mapStateToProps = (state) => ({
   headline: state.landing.headline,
   isMobile: state.app.isMobile,
   loadingData: state.landing.isLoading,
+  isHovered: state.landing.isHovered,
   errorLoadingData: state.landing.error,
   button: state.landing.button,
   gitData: filteredGitDataSelector(state.landing),

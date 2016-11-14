@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
 import Anchor from 'grommet-udacity/components/Anchor';

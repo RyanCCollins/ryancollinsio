@@ -18,6 +18,9 @@
 
 .timeLineItem {
   min-height: 200px;
+  @media screen and (max-width: 767px) {
+    min-height: 0;
+  }
 }
 
 .section {

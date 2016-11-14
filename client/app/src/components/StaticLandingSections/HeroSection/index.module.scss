@@ -1,0 +1,97 @@
+$main-color: rgba(255, 255, 255, 0.7);
+
+.logoImageWrapper {
+  position: absolute;
+  top: 65px;
+  margin-left: auto;
+  margin-right: auto;
+  left: calc(50% - 35px);
+  width: 77px !important;
+}
+
+.headingText {
+  flex: 1;
+}
+
+.mainText {
+  color: $main-color !important;
+}
+
+.footer {
+  margin-top: 20px;
+}
+
+.button {
+  color: $main-color !important;
+  border-color: $main-color !important;
+  @media screen and (min-width: 768px) {
+    width: 250px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px !important;
+  }
+}
+
+.reactLogo {
+  width:200px;
+  height:200px;
+  transition: 2s !important;
+}
+
+.hovered {
+  transform:rotate(360deg);
+}
+
+.reactLogo:hover {
+  transform:rotate(360deg);
+}
+
+.reactLogo::before{
+  transform: rotate(60deg);
+}
+
+.reactLogo::after{
+  transform: rotate(-60deg);
+}
+
+.reactive,
+.reactLogo::before,
+.reactLogo::after {
+  width:175px;
+  height:60px;
+  border:8px solid $main-color;
+  border-radius: 50%;
+  content:' ';
+  display:block;
+}
+
+.logo {
+  position: relative;
+  height: 200px;
+  width: 200px;
+}
+
+.reactive::before {
+  width:30px;
+  height:30px;
+  content:' ';
+  display:block;
+  background-color: $main-color;
+  border-radius:50%;
+}
+
+.reactLogo,
+.reactive,
+.reactive::before,
+.reactLogo::before,
+.reactLogo::after {
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  margin: auto;
+  transition: .3s;
+}
