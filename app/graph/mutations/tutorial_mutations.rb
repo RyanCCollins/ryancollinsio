@@ -6,7 +6,7 @@ module TutorialMutations
     input_field :tutorial, TutorialInputType
 
     return_field :tutorial, TutorialType
-    resolve -> (inputs, ctx) do
+    resolve -> (_object, inputs, _ctx) do
       user = User.find_by(auth_token: inputs[:auth_token])
       tutorial = user.tutorials.create(
         inputs[:tutorial].to_h
@@ -26,7 +26,7 @@ module TutorialMutations
     input_field :tutorial, TutorialInputType
 
     return_field :tutorial, TutorialType
-    resolve -> (inputs, ctx) do
+    resolve -> (_object, inputs, _ctx) do
       user = User.find_by(auth_token: inputs[:auth_token])
       tutorial = user.tutorials.update(inputs[:tutorial].to_h)
       if tutorial.save!
@@ -43,7 +43,7 @@ module TutorialMutations
     input_field :id, !types.ID
 
     return_field :deleted_id, !types.ID
-    resolve -> (inputs, ctx) do
+    resolve -> (_object, inputs, _ctx) do
       user = User.find_by(auth_token: inputs[:auth_token])
       tutorial = user.tutorials.find_by(id: inputs[:id])
       if tutorial.destroy!
@@ -61,7 +61,7 @@ module TutorialMutations
       input_field :auth_token, !types.String, 'The user auth token'
       input_field :tutorial_comment_id, !types.ID, 'The ID of the tutorial comment'
       return_field :total_votes, !types.Int, 'The new total number of votes'
-      resolve -> (inputs, ctx) do
+      resolve -> (_object, inputs, _ctx) do
         user = User.find_by(auth_token: inputs[:auth_token])
         comment = TutorialComment.find_by(id: inputs[:tutorial_comment_id])
         vote = TutorialCommentVote.new(
@@ -75,7 +75,7 @@ module TutorialMutations
         end
       end
     end
-    
+
     Create = GraphQL::Relay::Mutation.define do
       name 'CreateTutorialComment'
       description 'Create a Tutorial comment'
@@ -84,7 +84,7 @@ module TutorialMutations
       input_field :tutorial_id, !types.ID, 'The tutorial id'
 
       return_field :tutorial_comment, TutorialCommentType, 'The comment that was created'
-      resolve -> (inputs, ctx) do
+      resolve -> (_object, inputs, _ctx) do
         user = User.find_by(auth_token: inputs[:auth_token])
         tutorial = Tutorial.find_by(id: inputs[:tutorial_id])
         comment = TutorialComment.new(
@@ -107,7 +107,7 @@ module TutorialMutations
       input_field :comment_id, !types.ID, 'The comment id'
 
       return_field :tutorial_comment, TutorialCommentType, 'The comment that was created'
-      resolve -> (inputs, ctx) do
+      resolve -> (_object, inputs, _ctx) do
         user = User.find_by(auth_token: inputs[:auth_token])
         comment = user.tutorial_comments.find_by(id: inputs[:comment_id])
         if comment.update(inputs[:comment].to_h)
@@ -124,7 +124,7 @@ module TutorialMutations
       input_field :comment_id, !types.ID, 'The comment id'
 
       return_field :deleted_id, types.ID, 'The id of the comment that was deleted'
-      resolve -> (inputs, ctx) do
+      resolve -> (_object, inputs, _ctx) do
         user = User.find_by(auth_token: inputs[:auth_token])
         comment = user.tutorial_comments.find_by(id: inputs[:comment_id])
         if comment.destroy

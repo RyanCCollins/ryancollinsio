@@ -6,7 +6,7 @@ module ProjectMutations
     input_field :project, ProjectInputType
 
     return_field :project, ProjectType
-    resolve -> (inputs, ctx) do
+    resolve -> (_object, inputs, _ctx) do
       user = User.find_by(auth_token: inputs[:auth_token])
       project = user.projects.create(inputs[:project].to_h)
       if project.save!
@@ -24,7 +24,7 @@ module ProjectMutations
     input_field :project, ProjectInputType
 
     return_field :project, ProjectType
-    resolve -> (inputs, ctx) do
+    resolve -> (_object, inputs, _ctx) do
       user = User.find_by(auth_token: inputs[:auth_token])
       project = user.projects.update(inputs[:project].to_h)
       if project.save!
@@ -41,7 +41,7 @@ module ProjectMutations
     input_field :id, !types.ID
 
     return_field :deleted_id, !types.ID
-    resolve -> (inputs, ctx) do
+    resolve -> (_object, inputs, _ctx) do
       user = User.find_by(auth_token: inputs[:auth_token])
       project = user.projects.find_by(id: inputs[:id])
       if project.destroy!
@@ -72,7 +72,7 @@ module ProjectMutations
         end
       end
     end
-    
+
     Create = GraphQL::Relay::Mutation.define do
       name 'CreateProjectComment'
       description 'Create a Project comment'

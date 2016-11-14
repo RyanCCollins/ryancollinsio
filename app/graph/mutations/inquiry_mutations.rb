@@ -5,7 +5,7 @@ module InquiryMutations
     input_field :inquiry, InquiryInputType
     return_field :id, types.ID
 
-    resolve -> (inputs, _ctx) do
+    resolve -> (_object, inputs, _ctx) do
       parsed_inputs = inputs[:inquiry]
       inquiry = Inquiry.create(
         name: parsed_inputs[:name],

@@ -5,8 +5,8 @@ module UserMutations
     input_field :user_signup, UserSignupInputType
 
     return_field :user, AuthUserType
-    resolve -> (args, ctx) {
-      input_args = args[:user_signup]
+    resolve -> (_object, inputs, _ctx) do
+      input_args = inputs[:user_signup]
       @user = User.create(
         name: input_args[:name],
         email: input_args[:email],
@@ -18,7 +18,7 @@ module UserMutations
           user: @user
         }
       end
-    }
+    end
   end
   SignIn = GraphQL::Relay::Mutation.define do
     name 'SignIn'
@@ -27,9 +27,9 @@ module UserMutations
     input_field :password, !types.String
 
     return_field :user, AuthUserType
-    resolve -> (args, ctx) {
-      @user = User.find_for_database_authentication(email: args[:email])
-      if @user.valid_password?(args[:password])
+    resolve -> (_object, inputs, _ctx) do
+      @user = User.find_for_database_authentication(email: inputs[:email])
+      if @user.valid_password?(inputs[:password])
         {
           user: @user
         }
@@ -38,6 +38,6 @@ module UserMutations
           user: {}
         }
       end
-    }
+    end
   end
 end

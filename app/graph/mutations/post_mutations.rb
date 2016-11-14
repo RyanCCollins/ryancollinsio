@@ -5,7 +5,7 @@ module PostMutations
     input_field :auth_token, !types.String
     input_field :post, PostInputType
     return_field :post, PostType
-    resolve -> (inputs, ctx) do
+    resolve -> (_object, inputs, _ctx) do
       user = User.find_by(auth_token: inputs[:auth_token])
       post_inputs = inputs[:post]
       if inputs[:post][:tags]
@@ -35,7 +35,7 @@ module PostMutations
     input_field :id, !types.ID
     input_field :post, PostInputType
     return_field :post, PostType
-    resolve -> (inputs, ctx) do
+    resolve -> (_object, inputs, _ctx) do
       user = User.find_by(auth_token: inputs[:auth_token])
       post = user.posts.find_by(id: inputs[:id])
       if post.update(inputs[:post].to_h)
@@ -52,7 +52,7 @@ module PostMutations
     input_field :id, !types.ID
 
     return_field :deleted_id, types.ID
-    resolve -> (inputs, ctx) do
+    resolve -> (_object, inputs, _ctx) do
       user = User.find_by(auth_token: inputs[:auth_token])
       post = user.posts.find_by(id: inputs[:id])
       if post.destroy
@@ -71,7 +71,7 @@ module PostMutations
       input_field :auth_token, !types.String, 'The user auth token'
       input_field :post_comment_id, !types.ID, 'The ID of the post comment'
       return_field :total_votes, !types.Int, 'The new total number of votes'
-      resolve -> (inputs, ctx) do
+      resolve -> (_object, inputs, _ctx) do
         comment = PostComment.find_by(id: inputs[:post_comment_id])
         vote = PostCommentVote.new(
           user: User.find_by(auth_token: inputs[:auth_token]),
@@ -98,7 +98,7 @@ module PostMutations
       input_field :comment, CommentInputType, 'The post comment'
       input_field :post_id, !types.ID, 'The post id'
       return_field :post_comment, PostCommentType, 'The comment that was created'
-      resolve -> (inputs, ctx) do
+      resolve -> (_object, inputs, _ctx) do
         user = User.find_by(auth_token: inputs[:auth_token])
         post = Post.find_by(id: inputs[:post_id])
         comment = PostComment.new(
@@ -121,7 +121,7 @@ module PostMutations
       input_field :comment_id, !types.ID, 'The comment id'
 
       return_field :post_comment, PostCommentType, 'The comment that was created'
-      resolve -> (inputs, ctx) do
+      resolve -> (_object, inputs, _ctx) do
         user = User.find_by(auth_token: inputs[:auth_token])
         comment = user.post_comments.find_by(id: inputs[:comment_id])
         if comment.update(inputs[:comment].to_h)
@@ -143,7 +143,7 @@ module PostMutations
       input_field :comment_id, !types.ID, 'The comment id'
 
       return_field :deleted_id, types.ID, 'The id of the comment that was deleted'
-      resolve -> (inputs, ctx) do
+      resolve -> (_object, inputs, _ctx) do
         user = User.find_by(auth_token: inputs[:auth_token])
         comment = user.post_comments.find_by(id: inputs[:comment_id])
         if comment.destroy
