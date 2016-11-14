@@ -8,46 +8,53 @@ import Footer from 'grommet-udacity/components/Footer';
 import Button from 'grommet-udacity/components/Button';
 
 const HeroSection = ({
-  image,
   headline,
+  image,
+  button,
 }) => (
   <Hero
     colorIndex="grey-1"
-    justify="start"
+    justify="center"
     size="large"
     backgroundImage="https://github.com/RyanCCollins/cdn/blob/master/misc/pattern-2.png?raw=true"
   >
-    <Animate
-      visible={image}
-      enter={{ animation: 'slide-up', duration: 2500 }}
-      keep
-    >
-      <Box>
-        <img
-          className="spin-image hero-image"
-          src="https://github.com/RyanCCollins/cdn/blob/master/ryancollinsio-v3/react.png?raw=true"
-        />
-      </Box>
-    </Animate>
-    <Animate
-      visible={headline}
-      enter={{ animation: 'slide-up', duration: 2500 }}
-      keep
-    >
-      <Headline strong justify="end" style={{ flex: 1, color: 'white' }} className="lobster">
-        Ryan Collins
-      </Headline>
-      <Heading tag="h3" strong justify="end" style={{ color: 'white' }} className="lobster">
-        Software Engineer
-      </Heading>
-    </Animate>
-    <Footer>
-      <Button style={{ color: 'white' }} href="/contact" label="Get in Touch" />
-    </Footer>
+    <Box align="center" justify="center" style={{ width: '100%' }}>
+      <Animate
+        visible={image}
+        enter={{ animation: 'slide-up', duration: 1500 }}
+        keep
+      >
+        <div className="atomic">
+          <div className="react" />
+        </div>
+      </Animate>
+      <Animate
+        visible={headline}
+        enter={{ animation: 'slide-up', duration: 1500 }}
+        keep
+      >
+        <Headline strong align="center" style={{ flex: 1, color: 'white' }} className="lobster">
+          RyanCollins.io
+        </Headline>
+        <Heading tag="h3" strong align="center" style={{ color: 'white' }} className="lobster">
+          Software Engineer
+        </Heading>
+      </Animate>
+      <Animate
+        visible={button}
+        enter={{ animation: 'slide-up', duration: 1500 }}
+        keep
+      >
+        <Footer>
+          <Button style={{ color: 'white' }} href="/contact" label="Get in Touch" />
+        </Footer>
+      </Animate>
+    </Box>
   </Hero>
 );
 
 HeroSection.propTypes = {
+  button: PropTypes.bool.isRequired,
   image: PropTypes.bool.isRequired,
   headline: PropTypes.bool.isRequired,
 };

@@ -20,11 +20,11 @@ If this is confusing, don't fret, we've set you up with a few examples and code 
 
 ## Example Apps
 Below are a few example apps that have been built with this project
-- React Weekly 
-    - [See the Code](https://github.com/RyanCCollins/react-weekly) 
+- React Weekly
+    - [See the Code](https://github.com/RyanCCollins/react-weekly)
     - [See the Live App](http://www.reactweekly.co/)
-- Restaurant Reviewer 
-    - [See the Code](https://github.com/RyanCCollins/restaurant-reviewer) 
+- Restaurant Reviewer
+    - [See the Code](https://github.com/RyanCCollins/restaurant-reviewer)
     - [See the Live App](http://restaurant-reviewer-client.herokuapp.com/)
 - Corporate Dashboard
     - [See the Code](https://github.com/RyanCCollins/corporate-dashboard)
@@ -278,3 +278,5 @@ It was created by several of the members of the Udacity Alumni product infrastru
 * [Andreas Daiminger](https://github.com/adai183)
 
 Many thanks to the team behind [React Boilerplate](https://github.com/mxstbr/react-boilerplate), especially @maxstbr for setting a standard for the level of quality we in the React community can all learn from.  Many of the ideas used here were reverse engineered from the same project.
+
+Also many thanks for this [amazing logo](http://codepen.io/arthurmasl/pen/xVrbmo) goes to codepen user arthurmasl.

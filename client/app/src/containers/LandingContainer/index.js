@@ -36,6 +36,7 @@ class LandingContainer extends Component {
     const {
       image,
       headline,
+      button,
       references,
       isLoading,
       gitData,
@@ -49,7 +50,7 @@ class LandingContainer extends Component {
         justify="center"
         className={styles.landing}
       >
-        <HeroSection image={image} headline={headline} />
+        <HeroSection button={button} image={image} headline={headline} />
         <SummarySection summary={summary} />
         <MilestonesSection milestones={milestones} data={milestoneData} />
         <LanguageSection languages={languages} />
@@ -77,6 +78,7 @@ LandingContainer.propTypes = {
   loadingData: PropTypes.bool.isRequired,
   errorLoadingData: PropTypes.object,
   gitData: PropTypes.array,
+  button: PropTypes.bool.isRequired,
 };
 
 // mapStateToProps :: {State} -> {Props}
@@ -86,6 +88,7 @@ const mapStateToProps = (state) => ({
   isMobile: state.app.isMobile,
   loadingData: state.landing.isLoading,
   errorLoadingData: state.landing.error,
+  button: state.landing.button,
   gitData: filteredGitDataSelector(state.landing),
 });
 

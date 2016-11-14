@@ -4,6 +4,7 @@ import update from 'react-addons-update';
 export const initialState = {
   image: false,
   headline: false,
+  button: false,
   gitData: null,
   isLoading: false,
   error: null,
@@ -46,6 +47,11 @@ const landingReducer =
             $set: true,
           },
         });
+      case types.LANDING_SHOW_BUTTON:
+        return {
+          ...state,
+          button: true,
+        };
       default:
         return state;
     }

@@ -8,6 +8,10 @@ export const landingShowHeadline = () => ({
   type: types.LANDING_SHOW_HEADLINE,
 });
 
+export const landingShowButton = () => ({
+  type: types.LANDING_SHOW_BUTTON,
+});
+
 export const performLandingAnimation = () => (dispatch) => {
   setTimeout(() => {
     dispatch(
@@ -19,6 +23,11 @@ export const performLandingAnimation = () => (dispatch) => {
       landingShowHeadline()
     );
   }, 2000);
+  setTimeout(() => {
+    dispatch(
+      landingShowButton()
+    );
+  }, 3000);
 };
 
 export const clearLandingError = () => ({
