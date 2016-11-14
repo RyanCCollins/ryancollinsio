@@ -87,7 +87,7 @@ const CreatePostForm = ({
             searchPlaceholder="Start Typing to add a tag."
             onChange={onChangeTags}
           >
-            {pastTags.map((tag, i) =>
+            {pastTags && pastTags.length > 0 && pastTags.map((tag, i) =>
               <Option
                 key={i}
                 label={tag.title}

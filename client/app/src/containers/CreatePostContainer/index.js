@@ -33,21 +33,24 @@ class CreatePostContainer extends Component {
       this.context.router.push('/');
     }
   }
-  componentWillReceiveProps({ post }) {
+  componentWillReceiveProps({ post, selectedTags }) {
     if (post && post !== this.props.post) {
-      this.handleLoadingFromPost();
+      this.handleLoadingFromPost(post);
+    }
+    if (selectedTags && selectedTags !== this.props.selectedTags) {
+      console.log(`Called this.setState when tags changed`);
+      this.setState(this.state);
     }
   }
-  handleLoadingFromPost() {
+  handleLoadingFromPost(post) {
     const {
       fields,
-      post,
     } = this.props;
     fields.titleInput.onChange(post.title);
     fields.bodyInput.onChange(post.body);
     fields.featureImageInput.onChange(post.image);
     this.props.actions.createPostSetSelectedTags(
-      post.tags.map(tag => ({ title: tag.title }))
+      post.tags.map(tag => ({ id: tag.id, title: tag.title }))
     );
   }
   handleSubmit() {
@@ -132,7 +135,7 @@ CreatePostContainer.propTypes = {
   tagsError: PropTypes.object,
   tagsLoading: PropTypes.bool.isRequired,
   invalid: PropTypes.bool.isRequired,
-  selectedTags: PropTypes.array.isRequired,
+  selectedTags: PropTypes.array,
   errorMessage: PropTypes.object,
   user: PropTypes.object.isRequired,
   post: PropTypes.object,

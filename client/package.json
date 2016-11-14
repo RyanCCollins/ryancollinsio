@@ -18,8 +18,7 @@
       "production": {
         "plugins": [
           [
-            "babel-plugin-webpack-alias",
-            {
+            "babel-plugin-webpack-alias", {
               "config": "./webpack.config.prod.js"
             }
           ]
@@ -28,8 +27,7 @@
       "test": {
         "plugins": [
           [
-            "babel-plugin-webpack-loaders",
-            {
+            "babel-plugin-webpack-loaders", {
               "config": "./config/testing/webpack.test.config.js",
               "verbose": false
             }
@@ -70,7 +68,8 @@
     "start": "npm run dev",
     "clean": "rm -rf app/dist app/build",
     "setup": "npm install",
-    "serve:bundle": "cross-env NODE_ENV=production PORT=1337 node server.js"
+    "serve:bundle": "cross-env NODE_ENV=production PORT=1337 node server.js",
+    "postinstall": "npm run deploy"
   },
   "repository": {
     "type": "git",

@@ -6,7 +6,6 @@ import Heading from 'grommet-udacity/components/Heading';
 import Tile from 'grommet-udacity/components/Tile';
 import List from 'grommet-udacity/components/List';
 import Label from 'grommet-udacity/components/Label';
-import Value from 'grommet-udacity/components/Value';
 import ListItem from 'grommet-udacity/components/ListItem';
 import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
@@ -51,7 +50,6 @@ const DashboardTable = ({
                         className={styles.innerWrapper}
                         pad={{ horizontal: 'small', vertical: 'medium' }}
                       >
-                        <Value value={i} />
                         <Box
                           className={styles.boxWrapper}
                         >
@@ -81,9 +79,9 @@ const DashboardTable = ({
                         </Box>
                         <DashboardTableButtonMenu
                           item={item}
-                          onDelete={onDelete}
-                          onEdit={onEdit}
-                          onShow={onShow}
+                          onDelete={() => onDelete(item)}
+                          onEdit={() => onEdit(item)}
+                          onShow={() => onShow(item)}
                         />
                       </Box>
                     </Box>

@@ -43,12 +43,11 @@ class CreateProjectContainer extends Component {
   }
   componentWillReceiveProps({ project }) {
     if (project && project !== this.props.project) {
-      this.handleLoadingFromProject();
+      this.handleLoadingFromProject(project);
     }
   }
-  handleLoadingFromProject() {
+  handleLoadingFromProject(project) {
     const {
-      project,
       fields,
     } = this.props;
     fields.titleInput.onChange(project.title);
@@ -124,7 +123,7 @@ class CreateProjectContainer extends Component {
               Create Project
             </Headline>
             <Divider />
-            <Section align="center" justify="center">
+            <Section align="center" justify="center" className="section__last">
               <CreateProjectForm
                 invalid={invalid}
                 onSubmit={this.handleSubmit}
