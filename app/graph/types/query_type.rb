@@ -3,13 +3,13 @@ QueryType = GraphQL::ObjectType.define do
   description 'The root level query type'
   field :user, UserType do
     argument :id, !types.ID
-    resolve -> (obj, args, ctx) do
+    resolve -> (_obj, args, _ctx) do
       User.find_by(id: args[:id])
     end
   end
   field :projects, types[ProjectType] do
     argument :status, types.String
-    resolve -> (obj, args, ctx) do
+    resolve -> (_obj, args, _ctx) do
       if args[:status]
         Project.where(status: args[:status]).all.sort_by{ |i| i.updated_at }.reverse.sort_by{ |i| -i.sort_priority }
       else
@@ -20,7 +20,7 @@ QueryType = GraphQL::ObjectType.define do
   field :project, ProjectType do
     argument :id, types.ID
     argument :slug, types.String
-    resolve -> (obj, args, ctx) do
+    resolve -> (_obj, args, _ctx) do
       if args[:id]
         Project.find_by(id: args[:id])
       elsif args[:slug]
@@ -33,7 +33,7 @@ QueryType = GraphQL::ObjectType.define do
   field :post, PostType do
     argument :id, types.ID
     argument :slug, types.String
-    resolve -> (obj, args, ctx) do
+    resolve -> (_obj, args, _ctx) do
       if args[:id]
         Post.find_by(id: args[:id])
       elsif args[:slug]
@@ -46,7 +46,7 @@ QueryType = GraphQL::ObjectType.define do
   field :posts, types[PostType] do
     argument :tag, types.String
     argument :status, types.String
-    resolve -> (obj, args, ctx) do
+    resolve -> (_obj, args, _ctx) do
       if args[:tag]
         tag = Tag.where(title: args[:tag]).first
         tag.posts.all.sort_by{ |i| i.updated_at }.reverse
@@ -58,7 +58,7 @@ QueryType = GraphQL::ObjectType.define do
     end
   end
   field :references, types[ReferenceType] do
-    resolve -> (obj, args, ctx) do
+    resolve -> (_obj, _args, _ctx) do
       Reference.all
     end
   end
