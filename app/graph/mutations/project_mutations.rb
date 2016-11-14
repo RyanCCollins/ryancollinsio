@@ -59,7 +59,7 @@ module ProjectMutations
       input_field :auth_token, !types.String, 'The user auth token'
       input_field :project_comment_id, !types.ID, 'The ID of the project comment'
       return_field :total_votes, !types.Int, 'The new total number of votes'
-      resolve -> (inputs, ctx) do
+      resolve -> (_object, inputs, _ctx) do
         comment = ProjectComment.find_by(id: inputs[:project_comment_id])
         vote = ProjectCommentVote.new(
           user: User.find_by(auth_token: inputs[:auth_token]),
@@ -80,7 +80,7 @@ module ProjectMutations
       input_field :comment, CommentInputType, 'The project comment'
       input_field :project_id, !types.ID, 'The project id'
       return_field :project_comment, ProjectCommentType, 'The comment that was created'
-      resolve -> (inputs, ctx) do
+      resolve -> (_object, inputs, _ctx) do
         user = User.find_by(auth_token: inputs[:auth_token])
         project = Project.find_by(id: inputs[:project_id])
         comment = ProjectComment.new(
@@ -103,7 +103,7 @@ module ProjectMutations
       input_field :comment_id, !types.ID, 'The comment id'
 
       return_field :project_comment, ProjectCommentType, 'The comment that was created'
-      resolve -> (inputs, ctx) do
+      resolve -> (_object, inputs, _ctx) do
         user = User.find_by(auth_token: inputs[:auth_token])
         comment = user.project_comments.find_by(id: inputs[:comment_id])
         if comment.update(inputs[:comment].to_h)
@@ -120,7 +120,7 @@ module ProjectMutations
       input_field :comment_id, !types.ID, 'The comment id'
 
       return_field :deleted_id, types.ID, 'The id of the comment that was deleted'
-      resolve -> (inputs, ctx) do
+      resolve -> (_object, inputs, _ctx) do
         user = User.find_by(auth_token: inputs[:auth_token])
         comment = user.project_comments.find_by(id: inputs[:comment_id])
         if comment.destroy
