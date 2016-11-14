@@ -12,6 +12,6 @@ class InquiryMailer < ApplicationMailer
       name: name,
       category: category
     }
-    mail(to: @email.to, subject: @email.subject)
+    mail(to: @email[:to], subject: @email[:subject])
   end
 end
