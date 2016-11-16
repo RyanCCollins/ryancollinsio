@@ -10,6 +10,7 @@ class AppContainer extends Component {
     super();
     this.handleMobile = this.handleMobile.bind(this);
     this.handleToggleNav = this.handleToggleNav.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
   componentDidMount() {
     this.props.actions.loadPersistedUser();
@@ -21,6 +22,16 @@ class AppContainer extends Component {
   componentWillUnmount() {
     if (window) {
       window.removeEventListener('resize', this.handleMobile);
+    }
+  }
+  handleSearch({ target }) {
+    if (target.value) {
+      this.props.actions.setSearchTerm(target.value);
+      if (this.props.location.pathname !== '/search') {
+        this.context.router.push('/search');
+      }
+    } else {
+      this.props.actions.clearSearchTerm();
     }
   }
   handleMobile() {
@@ -46,6 +57,7 @@ class AppContainer extends Component {
     return (
       <App inline centered={false}>
         <Navigation
+          onSearch={this.handleSearch}
           pathname={location.pathname}
           isMobile={isMobile}
           user={user}
@@ -71,6 +83,9 @@ AppContainer.propTypes = {
   navIsActive: PropTypes.bool.isRequired,
 };
 
+AppContainer.contextTypes = {
+  router: PropTypes.object.isRequired,
+};
 
 // mapStateToProps :: {State} -> {Props}
 const mapStateToProps = (state) => ({

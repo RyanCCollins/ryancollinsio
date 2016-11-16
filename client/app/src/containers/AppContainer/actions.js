@@ -32,6 +32,15 @@ export const setPersistentUser = (user) => (dispatch) => {
   );
 };
 
+export const setSearchTerm = (term) => ({
+  type: types.SET_SEARCH_TERM,
+  term,
+});
+
+export const clearSearchTerm = () => ({
+  type: types.CLEAR_SEARCH_TERM,
+});
+
 export const loadPersistedUser = () => (dispatch) => {
   const user = localStorage.getItem('user');
   if (user) {

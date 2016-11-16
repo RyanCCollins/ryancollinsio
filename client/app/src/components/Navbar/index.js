@@ -2,12 +2,14 @@ import React, { PropTypes } from 'react';
 import Header from 'grommet-udacity/components/Header';
 import Menu from 'grommet-udacity/components/Menu';
 import Anchor from 'grommet-udacity/components/Anchor';
+import Search from 'grommet-udacity/components/Search';
 import { SessionMenu, NavTitle } from 'components';
 
 const Navbar = ({
   pathname,
   navLinks,
   user,
+  onSearch,
 }) => (
   <nav>
     <Header justify="between">
@@ -27,6 +29,11 @@ const Navbar = ({
             {item.name}
           </Anchor>
         )}
+        <Search
+          onDOMChange={onSearch}
+          dropAlign={{ left: 'left' }}
+          placeHolder="Start typing..."
+        />
       </Menu>
       <SessionMenu pathname={pathname} user={user} />
     </Header>
@@ -36,6 +43,7 @@ const Navbar = ({
 Navbar.propTypes = {
   navLinks: PropTypes.array.isRequired,
   pathname: PropTypes.string.isRequired,
+  onSearch: PropTypes.func.isRequired,
 };
 
 export default Navbar;

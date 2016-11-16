@@ -7,6 +7,7 @@ export const initialState = {
     authToken: null,
   },
   navIsActive: false,
+  searchTerm: null,
   navLinks: [
     {
       url: '/',
@@ -54,6 +55,18 @@ const appContainerReducer =
             $set: {
               authToken: null,
             },
+          },
+        });
+      case types.SET_SEARCH_TERM:
+        return update(state, {
+          searchTerm: {
+            $set: action.term,
+          },
+        });
+      case types.CLEAR_SEARCH_TERM:
+        return update(state, {
+          searchTerm: {
+            $set: null,
           },
         });
       default:

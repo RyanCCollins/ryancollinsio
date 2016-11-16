@@ -1,0 +1,2 @@
+export const SET_SEARCH_DATA = 'SET_SEARCH_DATA';
+export const SET_ACTIVE_INDEX = 'SET_ACTIVE_INDEX';

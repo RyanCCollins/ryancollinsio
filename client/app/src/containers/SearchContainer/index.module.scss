@@ -1,0 +1,110 @@
+.search {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+}
+
+.searchHeader {
+  padding: 16px 0;
+  border-bottom: 1px solid #E0E0E0;
+  margin-bottom: 32px;
+  background: #FFF;
+}
+
+.rowFull {
+  max-width: 75rem;
+}
+
+.centerBox {
+  align-self: center;
+  height: 80vh;
+}
+
+
+.container {
+  width: 90vw;
+  @media screen and (max-width: 1100px) {
+    width: 100vw;
+  }
+}
+
+.header {
+  font-size: 1.7em;
+  text-align: center;
+  color: #20BCE5;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  min-height: 160px;
+  margin-bottom: 16px;
+  background: #FFF;
+  border-radius: 1px;
+  border: 1px solid #E0E0E0;
+  box-shadow: 0 1px 2px #E0E0E0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.textContent {
+  width: 100%;
+  padding: 16px;
+}
+
+.itemImage {
+  display: flex;
+  align-items: center;
+  width: 30%;
+  min-width: 210px;
+  margin: 0;
+  border-left: 1px solid #cfd8dc;
+  background-color: #cfd8dc;
+  height: auto;
+}
+
+.numberIndicator {
+  float: right;
+  font-size: 10px;
+  padding: 2px 8px;
+  background: #ddd;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  display: inline-block;
+  color: #000;
+  font-weight: 700;
+}
+
+.leftColumn {
+  padding: 0 20px;
+  @media screen and (max-width: 768px) {
+    padding: 20px;
+  }
+}
+
+.rightColumn {
+  padding: 0 20px;
+  @media screen and (max-width: 768px) {
+    padding: 20px;
+  }
+}
+
+.sectionMain {
+  max-width: 1100px;
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  flex-direction: row;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
+}

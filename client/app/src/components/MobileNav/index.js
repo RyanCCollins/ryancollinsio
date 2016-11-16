@@ -99,6 +99,7 @@ class MobileNav extends Component {
     return (
       <Split
         flex={navActive ? '' : 'right'}
+        fixed={navActive}
         priority={navActive ? 'left' : 'right'}
       >
         {navActive && this.renderMenu()}

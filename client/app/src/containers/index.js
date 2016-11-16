@@ -1,4 +1,5 @@
 /* GENERATOR: Assemble all containers for export */
+export SearchContainer from './SearchContainer';
 export TutorialContainer from './TutorialContainer';
 export TutorialsContainer from './TutorialsContainer';
 export AdminDashboardContainer from './AdminDashboardContainer';

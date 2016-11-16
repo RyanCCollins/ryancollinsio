@@ -71,7 +71,7 @@ export const toggleLogoHovered = () => ({
 
 export const cycleThroughLogoHovered = () => (dispatch) => {
   dispatch(toggleLogoHovered());
-  setInterval(() => {
+  window.interval = setInterval(() => {
     dispatch(
       toggleLogoHovered()
     );

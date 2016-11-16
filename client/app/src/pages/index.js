@@ -1,4 +1,5 @@
 /* GENERATOR: Assemble all pages for export */
+export SearchPage from './SearchPage/index';
 export TutorialPage from './TutorialPage/index';
 export TutorialsPage from './TutorialsPage/index';
 export AdminDashboardPage from './AdminDashboardPage/index';

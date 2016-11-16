@@ -12,6 +12,7 @@ const Navigation = ({
   navLinks,
   onToggleNav,
   pathname,
+  onSearch,
 }) => (
   <div>
     {!isMobile &&
@@ -19,6 +20,7 @@ const Navigation = ({
         pathname={pathname}
         user={user}
         navLinks={navLinks}
+        onSearch={onSearch}
       />
     }
     {!isMobile && children}
@@ -56,7 +58,7 @@ Navigation.propTypes = {
   isMobile: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
   user: PropTypes.object.isRequired,
-  handleSearch: PropTypes.func.isRequired,
+  onSearch: PropTypes.func.isRequired,
   navIsActive: PropTypes.bool.isRequired,
   navLinks: PropTypes.array.isRequired,
   onToggleNav: PropTypes.func.isRequired,
