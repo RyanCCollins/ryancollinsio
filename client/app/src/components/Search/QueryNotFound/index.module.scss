@@ -1,0 +1,22 @@
+.noneFound {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  padding: 30px;
+}
+
+.noneFoundImage {
+  height: 100px;
+  width: 100px;
+}
+
+.noneFoundText {
+  p {
+    margin-top: 20px;
+    font-size: 18px !important;
+    color: #455A64 !important;
+    width: 400px;
+  }
+}

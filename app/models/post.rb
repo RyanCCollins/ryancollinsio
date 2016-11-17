@@ -9,4 +9,9 @@ class Post < ApplicationRecord
   def create_slug
     self.slug = self.title.parameterize
   end
+
+  def self.search(term)
+    key = "%#{term}%"
+    Post.where('title LIKE :search OR body LIKE :search', search: key)
+  end
 end

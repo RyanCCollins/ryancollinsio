@@ -3,6 +3,8 @@ import { MobileNav, Navbar, NavTitle } from 'components';
 import Header from 'grommet-udacity/components/Header';
 import Title from 'grommet-udacity/components/Title';
 import MenuIcon from 'grommet-udacity/components/icons/base/Menu';
+import Search from 'grommet-udacity/components/Search';
+import { StyledBox } from './styles';
 
 const Navigation = ({
   isMobile,
@@ -40,6 +42,14 @@ const Navigation = ({
           pad={{ horizontal: 'medium', between: 'small' }}
         >
           {!navIsActive && <NavTitle />}
+          <StyledBox>
+            <Search
+              onDOMChange={onSearch}
+              dropAlign={{ left: 'left' }}
+              responsive={false}
+              placeHolder="Start typing..."
+            />
+          </StyledBox>
           <Title onClick={onToggleNav} a11yTitle="Open Menu Right">
             <MenuIcon
               colorIndex="brand"

@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
 import Header from 'grommet-udacity/components/Header';
-import Menu from 'grommet-udacity/components/Menu';
 import Anchor from 'grommet-udacity/components/Anchor';
 import Search from 'grommet-udacity/components/Search';
 import { SessionMenu, NavTitle } from 'components';
+import { StyledBox, StyledMenu } from './styles';
 
 const Navbar = ({
   pathname,
@@ -14,8 +14,7 @@ const Navbar = ({
   <nav>
     <Header justify="between">
       <NavTitle />
-      <Menu
-        style={{ flex: 1, justifyContent: 'flex-end', marginRight: 20 }}
+      <StyledMenu
         direction="row"
         align="center"
         responsive={false}
@@ -29,12 +28,14 @@ const Navbar = ({
             {item.name}
           </Anchor>
         )}
-        <Search
-          onDOMChange={onSearch}
-          dropAlign={{ left: 'left' }}
-          placeHolder="Start typing..."
-        />
-      </Menu>
+        <StyledBox>
+          <Search
+            onDOMChange={onSearch}
+            dropAlign={{ left: 'left' }}
+            placeHolder="Start typing..."
+          />
+        </StyledBox>
+      </StyledMenu>
       <SessionMenu pathname={pathname} user={user} />
     </Header>
   </nav>

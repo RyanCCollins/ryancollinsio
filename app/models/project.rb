@@ -11,4 +11,9 @@ class Project < ApplicationRecord
   def create_slug
     self.slug = self.title.parameterize
   end
+  
+  def self.search(term)
+    key = "%#{term}%"
+    Project.where('title LIKE :search OR description LIKE :search', search: key)
+  end
 end

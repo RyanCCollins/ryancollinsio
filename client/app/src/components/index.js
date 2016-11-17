@@ -1,4 +1,6 @@
 /* GENERATOR: Assemble all components for export */
+export SearchItem from './Search/SearchItem';
+export QueryNotFound from './Search/QueryNotFound';
 export Navigation from './Navigation';
 export NavTitle from './NavTitle';
 export MobileNav from './MobileNav';

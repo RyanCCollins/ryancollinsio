@@ -17,9 +17,8 @@ import styles from './index.module.scss';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { getFilteredSearchData } from './selectors';
-import { WithLoading, ResponsiveImage } from 'components';
+import { WithLoading, ResponsiveImage, QueryNotFound, SearchItem } from 'components';
 import {
-  StyledTitle,
   SectionLast,
   NavigationItem,
 } from './styles';
@@ -77,9 +76,10 @@ class SearchContainer extends Component {
             <Maybe predicate={searchTerm !== null}>
               <div className={styles.container}>
                 <Section>
-                  <Header justify="between" className={styles.header}>
+                  <Header className={styles.header}>
                     <Title>
-                      {`Found ${totalResults(filteredSearchData)} results for the term "${searchTerm}"`}
+                      {`Found ${totalResults(filteredSearchData)}
+                        results for the term "${searchTerm}"`}
                     </Title>
                   </Header>
                 </Section>
@@ -118,7 +118,7 @@ class SearchContainer extends Component {
                   <Box basis="3/4" flex="grow" className={styles.rightColumn}>
                     <Maybe predicate={activeIndex === 0}>
                       {filteredSearchData.posts &&
-                        filteredSearchData.posts.length > 0 &&
+                        filteredSearchData.posts.length > 0 ?
                           filteredSearchData.posts.map((item, i) =>
                             <div className={styles.card} key={i}>
                               <div className={styles.textContent}>
@@ -134,11 +134,14 @@ class SearchContainer extends Component {
                                 <ResponsiveImage matchHeight={false} src={item.image} />
                               </div>
                             </div>
-                      )}
+                          )
+                      :
+                        <QueryNotFound itemName="Posts" />
+                    }
                     </Maybe>
                     <Maybe predicate={activeIndex === 1}>
                       {filteredSearchData.projects &&
-                        filteredSearchData.projects.length > 0 &&
+                        filteredSearchData.projects.length > 0 ?
                         filteredSearchData.projects.map((item, i) =>
                             <div className={styles.card} key={i}>
                               <div className={styles.textContent}>
@@ -154,11 +157,14 @@ class SearchContainer extends Component {
                                 <ResponsiveImage matchHeight={false} src={item.featureImage} />
                               </div>
                             </div>
-                      )}
+                        )
+                      :
+                        <QueryNotFound itemName="Projects" />
+                    }
                     </Maybe>
                     <Maybe predicate={activeIndex === 2}>
                       {filteredSearchData.tutorials &&
-                        filteredSearchData.tutorials.length > 0 &&
+                        filteredSearchData.tutorials.length > 0 ?
                           filteredSearchData.tutorials.map((item, i) =>
                             <div className={styles.card} key={i}>
                               <div className={styles.textContent}>
@@ -174,7 +180,10 @@ class SearchContainer extends Component {
                                 <ResponsiveImage matchHeight={false} src={item.image} />
                               </div>
                             </div>
-                      )}
+                          )
+                        :
+                          <QueryNotFound itemName="Tutorials" />
+                      }
                     </Maybe>
                   </Box>
                 </Section>
