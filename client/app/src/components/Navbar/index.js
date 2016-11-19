@@ -10,6 +10,7 @@ const Navbar = ({
   navLinks,
   user,
   onSearch,
+  searchTerm,
 }) => (
   <nav>
     <Header justify="between">
@@ -31,6 +32,7 @@ const Navbar = ({
         <StyledBox>
           <Search
             onDOMChange={onSearch}
+            value={searchTerm}
             dropAlign={{ right: 'right' }}
             placeHolder="Start typing..."
           />
@@ -45,6 +47,7 @@ Navbar.propTypes = {
   navLinks: PropTypes.array.isRequired,
   pathname: PropTypes.string.isRequired,
   onSearch: PropTypes.func.isRequired,
+  searchTerm: PropTypes.string,
 };
 
 export default Navbar;

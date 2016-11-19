@@ -8,4 +8,18 @@ describe('archiveReducer', () => {
       archiveReducer(undefined, {})
     ).toEqual(initialState);
   });
+  it('should handle reducer for ARCHIVE_SET_SELECTED_TAG', () => {
+    const tag = {};
+    const stateBefore = {
+      selectedTag: null,
+    };
+    const stateAfter = {
+      selectedTag: tag,
+    };
+    expect(archiveReducer(stateBefore, {
+     type: types.ARCHIVE_SET_SELECTED_TAG,
+     tag,
+    })
+    ).toEqual(stateAfter);
+  });
 });

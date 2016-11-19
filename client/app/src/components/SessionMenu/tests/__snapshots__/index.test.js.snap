@@ -1,0 +1,5 @@
+exports[`<SessionMenu /> should render with default props 1`] = `
+<span>
+  <NoUserMenu />
+</span>
+`;

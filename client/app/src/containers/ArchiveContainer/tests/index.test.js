@@ -1,4 +1,4 @@
-import Archive from '../index';
+import ArchiveContainer from '../index';
 import { shallow } from 'enzyme';
 import { shallowToJson } from 'enzyme-to-json';
 import React from 'react';
@@ -9,11 +9,11 @@ import { initialState as archive } from '../reducer';
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
-describe('<Archive />', () => {
+describe('<ArchiveContainer />', () => {
   it('should render with default props', () => {
     const store = mockStore({ archive });
     const wrapper = shallow(
-      <Archive store={store} />
+      <ArchiveContainer store={store} />
     );
     expect(shallowToJson(wrapper)).toMatchSnapshot();
   });

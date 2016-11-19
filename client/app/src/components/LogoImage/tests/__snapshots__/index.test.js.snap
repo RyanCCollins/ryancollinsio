@@ -1,7 +1,6 @@
 exports[`<Header /> should render with default props 1`] = `
 <img
   alt="Ryan Collins Logo"
-  className={undefined}
   id="ryancollins-logo"
   src={Object {}} />
 `;

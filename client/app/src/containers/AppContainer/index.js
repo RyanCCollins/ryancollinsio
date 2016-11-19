@@ -57,6 +57,7 @@ class AppContainer extends Component {
     return (
       <App inline centered={false}>
         <Navigation
+          searchTerm={searchTerm}
           onSearch={this.handleSearch}
           pathname={location.pathname}
           isMobile={isMobile}

@@ -109,4 +109,36 @@ describe('blogReducer', () => {
       })
     ).toEqual(stateAfter);
   });
+  it('should handle reducer for SET_BLOG_POSTS', () => {
+    const posts = [{ id: 0 }, { id: 1 }];
+    const stateBefore = {
+      posts: []
+    };
+    const stateAfter = {
+      posts,
+    };
+    expect(
+      blogReducer(stateBefore, {
+        type: types.SET_BLOG_POSTS,
+        posts,
+      })
+    ).toEqual(stateAfter);
+  });
+  it('should handle reducer for BLOG_SET_TAGS', () => {
+    const tags = [{ id: 1 }, { id: 2 }];
+    const stateBefore = {
+      tags: [],
+      isFiltering: false,
+    };
+    const stateAfter = {
+      tags,
+      isFiltering: true,
+    };
+    expect(
+      blogReducer(stateBefore, {
+        type: types.BLOG_SET_TAGS,
+        tags,
+      })
+    ).toEqual(stateAfter);
+  });
 });

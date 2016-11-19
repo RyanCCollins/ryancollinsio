@@ -8,9 +8,9 @@ exports[`<ResponsiveImage /> should render with default props 1`] = `
   }
   keep={true}
   visible={false}>
-  <div
-    className={undefined}>
+  <div>
     <img
+      className="img"
       onLoad={[Function bound setImageLoadedState]}
       src={Object {}} />
   </div>

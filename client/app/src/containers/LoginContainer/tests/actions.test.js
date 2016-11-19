@@ -3,10 +3,46 @@ import * as actions from '../actions';
 import * as types from '../constants';
 
 describe('Login actions', () => {
-  it('has a type of LOGIN_DEFAULT_ACTION', () => {
+  it('should have a type of LOGIN_SHOW_ERROR', () => {
+    const error = new Error('Ooops');
     const expected = {
-      type: types.LOGIN_DEFAULT_ACTION,
+      type: types.LOGIN_SHOW_ERROR,
+      error,
     };
-    expect(actions.loginDefaultAction()).toEqual(expected);
+    expect(actions.loginShowError(error)).toEqual(expected);
+  });
+  it('should have a type of LOGIN_SHOW_MESSAGE', () => {
+    const message = 'Hello world';
+    const expected = {
+      type: types.LOGIN_SHOW_MESSAGE,
+      message,
+    };
+    expect(
+      actions.loginShowMessage(message)
+    ).toEqual(expected);
+  });
+  it('should have a type of LOGIN_CLEAR_ERROR', () => {
+    const expected = {
+      type: types.LOGIN_CLEAR_ERROR,
+    };
+    expect(
+      actions.loginClearError()  
+    ).toEqual(expected);
+  });
+  it('should have a type of LOGIN_CLEAR_MESSAGE', () => {
+    const expected = {
+      type: types.LOGIN_CLEAR_MESSAGE,
+    };
+    expect(
+      actions.loginClearMessage()  
+    ).toEqual(expected);
+  });
+  it('should have a type of LOGIN_SET_LOADING', () => {
+    const expected = {
+      type: types.LOGIN_SET_LOADING,
+    };
+    expect(
+      actions.loginSetLoading()  
+    ).toEqual(expected);
   });
 });
