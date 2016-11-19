@@ -31,7 +31,7 @@ const Navbar = ({
         <StyledBox>
           <Search
             onDOMChange={onSearch}
-            dropAlign={{ left: 'left' }}
+            dropAlign={{ right: 'right' }}
             placeHolder="Start typing..."
           />
         </StyledBox>
