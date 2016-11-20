@@ -53,6 +53,7 @@ class AppContainer extends Component {
       user,
       isMobile,
       navIsActive,
+      searchTerm,
     } = this.props;
     return (
       <App inline centered={false}>
@@ -82,6 +83,7 @@ AppContainer.propTypes = {
   actions: PropTypes.object.isRequired,
   isMobile: PropTypes.bool.isRequired,
   navIsActive: PropTypes.bool.isRequired,
+  searchTerm: PropTypes.string,
 };
 
 AppContainer.contextTypes = {
@@ -91,6 +93,7 @@ AppContainer.contextTypes = {
 // mapStateToProps :: {State} -> {Props}
 const mapStateToProps = (state) => ({
   user: state.app.user,
+  searchTerm: state.app.searchTerm,
   isMobile: state.app.isMobile,
   navLinks: state.app.navLinks,
   navIsActive: state.app.navIsActive,

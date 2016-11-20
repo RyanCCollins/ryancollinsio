@@ -15,6 +15,7 @@ const Navigation = ({
   onToggleNav,
   pathname,
   onSearch,
+  searchTerm,
 }) => (
   <div>
     {!isMobile &&
@@ -44,6 +45,7 @@ const Navigation = ({
           {!navIsActive && <NavTitle />}
           <StyledBox>
             <Search
+              value={searchTerm}
               onDOMChange={onSearch}
               dropAlign={{ left: 'left' }}
               responsive={false}
@@ -73,6 +75,7 @@ Navigation.propTypes = {
   navLinks: PropTypes.array.isRequired,
   onToggleNav: PropTypes.func.isRequired,
   pathname: PropTypes.string.isRequired,
+  searchTerm: PropTypes.string,
 };
 
 export default Navigation;

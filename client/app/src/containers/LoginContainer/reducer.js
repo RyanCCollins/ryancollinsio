@@ -1,5 +1,4 @@
 import * as types from './constants';
-import update from 'react-addons-update';
 
 export const initialState = {
   error: null,
@@ -11,41 +10,32 @@ const loginReducer =
   (state = initialState, action) => {
     switch (action.type) {
       case types.LOGIN_SHOW_ERROR:
-        return update(state, {
-          error: {
-            $set: action.error,
-          },
-          isLoading: {
-            $set: false,
-          },
-        });
+        return {
+          ...state,
+          error: action.error,
+          isLoading: false,
+        };
       case types.LOGIN_SHOW_MESSAGE:
-        return update(state, {
-          message: {
-            $set: action.message,
-          },
-          isLoading: {
-            $set: false,
-          },
-        });
+        return {
+          ...state,
+          message: action.message,
+          isLoading: false,
+        };
       case types.LOGIN_CLEAR_ERROR:
-        return update(state, {
-          error: {
-            $set: null,
-          },
-        });
+        return {
+          ...state,
+          error: null,
+        };
       case types.LOGIN_CLEAR_MESSAGE:
-        return update(state, {
-          message: {
-            $set: null,
-          },
-        });
+        return {
+          ...state,
+          message: null,
+        };
       case types.LOGIN_SET_LOADING:
-        return update(state, {
-          isLoading: {
-            $set: true,
-          },
-        });
+        return {
+          ...state,
+          isLoading: true,
+        };
       default:
         return state;
     }
