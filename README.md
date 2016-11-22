@@ -3,7 +3,7 @@ A complete rewrite of RyanCollins.io, built with the latest and greatest technol
 
 A GraphQL on Rails API and React front end single page app.
 
-# Documentation
+# Documentation (From Scalable React Boilerplate)
 
 ## Getting Started
 To try the example application out or to use the project, follow the instructions below.
