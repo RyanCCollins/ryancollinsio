@@ -16,18 +16,18 @@ const languages = [
   },
   {
     id: 3,
-    label: 'Swift',
-    value: 90,
+    label: 'Elm',
+    value: 92,
   },
   {
     id: 4,
-    label: 'Elixir',
-    value: 70,
+    label: 'Swift',
+    value: 88,
   },
   {
     id: 5,
-    label: 'Elm',
-    value: 68,
+    label: 'Elixir',
+    value: 70,
   },
 ];
 
