@@ -64,7 +64,7 @@ class AppContainer extends Component {
           isMobile={isMobile}
           user={user}
           navIsActive={navIsActive}
-          navLinks={navLinks}
+          navLinks={navLinks.reverse()}
           onToggleNav={this.handleToggleNav}
         >
           {React.cloneElement(this.props.children, this.props)}

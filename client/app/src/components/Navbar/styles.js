@@ -5,7 +5,6 @@ import Menu from 'grommet-udacity/components/Menu';
 export const StyledMenu = styled(Menu)`
   flex-direction: row-reverse !important;
   flex-grow: 1 !important;
-  margin-right: 12px !important;
   align-items: center;
 `;
 

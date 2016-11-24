@@ -6,7 +6,7 @@ export const StyledTitle = styled(Title)`
 `;
 
 export const NotYetRendered = styled.div`
-   height: 45px;
-   width: 150px;
-   background-color: #666;
+   height: 40px;
+   width: 77px;
+   background-color: #f5f5f5;
 `;

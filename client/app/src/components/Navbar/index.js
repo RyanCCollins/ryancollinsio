@@ -16,7 +16,10 @@ const Navbar = ({
     <Header justify="between">
       <NavTitle isClient={typeof window !== 'undefined'} />
       <StyledMenu
-        responsive={false}
+        direction="row"
+        align="center"
+        inline
+        resposive={false}
       >
         {navLinks.map((item, i) =>
           <Anchor
