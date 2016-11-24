@@ -16,8 +16,6 @@ const Navbar = ({
     <Header justify="between">
       <NavTitle />
       <StyledMenu
-        direction="row"
-        align="center"
         responsive={false}
       >
         {navLinks.map((item, i) =>

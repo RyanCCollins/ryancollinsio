@@ -7,7 +7,7 @@ import cssModules from 'react-css-modules';
 import styles from './index.module.scss';
 import Section from 'grommet-udacity/components/Section';
 import Box from 'grommet-udacity/components/Box';
-import authUserDataFragment from './graph/authUserDataFragment';
+import { authUserDataFragment } from 'fragments';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { UserProfile, LoadingIndicator, ToastMessage } from 'components';
