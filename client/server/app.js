@@ -12,9 +12,12 @@ import { createNetworkInterface } from 'apollo-client';
 import Html from './utils/Html';
 import createApolloClient from './utils/create-apollo-client';
 import manifest from './public/manifest.json';
+import styleSheet from 'styled-components/lib/models/StyleSheet';
 
 const isDeveloping = process.env.NODE_ENV !== 'production';
-const port = isDeveloping ? 1338 : process.env.PORT;
+const PORT = process.env.PORT || 1338;
+const IP = process.env.IP || 'localhost';
+
 const app = express();
 const baseUrl = typeof process.env.BASE_URL !== 'undefined' ?
   process.env.BASE_URL : 'https://ryancollinsio.herokuapp.com/';
@@ -33,13 +36,8 @@ app.use((req, res) => {
         console.error('ROUTER ERROR:', error); // eslint-disable-line no-console
         res.status(500);
       } else if (renderProps) {
-        const css = new Set();
-        const context = {
-          insertCss(...styles) {
-            styles.forEach(style => css.add(style._getCss()));
-          },
-        };
-        const styles = [...css].join('');
+        const styles = styleSheet.rules().map(rule => rule.cssText).join('\n')
+
         const client = createApolloClient({
           ssrMode: true,
           networkInterface: createNetworkInterface({
@@ -49,7 +47,7 @@ app.use((req, res) => {
           }),
         });
         const component = (
-          <ApolloProvider client={client} store={store} context={context}>
+          <ApolloProvider client={client} store={store}>
             <RouterContext {...renderProps} />
           </ApolloProvider>
         );
@@ -73,9 +71,9 @@ app.use((req, res) => {
     });
 });
 
-app.listen(port, '0.0.0.0', (err) => {
+app.listen(PORT, IP, (err) => {
   if (err) {
     return console.warn(err); // eslint-disable-line
   }
-  return console.info(`==> 😎 Listening on port ${port}. Open http://localhost:${port}/ in your browser.`); // eslint-disable-line
+  return console.info(`==> 😎 Listening on port ${PORT}. Open http://${IP}:${PORT}/ in your browser.`); // eslint-disable-line
 });

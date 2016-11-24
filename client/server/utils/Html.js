@@ -33,7 +33,7 @@ function Html({ content, state, scriptHash, vendorHash, cssHash, styles }) {
         <link href="https://fonts.googleapis.com/css?family=Oswald|Merriweather" rel="stylesheet" type="text/css" />
         <script src={`${vendorHash}`} type="text/javascript" />
         <link href={`${cssHash}`} rel="stylesheet" />
-        <style type="text/css">{styles}</style>
+        <style dangerouslySetInnerHTML={{ __html: styles }} />
       </head>
       <body>
         <div id="app" dangerouslySetInnerHTML={{ __html: content }} />

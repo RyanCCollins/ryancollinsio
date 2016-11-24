@@ -14,7 +14,7 @@ const Navbar = ({
 }) => (
   <nav>
     <Header justify="between">
-      <NavTitle />
+      <NavTitle isClient={typeof window !== 'undefined'} />
       <StyledMenu
         responsive={false}
       >
@@ -31,7 +31,7 @@ const Navbar = ({
           <Search
             onDOMChange={onSearch}
             value={searchTerm}
-            dropAlign={{ right: 'right' }}
+            dropAlign={{ left: 'left' }}
             placeHolder="Start typing..."
           />
         </StyledBox>
