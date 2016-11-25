@@ -16,7 +16,7 @@ import styleSheet from 'styled-components/lib/models/StyleSheet';
 
 const isDeveloping = process.env.NODE_ENV !== 'production';
 const PORT = process.env.PORT || 1338;
-const IP = process.env.IP || 'localhost';
+const IP = 'localhost';
 
 const app = express();
 const baseUrl = typeof process.env.BASE_URL !== 'undefined' ?
