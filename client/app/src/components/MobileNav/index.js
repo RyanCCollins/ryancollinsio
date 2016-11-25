@@ -35,7 +35,7 @@ class MobileNav extends Component {
           large
         >
           <NavTitle isClient={typeof window !== 'undefined'} />
-          <Menu responsive={false} className={styles.navCloser}>
+          <Menu responsive={false}>
             <Button
               plain
               icon={<CloseIcon />}
@@ -61,7 +61,6 @@ class MobileNav extends Component {
         <Footer
           justify="start"
           pad="medium"
-          className={styles.navFooter}
         >
           {user ?
             <SessionMenu
