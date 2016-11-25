@@ -3,7 +3,7 @@ import Box from 'grommet-udacity/components/Box';
 import Menu from 'grommet-udacity/components/Menu';
 
 export const StyledMenu = styled(Menu)`
-  flex-direction: row-reverse !important;
+  flex-direction: row !important;
   flex-grow: 1 !important;
   align-items: center;
 `;
