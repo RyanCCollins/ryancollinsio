@@ -1,6 +1,4 @@
 import React, { PropTypes, Component } from 'react';
-import styles from './index.module.scss';
-import cssModules from 'react-css-modules';
 import { NavTitle, SessionMenu } from 'components';
 import Split from 'grommet-udacity/components/Split';
 import Sidebar from 'grommet-udacity/components/Sidebar';
@@ -36,7 +34,7 @@ class MobileNav extends Component {
           pad={{ horizontal: 'medium' }}
           large
         >
-          <NavTitle />
+          <NavTitle isClient={typeof window !== 'undefined'} />
           <Menu responsive={false} className={styles.navCloser}>
             <Button
               plain
@@ -120,4 +118,4 @@ MobileNav.propTypes = {
   pathname: PropTypes.string.isRequired,
 };
 
-export default cssModules(MobileNav, styles);
+export default MobileNav;
