@@ -21,7 +21,7 @@ NavTitle.propTypes = {
 };
 
 NavTitle.defaultProps = {
-  isClient: false,
+  isClient: true,
 };
 
 export default NavTitle;

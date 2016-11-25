@@ -34,7 +34,7 @@ class MobileNav extends Component {
           pad={{ horizontal: 'medium' }}
           large
         >
-          <NavTitle isClient={typeof window !== 'undefined'} />
+          <NavTitle />
           <Menu responsive={false}>
             <Button
               plain

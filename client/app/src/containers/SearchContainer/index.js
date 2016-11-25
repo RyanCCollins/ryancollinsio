@@ -77,7 +77,7 @@ class SearchContainer extends Component {
               <div className={styles.container}>
                 <Section>
                   <Header className={styles.header}>
-                    <Title>
+                    <Title className={styles.title}>
                       {`Found ${totalResults(filteredSearchData)}
                         results for the term "${searchTerm}"`}
                     </Title>
