@@ -132,7 +132,7 @@ const UserProfile = ({
         </Menu>
       </Footer>
     :
-      <Footer align="center" justify="center">
+      <Footer align="center" justify="center" className={styles.footer}>
         <Box
           align="center"
           justify="center"
