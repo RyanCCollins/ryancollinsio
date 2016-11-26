@@ -89,27 +89,27 @@ class UserProfileContainer extends Component {
             </Section>
           :
             <div>
-               {user &&
-                  <UserProfile
-                    user={user}
-                    isEditing={isEditing}
-                    onTogglePublic={() => actions.profileTogglePublic()}
-                    onEditEmail={({ target }) => actions.profileEditEmail(target.value)}
-                    onEditBio={({ target }) => actions.profileEditBio(target.value)}
-                    onEditAvatar={({ target }) => actions.profileEditAvatar(target.value)}
-                    onClickToEdit={() => {
-                      this.setDefaultValues();
-                      actions.profileStartEditing();
-                    }}
-                    onCancel={() => actions.profileCancelEditing()}
-                    onSaveEdit={this.handleSubmission}
-                    bioInput={bioInput}
-                    avatarInput={avatarInput}
-                    emailInput={emailInput}
-                    publicInput={publicInput}
-                  />
-                }
-              </div>
+              {user &&
+                <UserProfile
+                  user={user}
+                  isEditing={isEditing}
+                  onTogglePublic={() => actions.profileTogglePublic()}
+                  onEditEmail={({ target }) => actions.profileEditEmail(target.value)}
+                  onEditBio={({ target }) => actions.profileEditBio(target.value)}
+                  onEditAvatar={({ target }) => actions.profileEditAvatar(target.value)}
+                  onClickToEdit={() => {
+                    this.setDefaultValues();
+                    actions.profileStartEditing();
+                  }}
+                  onCancel={() => actions.profileCancelEditing()}
+                  onSaveEdit={this.handleSubmission}
+                  bioInput={bioInput}
+                  avatarInput={avatarInput}
+                  emailInput={emailInput}
+                  publicInput={publicInput}
+                />
+              }
+            </div>
           }
           {submissionError &&
             <ToastMessage

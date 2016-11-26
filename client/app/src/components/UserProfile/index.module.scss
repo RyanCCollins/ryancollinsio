@@ -19,12 +19,12 @@
 .panel {
   background: #fff;
   box-shadow: 0 2px 4px 0 rgba(167, 157, 144, 0.52);
-  width: 100%;
   margin-bottom: 60px;
   margin-top: 60px;
   position: relative;
   padding: 60px 0 !important;
-  max-width: 900px;
+  max-width: calc(100vw - 20px);
+  width: 768px;
 }
 
 .transformAvatar {
