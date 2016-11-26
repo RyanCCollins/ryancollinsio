@@ -33,4 +33,6 @@ MutationType = GraphQL::ObjectType.define do
   field :VoteProjectComment, field: ProjectMutations::ProjectComments::Vote.field
   
   field :UpdateProfile, field: AuthUserMutations::UpdateProfile.field
+  field :RequestPasswordInstructions, field: UserMutations::RequestPasswordInstructions.field
+  field :ResetPassword, field: UserMutations::ResetPassword.field
 end
