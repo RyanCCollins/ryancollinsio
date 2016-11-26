@@ -8,7 +8,8 @@ const baseUrl = isProduction ?
 
 const client = new ApolloClient({
   networkInterface: createNetworkInterface(baseUrl),
-  initialState: typeof window !== 'undefined' ? window.__APOLLO_STATE__ : null,
+  initialState: window.__APOLLO_STATE__, // eslint-disable-line no-underscore-dangle
+  ssrForceFetchDelay: 100,
   queryTransformer: addTypeName,
 });
 

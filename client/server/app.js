@@ -60,7 +60,7 @@ app.use((req, res) => {
               vendorHash={manifest['/vendor.js']}
               cssHash={manifest['/main.css']}
               styles={styles}
-              state={{ data: ctx.store.getState().apollo.data }}
+              state={ctx.store.getState()}
             />
           );
           res.status(200).send(`<!doctype html>\n${renderToStaticMarkup(html)}`);
