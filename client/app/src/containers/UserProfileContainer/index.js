@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as UserProfileActionCreators from './actions';
 import * as AppActions from 'containers/AppContainer/actions';
-import cssModules from 'react-css-modules';
-import styles from './index.module.scss';
 import Section from 'grommet-udacity/components/Section';
 import Box from 'grommet-udacity/components/Box';
 import { authUserDataFragment } from 'fragments';
@@ -12,6 +10,7 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { UserProfile, LoadingIndicator, ToastMessage } from 'components';
 import ProfileSubmission from './model/submission';
+import { StyledBox } from './styles';
 
 class UserProfileContainer extends Component {
   constructor() {
@@ -70,9 +69,8 @@ class UserProfileContainer extends Component {
       publicInput,
     } = this.props;
     return (
-      <Box
+      <StyledBox
         colorIndex="light-2"
-        className={styles.userProfile}
       >
         <Section
           justify="center"
@@ -119,7 +117,7 @@ class UserProfileContainer extends Component {
             />
           }
         </Section>
-      </Box>
+      </StyledBox>
     );
   }
 }
@@ -164,7 +162,6 @@ const mapDispatchToProps = (dispatch) => ({
   ),
 });
 
-const Container = cssModules(UserProfileContainer, styles);
 
 const updateProfileMutation = gql`
   mutation updateProfile($profile: ProfileInput, $authToken: String!) {
@@ -194,7 +191,7 @@ const ContainerWithMutation = graphql(updateProfileMutation, {
       );
     },
   }),
-})(Container);
+})(UserProfileContainer);
 
 
 export default connect(
