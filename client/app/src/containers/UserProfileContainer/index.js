@@ -89,7 +89,7 @@ class UserProfileContainer extends Component {
             </Section>
           :
             <div>
-              {user &&
+              {user && user.name &&
                 <UserProfile
                   user={user}
                   isEditing={isEditing}
