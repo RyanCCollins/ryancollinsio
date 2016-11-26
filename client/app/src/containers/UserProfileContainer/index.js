@@ -79,7 +79,7 @@ class UserProfileContainer extends Component {
           align="center"
           pad={{ horizontal: 'large' }}
         >
-          {isLoading &&
+          {isLoading ?
             <Section
               className="full-height"
               align="center"
@@ -87,32 +87,35 @@ class UserProfileContainer extends Component {
             >
               <LoadingIndicator isLoading />
             </Section>
+          :
+            <div>
+               {user &&
+                  <UserProfile
+                    user={user}
+                    isEditing={isEditing}
+                    onTogglePublic={() => actions.profileTogglePublic()}
+                    onEditEmail={({ target }) => actions.profileEditEmail(target.value)}
+                    onEditBio={({ target }) => actions.profileEditBio(target.value)}
+                    onEditAvatar={({ target }) => actions.profileEditAvatar(target.value)}
+                    onClickToEdit={() => {
+                      this.setDefaultValues();
+                      actions.profileStartEditing();
+                    }}
+                    onCancel={() => actions.profileCancelEditing()}
+                    onSaveEdit={this.handleSubmission}
+                    bioInput={bioInput}
+                    avatarInput={avatarInput}
+                    emailInput={emailInput}
+                    publicInput={publicInput}
+                  />
+                }
+              </div>
           }
           {submissionError &&
             <ToastMessage
               status="critical"
               message={submissionError}
               onClose={() => actions.profileClearError()}
-            />
-          }
-          {user &&
-            <UserProfile
-              user={user}
-              isEditing={isEditing}
-              onTogglePublic={() => actions.profileTogglePublic()}
-              onEditEmail={({ target }) => actions.profileEditEmail(target.value)}
-              onEditBio={({ target }) => actions.profileEditBio(target.value)}
-              onEditAvatar={({ target }) => actions.profileEditAvatar(target.value)}
-              onClickToEdit={() => {
-                this.setDefaultValues();
-                actions.profileStartEditing();
-              }}
-              onCancel={() => actions.profileCancelEditing()}
-              onSaveEdit={this.handleSubmission}
-              bioInput={bioInput}
-              avatarInput={avatarInput}
-              emailInput={emailInput}
-              publicInput={publicInput}
             />
           }
         </Section>
