@@ -31,9 +31,11 @@ const UserProfile = ({
   publicInput,
 }) => (
   <Article className={styles.panel}>
-    <Heading tag="h2" align="center">
+    {user && 
+      <Heading tag="h2" align="center">
       {`Hello, ${user.name}!`}
-    </Heading>
+    </Heading> 
+    }
     <Section
       className={isEditing ? '' : styles.transformAvatar}
       pad="none"
@@ -90,7 +92,7 @@ const UserProfile = ({
           tag="h3"
           align="center"
         >
-          {user.email}
+          {user && user.email}
         </Heading>
       </Box>
     </EditableText>
