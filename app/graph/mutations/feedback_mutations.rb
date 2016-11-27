@@ -6,7 +6,7 @@ module FeedbackMutations
     input_field :auth_token, !types.String
     return_field :feedback, FeedbackType
 
-    resolve -> (inputs, ctx) do
+    resolve -> (_object, inputs, _ctx) do
       @user = User.find_by(auth_token: inputs[:auth_token])
       feedback = Feedback.create(
         description: inputs[:feedback][:description],

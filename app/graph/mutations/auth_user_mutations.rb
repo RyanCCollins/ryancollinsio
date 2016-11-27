@@ -6,7 +6,7 @@ module AuthUserMutations
     input_field :profile, ProfileInputType
 
     return_field :user, AuthUserType
-    resolve -> (inputs, _ctx)  {
+    resolve -> (_object, inputs, _ctx) do
       @user = User.find_by(auth_token: inputs[:auth_token])
       @user.name = inputs[:profile][:name] if inputs[:profile][:name]
       @user.bio = inputs[:profile][:bio] if inputs[:profile][:bio]
@@ -18,6 +18,6 @@ module AuthUserMutations
       {
         user: @user
       }
-    }
+    end
   end
 end
