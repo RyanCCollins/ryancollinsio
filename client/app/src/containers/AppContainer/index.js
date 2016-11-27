@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import * as AppContainerActionCreators from './actions';
 import App from 'grommet-udacity/components/App';
 import { Navigation, AppFooter } from 'components';
+import { FeedbackContainer } from 'containers';
 
 class AppContainer extends Component {
   constructor() {
@@ -69,6 +70,7 @@ class AppContainer extends Component {
         >
           {React.cloneElement(this.props.children, this.props)}
         </Navigation>
+        <FeedbackContainer />
         {!navIsActive && <AppFooter />}
       </App>
     );
