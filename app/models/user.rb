@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_many :post_comments, through: :posts
   has_many :tutorials
   has_many :tutorial_comments, through: :tutorials
+  has_many :feedbacks
+  alias_attribute :feedback, :feedbacks
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   enum role: [:user, :admin]
