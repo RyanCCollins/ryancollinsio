@@ -9,7 +9,7 @@ export const Closer = styled(CloseIcon)`
 `;
 
 export const StyledNotification = styled(Notification)`
-  max-width: 960px;
+  max-width: 400px;
 `;
 
 export const StyledWrapper = styled(Section)`

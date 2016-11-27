@@ -34,7 +34,7 @@ const UserProfile = ({
   <Article className={styles.panel}>
     <Heading tag="h2" align="center">
       {`Hello, ${user.name}!`}
-    </Heading> 
+    </Heading>
     <Section
       className={isEditing ? '' : styles.transformAvatar}
       pad="none"
