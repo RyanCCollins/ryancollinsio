@@ -40,6 +40,7 @@ const FocusSection = ({
         outerRadius={150}
         width={600}
         height={500}
+        maxWidth={'100vw'}
         data={chartData}
       >
         <Radar

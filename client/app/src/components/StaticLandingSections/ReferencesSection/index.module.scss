@@ -24,6 +24,8 @@
     font-weight: 400;
     font-size: 20 !important;
     font-family: 'Merriweather', serif;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }
 
@@ -58,4 +60,8 @@
       stroke: white !important;
     }
   }
+}
+
+.box {
+  max-width: 100vw;
 }

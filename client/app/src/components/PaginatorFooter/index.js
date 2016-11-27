@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import Footer from 'grommet-udacity/components/Footer';
+import { StyledFooter } from './styles';
 import { Pagination } from 'antd';
 
 const PaginatorFooter = ({
@@ -8,7 +8,7 @@ const PaginatorFooter = ({
   onChange,
   pageSize,
 }) => (
-    <Footer align="center" justify="center" pad="large">
+    <StyledFooter align="center" justify="center" pad="large">
       <Pagination
         onChange={(newPage) => onChange(newPage)}
         defaultCurrent={1}
@@ -16,7 +16,7 @@ const PaginatorFooter = ({
         current={currentPage}
         total={total}
       />
-    </Footer>
+    </StyledFooter>
 );
 
 PaginatorFooter.propTypes = {

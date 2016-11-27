@@ -29,33 +29,39 @@ const ReferencesSection = ({
       fullscreen={false}
       isLoading={isLoading}
     >
-      {references && references.length > 0 &&
-        <Carousel autoplay className={styles.carousel}>
-            {references.map((reference, i) =>
-              <Box
-                className={`${styles.carouselItem}`}
-                key={i}
-              >
-                <img src={reference.avatar} className={styles.avatar} />
-                <Box className={styles.referenceText}>
-                  <Heading className="heading">
-                    {reference.name}
-                  </Heading>
-                  <Label uppercase className={styles.labelText}>
-                    {reference.title}
-                  </Label>
-                  <Label uppercase className={styles.labelBottom}>
-                    {reference.company}
-                  </Label>
-                  <hr className={styles.seperator} />
-                  <Paragraph>
-                    {reference.body}
-                  </Paragraph>
+      <Box className={styles.box}>
+        {references && references.length > 0 &&
+          <Carousel
+            persistentNav={false}
+            autoplay
+            className={styles.carousel}
+          >
+              {references.map((reference, i) =>
+                <Box
+                  className={`${styles.carouselItem}`}
+                  key={i}
+                >
+                  <img src={reference.avatar} className={styles.avatar} />
+                  <Box className={styles.referenceText}>
+                    <Heading className="heading">
+                      {reference.name}
+                    </Heading>
+                    <Label uppercase className={styles.labelText}>
+                      {reference.title}
+                    </Label>
+                    <Label uppercase className={styles.labelBottom}>
+                      {reference.company}
+                    </Label>
+                    <hr className={styles.seperator} />
+                    <Paragraph>
+                      {reference.body}
+                    </Paragraph>
+                  </Box>
                 </Box>
-              </Box>
-            )}
-        </Carousel>
-      }
+              )}
+          </Carousel>
+        }
+      </Box>
     </WithLoading>
   </Section>
 );
