@@ -9,9 +9,9 @@ export const feedbackSubmissionInitiation = () => ({
   type: types.FEEDBACK_SUBMISSION_INITIATION,
 });
 
-export const feedbackSubmissionError = (err) => ({
+export const feedbackSubmissionError = (error) => ({
   type: types.FEEDBACK_SUBMISSION_ERROR,
-  err,
+  error,
 });
 
 export const feedbackSubmissionMessage = (message) => ({
