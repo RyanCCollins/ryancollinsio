@@ -33,8 +33,10 @@ class FeedbackContainer extends Component {
     const data = {
       variables: {
         authToken: this.props.user.authToken,
-        description: this.props.fields.feedbackInput.value,
-        url: this.props.fields.urlInput.value,
+        feedback: {
+          description: this.props.fields.feedbackInput.value,
+          url: this.props.fields.urlInput.value,
+        },
       },
     };
     this.props.actions.feedbackSubmissionInitiation();
