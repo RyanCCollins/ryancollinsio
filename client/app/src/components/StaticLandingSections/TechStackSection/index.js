@@ -15,7 +15,7 @@ const TechStackSection = ({
     full="horizontal"
     align="center"
     justify="start"
-    texture="https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/nebula-bg.jpg?raw=true"
+    texture="https://github.com/RyanCCollins/cdn/blob/master/misc/aurora.jpg?raw=true"
   >
     <Headline align="center" className="heading heading__light">
       Tech Stack

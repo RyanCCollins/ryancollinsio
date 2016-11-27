@@ -47,7 +47,7 @@ const Project = ({
           <Markdown content={project.description} />
         </Box>
         <Footer align="center" justify="center">
-          <Menu inline direction="row" responsive={false}>
+          <Menu inline direction="row" responsive={false} className={styles.buttonWrapper}>
             <Button
               label="View Live"
               icon={<ViewIcon />}

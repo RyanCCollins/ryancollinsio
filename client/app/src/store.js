@@ -8,6 +8,7 @@ const isClient = typeof document !== 'undefined';
 const isDeveloping = process.env.NODE_ENV !== 'production';
 
 /* GENERATOR: Import all of your initial state */
+import { initialState as feedback } from './containers/FeedbackContainer/reducer';
 import { initialState as search } from './containers/SearchContainer/reducer';
 import { initialState as tutorial } from './containers/TutorialContainer/reducer';
 import { initialState as tutorials } from './containers/TutorialsContainer/reducer';
@@ -28,6 +29,7 @@ import { initialState as post } from 'containers/PostContainer/reducer';
 
 const initialState = {
   /* GENERATOR: Compile all of your initial state */
+  feedback,
   search,
   tutorial,
   tutorials,

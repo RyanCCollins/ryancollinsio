@@ -14,3 +14,9 @@
     margin-bottom: 10px;
   }
 }
+
+.buttonWrapper {
+  @media screen and (max-width: 600px) {
+    flex-direction: column !important;
+  }
+}
