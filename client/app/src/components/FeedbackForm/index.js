@@ -63,14 +63,21 @@ const FeedbackForm = ({
           primary
         />
       </Footer>
-      {error || message &&
-        <Alert
-          message={error ? error.message : message}
-          status={error ? 'critical' : 'ok'}
-          onClose={onCloseAlert}
-        />
-      }
     </StyledForm>
+    {error &&
+      <Alert
+        message={error.message}
+        status={'critical'}
+        onClose={onCloseAlert}
+      />
+    }
+    {message &&
+      <Alert
+        message={message}
+        status={'ok'}
+        onClose={onCloseAlert}
+      />
+    }
   </StyledBox>
 );
 

@@ -8,6 +8,7 @@ import { FeedbackFab, FeedbackForm, WithLoading } from 'components';
 import Layer from 'grommet-udacity/components/Layer';
 import { reduxForm } from 'redux-form';
 import validation from './utils';
+import { StyledBox } from './styles';
 
 export const formFields = [
   'urlInput',
@@ -67,18 +68,21 @@ class FeedbackContainer extends Component {
           hidden={!isVisible}
           onClose={this.handleToggleModal}
         >
-          <WithLoading
-            isLoading={isSubmitting}
-          >
-            <FeedbackForm
-              {...fields}
-              invalid={invalid}
-              message={message}
-              onCloseAlert={this.props.actions.clearFeedbackAlerts}
-              onSubmit={this.handleSubmit}
-              error={submissionError}
-            />
-          </WithLoading>
+          <StyledBox>
+            <WithLoading
+              isLoading={isSubmitting}
+              fullscreen={false}
+            >
+              <FeedbackForm
+                {...fields}
+                invalid={invalid}
+                message={message}
+                onCloseAlert={this.props.actions.clearFeedbackAlerts}
+                onSubmit={this.handleSubmit}
+                error={submissionError}
+              />
+            </WithLoading>
+          </StyledBox>
         </Layer>
       </div>
     );

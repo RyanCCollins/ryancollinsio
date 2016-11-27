@@ -8,16 +8,16 @@ const Alert = ({
   onClose,
 }) => (
   <StyledWrapper>
-    <div className="error-alert__closer">
-      <Button
-        plain
-        onClick={() => onClose()}
-        a11yTitle="Close Alert"
-      >
-        <Closer a11yTitle="Close Alert" />
-      </Button>
-    </div>
     <StyledNotification
+      closer={
+        <Button
+          plain
+          onClick={onClose}
+          a11yTitle="Close Alert"
+        >
+          <Closer a11yTitle="Close Alert" />
+        </Button>
+      }
       status={status}
       message={message}
     />
