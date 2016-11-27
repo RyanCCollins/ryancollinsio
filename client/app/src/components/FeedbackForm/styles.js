@@ -10,6 +10,7 @@ export const StyledBox = styled(Box)`
   padding: 24px;
   max-width: 100vw;
   box-sizing: border-box;
+  min-width: 300px;
 `;
 
 export const StyledForm = styled(Form)`
