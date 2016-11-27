@@ -4,7 +4,7 @@ import Button from 'grommet-udacity/components/Button';
 import FormFields from 'grommet-udacity/components/FormFields';
 import Heading from 'grommet-udacity/components/Heading';
 import calculatedError from './utils';
-import { MarkdownInput } from 'components';
+import { MarkdownInput, Alert } from 'components';
 import { StyledFormField, StyledForm, StyledBox } from './styles';
 
 const FeedbackForm = ({
@@ -12,6 +12,9 @@ const FeedbackForm = ({
   urlInput,
   invalid,
   onSubmit,
+  error,
+  message,
+  onCloseAlert,
 }) => (
   <StyledBox
     pad={{ horizontal: 'large' }}
@@ -60,6 +63,13 @@ const FeedbackForm = ({
           primary
         />
       </Footer>
+      {error || message &&
+        <Alert
+          message={error ? error.message : message}
+          status={error ? 'critical' : 'ok'}
+          onClose={onCloseAlert}
+        />
+      }
     </StyledForm>
   </StyledBox>
 );
@@ -71,6 +81,8 @@ FeedbackForm.propTypes = {
   urlInput: PropTypes.object.isRequired,
   invalid: PropTypes.bool.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  error: PropTypes.object,
+  onCloseAlert: PropTypes.func.isRequired,
 };
 
 export default FeedbackForm;
