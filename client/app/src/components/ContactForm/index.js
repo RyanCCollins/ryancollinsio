@@ -24,10 +24,9 @@ const ContactForm = ({
   onSubmit,
 }) => (
   <Box
-    className={styles.signupForm}
-    pad={{ horizontal: 'large' }}
+    className={styles.contactForm}
   >
-    <Form>
+    <Form className={styles.form}>
       <Box align="center" justify="center" pad="large">
         <LogoImage />
       </Box>
@@ -35,7 +34,7 @@ const ContactForm = ({
         RyanCollins.io
       </Heading>
       <Heading align="center" tag="h5">
-        Contact Me
+        Contact Form
       </Heading>
       <FormFields>
         <FormField
