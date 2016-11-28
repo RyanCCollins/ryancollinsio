@@ -21,15 +21,13 @@ class FeedbackContainer extends Component {
     this.handleToggleModal = this.handleToggleModal.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  componentWillReceiveProps({ user }) {
-    if (!user.authToken) {
-      this.context.router.push('/login');
-    }
-  }
   handleToggleModal() {
     this.props.actions.toggleFeedbackModal();
   }
   handleSubmit() {
+    if (!this.props.user || !this.props.user.authToken) {
+      this.context.router.push('/login');
+    }
     const data = {
       variables: {
         authToken: this.props.user.authToken,
