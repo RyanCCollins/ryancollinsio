@@ -60,31 +60,32 @@ class FeedbackContainer extends Component {
     } = this.props;
     return (
       <div>
-        {!isVisible &&
+        {!isVisible ?
           <FeedbackFab handleClick={this.handleToggleModal} />
+        :
+          <Layer
+            align="center"
+            closer
+            hidden={false}
+            onClose={this.handleToggleModal}
+          >
+            <StyledBox>
+              <WithLoading
+                isLoading={isSubmitting}
+                fullscreen={false}
+              >
+                <FeedbackForm
+                  {...fields}
+                  invalid={invalid}
+                  message={message}
+                  onCloseAlert={this.props.actions.clearFeedbackAlerts}
+                  onSubmit={this.handleSubmit}
+                  error={submissionError}
+                />
+              </WithLoading>
+            </StyledBox>
+          </Layer>
         }
-        <Layer
-          align="center"
-          closer={isVisible}
-          hidden={!isVisible}
-          onClose={this.handleToggleModal}
-        >
-          <StyledBox>
-            <WithLoading
-              isLoading={isSubmitting}
-              fullscreen={false}
-            >
-              <FeedbackForm
-                {...fields}
-                invalid={invalid}
-                message={message}
-                onCloseAlert={this.props.actions.clearFeedbackAlerts}
-                onSubmit={this.handleSubmit}
-                error={submissionError}
-              />
-            </WithLoading>
-          </StyledBox>
-        </Layer>
       </div>
     );
   }

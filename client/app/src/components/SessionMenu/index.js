@@ -52,7 +52,6 @@ const SessionMenu = ({
   onLogout,
   user,
   pathname,
-  tabIndex,
 }) => (
   <span>
     {(() => { // eslint-disable-line
@@ -61,7 +60,6 @@ const SessionMenu = ({
           case 'user':
             return (
               <Menu
-                tabIndex={tabIndex}
                 icon={<SessionIcon user={user} />}
                 inline={false}
                 dropAlign={{ top: 'top', right: 'right' }}
@@ -79,7 +77,6 @@ const SessionMenu = ({
           case 'admin':
             return (
               <Menu
-                tabIndex={tabIndex}
                 icon={<SessionIcon user={user} />}
                 dropAlign={{ bottom: 'bottom' }}
                 a11yTitle="Session"
@@ -120,11 +117,6 @@ const SessionMenu = ({
 SessionMenu.propTypes = {
   user: PropTypes.object,
   pathname: PropTypes.string.isRequired,
-  tabIndex: PropTypes.number.isRequired,
-};
-
-SessionMenu.defaultProps = {
-  tabIndex: 0,
 };
 
 export default cssModules(SessionMenu, styles);

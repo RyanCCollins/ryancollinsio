@@ -26,22 +26,20 @@ const Navbar = ({
             key={i}
             className={`/${pathname.split('/')[1]}` === item.url ? 'navLink active' : 'navLink'}
             href={item.url}
-            tabIndex={i}
           >
             {item.name}
           </Anchor>
         )}
         <StyledBox>
           <Search
-            tabIndex={navLinks.length + 1}
             onDOMChange={onSearch}
             value={searchTerm}
             dropAlign={{ left: 'left' }}
             placeHolder="Start typing..."
           />
         </StyledBox>
+        <SessionMenu pathname={pathname} user={user} />
       </StyledMenu>
-      <SessionMenu tabIndex={navLinks.length + 2} pathname={pathname} user={user} />
     </Header>
   </nav>
 );
