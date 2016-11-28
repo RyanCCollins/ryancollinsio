@@ -122,7 +122,7 @@ class TutorialContainer extends Component {
             <Divider />
           </Section>
           {tutorial &&
-            <Section align="center" justify="center" colorIndex="light-2">
+            <Box align="center" justify="center" colorIndex="light-2">
               <iframe
                 width="960"
                 height="480"
@@ -130,7 +130,7 @@ class TutorialContainer extends Component {
                 frameBorder="0"
                 allowFullScreen
               />
-            </Section>
+            </Box>
           }
           <Section align="center" colorIndex="light-2">
             <Paragraph>
