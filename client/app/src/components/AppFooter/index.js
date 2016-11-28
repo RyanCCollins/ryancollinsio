@@ -12,7 +12,7 @@ import socialIcons from './data';
 import cn from 'classnames';
 
 const AppFooter = () => (
-  <Footer pad="large" colorIndex="light-2" className={styles.appFooter}>
+  <Footer primary pad="large" colorIndex="light-2" className={styles.appFooter}>
     <Box
       direction="column"
       align="center"

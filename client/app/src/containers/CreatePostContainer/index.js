@@ -108,7 +108,7 @@ class CreatePostContainer extends Component {
               Create Post
             </Headline>
             <Divider />
-            <Section align="center" justify="center">
+            <Section primary align="center" justify="center">
               <CreatePostForm
                 selectedTags={selectedTags}
                 onSubmit={this.handleSubmit}

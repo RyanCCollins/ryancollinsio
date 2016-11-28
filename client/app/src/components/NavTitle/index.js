@@ -1,13 +1,12 @@
 import React, { PropTypes } from 'react';
 import Anchor from 'grommet-udacity/components/Anchor';
-import Title from 'grommet-udacity/components/Title';
 import { LogoImage } from 'components';
 import { StyledTitle, NotYetRendered } from './styles';
 
 const NavTitle = ({ isClient }) => (
   <StyledTitle>
     {isClient ?
-      <Anchor href="/">
+      <Anchor href="/" tabIndex={-1}>
         <LogoImage />
       </Anchor>
     :

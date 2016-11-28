@@ -104,7 +104,7 @@ class PostContainer extends Component { // eslint-disable-line react/prefer-stat
         onClose={() => actions.postClearToast()}
       >
         <WithLoading isLoading={isLoading || !post} fullscreen>
-          <Box className={styles.postPage} colorIndex="light-2">
+          <Box primary className={styles.postPage} colorIndex="light-2">
             {post &&
               <Post
                 post={post}

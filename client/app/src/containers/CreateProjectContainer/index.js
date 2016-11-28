@@ -123,7 +123,7 @@ class CreateProjectContainer extends Component {
               Create Project
             </Headline>
             <Divider />
-            <Section align="center" justify="center" className="section__last">
+            <Section primary align="center" justify="center" className="section__last">
               <CreateProjectForm
                 invalid={invalid}
                 onSubmit={this.handleSubmit}

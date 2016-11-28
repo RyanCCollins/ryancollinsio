@@ -1,19 +1,19 @@
-import {{ properCase name }}Container from '../index';
+import AboutContainer from '../index';
 import { shallow } from 'enzyme';
 import { shallowToJson } from 'enzyme-to-json';
 import React from 'react';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { initialState as {{ camelCase name }} } from '../reducer';
+import { initialState as about } from '../reducer';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
-describe('<{{ properCase name }} />', () => {
+describe('<About />', () => {
   it('should render with default props', () => {
-    const store = mockStore({ {{ camelCase name }} });
+    const store = mockStore({ about });
     const wrapper = shallow(
-      <{{ properCase name }}Container store={store} />
+      <AboutContainer store={store} />
     );
     expect(shallowToJson(wrapper)).toMatchSnapshot();
   });

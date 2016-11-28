@@ -84,6 +84,7 @@ class SignupContainer extends Component {
           justify="center"
           colorIndex="light-2"
           className={styles.signup}
+          primary
         >
           {isLoading &&
             <LoadingIndicator message="Submitting" isLoading={isLoading} />

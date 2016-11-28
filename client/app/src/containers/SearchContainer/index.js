@@ -17,7 +17,7 @@ import styles from './index.module.scss';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { getFilteredSearchData } from './selectors';
-import { WithLoading, ResponsiveImage, QueryNotFound, SearchItem } from 'components';
+import { WithLoading, ResponsiveImage, QueryNotFound } from 'components';
 import {
   SectionLast,
   NavigationItem,
@@ -83,7 +83,7 @@ class SearchContainer extends Component {
                     </Title>
                   </Header>
                 </Section>
-                <Section direction="row" className={styles.sectionMain}>
+                <Section primary direction="row" className={styles.sectionMain}>
                   <Box basis="1/4" className={styles.leftColumn}>
                     <Menu responsive={false} direction="column">
                       <NavigationItem

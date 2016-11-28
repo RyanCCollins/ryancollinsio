@@ -81,7 +81,7 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
               }
             </Box>
           </Section>
-          <Section className={styles.innerBox}>
+          <Section primary className={styles.innerBox}>
             {projects && projects.length > 0 &&
               <Columns
                 className={styles.masonry}

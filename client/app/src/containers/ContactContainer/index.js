@@ -76,7 +76,7 @@ class ContactContainer extends Component {
           onClose={(type) => actions.clearContactToast(type)}
         >
           <WithLoading isLoading={isLoading || isSubmitting}>
-            <Section align="center" justify="center" className={styles.sectionOne}>
+            <Section primary align="center" justify="center" className={styles.sectionOne}>
               <Headline align="center" className="heading">
                 Contact Me
               </Headline>

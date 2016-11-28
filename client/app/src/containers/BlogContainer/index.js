@@ -49,7 +49,7 @@ class BlogContainer extends Component {
     const filterableTerm = searchTerm && searchTerm !== '' ?
       searchTerm.toLowerCase() : null;
     return (
-      <Section className={styles.blog} colorIndex="light-2">
+      <Box className={styles.blog} colorIndex="light-2">
         <WithLoading isLoading={isLoading}>
           <WithToast
             error={postError}
@@ -60,7 +60,7 @@ class BlogContainer extends Component {
                 Blog
               </Headline>
               <Divider />
-              <Section direction="column" full="horizontal" justify="center" align="center">
+              <Section primary direction="column" full="horizontal" justify="center" align="center">
                 <Box pad="medium" align="center">
                   {postTags && postTags.length > 0 &&
                     <SearchForm
@@ -107,7 +107,7 @@ class BlogContainer extends Component {
             }
           </WithToast>
         </WithLoading>
-      </Section>
+      </Box>
     );
   }
 }

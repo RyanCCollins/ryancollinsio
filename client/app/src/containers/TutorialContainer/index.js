@@ -109,6 +109,7 @@ class TutorialContainer extends Component {
           onClose={actions.tutorialClearToast}
         >
           <Section
+            primary
             className={styles.portfolio}
             colorIndex="light-2"
             align="center"
@@ -121,7 +122,7 @@ class TutorialContainer extends Component {
             <Divider />
           </Section>
           {tutorial &&
-            <Box align="center" justify="center" colorIndex="light-2">
+            <Section align="center" justify="center" colorIndex="light-2">
               <iframe
                 width="960"
                 height="480"
@@ -129,7 +130,7 @@ class TutorialContainer extends Component {
                 frameBorder="0"
                 allowFullScreen
               />
-            </Box>
+            </Section>
           }
           <Section align="center" colorIndex="light-2">
             <Paragraph>

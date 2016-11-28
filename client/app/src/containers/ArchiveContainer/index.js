@@ -30,13 +30,13 @@ class ArchiveContainer extends Component {
       selectedTag,
     } = this.props;
     return (
-      <Section className={styles.archive} colorIndex="light-2">
+      <Box className={styles.archive} colorIndex="light-2">
         <WithLoading isLoading={isLoading}>
           <WithToast
             error={loadingError}
             onClose={() => actions.clearBlogToast('error')}
           >
-            <Box pad="large" align="center" justify="center">
+            <Section primary pad="large" align="center" justify="center">
               <Heading align="center">
                 Blog Archive
               </Heading>
@@ -57,10 +57,10 @@ class ArchiveContainer extends Component {
                   />
                 )}
               </Columns>
-            </Box>
+            </Section>
           </WithToast>
         </WithLoading>
-      </Section>
+      </Box>
     );
   }
 }

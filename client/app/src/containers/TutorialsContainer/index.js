@@ -36,7 +36,7 @@ class TutorialsContainer extends Component { // eslint-disable-line react/prefer
             Tutorials
           </Headline>
           <Divider />
-          <Section pad="large" align="center" justify="center">
+          <Section primary pad="large" align="center" justify="center">
             <List>
               {tutorials && tutorials.map((tutorial, i) =>
                 <ListItem key={i}>

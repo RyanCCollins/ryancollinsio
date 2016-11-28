@@ -65,7 +65,7 @@ class FeedbackContainer extends Component {
         }
         <Layer
           align="center"
-          closer
+          closer={isVisible}
           hidden={!isVisible}
           onClose={this.handleToggleModal}
         >

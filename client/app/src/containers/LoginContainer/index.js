@@ -93,7 +93,7 @@ class LoginContainer extends Component { // eslint-disable-line react/prefer-sta
          {isLoading &&
            <LoadingIndicator message="Submitting" isLoading={isLoading} />
          }
-         <Box pad="large">
+         <Box pad="large" primary>
            <LoginForm
              {...fields}
              invalid={invalid}

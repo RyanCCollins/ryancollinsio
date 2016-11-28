@@ -75,6 +75,7 @@ class UserProfileContainer extends Component {
         <Section
           justify="center"
           align="center"
+          primary
           pad={{ horizontal: 'large' }}
         >
           {isLoading ?
