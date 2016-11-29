@@ -14,13 +14,13 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { PostPreview, Divider, PaginatorFooter, SearchForm, SearchMeta } from 'components';
 import { getVisiblePostsFiltered } from './selectors';
-import Scroll from 'react-scroll';
 
 class BlogContainer extends Component {
   constructor() {
     super();
     this.handleTags = this.handleTags.bind(this);
     this.handleApplyingFilter = this.handleApplyingFilter.bind(this);
+    this.handleClearingFilter = this.handleClearingFilter.bind(this);
   }
   componentWillReceiveProps({ allPosts }) {
     if (allPosts !== this.props.allPosts) {
@@ -29,8 +29,9 @@ class BlogContainer extends Component {
   }
   handleApplyingFilter() {
     this.props.actions.blogApplyFilters();
-    const scroll = Scroll.animateScroll;
-    scroll.scrollToTop();
+  }
+  handleClearingFilter() {
+    this.props.actions.blogClearFilters();
   }
   handleTags(value) {
     const {
@@ -114,7 +115,7 @@ class BlogContainer extends Component {
                       onToggleModal={actions.blogToggleModal}
                       isShowingModal={isShowingModal}
                       onApplyFilters={this.handleApplyingFilter}
-                      onClearFilters={actions.blogClearFilters}
+                      onClearFilters={this.handleClearingFilter}
                       isFiltering={isFiltering}
                     />
                   }

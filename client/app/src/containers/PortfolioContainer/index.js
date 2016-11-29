@@ -21,19 +21,22 @@ import Headline from 'grommet-udacity/components/Headline';
 import { reduxForm } from 'redux-form';
 import { getFilteredProjects } from './selectors';
 import FlipMove from 'react-flip-move';
-import Scroll from 'react-scroll';
 
 export const formFields = [
   'tagSelectionInput',
 ];
 
 class PortfolioContainer extends Component { // eslint-disable-line react/prefer-stateless-function
+  constructor() {
+    super();
+    this.handleTags = this.handleTags.bind(this);
+    this.renderProjects = this.renderProjects.bind(this);
+    this.handleApplyingFilter = this.handleApplyingFilter.bind(this);
+    this.handleResettingFilter = this.handleResettingFilter.bind(this);
+  }
   componentWillReceiveProps({ allProjects }) {
     if (allProjects !== this.props.allProjects) {
       this.props.actions.portfolioSetProjects(allProjects);
-      this.handleTags = this.handleTags.bind(this);
-      this.renderProjects = this.renderProjects.bind(this);
-      this.handleApplyingFilter = this.handleApplyingFilter.bind(this);
     }
   }
   handleTags(value) {
@@ -45,8 +48,9 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
   }
   handleApplyingFilter() {
     this.props.actions.portfolioApplyFilters();
-    const scroll = Scroll.animateScroll;
-    scroll.scrollToTop();
+  }
+  handleResettingFilter() {
+    this.props.actions.portfolioClearFilters();
   }
   renderProjects(projects) {
     return projects.map((project, i) =>
@@ -112,7 +116,7 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
                   onToggleModal={actions.portfolioToggleModal}
                   isShowingModal={isShowingModal}
                   onApplyFilters={this.handleApplyingFilter}
-                  onClearFilters={actions.portfolioClearFilters}
+                  onClearFilters={this.handleResettingFilter}
                   isFiltering={isFiltering}
                 />
               }
