@@ -8,36 +8,49 @@ export const initialState = {
   searchTerm: null,
   tags: [],
   isFiltering: false,
+  modal: {
+    isShowing: false,
+  },
 };
 
 const portfolioReducer =
   (state = initialState, action) => {
     switch (action.type) {
+      case types.PORTFOLIO_CLEAR_FILTERS:
+        return {
+          ...state,
+          searchTerm: null,
+          isFiltering: false,
+          tags: [],
+          modal: {
+            isShowing: false,
+          },
+        };
+      case types.PORTFOLIO_TOGGLE_MODAL:
+        return {
+          ...state,
+          modal: {
+            isShowing: !state.modal.isShowing,
+          },
+        };
+      case types.PORTFOLIO_APPLY_FILTERS:
+        return {
+          ...state,
+          isFiltering: true,
+          modal: {
+            isShowing: false,
+          },
+        };
       case types.PORTFOLIO_SET_TAGS:
         return update(state, {
           tags: {
             $set: action.tags,
-          },
-          isFiltering: {
-            $set: action.tags.length > 0,
           },
         });
       case types.PORTFOLIO_SET_SEARCH_TERM:
         return update(state, {
           searchTerm: {
             $set: action.term,
-          },
-          isFiltering: {
-            $set: action.term && action.term !== '',
-          },
-        });
-      case types.PORTFOLIO_CLEAR_SEARCH_TERM:
-        return update(state, {
-          searchTerm: {
-            $set: null,
-          },
-          isFiltering: {
-            $set: false,
           },
         });
       case types.PORTFOLIO_SET_CURRENT_PAGE:

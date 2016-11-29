@@ -18,12 +18,23 @@ export const portfolioSetSearchTerm = (term) => ({
   term,
 });
 
-// portfolioClearSearchTerm :: None -> {Action}
-export const portfolioClearSearchTerm = () => ({
-  type: types.PORTFOLIO_CLEAR_SEARCH_TERM,
-});
-
+// portfolioSetTags :: Array -> {Action}
 export const portfolioSetTags = (tags) => ({
   type: types.PORTFOLIO_SET_TAGS,
   tags,
+});
+
+// portfolioApplyFilters :: None -> {Action}
+export const portfolioApplyFilters = () => ({
+  type: types.PORTFOLIO_APPLY_FILTERS,
+});
+
+// portfolioClearFilters :: None -> {Action}
+export const portfolioClearFilters = () => ({
+  type: types.PORTFOLIO_CLEAR_FILTERS,
+});
+
+// portfolioToggleModal :: None -> {Action}
+export const portfolioToggleModal = () => ({
+  type: types.PORTFOLIO_TOGGLE_MODAL,
 });

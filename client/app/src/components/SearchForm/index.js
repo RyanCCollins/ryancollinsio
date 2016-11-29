@@ -5,84 +5,133 @@ import Box from 'grommet-udacity/components/Box';
 import Search from 'grommet-udacity/components/Search';
 import Button from 'grommet-udacity/components/Button';
 import CloseIcon from 'grommet-udacity/components/icons/base/Close';
-import Filter from 'grommet-udacity/components/icons/base/Filter';
-import Menu from 'grommet-udacity/components/Menu';
-import { Select as TagSelect } from 'antd';
+import CheckmarkIcon from 'grommet-udacity/components/icons/base/Checkmark';
+import FilterIcon from 'grommet-udacity/components/icons/base/Filter';
+import Layer from 'grommet-udacity/components/Layer';
 import FormField from 'grommet-udacity/components/FormField';
+import Footer from 'grommet-udacity/components/Footer';
+import Heading from 'grommet-udacity/components/Heading';
+import { Select as TagSelect } from 'antd';
 const Option = TagSelect.Option;
 
 const SearchForm = ({
-  onClear,
   onChange,
   searchTerm,
   inputTags,
   tags,
   onChangeTags,
+  onToggleModal,
+  isShowingModal,
+  onApplyFilters,
+  onClearFilters,
+  isFiltering,
 }) => (
-  <Menu
-    dropAlign={{ top: 'top', left: 'left' }}
-    id="menu-nav"
-    label="Search / Filter"
-    closeOnClick={false}
-    icon={<Filter />}
-  >
-    <Box alignSelf="center" direction="column" colorIndex="light-1">
-      <Box
-        direction="row"
-        responsive={false}
-        alignSelf="center"
-        pad="medium"
+  <div>
+    {isFiltering ?
+      <Button onClick={onClearFilters} secondary label="Clear Filter(s)" icon={<CloseIcon />} />
+    :
+      <Button onClick={onToggleModal} label="Search / Filter" icon={<FilterIcon />} />
+    }
+    {isShowingModal &&
+      <Layer
         align="center"
+        closer
+        onClose={onToggleModal}
+        hidden={!isShowingModal}
       >
-        <Search
-          inline
-          responsive={false}
-          placeHolder="React, GraphQL, Rails, etc."
-          value={searchTerm || ''}
-          onDOMChange={onChange}
-        />
-        {searchTerm !== '' &&
-          <Button
-            onClick={onClear}
-            className={styles.button}
-            icon={<CloseIcon />}
-          />
-        }
-      </Box>
-      <Box pad="medium" direction="column">
-        <FormField label="Tags" htmlFor="tag-input">
-          <TagSelect
-            tags
-            multiple
-            value={inputTags}
-            style={{ width: '100%' }}
-            id="tag-input"
-            placeholder="Start typing to find projects by Tag."
-            allowClear
-            onChange={onChangeTags}
-            id="tag-input"
+        <Box
+          alignSelf="center"
+          pad="large"
+          size="large"
+          direction="column"
+          colorIndex="light-1"
+          className={styles.wrapper}
+        >
+          <Heading align="center" tag="h1">
+            Filter / Search
+          </Heading>
+          <Box
+            direction="row"
+            responsive={false}
+            alignSelf="center"
+            className={styles.formFieldBox}
+            align="center"
           >
-            {tags.map(({ title, id }) =>
-              <Option
-                key={id}
-                value={title}
-              >
-                {title}
-              </Option>
-            )}
-          </TagSelect>
-        </FormField>
-      </Box>
-    </Box>
-  </Menu>
+            <Search
+              inline
+              className={styles.search}
+              responsive={false}
+              placeHolder="React, GraphQL, Rails, etc."
+              value={searchTerm || ''}
+              onDOMChange={onChange}
+            />
+          </Box>
+          <Box
+            direction="row"
+            responsive={false}
+            alignSelf="center"
+            className={styles.formFieldBox}
+            align="center"
+          >
+            <FormField className={styles.formField} label="Tags" htmlFor="tag-input">
+              <Box pad={{ horizontal: 'medium' }}>
+                <TagSelect
+                  tags
+                  multiple
+                  value={inputTags}
+                  style={{ width: '100%' }}
+                  id="tag-input"
+                  placeholder="Start typing to find projects by Tag."
+                  allowClear
+                  onChange={onChangeTags}
+                  id="tag-input"
+                >
+                  {tags.map(({ title, id }) =>
+                    <Option
+                      key={id}
+                      value={title}
+                    >
+                      {title}
+                    </Option>
+                  )}
+                </TagSelect>
+              </Box>
+            </FormField>
+          </Box>
+          <Footer className={styles.footer} align="center" justify="center">
+            <div className={styles.buttonWrapper}>
+              <Button
+                label="Apply Filters"
+                onClick={onApplyFilters}
+                icon={<CheckmarkIcon />}
+              />
+            </div>
+            <div className={styles.buttonWrapper}>
+              <Button
+                label="Reset Filters"
+                onClick={onClearFilters}
+                type="reset"
+                secondary
+                icon={<CloseIcon />}
+              />
+            </div>
+          </Footer>
+        </Box>
+      </Layer>
+    }
+  </div>
 );
 
 SearchForm.propTypes = {
-  onClear: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   searchTerm: PropTypes.string,
   onChangeTags: PropTypes.func.isRequired,
   inputTags: PropTypes.array.isRequired,
+  onToggleModal: PropTypes.func.isRequired,
+  isShowingModal: PropTypes.bool.isRequired,
+  onApplyFilters: PropTypes.func.isRequired,
+  onClearFilters: PropTypes.func.isRequired,
+  isFiltering: PropTypes.bool.isRequired,
 };
 
 export default cssModules(SearchForm, styles);

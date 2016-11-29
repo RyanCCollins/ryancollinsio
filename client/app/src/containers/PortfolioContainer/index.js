@@ -15,12 +15,13 @@ import {
 import Section from 'grommet-udacity/components/Section';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import Columns from 'grommet-udacity/components/Columns';
 import Box from 'grommet-udacity/components/Box';
 import Anchor from 'grommet-udacity/components/Anchor';
 import Headline from 'grommet-udacity/components/Headline';
 import { reduxForm } from 'redux-form';
 import { getFilteredProjects } from './selectors';
+import FlipMove from 'react-flip-move';
+import Scroll from 'react-scroll';
 
 export const formFields = [
   'tagSelectionInput',
@@ -31,6 +32,8 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
     if (allProjects !== this.props.allProjects) {
       this.props.actions.portfolioSetProjects(allProjects);
       this.handleTags = this.handleTags.bind(this);
+      this.renderProjects = this.renderProjects.bind(this);
+      this.handleApplyingFilter = this.handleApplyingFilter.bind(this);
     }
   }
   handleTags(value) {
@@ -39,6 +42,26 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
     } = this.props;
     const newTags = value.map((tag) => tags[tag] || tag);
     this.props.actions.portfolioSetTags(newTags);
+  }
+  handleApplyingFilter() {
+    this.props.actions.portfolioApplyFilters();
+    const scroll = Scroll.animateScroll;
+    scroll.scrollToTop();
+  }
+  renderProjects(projects) {
+    return projects.map((project, i) =>
+      <Box className={styles.wrapper} key={i}>
+        <Box className={styles.card} size="medium">
+          <Anchor href={`/portfolio/projects/${project.slug}`}>
+            <ResponsiveImage
+              matchHeight={false}
+              src={project.featureImage}
+              className={styles.image}
+            />
+          </Anchor>
+        </Box>
+      </Box>
+    );
   }
   render() {
     const {
@@ -52,6 +75,7 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
       projectTags,
       tags,
       isFiltering,
+      isShowingModal,
     } = this.props;
     return (
       <WithLoading isLoading={isLoading}>
@@ -65,44 +89,34 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
           <Headline className="heading" align="center">
             Portfolio
           </Headline>
-          <SearchMeta tags={tags} array={projects} searchTerm={searchTerm} />
+          {isFiltering &&
+            <SearchMeta tags={tags} array={projects} searchTerm={searchTerm} />
+          }
           <Divider />
+          <Section primary className={styles.innerBox}>
+            {projects && projects.length > 0 &&
+              <FlipMove easing="cubic-bezier(0, 0.7, 0.8, 0.1)">
+                {this.renderProjects(projects)}
+              </FlipMove>
+            }
+          </Section>
           <Section direction="column" full="horizontal" justify="center" align="center">
-            <Box pad="medium" align="center">
+            <Box pad="medium" align="center" justify="center">
               {projectTags && projectTags.length > 0 &&
                 <SearchForm
                   inputTags={tags}
                   onChangeTags={this.handleTags}
                   tags={projectTags}
-                  onClear={actions.portfolioClearSearchTerm}
                   searchTerm={searchTerm}
                   onChange={({ target }) => actions.portfolioSetSearchTerm(target.value)}
+                  onToggleModal={actions.portfolioToggleModal}
+                  isShowingModal={isShowingModal}
+                  onApplyFilters={this.handleApplyingFilter}
+                  onClearFilters={actions.portfolioClearFilters}
+                  isFiltering={isFiltering}
                 />
               }
             </Box>
-          </Section>
-          <Section primary className={styles.innerBox}>
-            {projects && projects.length > 0 &&
-              <Columns
-                className={styles.masonry}
-                masonry
-                justify="center"
-                size="small"
-                maxCount={3}
-              >
-                {projects.map((project, i) =>
-                  <Box className={styles.card} size="medium" key={i}>
-                    <Anchor href={`/portfolio/projects/${project.slug}`}>
-                      <ResponsiveImage
-                        matchHeight={false}
-                        src={project.featureImage}
-                        className={styles.image}
-                      />
-                    </Anchor>
-                  </Box>
-                )}
-              </Columns>
-            }
           </Section>
           {!isFiltering && allProjects && allProjects.length > perPage &&
             <PaginatorFooter
@@ -131,6 +145,7 @@ PortfolioContainer.propTypes = {
   searchTerm: PropTypes.string,
   fields: PropTypes.object.isRequired,
   tags: PropTypes.array,
+  isShowingModal: PropTypes.bool.isRequired,
 };
 
 // mapStateToProps :: {State} -> {Props}
@@ -141,6 +156,7 @@ const mapStateToProps = (state) => ({
   searchTerm: state.portfolio.searchTerm,
   tags: state.portfolio.tags,
   isFiltering: state.portfolio.isFiltering,
+  isShowingModal: state.portfolio.modal.isShowing,
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}

@@ -12,6 +12,11 @@
   margin-left: 1rem;
 }
 
+.wrapper {
+  width: 382px;
+  margin: 20px;
+}
+
 .image {
   margin-left: auto;
   margin-right: auto;
@@ -21,8 +26,19 @@
 }
 
 .innerBox {
-  margin-top: 80px;
-  margin-bottom: 80px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  div {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    max-width: 1300px;
+  }
 }
 
 .portfolio {

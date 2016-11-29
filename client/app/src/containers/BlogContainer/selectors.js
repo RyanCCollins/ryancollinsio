@@ -36,22 +36,26 @@ export const getVisiblePostsFiltered = createSelector(
   getVisiblePosts,
   getTags(),
   getSearchTerm(),
-  (visiblePosts, tags, searchTerm) => {
-    const filterableTerm = searchTerm && searchTerm !== '' ?
-      searchTerm.toLowerCase() : null;
-    if (filterableTerm) {
-      return visiblePosts.filter(post =>
-        post.title.toLowerCase().includes(filterableTerm) ||
-          post.body.toLowerCase().includes(filterableTerm) ||
-            post.author.name.toLowerCase().includes(filterableTerm)
-      );
-    }
-    if (tags && tags.length > 0) {
-      return visiblePosts.filter(post => {
-        const postTags = post.tags.map(tag => tag.title);
-        const includeTag = tags.map(tag => postTags.includes(tag));
-        return includeTag.indexOf(true) >= 0;
-      });
+  getIsFiltering(),
+  (visiblePosts, tags, searchTerm, isFiltering) => {
+    if (isFiltering) {
+      const filterableTerm = searchTerm && searchTerm !== '' ?
+        searchTerm.toLowerCase() : null;
+      if (filterableTerm) {
+        return visiblePosts.filter(post =>
+          post.title.toLowerCase().includes(filterableTerm) ||
+            post.body.toLowerCase().includes(filterableTerm) ||
+              post.author.name.toLowerCase().includes(filterableTerm)
+        );
+      }
+      if (tags && tags.length > 0) {
+        return visiblePosts.filter(post => {
+          const postTags = post.tags.map(tag => tag.title);
+          const includeTag = tags.map(tag => postTags.includes(tag));
+          return includeTag.indexOf(true) >= 0;
+        });
+      }
+      return visiblePosts;
     }
     return visiblePosts;
   }

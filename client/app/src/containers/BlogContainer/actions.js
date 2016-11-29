@@ -51,11 +51,6 @@ export const blogSetSearchTerm = (value) => ({
   value,
 });
 
-// blogClearSearchTerm :: String -> {Action}
-export const blogClearSearchTerm = () => ({
-  type: types.BLOG_CLEAR_SEARCH_TERM,
-});
-
 export const blogSetCurrentPage = (page) => ({
   type: types.BLOG_SET_CURRENT_PAGE,
   page,
@@ -64,4 +59,19 @@ export const blogSetCurrentPage = (page) => ({
 export const blogSetTags = (tags) => ({
   type: types.BLOG_SET_TAGS,
   tags,
+});
+
+// blogApplyFilters :: None -> {Action}
+export const blogApplyFilters = () => ({
+  type: types.BLOG_APPLY_FILTERS,
+});
+
+// blogClearFilters :: None -> {Action}
+export const blogClearFilters = () => ({
+  type: types.BLOG_CLEAR_FILTERS,
+});
+
+// blogToggleModal :: None -> {Action}
+export const blogToggleModal = () => ({
+  type: types.BLOG_TOGGLE_MODAL,
 });

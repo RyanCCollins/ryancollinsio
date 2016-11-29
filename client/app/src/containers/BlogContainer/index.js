@@ -12,18 +12,25 @@ import Headline from 'grommet-udacity/components/Headline';
 import Heading from 'grommet-udacity/components/Heading';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import { PostPreview, Divider, PaginatorFooter, SearchForm } from 'components';
+import { PostPreview, Divider, PaginatorFooter, SearchForm, SearchMeta } from 'components';
 import { getVisiblePostsFiltered } from './selectors';
+import Scroll from 'react-scroll';
 
 class BlogContainer extends Component {
   constructor() {
     super();
     this.handleTags = this.handleTags.bind(this);
+    this.handleApplyingFilter = this.handleApplyingFilter.bind(this);
   }
   componentWillReceiveProps({ allPosts }) {
     if (allPosts !== this.props.allPosts) {
       this.props.actions.setBlogPosts(allPosts);
     }
+  }
+  handleApplyingFilter() {
+    this.props.actions.blogApplyFilters();
+    const scroll = Scroll.animateScroll;
+    scroll.scrollToTop();
   }
   handleTags(value) {
     const {
@@ -45,6 +52,7 @@ class BlogContainer extends Component {
       postTags,
       tags,
       isFiltering,
+      isShowingModal,
     } = this.props;
     const filterableTerm = searchTerm && searchTerm !== '' ?
       searchTerm.toLowerCase() : null;
@@ -59,36 +67,34 @@ class BlogContainer extends Component {
               <Headline className="heading" align="center">
                 Blog
               </Headline>
+              {isFiltering &&
+                <SearchMeta
+                  tags={tags}
+                  array={posts}
+                  searchTerm={searchTerm}
+                />
+              }
               <Divider />
-              <Section primary direction="column" full="horizontal" justify="center" align="center">
-                <Box pad="medium" align="center">
-                  {postTags && postTags.length > 0 &&
-                    <SearchForm
-                      inputTags={tags}
-                      onChangeTags={this.handleTags}
-                      tags={postTags}
-                      onClear={actions.blogClearSearchTerm}
-                      searchTerm={searchTerm}
-                      onChange={({ target }) => actions.blogSetSearchTerm(target.value)}
-                    />
-                  }
-                </Box>
-              </Section>
               {posts && posts.length > 0 ?
-                <Columns
-                  masonry
-                  maxCount={2}
-                  align="center"
-                  justify="center"
-                >
-                  {posts.map((post, i) =>
-                    <PostPreview
-                      searchTerm={filterableTerm}
-                      key={i}
-                      post={post}
-                    />
-                  )}
-                </Columns>
+                <Section primary className={styles.innerBox}>
+                  <Columns
+                    className={styles.columns}
+                    masonry
+                    maxCount={2}
+                    align="center"
+                    justify="center"
+                    size="large"
+                  >
+                    {posts.map((post, i) =>
+                      <PostPreview
+                        searchTerm={filterableTerm}
+                        isFiltering={isFiltering}
+                        key={i}
+                        post={post}
+                      />
+                    )}
+                  </Columns>
+                </Section>
               :
                 <Section align="center" justify="center" pad="large">
                   <Heading align="center">
@@ -96,6 +102,24 @@ class BlogContainer extends Component {
                   </Heading>
                 </Section>
               }
+              <Section direction="column" full="horizontal" justify="center" align="center">
+                <Box pad="medium" align="center">
+                  {postTags && postTags.length > 0 &&
+                    <SearchForm
+                      inputTags={tags}
+                      onChangeTags={this.handleTags}
+                      tags={postTags}
+                      searchTerm={searchTerm}
+                      onChange={({ target }) => actions.blogSetSearchTerm(target.value)}
+                      onToggleModal={actions.blogToggleModal}
+                      isShowingModal={isShowingModal}
+                      onApplyFilters={this.handleApplyingFilter}
+                      onClearFilters={actions.blogClearFilters}
+                      isFiltering={isFiltering}
+                    />
+                  }
+                </Box>
+              </Section>
             </Box>
             {!isFiltering && allPosts && allPosts.length > perPage &&
               <PaginatorFooter
@@ -124,6 +148,7 @@ BlogContainer.propTypes = {
   perPage: PropTypes.number.isRequired,
   tags: PropTypes.array,
   isFiltering: PropTypes.bool.isRequired,
+  isShowingModal: PropTypes.bool.isRequired,
 };
 
 // mapStateToProps :: {State} -> {Props}
@@ -133,6 +158,7 @@ const mapStateToProps = (state) => ({
   perPage: state.blog.perPage,
   tags: state.blog.tags,
   isFiltering: state.blog.isFiltering,
+  isShowingModal: state.blog.modal.isShowing,
   posts: getVisiblePostsFiltered(state.blog),
 });
 

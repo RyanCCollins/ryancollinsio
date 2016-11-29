@@ -1,3 +1,36 @@
 .button {
   max-width: 50px !important;
 }
+
+.wrapper {
+  max-width: 558px;
+  @media screen and (max-width: 600px) {
+    padding: 0 24px;
+  }
+}
+
+.formFieldBox {
+  width: 83%;
+  margin: 20px 0;
+}
+
+.search {
+  width: 100%;
+}
+
+.formField {
+  width: 100%;
+}
+
+.footer {
+  @media screen and (max-width: 600px) {
+    flex-direction: column !important;
+  }
+}
+
+.buttonWrapper {
+  margin: 0 10px;
+  @media screen and (max-width: 600px) {
+    margin: 10px 0;
+  }
+}

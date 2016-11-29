@@ -36,25 +36,29 @@ export const getFilteredProjects = createSelector(
   getVisibleProjects,
   getSearchTerm(),
   getTags(),
-  (visibleProjects, searchTerm, tags) => {
+  getIsFiltering(),
+  (visibleProjects, searchTerm, tags, isFiltering) => {
     const filterableTerm = searchTerm && searchTerm !== '' ?
       searchTerm.toLowerCase() : null;
-    if (visibleProjects && visibleProjects.length > 0) {
-      if (filterableTerm) {
-        return visibleProjects.filter(project =>
-          project.title.toLowerCase().includes(filterableTerm) ||
-              project.description.toLowerCase().includes(filterableTerm) ||
-                project.user.name.toLowerCase().includes(filterableTerm)
-        );
+    if (isFiltering) {
+      if (visibleProjects && visibleProjects.length > 0) {
+        if (filterableTerm) {
+          return visibleProjects.filter(project =>
+            project.title.toLowerCase().includes(filterableTerm) ||
+                project.description.toLowerCase().includes(filterableTerm) ||
+                  project.user.name.toLowerCase().includes(filterableTerm)
+          );
+        }
+        if (tags && tags.length > 0) {
+          return visibleProjects.filter(project => {
+            const projectTags = project.tags.map(tag => tag.title);
+            const includeTag = tags.map(tag => projectTags.includes(tag));
+            return includeTag.indexOf(true) >= 0;
+          });
+        }
+        return visibleProjects;
       }
-      if (tags && tags.length > 0) {
-        return visibleProjects.filter(project => {
-          const projectTags = project.tags.map(tag => tag.title);
-          const includeTag = tags.map(tag => projectTags.includes(tag));
-          return includeTag.indexOf(true) >= 0;
-        });
-      }
-      return visibleProjects;
     }
+    return visibleProjects;
   }
 );

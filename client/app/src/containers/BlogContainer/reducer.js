@@ -10,18 +10,43 @@ export const initialState = {
   posts: [],
   tags: [],
   isFiltering: false,
+  modal: {
+    isShowing: false,
+  },
 };
 
 const blogReducer =
   (state = initialState, action) => {
     switch (action.type) {
+      case types.BLOG_CLEAR_FILTERS:
+        return {
+          ...state,
+          searchTerm: null,
+          isFiltering: false,
+          tags: [],
+          modal: {
+            isShowing: false,
+          },
+        };
+      case types.BLOG_TOGGLE_MODAL:
+        return {
+          ...state,
+          modal: {
+            isShowing: !state.modal.isShowing,
+          },
+        };
+      case types.BLOG_APPLY_FILTERS:
+        return {
+          ...state,
+          isFiltering: true,
+          modal: {
+            isShowing: false,
+          },
+        };
       case types.BLOG_SET_TAGS:
         return update(state, {
           tags: {
             $set: action.tags,
-          },
-          isFiltering: {
-            $set: action.tags.length > 0,
           },
         });
       case types.SET_BLOG_POSTS:
@@ -36,22 +61,10 @@ const blogReducer =
             $set: action.page,
           },
         });
-      case types.BLOG_CLEAR_SEARCH_TERM:
-        return update(state, {
-          searchTerm: {
-            $set: null,
-          },
-          isFiltering: {
-            $set: false,
-          },
-        });
       case types.BLOG_SET_SEARCH_TERM:
         return update(state, {
           searchTerm: {
             $set: action.value === '' ? null : action.value,
-          },
-          isFiltering: {
-            $set: action.value && action.value !== '',
           },
         });
       case types.BLOG_ERROR:
