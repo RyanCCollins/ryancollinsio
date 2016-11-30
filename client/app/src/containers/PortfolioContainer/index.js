@@ -18,7 +18,6 @@ import gql from 'graphql-tag';
 import Box from 'grommet-udacity/components/Box';
 import Anchor from 'grommet-udacity/components/Anchor';
 import Headline from 'grommet-udacity/components/Headline';
-import Heading from 'grommet-udacity/components/Heading';
 import { reduxForm } from 'redux-form';
 import { getFilteredProjects } from './selectors';
 import FlipMove from 'react-flip-move';
@@ -128,12 +127,7 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
           <Divider />
           <Section primary className={styles.innerBox}>
             {projects && projects.length > 0 ?
-              <FlipMove
-                duration={250}
-                enterAnimation="elevator"
-                leaveAnimation="elevator"
-                easing="ease-in-out"
-              >
+              <FlipMove delay={100} staggerDurationBy={20}>
                 {this.renderProjects(projects)}
               </FlipMove>
             :
