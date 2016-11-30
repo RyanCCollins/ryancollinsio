@@ -77,6 +77,16 @@ QueryType = GraphQL::ObjectType.define do
       Inquiry.categories.map{ |a| a[0] }
     end
   end
+  field :projectCategories, types[types.String] do
+    resolve -> (_obj, _args, _ctx) do
+      Project.categories.map { |a| a[0].capitalize }
+    end
+  end
+  field :postCategories, types[types.String] do
+    resolve -> (_obj, _args, _ctx) do
+      Post.categories.map { |a| a[0].capitalize }
+    end
+  end
   field :inquiries, types[InquiryType] do
     argument :auth_token, !types.String
     resolve -> (_obj, args, _ctx) do

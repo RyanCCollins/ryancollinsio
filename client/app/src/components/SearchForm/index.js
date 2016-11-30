@@ -1,17 +1,21 @@
 import React, { PropTypes } from 'react';
 import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
-import Box from 'grommet-udacity/components/Box';
 import Search from 'grommet-udacity/components/Search';
 import Button from 'grommet-udacity/components/Button';
 import CloseIcon from 'grommet-udacity/components/icons/base/Close';
 import CheckmarkIcon from 'grommet-udacity/components/icons/base/Checkmark';
-import FilterIcon from 'grommet-udacity/components/icons/base/Filter';
 import Layer from 'grommet-udacity/components/Layer';
-import FormField from 'grommet-udacity/components/FormField';
 import Footer from 'grommet-udacity/components/Footer';
+import Header from 'grommet-udacity/components/Header';
+import FilterControl from 'grommet-addons/components/FilterControl';
+import Select from 'grommet/components/Select';
+import Sort from 'grommet-addons/components/Sort';
+import Section from 'grommet-udacity/components/Section';
+import Box from 'grommet-udacity/components/Box';
 import Heading from 'grommet-udacity/components/Heading';
 import { Select as TagSelect } from 'antd';
+import FormField from 'grommet-udacity/components/FormField';
 const Option = TagSelect.Option;
 
 const SearchForm = ({
@@ -24,99 +28,117 @@ const SearchForm = ({
   isShowingModal,
   onApplyFilters,
   onClearFilters,
-  isFiltering,
+  filteredTotal,
+  unfilteredTotal,
+  categories,
+  onSortChange,
+  sortValue,
+  sortOptions,
 }) => (
-  <div>
-    {isFiltering ?
-      <Button onClick={onClearFilters} secondary label="Clear Filter(s)" icon={<CloseIcon />} />
-    :
-      <Button onClick={onToggleModal} label="Search / Filter" icon={<FilterIcon />} />
-    }
+  <div className={styles.fill}>
+    <Header size="large" pad={{ horizontal: 'medium' }} direction="row">
+      <Search
+        className={styles.search}
+        align="left"
+        placeHolder="Start Typing to Search"
+        inline
+        fill
+        size="medium"
+        value={searchTerm || ''}
+        onDOMChange={onChange}
+      />
+      <FilterControl
+        onClick={onToggleModal}
+        filteredTotal={filteredTotal}
+        unfilteredTotal={unfilteredTotal}
+      />
+    </Header>
     {isShowingModal &&
       <Layer
-        align="center"
+        align="right"
         closer
         onClose={onToggleModal}
         hidden={!isShowingModal}
       >
-        <Box
-          alignSelf="center"
-          pad="large"
-          size="large"
-          direction="column"
-          colorIndex="light-1"
-          className={styles.wrapper}
-        >
-          <Heading align="center" tag="h1">
-            Filter / Search
+        <Header size="large" justify="between" align="center">
+          <Heading tag="h2">
+            Filter
           </Heading>
-          <Box
-            direction="row"
-            responsive={false}
-            alignSelf="center"
-            className={styles.formFieldBox}
-            align="center"
-          >
-            <Search
+        </Header>
+        <Section pad={{ horizontal: 'large', vertical: 'small' }}>
+          <Box>
+            <Heading tag="h3">
+              Categories
+            </Heading>
+            <Select
+              multiple
               inline
-              className={styles.search}
-              responsive={false}
-              placeHolder="React, GraphQL, Rails, etc."
-              value={searchTerm || ''}
-              onDOMChange={onChange}
+              onChange={onChangeTags}
+              options={categories.map((item) => ({ label: item.title }))}
             />
           </Box>
-          <Box
-            direction="row"
-            responsive={false}
-            alignSelf="center"
-            className={styles.formFieldBox}
-            align="center"
-          >
-            <FormField className={styles.formField} label="Tags" htmlFor="tag-input">
-              <Box pad={{ horizontal: 'medium' }}>
-                <TagSelect
-                  tags
-                  multiple
-                  value={inputTags}
-                  style={{ width: '100%' }}
-                  id="tag-input"
-                  placeholder="Start typing to find projects by Tag."
-                  allowClear
-                  onChange={onChangeTags}
-                  id="tag-input"
-                >
-                  {tags.map(({ title, id }) =>
-                    <Option
-                      key={id}
-                      value={title}
-                    >
-                      {title}
-                    </Option>
-                  )}
-                </TagSelect>
-              </Box>
+        </Section>
+        <Section pad={{ horizontal: 'large', vertical: 'small' }}>
+          <Box pad="medium" direction="column">
+            <FormField label="Tags" htmlFor="tag-input">
+              <TagSelect
+                tags
+                multiple
+                value={inputTags}
+                style={{ width: '100%' }}
+                id="tag-input"
+                placeholder="Start typing to find projects by Tag."
+                allowClear
+                onChange={onChangeTags}
+                id="tag-input"
+              >
+                {tags.map(({ title, id }) =>
+                  <Option
+                    key={id}
+                    value={title}
+                  >
+                    {title}
+                  </Option>
+                )}
+              </TagSelect>
             </FormField>
           </Box>
-          <Footer className={styles.footer} align="center" justify="center">
-            <div className={styles.buttonWrapper}>
-              <Button
-                label="Apply Filters"
-                onClick={onApplyFilters}
-                icon={<CheckmarkIcon />}
-              />
-            </div>
-            <div className={styles.buttonWrapper}>
-              <Button
-                label="Reset Filters"
-                onClick={onClearFilters}
-                type="reset"
-                secondary
-                icon={<CloseIcon />}
-              />
-            </div>
-          </Footer>
-        </Box>
+        </Section>
+        <Section pad={{ horizontal: 'large', vertical: 'small' }}>
+          <Box>
+            <Heading tag="h3">
+              Sort
+            </Heading>
+            <Sort
+              onChange={onSortChange}
+              value={sortValue}
+              options={sortOptions}
+            />
+          </Box>
+        </Section>
+        <Footer
+          className={styles.footer}
+          align="center"
+          justify="center"
+          pad={{ horizontal: 'large', vertical: 'small' }}
+        >
+          <div className={styles.buttonWrapper}>
+            <Button
+              label="Apply Filters"
+              onClick={onApplyFilters}
+              icon={<CheckmarkIcon />}
+            />
+          </div>
+          <div className={styles.buttonWrapper}>
+            <Button
+              label="Reset Filters"
+              onClick={onClearFilters}
+              type="reset"
+              secondary
+              icon={<CloseIcon />}
+            />
+          </div>
+        </Footer>
       </Layer>
     }
   </div>
@@ -131,7 +153,8 @@ SearchForm.propTypes = {
   isShowingModal: PropTypes.bool.isRequired,
   onApplyFilters: PropTypes.func.isRequired,
   onClearFilters: PropTypes.func.isRequired,
-  isFiltering: PropTypes.bool.isRequired,
+  filteredTotal: PropTypes.number.isRequired,
+  unfilteredTotal: PropTypes.number.isRequired,
 };
 
 export default cssModules(SearchForm, styles);

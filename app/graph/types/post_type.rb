@@ -11,4 +11,5 @@ PostType = GraphQL::ObjectType.define do
   field :feature_image, types.String, 'The url to the featured image'
   field :created_at, types.String, 'The datetime it was created'
   field :tags, types[TagType], 'Associated tags for a post'
+  field :category, types.String, 'The category'
 end

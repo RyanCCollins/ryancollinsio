@@ -122,6 +122,7 @@
     "foundation-sites": "^6.2.3",
     "graphql": "^0.8.1",
     "grommet": "^1.0.1",
+    "grommet-addons": "^0.1.0",
     "grommet-udacity": "v0.1.13",
     "history": "^1.14.0",
     "html-webpack-plugin": "^2.7.1",

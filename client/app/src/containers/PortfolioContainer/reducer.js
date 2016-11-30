@@ -52,6 +52,9 @@ const portfolioReducer =
           searchTerm: {
             $set: action.term,
           },
+          isFiltering: {
+            $set: true,
+          },
         });
       case types.PORTFOLIO_SET_CURRENT_PAGE:
         return update(state, {

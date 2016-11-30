@@ -8,7 +8,6 @@ import {
   WithLoading,
   Divider,
   PaginatorFooter,
-  SearchMeta,
   ResponsiveImage,
   SearchForm,
 } from 'components';
@@ -90,12 +89,23 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
           justify="center"
           pad="large"
         >
+          {projectTags && projectTags.length > 0 &&
+            <SearchForm
+              inputTags={tags}
+              onChangeTags={this.handleTags}
+              tags={projectTags}
+              searchTerm={searchTerm}
+              onChange={({ target }) => actions.portfolioSetSearchTerm(target.value)}
+              onToggleModal={actions.portfolioToggleModal}
+              isShowingModal={isShowingModal}
+              onApplyFilters={this.handleApplyingFilter}
+              onClearFilters={this.handleResettingFilter}
+              isFiltering={isFiltering}
+            />
+          }
           <Headline className="heading" align="center">
             Portfolio
           </Headline>
-          {isFiltering &&
-            <SearchMeta tags={tags} array={projects} searchTerm={searchTerm} />
-          }
           <Divider />
           <Section primary className={styles.innerBox}>
             {projects && projects.length > 0 &&
@@ -103,24 +113,6 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
                 {this.renderProjects(projects)}
               </FlipMove>
             }
-          </Section>
-          <Section direction="column" full="horizontal" justify="center" align="center">
-            <Box pad="medium" align="center" justify="center">
-              {projectTags && projectTags.length > 0 &&
-                <SearchForm
-                  inputTags={tags}
-                  onChangeTags={this.handleTags}
-                  tags={projectTags}
-                  searchTerm={searchTerm}
-                  onChange={({ target }) => actions.portfolioSetSearchTerm(target.value)}
-                  onToggleModal={actions.portfolioToggleModal}
-                  isShowingModal={isShowingModal}
-                  onApplyFilters={this.handleApplyingFilter}
-                  onClearFilters={this.handleResettingFilter}
-                  isFiltering={isFiltering}
-                />
-              }
-            </Box>
           </Section>
           {!isFiltering && allProjects && allProjects.length > perPage &&
             <PaginatorFooter
@@ -178,6 +170,7 @@ const getProjectsQuery = gql`
     projects(status: "published") {
       title
       status
+      category
       description
       user {
         name
@@ -191,6 +184,9 @@ const getProjectsQuery = gql`
     }
     projectTags {
       id
+      title
+    }
+    projectCategories {
       title
     }
   }

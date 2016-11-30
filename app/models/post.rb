@@ -5,6 +5,7 @@ class Post < ApplicationRecord
   alias_attribute :comments, :post_comments
   has_and_belongs_to_many :tags, join_table: :post_tags
   enum status: [:draft, :published, :archived]
+  enum category: [:frontend, :fullstack, :backend, :ios]
 
   def create_slug
     self.slug = self.title.parameterize
