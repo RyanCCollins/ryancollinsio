@@ -21,7 +21,6 @@ export ContactForm from './ContactForm';
 export SignupForm from './SignupForm';
 export AuthFormFooter from './AuthFormFooter';
 export LoginForm from './LoginForm';
-export SearchMeta from './SearchMeta';
 export PaginatorFooter from './PaginatorFooter';
 export TagList from './TagList';
 export TechStackSection from './StaticLandingSections/TechStackSection';

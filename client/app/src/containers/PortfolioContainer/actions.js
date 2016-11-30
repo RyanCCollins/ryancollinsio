@@ -18,6 +18,11 @@ export const portfolioSetSearchTerm = (term) => ({
   term,
 });
 
+// portfolioClearSearchTerm :: None -> {Action}
+export const portfolioClearSearchTerm = () => ({
+  type: types.PORTFOLIO_CLEAR_SEARCH_TERM,
+});
+
 // portfolioSetTags :: Array -> {Action}
 export const portfolioSetTags = (tags) => ({
   type: types.PORTFOLIO_SET_TAGS,
@@ -37,4 +42,10 @@ export const portfolioClearFilters = () => ({
 // portfolioToggleModal :: None -> {Action}
 export const portfolioToggleModal = () => ({
   type: types.PORTFOLIO_TOGGLE_MODAL,
+});
+
+// portfolioSetSelectedCategories :: Array -> {Action}
+export const portfolioSetSelectedCategories = (categories) => ({
+  type: types.PORTFOLIO_SET_SELECTED_CATEGORIES,
+  categories,
 });

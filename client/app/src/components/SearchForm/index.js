@@ -15,7 +15,6 @@ import Section from 'grommet-udacity/components/Section';
 import Box from 'grommet-udacity/components/Box';
 import Heading from 'grommet-udacity/components/Heading';
 import { Select as TagSelect } from 'antd';
-import FormField from 'grommet-udacity/components/FormField';
 const Option = TagSelect.Option;
 
 const SearchForm = ({
@@ -31,27 +30,36 @@ const SearchForm = ({
   filteredTotal,
   unfilteredTotal,
   categories,
-  onSortChange,
-  sortValue,
-  sortOptions,
+  onChangeCategories,
+  selectedCategories,
+  isFiltering,
 }) => (
   <div className={styles.fill}>
     <Header size="large" pad={{ horizontal: 'medium' }} direction="row">
-      <Search
-        className={styles.search}
-        align="left"
-        placeHolder="Start Typing to Search"
-        inline
-        fill
-        size="medium"
-        value={searchTerm || ''}
-        onDOMChange={onChange}
-      />
-      <FilterControl
-        onClick={onToggleModal}
-        filteredTotal={filteredTotal}
-        unfilteredTotal={unfilteredTotal}
-      />
+      <Box align="center" direction="row" full="horizontal">
+        <Search
+          className={styles.search}
+          align="left"
+          placeHolder="Start Typing to Search"
+          inline
+          fill
+          size="medium"
+          value={searchTerm || ''}
+          onDOMChange={onChange}
+        />
+        {isFiltering &&
+          <Button
+            onClick={onClearFilters}
+            className={styles.button}
+            icon={<CloseIcon />}
+          />
+        }
+        <FilterControl
+          onClick={onToggleModal}
+          filteredTotal={filteredTotal}
+          unfilteredTotal={unfilteredTotal}
+        />
+      </Box>
     </Header>
     {isShowingModal &&
       <Layer
@@ -73,54 +81,46 @@ const SearchForm = ({
             <Select
               multiple
               inline
-              onChange={onChangeTags}
-              options={categories.map((item) => ({ label: item.title }))}
+              value={selectedCategories}
+              onChange={onChangeCategories}
+              options={categories.map((item) =>
+                ({ label: item, value: item.toLowerCase() }))
+              }
             />
-          </Box>
-        </Section>
-        <Section pad={{ horizontal: 'large', vertical: 'small' }}>
-          <Box pad="medium" direction="column">
-            <FormField label="Tags" htmlFor="tag-input">
-              <TagSelect
-                tags
-                multiple
-                value={inputTags}
-                style={{ width: '100%' }}
-                id="tag-input"
-                placeholder="Start typing to find projects by Tag."
-                allowClear
-                onChange={onChangeTags}
-                id="tag-input"
-              >
-                {tags.map(({ title, id }) =>
-                  <Option
-                    key={id}
-                    value={title}
-                  >
-                    {title}
-                  </Option>
-                )}
-              </TagSelect>
-            </FormField>
           </Box>
         </Section>
         <Section pad={{ horizontal: 'large', vertical: 'small' }}>
           <Box>
             <Heading tag="h3">
-              Sort
+              Tags
             </Heading>
-            <Sort
-              onChange={onSortChange}
-              value={sortValue}
-              options={sortOptions}
-            />
+            <TagSelect
+              tags
+              multiple
+              value={inputTags}
+              style={{ width: '100%' }}
+              id="tag-input"
+              placeholder="Start typing to find projects by Tag."
+              allowClear
+              onChange={onChangeTags}
+              id="tag-input"
+            >
+              {tags.map(({ title, id }) =>
+                <Option
+                  key={id}
+                  value={title}
+                >
+                  {title}
+                </Option>
+              )}
+            </TagSelect>
           </Box>
         </Section>
         <Footer
           className={styles.footer}
           align="center"
           justify="center"
-          pad={{ horizontal: 'large', vertical: 'small' }}
+          pad={{ horizontal: 'large', vertical: 'large' }}
         >
           <div className={styles.buttonWrapper}>
             <Button
@@ -155,6 +155,9 @@ SearchForm.propTypes = {
   onClearFilters: PropTypes.func.isRequired,
   filteredTotal: PropTypes.number.isRequired,
   unfilteredTotal: PropTypes.number.isRequired,
+  categories: PropTypes.array,
+  onChangeCategories: PropTypes.func.isRequired,
+  selectedCategories: PropTypes.array,
 };
 
 export default cssModules(SearchForm, styles);

@@ -32,6 +32,7 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
     this.renderProjects = this.renderProjects.bind(this);
     this.handleApplyingFilter = this.handleApplyingFilter.bind(this);
     this.handleResettingFilter = this.handleResettingFilter.bind(this);
+    this.handleSearching = this.handleSearching.bind(this);
   }
   componentWillReceiveProps({ allProjects }) {
     if (allProjects !== this.props.allProjects) {
@@ -51,6 +52,14 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
   handleResettingFilter() {
     this.props.actions.portfolioClearFilters();
   }
+  handleSearching({ target }) {
+    const term = target.value;
+    if (term === null || term === '') {
+      this.props.actions.portfolioClearSearchTerm();
+    } else {
+      this.props.actions.portfolioSetSearchTerm(term);
+    }
+  }
   renderProjects(projects) {
     return projects.map((project, i) =>
       <Box className={styles.wrapper} key={i}>
@@ -69,6 +78,8 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
   render() {
     const {
       isLoading,
+      categories,
+      selectedCategories,
       allProjects,
       projects,
       currentPage,
@@ -86,21 +97,27 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
           className={styles.portfolio}
           colorIndex="light-2"
           align="center"
-          justify="center"
           pad="large"
         >
           {projectTags && projectTags.length > 0 &&
             <SearchForm
+              categories={categories}
+              onChangeCategories={({ value }) =>
+                actions.portfolioSetSelectedCategories(value)
+              }
+              selectedCategories={selectedCategories}
               inputTags={tags}
               onChangeTags={this.handleTags}
               tags={projectTags}
               searchTerm={searchTerm}
-              onChange={({ target }) => actions.portfolioSetSearchTerm(target.value)}
+              onChange={this.handleSearching}
               onToggleModal={actions.portfolioToggleModal}
               isShowingModal={isShowingModal}
               onApplyFilters={this.handleApplyingFilter}
               onClearFilters={this.handleResettingFilter}
               isFiltering={isFiltering}
+              filteredTotal={isFiltering && projects ? projects.length : 0}
+              unfilteredTotal={allProjects ? allProjects.length : 0}
             />
           }
           <Headline className="heading" align="center">
@@ -142,6 +159,9 @@ PortfolioContainer.propTypes = {
   fields: PropTypes.object.isRequired,
   tags: PropTypes.array,
   isShowingModal: PropTypes.bool.isRequired,
+  categories: PropTypes.array,
+  selectedCategories: PropTypes.array,
+  filterString: PropTypes.string,
 };
 
 // mapStateToProps :: {State} -> {Props}
@@ -153,6 +173,7 @@ const mapStateToProps = (state) => ({
   tags: state.portfolio.tags,
   isFiltering: state.portfolio.isFiltering,
   isShowingModal: state.portfolio.modal.isShowing,
+  selectedCategories: state.portfolio.filter.categories.selected,
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}
@@ -170,6 +191,7 @@ const getProjectsQuery = gql`
     projects(status: "published") {
       title
       status
+      date: updated_at
       category
       description
       user {
@@ -186,18 +208,17 @@ const getProjectsQuery = gql`
       id
       title
     }
-    projectCategories {
-      title
-    }
+    projectCategories
   }
 `;
 
 const ContainerWithData = graphql(getProjectsQuery, {
-  props: ({ data: { projects, projectTags, loading, error } }) => ({
+  props: ({ data: { projects, projectTags, projectCategories, loading, error } }) => ({
     allProjects: projects,
     isLoading: loading,
     loadingError: error,
     projectTags,
+    categories: projectCategories,
   }),
 })(Container);
 

@@ -64,17 +64,10 @@ class BlogContainer extends Component {
             error={postError}
             onClose={() => actions.clearBlogToast('error')}
           >
-            <Box pad="large" align="center" justify="center">
+            <Box pad="large" align="center">
               <Headline className="heading" align="center">
                 Blog
               </Headline>
-              {isFiltering &&
-                <SearchMeta
-                  tags={tags}
-                  array={posts}
-                  searchTerm={searchTerm}
-                />
-              }
               <Divider />
               {posts && posts.length > 0 ?
                 <Section primary className={styles.innerBox}>
@@ -103,24 +96,6 @@ class BlogContainer extends Component {
                   </Heading>
                 </Section>
               }
-              <Section direction="column" full="horizontal" justify="center" align="center">
-                <Box pad="medium" align="center">
-                  {postTags && postTags.length > 0 &&
-                    <SearchForm
-                      inputTags={tags}
-                      onChangeTags={this.handleTags}
-                      tags={postTags}
-                      searchTerm={searchTerm}
-                      onChange={({ target }) => actions.blogSetSearchTerm(target.value)}
-                      onToggleModal={actions.blogToggleModal}
-                      isShowingModal={isShowingModal}
-                      onApplyFilters={this.handleApplyingFilter}
-                      onClearFilters={this.handleClearingFilter}
-                      isFiltering={isFiltering}
-                    />
-                  }
-                </Box>
-              </Section>
             </Box>
             {!isFiltering && allPosts && allPosts.length > perPage &&
               <PaginatorFooter
@@ -183,6 +158,7 @@ const loadPostsQuery = gql`
       slug
       created_at
       image: feature_image
+      category
       tags {
         id
         title
@@ -204,6 +180,7 @@ const loadPostsQuery = gql`
     postTags {
       title
     }
+    postCategories
   }
 `;
 

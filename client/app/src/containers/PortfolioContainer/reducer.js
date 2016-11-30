@@ -11,11 +11,32 @@ export const initialState = {
   modal: {
     isShowing: false,
   },
+  filter: {
+    categories: {
+      selected: [],
+    },
+  },
 };
 
 const portfolioReducer =
   (state = initialState, action) => {
     switch (action.type) {
+      case types.PORTFOLIO_CLEAR_SEARCH_TERM:
+        return {
+          ...state,
+          isFiltering: false,
+          searchTerm: null,
+        };
+      case types.PORTFOLIO_SET_SELECTED_CATEGORIES:
+        return {
+          ...state,
+          filter: {
+            ...state.filter,
+            categories: {
+              selected: action.categories,
+            },
+          },
+        };
       case types.PORTFOLIO_CLEAR_FILTERS:
         return {
           ...state,
@@ -25,6 +46,7 @@ const portfolioReducer =
           modal: {
             isShowing: false,
           },
+          filter: initialState.filter,
         };
       case types.PORTFOLIO_TOGGLE_MODAL:
         return {
