@@ -40,7 +40,7 @@ const SearchForm = ({
         <Search
           className={styles.search}
           align="left"
-          placeHolder="Start Typing to Search Projects"
+          placeHolder="Start typing to search projects..."
           inline
           fill
           size="medium"
