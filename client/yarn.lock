@@ -4660,12 +4660,6 @@ lodash._basedifference@^3.0.0:
     lodash._cacheindexof "^3.0.0"
     lodash._createcache "^3.0.0"
 
-lodash._basedifference@~4.5.0:
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/lodash._basedifference/-/lodash._basedifference-4.5.0.tgz#56ea7d601367bfa46cd7de115dc3daeb18837938"
-  dependencies:
-    lodash._root "~3.0.0"
-
 lodash._baseeach@^3.0.0:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/lodash._baseeach/-/lodash._baseeach-3.0.4.tgz#cf8706572ca144e8d9d75227c990da982f932af3"
@@ -4678,10 +4672,6 @@ lodash._baseflatten@^3.0.0:
   dependencies:
     lodash.isarguments "^3.0.0"
     lodash.isarray "^3.0.0"
-
-lodash._baseflatten@~4.2.0:
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/lodash._baseflatten/-/lodash._baseflatten-4.2.1.tgz#54acad5e6ef53532a5b8269c0ad725470cfd9208"
 
 lodash._basefor@^3.0.0:
   version "3.0.3"
@@ -4759,7 +4749,7 @@ lodash._reinterpolate@^3.0.0, lodash._reinterpolate@~3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz#0ccf2d89166af03b3663c796538b75ac6e114d9d"
 
-lodash._root@^3.0.0, lodash._root@~3.0.0:
+lodash._root@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/lodash._root/-/lodash._root-3.0.1.tgz#fba1c4524c19ee9a5f8136b4609f017cf4ded692"
 
@@ -4959,10 +4949,6 @@ lodash.keysin@^3.0.0:
     lodash.isarguments "^3.0.0"
     lodash.isarray "^3.0.0"
 
-lodash.keysin@^4.0.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/lodash.keysin/-/lodash.keysin-4.2.0.tgz#8cc3fb35c2d94acc443a1863e02fa40799ea6f28"
-
 lodash.map@^4.4.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/lodash.map/-/lodash.map-4.6.0.tgz#771ec7839e3473d9c4cde28b19394c3562f4f6d3"
@@ -5004,14 +4990,9 @@ lodash.omit@^3.1.0:
     lodash.keysin "^3.0.0"
     lodash.restparam "^3.0.0"
 
-lodash.omit@4.3.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/lodash.omit/-/lodash.omit-4.3.0.tgz#e14dddacd552e4346e6016c3aacea1991636aede"
-  dependencies:
-    lodash._basedifference "~4.5.0"
-    lodash._baseflatten "~4.2.0"
-    lodash.keysin "^4.0.0"
-    lodash.rest "^4.0.0"
+lodash.omit@^4.3.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.omit/-/lodash.omit-4.5.0.tgz#6eb19ae5a1ee1dd9df0b969e66ce0b7fa30b5e60"
 
 lodash.omitby@^4.5.0:
   version "4.6.0"
@@ -5038,10 +5019,6 @@ lodash.reduce@^4.4.0:
 lodash.reject@^4.4.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/lodash.reject/-/lodash.reject-4.6.0.tgz#80d6492dc1470864bbf583533b651f42a9f52415"
-
-lodash.rest@^4.0.0:
-  version "4.0.5"
-  resolved "https://registry.yarnpkg.com/lodash.rest/-/lodash.rest-4.0.5.tgz#954ef75049262038c96d1fc98b28fdaf9f0772aa"
 
 lodash.restparam@^3.0.0:
   version "3.6.1"
@@ -6882,11 +6859,11 @@ react-element-to-jsx-string@^3.0.0:
     stringify-object "^2.3.1"
     traverse "^0.6.6"
 
-react-flip-move@^2.6.5:
-  version "2.7.1"
-  resolved "https://registry.yarnpkg.com/react-flip-move/-/react-flip-move-2.7.1.tgz#126a4ba2aa68671ed80fbc6b805888e56b9eef79"
+react-flip-move@2.6.5:
+  version "2.6.5"
+  resolved "https://registry.yarnpkg.com/react-flip-move/-/react-flip-move-2.6.5.tgz#85fdc5fb16ede3720eda98d100095d88c127dfa5"
   dependencies:
-    lodash.omit "4.3.0"
+    lodash.omit "^4.3.0"
 
 react-foundation@^0.6.8:
   version "0.6.8"

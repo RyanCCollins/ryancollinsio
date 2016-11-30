@@ -149,7 +149,7 @@
     "react-css-modules": "^3.7.6",
     "react-css-stagger": "0.0.3",
     "react-dom": "^15.0.1",
-    "react-flip-move": "^2.6.5",
+    "react-flip-move": "2.6.5",
     "react-foundation": "^0.6.8",
     "react-hot-loader": "^3.0.0-beta.6",
     "react-intl": "^2.1.3",
