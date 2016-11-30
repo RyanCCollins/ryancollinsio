@@ -10,6 +10,7 @@ import {
   PaginatorFooter,
   ResponsiveImage,
   SearchForm,
+  QueryNotFound,
 } from 'components';
 import Section from 'grommet-udacity/components/Section';
 import { graphql } from 'react-apollo';
@@ -17,6 +18,7 @@ import gql from 'graphql-tag';
 import Box from 'grommet-udacity/components/Box';
 import Anchor from 'grommet-udacity/components/Anchor';
 import Headline from 'grommet-udacity/components/Headline';
+import Heading from 'grommet-udacity/components/Heading';
 import { reduxForm } from 'redux-form';
 import { getFilteredProjects } from './selectors';
 import FlipMove from 'react-flip-move';
@@ -61,8 +63,8 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
     }
   }
   renderProjects(projects) {
-    return projects.map((project, i) =>
-      <Box className={styles.wrapper} key={i}>
+    return projects.map((project) =>
+      <Box className={styles.wrapper} key={project.id}>
         <Box className={styles.card} size="medium">
           <Anchor href={`/portfolio/projects/${project.slug}`}>
             <ResponsiveImage
@@ -125,10 +127,23 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
           </Headline>
           <Divider />
           <Section primary className={styles.innerBox}>
-            {projects && projects.length > 0 &&
-              <FlipMove easing="cubic-bezier(0, 0.7, 0.8, 0.1)">
+            {projects && projects.length > 0 ?
+              <FlipMove
+                duration={250}
+                enterAnimation="elevator"
+                leaveAnimation="elevator"
+                easing="ease-in-out"
+              >
                 {this.renderProjects(projects)}
               </FlipMove>
+            :
+              <Section>
+                <QueryNotFound
+                  itemName="projects"
+                  fontSize="medium"
+                  onReset={this.handleResettingFilter}
+                />
+              </Section>
             }
           </Section>
           {!isFiltering && allProjects && allProjects.length > perPage &&
@@ -189,6 +204,7 @@ const Container = cssModules(PortfolioContainer, styles);
 const getProjectsQuery = gql`
   query loadProjects {
     projects(status: "published") {
+      id
       title
       status
       date: updated_at

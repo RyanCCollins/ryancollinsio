@@ -47,7 +47,8 @@ export const getFilteredProjects = createSelector(
         if (filterableTerm && visibleProjects && visibleProjects.length > 0) {
           return project.title.toLowerCase().includes(filterableTerm) ||
               project.description.toLowerCase().includes(filterableTerm) ||
-                project.user.name.toLowerCase().includes(filterableTerm);
+                project.user.name.toLowerCase().includes(filterableTerm) ||
+                  project.tags.map(tag => tag.title.toLowerCase()).includes(filterableTerm);
         }
         return true;
       }).filter(project => {

@@ -1,21 +1,44 @@
 import React, { PropTypes } from 'react';
-
+import Heading from 'grommet-udacity/components/Heading';
 import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
 
-const QueryNotFound = ({ itemName }) => (
+const fontSizeMap = {
+  small: 'h5',
+  medium: 'h3',
+  large: 'h1',
+};
+
+const QueryNotFound = ({ itemName, fontSize, onReset }) => (
   <div className={styles.noneFound}>
-    <img className={styles.noneFoundImage} src="https://github.com/RyanCCollins/cdn/blob/master/misc/thinking-face.png?raw=true" />
+    <div className={styles.thinkingFace}>
+      🤔
+    </div>
     <div className={styles.noneFoundText}>
-      <p>
-        Sorry, but we couldn't find any {itemName} that matched your query.
-      </p>
+      <Heading align="center" strong tag={fontSizeMap[`${fontSize}`]}>
+        {`Sorry, but we couldn't find any ${itemName} that matched your query.`}
+      </Heading>
+      {onReset &&
+        <Heading tag="h5" align="center">
+          {'Suggestion: '}
+          <a href="#" onClick={onReset}>reset filters</a>
+          {' to see all projects.'}
+        </Heading>
+      }
     </div>
   </div>
 );
 
 QueryNotFound.propTypes = {
   itemName: PropTypes.string.isRequired,
+  fontSize: PropTypes.oneOf(['small', 'medium', 'large']),
+  onReset: PropTypes.func,
+};
+
+QueryNotFound.defaultProps = {
+  fontSize: 'medium',
+  hasResetLink: false,
+  itemName: 'items',
 };
 
 export default cssModules(QueryNotFound, styles);
