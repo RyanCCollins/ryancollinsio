@@ -10,7 +10,7 @@ import Footer from 'grommet-udacity/components/Footer';
 import Header from 'grommet-udacity/components/Header';
 import FilterControl from 'grommet-addons/components/FilterControl';
 import Select from 'grommet/components/Select';
-import Sort from 'grommet-addons/components/Sort';
+import ContractIcon from 'grommet-udacity/components/icons/base/Contract';
 import Section from 'grommet-udacity/components/Section';
 import Box from 'grommet-udacity/components/Box';
 import Heading from 'grommet-udacity/components/Heading';
@@ -36,13 +36,19 @@ const SearchForm = ({
 }) => (
   <div className={styles.fill}>
     <Header size="large" pad={{ horizontal: 'medium' }} direction="row">
-      <Box align="center" direction="row" full="horizontal">
+      <Box
+        responsive={false}
+        align="center"
+        direction="row"
+        full="horizontal"
+      >
         <Search
           className={styles.search}
           align="left"
           placeHolder="Start typing to search projects..."
           inline
           fill
+          responsive={false}
           size="medium"
           value={searchTerm || ''}
           onDOMChange={onChange}
