@@ -2,7 +2,9 @@ import * as types from './constants';
 import update from 'react-addons-update';
 
 export const initialState = {
-  // Initial State goes here!
+  error: null,
+  isLoading: true,
+  message: null,
 };
 
 const signupReducer =
@@ -42,6 +44,12 @@ const signupReducer =
         return update(state, {
           isLoading: {
             $set: true,
+          },
+        });
+      case types.SIGNUP_STOP_LOADING:
+        return update(state, {
+          isLoading: {
+            $set: false,
           },
         });
       default:

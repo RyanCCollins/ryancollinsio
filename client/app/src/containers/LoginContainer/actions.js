@@ -43,3 +43,7 @@ export const clearLoginToast = (type) =>
 export const loginSetLoading = () => ({
   type: types.LOGIN_SET_LOADING,
 });
+
+export const loginStopLoading = () => ({
+  type: types.LOGIN_STOP_LOADING,
+});

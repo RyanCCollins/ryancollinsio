@@ -3,12 +3,17 @@ import * as types from './constants';
 export const initialState = {
   error: null,
   message: null,
-  isLoading: false,
+  isLoading: true,
 };
 
 const loginReducer =
   (state = initialState, action) => {
     switch (action.type) {
+      case types.LOGIN_STOP_LOADING:
+        return {
+          ...state,
+          isLoading: false,
+        };
       case types.LOGIN_SHOW_ERROR:
         return {
           ...state,

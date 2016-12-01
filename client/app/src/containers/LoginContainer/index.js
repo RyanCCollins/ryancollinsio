@@ -16,6 +16,7 @@ import {
   LoadingIndicator,
   LoginForm,
   WithToast,
+  WithLoading,
 } from 'components';
 
 export const formFields = [
@@ -31,9 +32,13 @@ class LoginContainer extends Component { // eslint-disable-line react/prefer-sta
   componentDidMount() {
     const {
       user,
+      isLoading,
     } = this.props;
     if (user.authToken != null) { // eslint-disable-line
       this.context.router.push('/user/profile');
+    }
+    if (typeof window !== 'undefined' && isLoading) {
+      this.props.actions.loginStopLoading();
     }
   }
   handleSubmit() {
@@ -83,24 +88,23 @@ class LoginContainer extends Component { // eslint-disable-line react/prefer-sta
         message={message}
         onClose={(type) => actions.clearLoginToast(type)}
       >
-        <Section
-          pad={{ horizontal: 'large' }}
-          align="center"
-          justify="center"
-          colorIndex="light-2"
-          className={styles.login}
-        >
-         {isLoading &&
-           <LoadingIndicator message="Submitting" isLoading={isLoading} />
-         }
-         <Box pad="large" primary>
-           <LoginForm
-             {...fields}
-             invalid={invalid}
-             onSubmit={this.handleSubmit}
-           />
-         </Box>
-       </Section>
+        <WithLoading isLoading={isLoading}>
+          <Section
+            pad={{ horizontal: 'large' }}
+            align="center"
+            justify="center"
+            colorIndex="light-2"
+            className={styles.login}
+          >
+           <Box pad="large" primary>
+             <LoginForm
+               {...fields}
+               invalid={invalid}
+               onSubmit={this.handleSubmit}
+             />
+           </Box>
+         </Section>
+        </WithLoading>
       </WithToast>
     );
   }

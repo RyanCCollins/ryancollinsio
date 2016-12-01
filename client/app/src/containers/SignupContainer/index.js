@@ -8,7 +8,7 @@ import styles from './index.module.scss';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Section from 'grommet-udacity/components/Section';
-import { SignupForm, WithToast, LoadingIndicator } from 'components';
+import { SignupForm, WithToast, WithLoading } from 'components';
 import validation from './utils/validation';
 import { reduxForm } from 'redux-form';
 import authUserDataFragment from 'fragments/authUserDataFragment';
@@ -29,9 +29,13 @@ class SignupContainer extends Component {
   componentDidMount() {
     const {
       user,
+      isLoading,
     } = this.props;
     if (user.authToken != null) { // eslint-disable-line
       this.context.router.push('/user/profile');
+    }
+    if (typeof window !== 'undefined' && isLoading) {
+      this.props.actions.signupStopLoading();
     }
   }
   handleSubmit() {
@@ -77,26 +81,25 @@ class SignupContainer extends Component {
         message={message}
         onClose={(type) => actions.clearSignupToast(type)}
       >
-        <Section
-          size="auto"
-          pad={{ horizontal: 'large' }}
-          align="center"
-          justify="center"
-          colorIndex="light-2"
-          className={styles.signup}
-          primary
-        >
-          {isLoading &&
-            <LoadingIndicator message="Submitting" isLoading={isLoading} />
-          }
-          <Box pad="large">
-            <SignupForm
-              {...fields}
-              invalid={invalid}
-              onSubmit={this.handleSubmit}
-            />
-          </Box>
-        </Section>
+        <WithLoading isLoading={isLoading}>
+          <Section
+            size="auto"
+            pad={{ horizontal: 'large' }}
+            align="center"
+            justify="center"
+            colorIndex="light-2"
+            className={styles.signup}
+            primary
+          >
+            <Box pad="large">
+              <SignupForm
+                {...fields}
+                invalid={invalid}
+                onSubmit={this.handleSubmit}
+              />
+            </Box>
+          </Section>
+        </WithLoading>
       </WithToast>
     );
   }

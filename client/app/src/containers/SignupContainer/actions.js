@@ -52,3 +52,7 @@ export const fieldsToData = (fields) => ({
 export const signupSetLoading = () => ({
   type: types.SIGNUP_SET_LOADING,
 });
+
+export const signupStopLoading = () => ({
+  type: types.SIGNUP_STOP_LOADING,
+});
