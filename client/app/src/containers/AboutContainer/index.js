@@ -18,7 +18,9 @@ const AboutContainer = ({ history }) => (
           About RyanCollins.io
         </Headline>
         <Divider />
-        <Markdown align="center" content={about} />
+        {about &&
+          <Markdown align="center" content={about} />
+        }
       </StyledArticle>
     </Section>
     <Section primary align="center" justify="center" pad="large">
