@@ -18,8 +18,11 @@ const AboutContainer = ({ history }) => (
           About RyanCollins.io
         </Headline>
         <Divider />
-        {about &&
-          <Markdown align="center" content={about} />
+        {typeof about === 'string' &&
+          <Markdown
+            align="center"
+            content={about}
+          />
         }
       </StyledArticle>
     </Section>
