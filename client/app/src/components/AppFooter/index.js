@@ -1,15 +1,14 @@
 import React from 'react';
-import Box from 'grommet-udacity/components/Box';
 import Heading from 'grommet-udacity/components/Heading';
 import Anchor from 'grommet-udacity/components/Anchor';
 import Button from 'grommet-udacity/components/Button';
 import MailIcon from 'grommet-udacity/components/icons/base/Mail';
 import CodeIcon from 'grommet-udacity/components/icons/base/Code';
 import Section from 'grommet-udacity/components/Section';
-import { SocialIcon } from 'components';
+import { SocialIcon, LogoImage } from 'components';
 import socialIcons from './data';
 import cn from 'classnames';
-import { StyledFooter, StyledSection } from './styles';
+import { StyledFooter, StyledSection, ButtonWithSeperator } from './styles';
 
 const AppFooter = () => (
   <StyledFooter
@@ -21,13 +20,14 @@ const AppFooter = () => (
     <StyledSection
       align="center"
     >
+      <LogoImage />
       <Heading tag="h3">
-        By{' '}
-        <a href="http://www.ryancollins.io">
+        Made with 🎉 by{' '}
+        <a href="https://github.com/ryanccollins">
           Ryan Collins
         </a>
       </Heading>
-      <Heading tag="h5">
+      <Heading tag="h4">
         This app is licensed under the{' '}
         <a
           href="https://github.com/RyanCCollins/ryancollinsio/blob/master/LICENSE"
@@ -41,15 +41,19 @@ const AppFooter = () => (
         </a>
       </Heading>
     </StyledSection>
-    <Section align="center" justify="center" pad="small">
-      <Button
+    <Section
+      direction="row"
+      responsive={false}
+      align="center"
+      justify="center"
+      pad="small"
+    >
+      <ButtonWithSeperator
         icon={<CodeIcon />}
         plain
         href="/about"
         label="About Me"
       />
-    </Section>
-    <Section align="center" justify="center" pad="small">
       <Button
         icon={<MailIcon />}
         plain
@@ -57,7 +61,7 @@ const AppFooter = () => (
         label="Contact Me"
       />
     </Section>
-    <Section pad="medium">
+    <Section pad="medium" align="center">
       <nav
         aria-hidden
         className={cn(
