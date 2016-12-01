@@ -7,6 +7,7 @@ import Heading from 'grommet-udacity/components/Heading';
 import Anchor from 'grommet-udacity/components/Anchor';
 import Button from 'grommet-udacity/components/Button';
 import MailIcon from 'grommet-udacity/components/icons/base/Mail';
+import CodeIcon from 'grommet-udacity/components/icons/base/Code';
 import { SocialIcon } from 'components';
 import socialIcons from './data';
 import cn from 'classnames';
@@ -39,7 +40,15 @@ const AppFooter = () => (
           source code.
         </a>
       </Heading>
-      <Box align="center" justify="center" pad="medium">
+      <Box align="center" justify="center" pad="small">
+        <Button
+          icon={<CodeIcon />}
+          plain
+          href="/about"
+          label="About Me"
+        />
+      </Box>
+      <Box align="center" justify="center" pad="small">
         <Button
           icon={<MailIcon />}
           plain
@@ -47,24 +56,25 @@ const AppFooter = () => (
           label="Contact Me"
         />
       </Box>
-      <nav
-        aria-hidden
-        className={cn(
-          'grommetux-box',
-          'grommetux-box--direction-row',
-          'grommetux-box--responsive',
-          'grommetux-box--pad-none',
-          'grommetux-menu',
-          'grommetux-menu--row',
-          'grommetux-menu--inline'
-        )}
-      >
-        {socialIcons.map((item, i) =>
-          <Anchor key={i} href={item.url}>
-            <SocialIcon type={item.type} />
-          </Anchor>
-        )}
-      </nav>
+      <Box pad="medium">
+        <nav
+          aria-hidden
+          className={cn(
+            'grommetux-box',
+            'grommetux-box--direction-row',
+            'grommetux-box--pad-none',
+            'grommetux-menu',
+            'grommetux-menu--row',
+            'grommetux-menu--inline'
+          )}
+        >
+          {socialIcons.map((item, i) =>
+            <Anchor key={i} href={item.url}>
+              <SocialIcon type={item.type} />
+            </Anchor>
+          )}
+        </nav>
+      </Box>
     </Box>
   </Footer>
 );
