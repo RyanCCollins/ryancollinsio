@@ -1,25 +1,25 @@
 import React from 'react';
-import styles from './index.module.scss';
-import cssModules from 'react-css-modules';
-import Footer from 'grommet-udacity/components/Footer';
 import Box from 'grommet-udacity/components/Box';
 import Heading from 'grommet-udacity/components/Heading';
 import Anchor from 'grommet-udacity/components/Anchor';
 import Button from 'grommet-udacity/components/Button';
 import MailIcon from 'grommet-udacity/components/icons/base/Mail';
 import CodeIcon from 'grommet-udacity/components/icons/base/Code';
+import Section from 'grommet-udacity/components/Section';
 import { SocialIcon } from 'components';
 import socialIcons from './data';
 import cn from 'classnames';
+import { StyledFooter, StyledSection } from './styles';
 
 const AppFooter = () => (
-  <Footer primary pad="large" colorIndex="light-2" className={styles.appFooter}>
-    <Box
-      direction="column"
+  <StyledFooter
+    primary
+    pad="large"
+    colorIndex="light-2"
+    direction="column"
+  >
+    <StyledSection
       align="center"
-      pad="none"
-      responsive
-      className={styles.flexOne}
     >
       <Heading tag="h3">
         By{' '}
@@ -40,43 +40,43 @@ const AppFooter = () => (
           source code.
         </a>
       </Heading>
-      <Box align="center" justify="center" pad="small">
-        <Button
-          icon={<CodeIcon />}
-          plain
-          href="/about"
-          label="About Me"
-        />
-      </Box>
-      <Box align="center" justify="center" pad="small">
-        <Button
-          icon={<MailIcon />}
-          plain
-          href="/contact"
-          label="Contact Me"
-        />
-      </Box>
-      <Box pad="medium">
-        <nav
-          aria-hidden
-          className={cn(
-            'grommetux-box',
-            'grommetux-box--direction-row',
-            'grommetux-box--pad-none',
-            'grommetux-menu',
-            'grommetux-menu--row',
-            'grommetux-menu--inline'
-          )}
-        >
-          {socialIcons.map((item, i) =>
-            <Anchor key={i} href={item.url}>
-              <SocialIcon type={item.type} />
-            </Anchor>
-          )}
-        </nav>
-      </Box>
-    </Box>
-  </Footer>
+    </StyledSection>
+    <Section align="center" justify="center" pad="small">
+      <Button
+        icon={<CodeIcon />}
+        plain
+        href="/about"
+        label="About Me"
+      />
+    </Section>
+    <Section align="center" justify="center" pad="small">
+      <Button
+        icon={<MailIcon />}
+        plain
+        href="/contact"
+        label="Contact Me"
+      />
+    </Section>
+    <Section pad="medium">
+      <nav
+        aria-hidden
+        className={cn(
+          'grommetux-box',
+          'grommetux-box--direction-row',
+          'grommetux-box--pad-none',
+          'grommetux-menu',
+          'grommetux-menu--row',
+          'grommetux-menu--inline'
+        )}
+      >
+        {socialIcons.map((item, i) =>
+          <Anchor key={i} href={item.url}>
+            <SocialIcon type={item.type} />
+          </Anchor>
+        )}
+      </nav>
+    </Section>
+  </StyledFooter>
 );
 
-export default cssModules(AppFooter, styles);
+export default AppFooter;

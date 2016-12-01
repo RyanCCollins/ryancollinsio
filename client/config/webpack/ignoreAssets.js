@@ -1,4 +1,4 @@
-(function() {
+(function () {
   require.extensions['.scss'] = () => {
     return;
   };
@@ -9,6 +9,9 @@
     return;
   };
   require.extensions['.jpg'] = () => {
+    return;
+  };
+  require.extensions['.md'] = () => {
     return;
   };
 })();
