@@ -27,8 +27,8 @@ export const getVisiblePosts = createSelector(
           i >= from && i < to
         );
       }
-      return posts;
     }
+    return posts || [];
   }
 );
 

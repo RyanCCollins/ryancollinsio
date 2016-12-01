@@ -45,17 +45,13 @@ export const clearBlogToast = (type) =>
     }
   };
 
-// blogSetSearchTerm :: String -> {Action}
-export const blogSetSearchTerm = (value) => ({
-  type: types.BLOG_SET_SEARCH_TERM,
-  value,
-});
-
+// blogSetCurrentPage :: Int -> {Action}
 export const blogSetCurrentPage = (page) => ({
   type: types.BLOG_SET_CURRENT_PAGE,
   page,
 });
 
+// blogSetTags :: Array -> {Action}
 export const blogSetTags = (tags) => ({
   type: types.BLOG_SET_TAGS,
   tags,
@@ -69,9 +65,4 @@ export const blogApplyFilters = () => ({
 // blogClearFilters :: None -> {Action}
 export const blogClearFilters = () => ({
   type: types.BLOG_CLEAR_FILTERS,
-});
-
-// blogToggleModal :: None -> {Action}
-export const blogToggleModal = () => ({
-  type: types.BLOG_TOGGLE_MODAL,
 });

@@ -12,33 +12,14 @@ import Headline from 'grommet-udacity/components/Headline';
 import Heading from 'grommet-udacity/components/Heading';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import { PostPreview, Divider, PaginatorFooter, SearchForm, SearchMeta } from 'components';
+import { PostPreview, Divider, PaginatorFooter } from 'components';
 import { getVisiblePostsFiltered } from './selectors';
 
 class BlogContainer extends Component {
-  constructor() {
-    super();
-    this.handleTags = this.handleTags.bind(this);
-    this.handleApplyingFilter = this.handleApplyingFilter.bind(this);
-    this.handleClearingFilter = this.handleClearingFilter.bind(this);
-  }
   componentWillReceiveProps({ allPosts }) {
     if (allPosts !== this.props.allPosts) {
       this.props.actions.setBlogPosts(allPosts);
     }
-  }
-  handleApplyingFilter() {
-    this.props.actions.blogApplyFilters();
-  }
-  handleClearingFilter() {
-    this.props.actions.blogClearFilters();
-  }
-  handleTags(value) {
-    const {
-      tags,
-    } = this.props;
-    const newTags = value.map((tag) => tags[tag] || tag);
-    this.props.actions.blogSetTags(newTags);
   }
   render() {
     const {
@@ -47,16 +28,9 @@ class BlogContainer extends Component {
       actions,
       allPosts,
       posts,
-      searchTerm,
       currentPage,
       perPage,
-      postTags,
-      tags,
-      isFiltering,
-      isShowingModal,
     } = this.props;
-    const filterableTerm = searchTerm && searchTerm !== '' ?
-      searchTerm.toLowerCase() : null;
     return (
       <Box className={styles.blog} colorIndex="light-2">
         <WithLoading isLoading={isLoading}>
@@ -81,8 +55,7 @@ class BlogContainer extends Component {
                   >
                     {posts.map((post, i) =>
                       <PostPreview
-                        searchTerm={filterableTerm}
-                        isFiltering={isFiltering}
+                        isFiltering={false}
                         key={i}
                         post={post}
                       />
@@ -97,7 +70,7 @@ class BlogContainer extends Component {
                 </Section>
               }
             </Box>
-            {!isFiltering && allPosts && allPosts.length > perPage &&
+            {allPosts && allPosts.length > perPage &&
               <PaginatorFooter
                 onChange={(newPage) => actions.blogSetCurrentPage(newPage)}
                 currentPage={currentPage}
@@ -119,22 +92,14 @@ BlogContainer.propTypes = {
   posts: PropTypes.array,
   allPosts: PropTypes.array,
   actions: PropTypes.object.isRequired,
-  searchTerm: PropTypes.string,
   currentPage: PropTypes.number.isRequired,
   perPage: PropTypes.number.isRequired,
-  tags: PropTypes.array,
-  isFiltering: PropTypes.bool.isRequired,
-  isShowingModal: PropTypes.bool.isRequired,
 };
 
 // mapStateToProps :: {State} -> {Props}
 const mapStateToProps = (state) => ({
-  searchTerm: state.blog.searchTerm,
   currentPage: state.blog.currentPage,
   perPage: state.blog.perPage,
-  tags: state.blog.tags,
-  isFiltering: state.blog.isFiltering,
-  isShowingModal: state.blog.modal.isShowing,
   posts: getVisiblePostsFiltered(state.blog),
 });
 

@@ -10,7 +10,6 @@ import Footer from 'grommet-udacity/components/Footer';
 import Header from 'grommet-udacity/components/Header';
 import FilterControl from 'grommet-addons/components/FilterControl';
 import Select from 'grommet/components/Select';
-import ContractIcon from 'grommet-udacity/components/icons/base/Contract';
 import Section from 'grommet-udacity/components/Section';
 import Box from 'grommet-udacity/components/Box';
 import Heading from 'grommet-udacity/components/Heading';

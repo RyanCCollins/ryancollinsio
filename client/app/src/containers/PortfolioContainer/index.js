@@ -127,7 +127,11 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
           <Divider />
           <Section primary className={styles.innerBox}>
             {projects && projects.length > 0 ?
-              <FlipMove delay={100} staggerDurationBy={20}>
+              <FlipMove
+                delay={350}
+                staggerDelayBy={40}
+                staggerDurationBy={40}
+              >
                 {this.renderProjects(projects)}
               </FlipMove>
             :
