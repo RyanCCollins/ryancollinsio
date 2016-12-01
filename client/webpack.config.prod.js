@@ -51,6 +51,10 @@ module.exports = {
         loader: 'json'
       },
       {
+        test: /\.md$/,
+        loader: "html!markdown"
+      },
+      {
         test: /\.inline\.scss$/,
         loader: 'isomorphic-style-loader!css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]!resolve-url-loader!postcss-loader!sass-loader'
       },

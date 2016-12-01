@@ -39,6 +39,10 @@ module.exports = {
       loader: 'babel!svg-react'
     },
     {
+      test: /\.md$/,
+      loader: "html!markdown"
+    },
+    {
       test: /\.json$/,
       loader: 'json'
     },
