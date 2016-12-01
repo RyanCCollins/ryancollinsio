@@ -6,6 +6,7 @@ import Footer from 'grommet-udacity/components/Footer';
 import LinkPreviousIcon from 'grommet-udacity/components/icons/base/LinkPrevious';
 import Markdown from 'grommet-udacity/components/Markdown';
 import Heading from 'grommet-udacity/components/Heading';
+import Box from 'grommet-udacity/components/Box';
 import about from './index.md';
 import { Divider, WithLoading } from 'components';
 import { StyledBox, AvatarImage, StyledArticle, BoxWrapper } from './styles';
@@ -19,12 +20,14 @@ const AboutContainer = ({ history }) => (
             About RyanCollins.io
           </Headline>
           <Divider />
-          {typeof about === 'string' &&
-            <Markdown
-              align="center"
-              content={about}
-            />
-          }
+          <Box pad="large" justify="center">
+            {typeof about === 'string' &&
+              <Markdown
+                align="center"
+                content={about}
+              />
+            }
+          </Box>
         </StyledArticle>
       </WithLoading>
     </Section>
