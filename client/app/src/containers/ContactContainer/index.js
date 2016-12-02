@@ -2,16 +2,18 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as ContactActionCreators from './actions';
-import cssModules from 'react-css-modules';
-import styles from './index.module.scss';
 import Box from 'grommet-udacity/components/Box';
 import Section from 'grommet-udacity/components/Section';
 import Headline from 'grommet-udacity/components/Headline';
+import Heading from 'grommet-udacity/components/Heading';
+import Status from 'grommet-udacity/components/icons/Status';
+import Pulse from 'grommet-udacity/components/icons/Pulse';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { WithLoading, Divider, ContactForm, WithToast } from 'components';
 import { reduxForm } from 'redux-form';
 import contactValidation from './utils/validation';
+import { StyledSection, StyledBottomSection, Boxxy } from './styles';
 
 export const formFields = [
   'nameInput',
@@ -65,7 +67,6 @@ class ContactContainer extends Component {
     } = this.props;
     return (
       <Box
-        className={styles.contact}
         colorIndex="light-2"
         align="center"
         justify="center"
@@ -76,13 +77,17 @@ class ContactContainer extends Component {
           onClose={(type) => actions.clearContactToast(type)}
         >
           <WithLoading isLoading={isLoading || isSubmitting}>
-            <Section primary align="center" justify="center" className={styles.sectionOne}>
+            <StyledSection primary align="center" justify="center">
               <Headline align="center" className="heading">
                 Contact Me
               </Headline>
               <Divider />
-            </Section>
-            <Section pad={{ horizontal: 'large' }} align="center" className={styles.sectionTwo}>
+            </StyledSection>
+            <Section
+              pad={{ horizontal: 'large' }}
+              align="center"
+              colorIndex="light-1"
+            >
               <ContactForm
                 {...fields}
                 categories={categories}
@@ -90,6 +95,28 @@ class ContactContainer extends Component {
                 onSubmit={this.handleSubmit}
               />
             </Section>
+            <StyledBottomSection align="center" justify="center">
+              <Boxxy pad="large" size="large" align="center">
+                <Box pad="medium" align="center">
+                  <Pulse
+                    icon={<Status size="large" value="warning" />}
+                  />
+                </Box>
+                <Heading tag="h2" align="center">
+                  Note to Recruiters
+                </Heading>
+                <Heading tag="h4" align="center">
+                  As much as I appreciate what you do,
+                  I am not seeking employment at present so please
+                  refrain from sending me job postings.
+                </Heading>
+                <Heading tag="h4" align="center">
+                  If you want to make a connection, please find me on
+                  <a href="https://www.linkedin.com/in/ryancollinsio"> LinkedIn</a>
+                  <br />Thanks 🙏
+                </Heading>
+              </Boxxy>
+            </StyledBottomSection>
           </WithLoading>
         </WithToast>
       </Box>
@@ -125,13 +152,11 @@ const mapDispatchToProps = (dispatch) => ({
   ),
 });
 
-const Container = cssModules(ContactContainer, styles);
-
 const FormContainer = reduxForm({
   form: 'Contact',
   fields: formFields,
   validate: contactValidation,
-})(Container);
+})(ContactContainer);
 
 const loadCategoriesQuery = gql`
   query loadCategories {
