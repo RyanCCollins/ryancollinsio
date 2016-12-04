@@ -1,7 +1,8 @@
+![ryancollinsio](https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/ryancollinsio.png?raw=true)
 # RyanCollins.io v-3.0
 A complete rewrite of RyanCollins.io, built with the latest and greatest technologies. The application will be used for me to broadcast online courses, blog, post about my recent work, etc.
 
-A GraphQL on Rails API and React front end single page app.
+A GraphQL on Rails API and React / Elm front end single page app.
 
 # Documentation (From Scalable React Boilerplate)
 
@@ -225,17 +226,4 @@ which will pick up any file with the .test.js postfix and run it through Jest.
 - [Chai / Immutable](http://chaijs.com/) - assertion library for Immutable JS
 - A bunch of useful scripts
 
-
-## Timeline / TODOS
-* [x] Write README file
-* [x] Write component tests using Enzyme
-* [x] Implement a Rails like component generator
-* [x] Add README.md files to each component
-* [x] Add [Grommet](grommet.io) as an optional starter component library
-* [x] Add Webpack stats plugin
-* [x] Dogfood the project and iterate on suggestions
-* [x] Setup production server configuration
-* [x] Add Jest as testing utility
-* [x] Incporporate Server Rendering
-* [ ] Create Docker container & automation scripts
-* [ ] Write wiki / other documentation
+![bye!](https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/bye!-ryancollinsio.png?raw=true)
