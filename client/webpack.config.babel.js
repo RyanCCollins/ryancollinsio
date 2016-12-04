@@ -22,17 +22,33 @@ module.exports = {
     filename: 'bundle.js',
   },
   module: {
+    noParse: /\.elm$/,
     preLoaders: [
       {
         test: /\.jsx?$/,
         loaders: ['eslint'],
         include: path.resolve(ROOT_PATH, './app')
+      },
+      {
+        test: /\.elm$/,
+        loader: 'elmx-webpack-preloader',
+        include: [path.join(__dirname, 'app/src/elm')],
+        query: {
+          sourceDirectories: ['app/src/elm'],
+          outputDirectory: '.tmp/elm'
+        }
       }
     ],
     loaders: [{
       test: /\.jsx?$/,
       exclude: /node_modules/,
       loaders: ['babel']
+    },
+    {
+      test:    /\.elm$/,
+      exclude: [/elm-stuff/, /node_modules/],
+      include: [path.join(__dirname, "/app/src/elm"), path.join(__dirname, ".tmp/elm")],
+      loader:  'elm-hot!elm-webpack?verbose=true&warn=true&debug=true'
     },
     {
       test: /\.svg$/,
@@ -83,12 +99,13 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['', '.js', '.jsx', '.json'],
+    extensions: ['', '.js', '.jsx', '.json', '.elm'],
     alias: {
       components: path.resolve(ROOT_PATH, 'app/src/components'),
       containers: path.resolve(ROOT_PATH, 'app/src/containers'),
       pages: path.resolve(ROOT_PATH, 'app/src/pages'),
       fragments: path.resolve(ROOT_PATH, 'app/src/fragments'),
+      elm: path.resolve(ROOT_PATH, 'app/src/elm'),
     },
   },
   postcss: function () {
