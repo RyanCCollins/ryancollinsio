@@ -6,6 +6,20 @@
   min-height: 100vh;
 }
 
+@keyframes wave-animation {
+  0%,100% {
+    transform: rotate(-20deg)
+  }
+
+  50% {
+    transform: rotate(20deg)
+  }
+}
+
+.gradient-blue {
+  background: linear-gradient(to bottom, #FFE1FF 0%, #C9DAF8 100%);
+}
+
 .main-content {
   padding-bottom: 60px;
 }
