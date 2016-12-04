@@ -32,10 +32,10 @@ module.exports = {
       {
         test: /\.elm$/,
         loader: 'elmx-webpack-preloader',
-        include: [path.join(__dirname, 'app/src/elm/src')],
+        include: [path.join(__dirname, 'app/src/elm')],
         query: {
-          sourceDirectories: ['app/src/elm/src'],
-          outputDirectory: 'app/src/elm/.tmp/elm'
+          sourceDirectories: ['app/src/elm'],
+          outputDirectory: '.tmp/elm'
         }
       }
     ],
@@ -47,7 +47,7 @@ module.exports = {
     {
       test:    /\.elm$/,
       exclude: [/elm-stuff/, /node_modules/],
-      include: [path.join(__dirname, "/app/src/elm/src"), path.join(__dirname, "app/src/elm/.tmp/elm")],
+      include: [path.join(__dirname, "/app/src/elm"), path.join(__dirname, ".tmp/elm")],
       loader:  'elm-hot!elm-webpack?verbose=true&warn=true&debug=true'
     },
     {

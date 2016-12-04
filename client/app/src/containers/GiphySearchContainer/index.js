@@ -5,13 +5,14 @@ import Section from 'grommet-udacity/components/Section';
 import Markdown from 'grommet-udacity/components/Markdown';
 import Box from 'grommet-udacity/components/Box';
 import { StyledWrapper, StyledArticle } from './styles';
-import { Main } from 'elm/src/Main';
+import { Main } from 'elm/Main';
 import { Divider } from 'components';
 
 const markdownContent = `### Congrats on finding the easter egg!
   \n I have put together a Giphy Search app for your amusement.
-  I built it using Elm, although it bootstraps via React.
-  \n Maybe I will make a game next.  Have any good ideas?  \n Anyways, enjoy!`;
+  I built it using Elm, although it bootstraps via React.  Take a look at my
+  [article on the subject](https://medium.com/@ryancollinsio/embedding-elm-into-a-react-app-41e0233e942#.zib8d55g7).
+  \n \n Maybe I will make a game next.  Have any good ideas?  \n \n Anyways, enjoy!`;
 
 class GiphySearchContainer extends Component { // eslint-disable-line react/prefer-stateless-function
   render() {
