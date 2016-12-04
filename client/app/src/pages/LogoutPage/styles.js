@@ -21,3 +21,9 @@ export const WaveGoodbye = styled.h1`
 export const Seeya = styled(Heading)`
   text-align: center;
 `;
+
+export const EasterEgg = styled.img`
+  height: 100px;
+  width: 80px
+  margin-top: 100px;
+`;
