@@ -14,4 +14,7 @@
   require.extensions['.md'] = () => {
     return;
   };
+  require.extensions['.elm'] = () => {
+    return;
+  };
 })();

@@ -14,7 +14,6 @@ import createApolloClient from './utils/create-apollo-client';
 import manifest from './public/manifest.json';
 import styleSheet from 'styled-components/lib/models/StyleSheet';
 
-const isDeveloping = process.env.NODE_ENV !== 'production';
 const PORT = process.env.PORT || 1338;
 const IP = '0.0.0.0';
 
@@ -36,7 +35,7 @@ app.use((req, res) => {
         console.error('ROUTER ERROR:', error); // eslint-disable-line no-console
         res.status(500);
       } else if (renderProps) {
-        const styles = styleSheet.rules().map(rule => rule.cssText).join('\n')
+        const styles = styleSheet.rules().map(rule => rule.cssText).join('\n');
 
         const client = createApolloClient({
           ssrMode: true,
