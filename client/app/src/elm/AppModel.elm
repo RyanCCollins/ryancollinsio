@@ -13,6 +13,7 @@ type Msg
   = Input String
   | Submit
   | Request (Result Http.Error String)
+  | Clear
 
 
 initModel : (Model, Cmd Msg)
@@ -33,11 +34,14 @@ update msg model =
     Submit ->
       ({ model | loading = True }, getRandomGiphy model)
     Request (Ok url) ->
-      { model | url = url, loading = False, title = Just model.input, input = "" }
-        ![]
+      let
+        title = Just model.input
+      in
+        ({ model | url = url, loading = False, title = title }, Cmd.none)
     Request (Err _) ->
       (model, Cmd.none)
-
+    Clear ->
+      initModel
 
 -- HTTP
 getRandomGiphy: Model -> Cmd Msg

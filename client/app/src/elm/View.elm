@@ -14,6 +14,7 @@ view model =
     url = model.url
     input = Input
     submit = Submit
+    clear = Clear
   in
     Html.section [Html.Attributes.attribute "class" "grommetux-box grommetux-box--direction-column grommetux-box--justify-center grommetux-box--align-center grommetux-box--responsive grommetux-box--pad-vertical-medium grommetux-section"] [
       Html.article [Html.Attributes.attribute "class" "grommetux-box grommetux-box--direction-column grommetux-box--align-center grommetux-box--responsive grommetux-box--pad-large grommetux-article ghODnj"] [
@@ -23,8 +24,8 @@ view model =
             Html.form [Html.Attributes.attribute "class" "form-inline centered"] [
               Html.div [Html.Attributes.attribute "class" "form-group"] [
                 Html.input [Html.Attributes.attribute "class" "form-control", Html.Attributes.attribute "type" "text", Html.Attributes.attribute "placeholder" "Enter a search string", Html.Events.onInput ( input ), Html.Attributes.attribute "value" (model.input)] []
-                , Html.button [Html.Attributes.attribute "type" "button", Html.Attributes.attribute "class" "grommetux-button grommetux-button--primary", Html.Events.onClick ( submit )] [Html.text "Submit"
-              ]]
+                , Html.button [Html.Attributes.attribute "type" "button", Html.Attributes.attribute "class" "grommetux-button grommetux-button--primary", Html.Events.onClick ( submit )] [Html.text "Submit"]
+              ]
             ]
           ]
         ]
@@ -34,8 +35,9 @@ view model =
             loading model
           ]
         ]
-        , Html.div [Html.Attributes.attribute "class" "col-xs-12 centered"] [
+        , Html.div [Html.Attributes.attribute "class" "grommetux-box grommetux-box--direction-column grommetux-box--align-center grommetux-box--responsive grommetux-box--pad-large"] [
           Html.img [Html.Attributes.attribute "class" "img-responsive img-rounded", Html.Attributes.attribute "src" (url)] []
+          , renderClear model clear
         ]
       ]
     ]
@@ -57,3 +59,12 @@ renderTitle model =
       ]
     Nothing ->
       Html.div [] []
+
+renderClear : Model -> Msg -> Html Msg
+renderClear model clear =
+  if model.url /= "" then
+    Html.div [Html.Attributes.attribute "class" "grommetux-box grommetux-box--direction-column grommetux-box--align-center grommetux-box--responsive grommetux-box--pad-large"] [
+      Html.button [Html.Attributes.attribute "type" "button", Html.Attributes.attribute "class" "grommetux-button grommetux-button--primary", Html.Events.onClick ( clear )] [Html.text "Clear"]
+    ]
+  else
+    Html.div [] []
