@@ -34,7 +34,7 @@ class LoginContainer extends Component { // eslint-disable-line react/prefer-sta
       user,
       isLoading,
     } = this.props;
-    if (user.authToken != null) { // eslint-disable-line
+    if (user && user.authToken != null) { // eslint-disable-line
       this.context.router.push('/user/profile');
     }
     if (typeof window !== 'undefined' && isLoading) {
