@@ -33,7 +33,7 @@ images = [
 
 images.each do |i|
   p.images << ProjectImage.create(
-    url: i
+    src: i
   )
 end
 
@@ -70,7 +70,7 @@ images = [
 
 images.each do |i|
   p.images << ProjectImage.create(
-    url: i
+    src: i
   )
 end
 
@@ -110,7 +110,7 @@ images = [
 
 images.each do |i|
   p.images << ProjectImage.create(
-    url: i
+    src: i
   )
 end
 
@@ -155,7 +155,7 @@ images = [
 
 images.each do |i|
   p.images << ProjectImage.create(
-    url: i
+    src: i
   )
 end
 
@@ -195,7 +195,7 @@ images = [
 
 images.each do |i|
   p.images << ProjectImage.create(
-    url: i
+    src: i
   )
 end
 
@@ -231,7 +231,7 @@ images = [
 
 images.each do |i|
   p.images << ProjectImage.create(
-    url: i
+    src: i
   )
 end
 
@@ -266,7 +266,7 @@ images = [
 
 images.each do |i|
   p.images << ProjectImage.create(
-    url: i
+    src: i
   )
 end
 
@@ -304,7 +304,7 @@ images = [
 
 images.each do |i|
   p.images << ProjectImage.create(
-    url: i
+    src: i
   )
 end
 
@@ -340,7 +340,7 @@ images = [
 
 images.each do |i|
   p.images << ProjectImage.create(
-    url: i
+    src: i
   )
 end
 
@@ -378,7 +378,7 @@ images = [
 
 images.each do |i|
   p.images << ProjectImage.create(
-    url: i
+    src: i
   )
 end
 
@@ -415,7 +415,7 @@ images = [
 
 images.each do |i|
   p.images << ProjectImage.create(
-    url: i
+    src: i
   )
 end
 
@@ -457,7 +457,7 @@ images = [
 
 images.each do |i|
   p.images << ProjectImage.create(
-    url: i
+    src: i
   )
 end
 
@@ -490,7 +490,7 @@ images = [
 
 images.each do |i|
   p.images << ProjectImage.create(
-    url: i
+    src: i
   )
 end
 
@@ -527,7 +527,7 @@ images = [
 
 images.each do |i|
   p.images << ProjectImage.create(
-    url: i
+    src: i
   )
 end
 
