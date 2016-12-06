@@ -17,6 +17,7 @@ p = Project.create!(
   designPatterns: "The app utilizes the Flux unidirectional data flow and the feature-first code organization architecture.  It uses the AirBnb styleguide and Eslint plugins.",
   technicalInformation: "Built with functional JavaScript, ES2015, React, Redux, Bootsrap, CSS Modules, following the unidirectional data-flow architecture. Utilizes best practices for scaling of React Apps. Over 150 Unit tests written with Enzyme to provide high quality code.",
   category: "frontend",
+  sort_priority: 200
 )
 
 images = [
@@ -39,7 +40,7 @@ end
 
 tags = ['React', 'GraphQL', 'Redux', 'Flux', 'ES6']
 tags.each do |tag|
-  Tag.find_or_create_by(title: tag)
+  p.tags << Tag.find_or_create_by(title: tag)
 end
 
 p.save!
@@ -57,6 +58,7 @@ p = Project.create(
   designPatterns: "The app utilizes service worker and app cache to provide an offline experience.  It utilizes accessibility and UX best practices and contains many dynamic UI components. It uses many performance enhancement techniques, including Server-rendering, code-chunking, lazy-loading, et. al. to make it blindingly performant. It also uses the Flux unidirectional data-flow architecture and functional reactive programming techniques. On the back end, it follows the micro-service architecture, serving data via a single endpoint with GraphQL, allowing for declarative collocated queries and performant network requests.",
   technicalInformation: "Built with functional JavaScript, ES2015, React, Redux, Grommet, CSS Modules, following the unidirectional data-flow architecture. Utilizes best practices for scaling of React Apps. Unit tests written with Jest and Enzyme to provide high quality code. Built a custom GraphQL back end running on Ruby on Rails.",
   category: "fullstack",
+  sort_priority: 199
 )
 
 images = [
@@ -76,7 +78,7 @@ end
 
 tags = ['React', 'GraphQL', 'Redux', 'Flux', 'Grommet', 'ES6', 'Apollo', 'Ruby on Rails']
 tags.each do |tag|
-  Tag.find_or_create_by(title: tag)
+  p.tags << Tag.find_or_create_by(title: tag)
 end
 
 p.save!
@@ -95,6 +97,7 @@ p = Project.create(
   technicalReview: "Excellent work, all data are very nicely presented in the DOM! ... Great work with GraphQl and React / Redux!",
   reviewerName: "Expert Code Reviewer",
   category: "frontend",
+  sort_priority: 198
 )
 
 images = [
@@ -131,14 +134,15 @@ p = Project.create(
   featureImage: "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/restaurant-reviewer-swnd/new/restaurantreviewermock.jpg?raw=true",
   caption: "Restaurant Reviewer A11y Best Practices App and performance optimized React single page app",
   description: "Full Stack web application built with a focus on UX and A11y Accessibility best practices. Shows a list of restaurants retrieved through a web scraper and corresponding reviews for the restaurants. The application allows users to submit new reviews for restaurants and focuses on providing a world-class user experience no matter the end-user's device.",
-  projectUrl: "http://meetup-event-planner.herokuapp.com/",
+  projectUrl: "http://restaurant-reviewer-client.herokuapp.com/",
   repoUrl: "https://github.com/RyanCCollins/restaurant-reviewer",
   milestones: "## Front End Milestones: \n - Followed the feature-first approach, whereby components exist in isolation from the app, encouraging encapsulation and reusability. \n - Wrote dozens of scalable react components and connected containers. \n - Followed functional programming best practices, utilizing the immutable architecture and encapsulating business logic in the Redux store. \n - As always, followed the AirBnB JSX and JavaScript style guides and utilized ESLint to provide exceptional style and code quality \n ## Back End Milestones: \n - Wrote unit tests using RSpec, providing a solid framework for the app \n - Utilized the Ruby on Rails v.5 API only mode in an effort to build a micro-service oriented API to serve JSON data to the front end. \n - Utilized Docker to encourage maximum scalability and build automation. \n - As always, followed the Ruby style guide and best practices.",
   designPatterns: "Most notably, the app utilizes A11y accessibility and UX best practices. It also uses the Flux unidirectional data-flow architecture and functional reactive programming techniques. On the back end, it follows the micro-service architecture, serving custom endpoints via a RESTful API. The application uses Docker to automate the build process.",
   technicalInformation: "Built with functional JavaScript, ES2015, React, Redux, CSS Modules, following the unidirectional data-flow architecture. Utilizes best practices for scaling of React Apps. Unit tests written with Expect and Mocha / JSDOM to provide high quality code. Built a Rails API to serve and persist data for the application.",
   technicalReview: "I really appreciate your hard work with both Backend and Frontend! Very professionally built app and very enjoyable to use. Keep it up!",
   reviewerName: "Expert Code Reviewer",
-  category: "fullstack"
+  category: "fullstack",
+  sort_priority: 197
 )
 
 images = [
@@ -171,7 +175,7 @@ p.save!
 p = Project.create(
   title: 'Meetup Event Planner',
   user: User.all.first,
-  featureImage: "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/meetup-event-planner/meetup-event-planner/main-mock.png?raw=true",
+  featureImage: "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/meetup-event-planner/meetup-event-planner/meetup-main-mockup.jpg?raw=true",
   caption: "Rails, React & GraphQL App Highlighting Interactivity and Performance.",
   description: "Built a dynamic single page application using React and Redux showcasing best practices for building dynamic and interactive web forms built to increase conversions. Built a responsive web application that allows the user to establish a meet-up event.",
   projectUrl: "http://meetup-event-planner.herokuapp.com/",
@@ -181,7 +185,8 @@ p = Project.create(
   technicalInformation: "Built with functional JavaScript, ES2015, React, Redux, CSS Modules, following the unidirectional data-flow architecture. Utilizes best practices for scaling of React Apps. Built a highly scalable GraphQL on Rails backend to provide data and authentication to the site.",
   technicalReview: "Excellent work, all data are very nicely presented in the DOM! ... Great work with GraphQl and React / Redux!",
   reviewerName: "Expert Code Reviewer",
-  category: "fullstack"
+  category: "fullstack",
+  sort_priority: 196
 )
 
 images = [
@@ -219,7 +224,8 @@ p = Project.create(
   milestones: "## Front End Milestones: \n \n - Implemented Advanced Webpack Code Chunking and server rendering to increase performance exponentially \n \n - Followed the feature-first approach, whereby components exist in isolation from the app, encouraging encapsulation and reusability. \n \n - Wrote dozens of scalable react components and connected containers. \n \n - Followed functional programming best practices, utilizing the immutable architecture and encapsulating business logic in the Redux store. \n \n - As always, followed the AirBnB JSX and JavaScript style guides and utilized ESLint to provide exceptional style and code quality \n \n ## Back End Milestones: \n \n - Implemented a custom GraphQL schema. \n \n - Wrote an Express JS Server to serve content in real-time with increased I/O performance \n \n - Integrated custom Python scripts in order to scrape the medium API for posts for the site.",
   designPatterns: "Most notably, the app utilizes A11y accessibility and UX best practices. It also uses the Flux unidirectional data-flow architecture and functional reactive programming techniques. On the back end, it follows the micro-service architecture, serving data via a single endpoint with GraphQL.",
   technicalInformation: "Built with functional JavaScript, ES2015, React, Redux, Grommet, CSS Modules, following the unidirectional data-flow architecture. Utilizes best practices for scaling of React Apps. Unit tests written with Expect and Mocha / JSDOM to provide high quality code. Built a custom GraphQL back end schema.",
-  category: "frontend"
+  category: "frontend",
+  sort_priority: 195
 )
 
 images = [
@@ -439,7 +445,8 @@ p = Project.create(
   milestones: "- Implemented cutting-edge Javascript, including React, ES6 and Webpack. \n - Wrote a client-side API layer utilizing a Promise based approach, providing a seamless asynchronous experience. \n - Implemented Material-UI and custom React components, providing a reactive experience.",
   designPatterns: "Utilizes the AirBnB JS Style Guide, the Flux and Model View Controller Architectures, HTML 5 and CSS best practices.",
   technicalInformation: "Built with React JS the application is a Single Page App that compiles via Webpack Hot Module Reloading. It is truly as cutting edge as it gets, implementing the best parts of ES6 through the use of Babel. It utilizes a number of NPM modules, Post CSS and boasts custom design by the Hacksmiths resident designer, Sean Craig.",
-  category: "frontend"
+  category: "frontend",
+  sort_priority: 100
 )
 
 images = [
@@ -480,7 +487,8 @@ p = Project.create(
   milestones: "- Led the development of a scalable REST API utilizing the Ruby on Rails web framework. \n - Utilized Docker to completely automate the deployment and allow for maximum scalability. \n - Implemented a PostgreSQL database, providing an API to persist data for the project. \n - Wrote tests utilizing Rspec to eliminate regressions. \n - Wrote comprehensive documentation to provide sustainability to the project.",
   designPatterns: "Utilizes the Model View Controller pattern and the AirBnb Ruby Style Guide. Followed the REST architecture, implementing a modern and stable API.",
   technicalInformation: "Utilizes the Model View Controller pattern and the AirBnb Ruby Style Guide. Followed the REST architecture, implementing a modern and stable API.",
-  category: "backend"
+  category: "backend",
+  sort_priority: 99
 )
 
 images = [
@@ -505,7 +513,7 @@ p.save!
 p = Project.create(
   title: 'Food Drivr - iOS App',
   user: User.all.first,
-  featureImage: "https://s3.amazonaws.com/accredible-api-projects/previews/5329/large/1465160757326?1465160244",
+  featureImage: "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/food-drivr-app/food-drivr-mock.jpg?raw=true",
   caption: "iOS Mobile application, utilizing an Uber model to combat food waste.",
   description: "Coordinated collaborative efforts to create open source software with 18 experienced software developers from no less than 5 countries across the world. Leading the team in creating the Food Drivr project and building a JSON REST API for the project utilizing the Ruby on Rails web framework. Orchestrated the creation of multiple software clients for the project, including an iOS Mobile App, REST API, Data Analytic platform, Admin Dashboard and ReactJS web Frontend. The Food Drivr website and mobile app serves to make it dead simple to donate edible food to the hungry. Open the app, press a button and a driver will come pick it up, bringing it to the less fortunate.",
   projectUrl: "http://fooddrivr.com/",
@@ -513,7 +521,8 @@ p = Project.create(
   milestones: "- Utilized the Model View Controller and Model View Presenter architectures \n - Led a team of 18 developers to build the project from the ground up \n - Provided support and guidance to the team, coordinating the creation of a multi-client application and API.",
   designPatterns: "Utilizes the Model View Presenter and Model View Controller paradigms, along with the Delegate / Protocol Pattern.",
   technicalInformation: "Built in Swift using XCode, the application was built using best practices and design patterns.",
-  category: "ios"
+  category: "ios",
+  sort_priority: 98
 )
 
 images = [
@@ -1514,4 +1523,32 @@ Reference.create(
   body: "Ryan was one of the standout employees in my tenure ... More importantly, Ryan was innovative and always looking for new ways to solve problems.  He has tremendous leadership potential, both in terms of his interpersonal skills and his solid knowledge of data systems...",
   title: 'Director',
   company: 'CMS - Division of Nursing Homes'
+)
+
+
+Tutorial.create(
+  link: "https://youtu.be/aRhKzi_ewdM",
+  title: "Udacity Redux Demonstration - Part 3",
+  description: "Redux demonstration for Udacity Alumni Collaborative project, video part 3",
+  body: "A demonstration of integrating Redux into the Udacity Alumni Community web app",
+  user: User.all.first,
+  image: "https://github.com/RyanCCollins/cdn/blob/master/misc/logo-redux.png?raw=true"
+)
+
+Tutorial.create(
+  link: "https://youtu.be/iVI2LJdv-CQ",
+  title: "Udacity Redux Demonstration - Part 2",
+  description: "Redux demonstration for Udacity Alumni Collaborative project, video part 2",
+  body: "A demonstration of integrating Redux into the Udacity Alumni Community web app",
+  user: User.all.first,
+  image: "https://github.com/RyanCCollins/cdn/blob/master/misc/logo-redux.png?raw=true"
+)
+
+Tutorial.create(
+  link: "https://youtu.be/qZZyJa3HcRs",
+  title: "Udacity Redux Demonstration - Part 1",
+  description: "Redux demonstration for Udacity Alumni Collaborative project, video part 1",
+  body: "A demonstration of integrating Redux into the Udacity Alumni Community web app",
+  user: User.all.first,
+  image: "https://github.com/RyanCCollins/cdn/blob/master/misc/logo-redux.png?raw=true"
 )
