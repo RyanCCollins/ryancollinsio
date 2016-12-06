@@ -45,6 +45,52 @@ end
 
 p.save!
 
+# Udacity Alumni Client
+p = Project.create(
+  title: 'Udacity Alumni Client',
+  user: User.all.first,
+  featureImage: "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/udacity-client.png?raw=true",
+  caption: "Progressive Offline-first Web App",
+  description: "The Udacity Alumni Development team is building a bespoke publishing platform and social network for the alumni community.",
+  projectUrl: "https://udacity-alumni-client.herokuapp.com/",
+  repoUrl: "https://github.com/udacityalumni/alumni-client",
+  milestones: "- Engineered a cutting edge React single page application that utilizes incredibly performant server rendering. \n  - Implemented webpack code-chunking, lazy loading, and other similar performance optimization techniques to cut the time-to-first-byte loading time to milliseconds",
+  designPatterns: "The app utilizes accessibility and UX best practices and contains many dynamic UI components. It uses many performance enhancement techniques, including Server-rendering, code-chunking, lazy-loading, et. al. to make it blindingly performant. It also uses the Flux unidirectional data-flow architecture and functional reactive programming techniques.",
+  technicalInformation: "Built with functional JavaScript, ES2015, React, Redux, Grommet, CSS Modules, following the unidirectional data-flow architecture. Utilizes best practices for scaling of React Apps. Unit tests written with Jest and Enzyme to provide high quality code.",
+  category: "frontend",
+  sort_priority: 202
+)
+
+tags = ['React', 'GraphQL', 'Redux', 'Flux', 'Grommet', 'ES6', 'Apollo']
+tags.each do |tag|
+  p.tags << Tag.find_or_create_by(title: tag)
+end
+
+p.save!
+
+# Udacity Alumni API
+p = Project.create(
+  title: 'Udacity Alumni API',
+  user: User.all.first,
+  featureImage: "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/udacity-api.png?raw=true",
+  caption: "Progressive Offline-first Web App",
+  description: "The Udacity Alumni Development team is building a bespoke publishing platform and social network for the alumni community.  We built a custom GraphQL powered backend API and micro-services for the purposes of serving dynamic data and providing authentication for the front end.",
+  projectUrl: "https://udacity-alumni-client.herokuapp.com/",
+  repoUrl: "https://github.com/udacityalumni/alumni-api",
+  milestones: "- Built a GraphQL on Rails API to allow for declarative query collocation \n  - Optimized the data-loading functionality using server optimization techniques",
+  designPatterns: "Followed the micro-service architecture, serving data via a single endpoint with GraphQL, allowing for declarative collocated queries and performant network requests.",
+  technicalInformation: "Built a custom GraphQL back end running on Ruby on Rails.",
+  category: "backend",
+  sort_priority: 201
+)
+
+tags = ['GraphQL', 'Apollo', 'Ruby on Rails']
+tags.each do |tag|
+  p.tags << Tag.find_or_create_by(title: tag)
+end
+
+p.save!
+
 # Ryancollins.io
 p = Project.create(
   title: 'RyanCollins.io',
