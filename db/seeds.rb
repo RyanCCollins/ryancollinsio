@@ -1552,3 +1552,22 @@ Tutorial.create(
   user: User.all.first,
   image: "https://github.com/RyanCCollins/cdn/blob/master/misc/logo-redux.png?raw=true"
 )
+
+
+projects = Project.all
+projects.each do |project|
+  project.status = "published"
+  project.save
+end
+
+tuts = Tutorial.all
+tuts.each do |tut|
+  tut.status = "published"
+  tut.save
+end
+
+all_posts = Post.all
+all_posts.each do |the_post|
+  the_post.status = "published"
+  the_post.save
+end
