@@ -159,6 +159,8 @@ const Project = ({
             onClickNext={onNext}
             onClickPrev={onPrev}
             onClose={onClose}
+            showThumbnails
+            onClickThumbnail={(i) => onSetImage(i)}
           />
         </Box>
       </Section>
