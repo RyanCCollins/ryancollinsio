@@ -4,6 +4,47 @@ User.create(
   password: "Password123!"
 )
 
+# Calendar web app
+
+p = Project.create!(
+  title: 'Udacity Blitz Calendar Web App',
+  user: User.all.first,
+  featureImage: "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/mentor-calendar/main-mockup.jpg?raw=true",
+  description: "Built as a contractor for the Udacity Blitz platform, the mentor calendar web application is an engineering feat to say the least.  As a core engineer on the project, my goal is to implement the most cutting-edge web technologies available to build a highly optimized dynamic web application, which will be used by Udacity Mentors and Students from around the globe.",
+  projectUrl: "https://github.com/udacity-blitz/calendar-web-app-frontend",
+  repoUrl: "https://github.com/udacity-blitz/calendar-web-app-frontend",
+  milestones: "- Integrated more than 150 unit tests in an effort to provide reliable code. \n - Utilized best-practices for organization of React applications. \n - Wrote dozens of connected containers and reusable React UI components following the Flux unidirectional and feature-first architectures",
+  designPatterns: "The app utilizes the Flux unidirectional data flow and the feature-first code organization architecture.  It uses the AirBnb styleguide and Eslint plugins.",
+  technicalInformation: "Built with functional JavaScript, ES2015, React, Redux, Bootsrap, CSS Modules, following the unidirectional data-flow architecture. Utilizes best practices for scaling of React Apps. Over 150 Unit tests written with Enzyme to provide high quality code.",
+  category: "frontend",
+)
+
+images = [
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/mentor-calendar/1.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/mentor-calendar/2.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/mentor-calendar/3.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/mentor-calendar/4.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/mentor-calendar/5.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/mentor-calendar/6.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/mentor-calendar/7.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/mentor-calendar/8.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/mentor-calendar/9.png?raw=true"
+]
+
+images.each do |i|
+  p.images << ProjectImage.create(
+    url: i
+  )
+end
+
+tags = ['React', 'GraphQL', 'Redux', 'Flux', 'ES6']
+tags.each do |tag|
+  Tag.find_or_create_by(title: tag)
+end
+
+p.save!
+
+# Ryancollins.io
 p = Project.create(
   title: 'RyanCollins.io',
   user: User.all.first,
@@ -18,9 +59,19 @@ p = Project.create(
   category: "fullstack",
 )
 
-images = ProjectImage.all
+images = [
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/ryancollins-io-v3/1.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/ryancollins-io-v3/2.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/ryancollins-io-v3/3.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/ryancollins-io-v3/4.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/ryancollins-io-v3/5.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/ryancollins-io-v3/6.png?raw=true",
+]
+
 images.each do |i|
-  p.images << i
+  p.images << ProjectImage.create(
+    url: i
+  )
 end
 
 tags = ['React', 'GraphQL', 'Redux', 'Flux', 'Grommet', 'ES6', 'Apollo', 'Ruby on Rails']
@@ -29,38 +80,6 @@ tags.each do |tag|
 end
 
 p.save!
-
-ProjectImage.create(
-  src: "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/main-images/home-nav.png?raw=true",
-)
-
-ProjectImage.create(
-  src: "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/main-images/home.png?raw=true",
-)
-
-ProjectImage.create(
-  src: "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/main-images/key-metrics-main.png?raw=true",
-)
-
-ProjectImage.create(
-  src: "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/main-images/key-metrics-bottom.png?raw=true",
-)
-
-ProjectImage.create(
-  src: "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/main-images/geospatial.png?raw=true",
-)
-
-ProjectImage.create(
-  src: "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/main-images/data-view-main.png?raw=true",
-)
-
-ProjectImage.create(
-  src: "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/main-images/data-view-search.png?raw=true",
-)
-
-ProjectImage.create(
-  src: "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/main-images/data-page-filter.png?raw=true",
-)
 
 p = Project.create(
   title: 'Corporate Dashboard',
@@ -78,10 +97,24 @@ p = Project.create(
   category: "frontend",
 )
 
-images = ProjectImage.all
+images = [
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/main-images/home-nav.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/main-images/home.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/main-images/key-metrics-main.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/main-images/key-metrics-bottom.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/main-images/geospatial.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/main-images/data-view-main.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/main-images/data-view-search.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/main-images/data-page-filter.png?raw=true",
+]
+
 images.each do |i|
-  p.images << i
+  p.images << ProjectImage.create(
+    url: i
+  )
 end
+
+p.save!
 
 tags = ['React', 'GraphQL', 'Redux', 'Grommet', 'ES6', 'Apollo', 'Node']
 tags.each do |tag|
@@ -91,6 +124,7 @@ end
 p.save!
 
 
+# Restaurant Reviewer
 p = Project.create(
   title: 'Restaurant Reviewer',
   user: User.all.first,
@@ -98,7 +132,7 @@ p = Project.create(
   caption: "Restaurant Reviewer A11y Best Practices App and performance optimized React single page app",
   description: "Full Stack web application built with a focus on UX and A11y Accessibility best practices. Shows a list of restaurants retrieved through a web scraper and corresponding reviews for the restaurants. The application allows users to submit new reviews for restaurants and focuses on providing a world-class user experience no matter the end-user's device.",
   projectUrl: "http://meetup-event-planner.herokuapp.com/",
-  repoUrl: "https://github.com/RyanCCollins/meetup-event-planner",
+  repoUrl: "https://github.com/RyanCCollins/restaurant-reviewer",
   milestones: "## Front End Milestones: \n - Followed the feature-first approach, whereby components exist in isolation from the app, encouraging encapsulation and reusability. \n - Wrote dozens of scalable react components and connected containers. \n - Followed functional programming best practices, utilizing the immutable architecture and encapsulating business logic in the Redux store. \n - As always, followed the AirBnB JSX and JavaScript style guides and utilized ESLint to provide exceptional style and code quality \n ## Back End Milestones: \n - Wrote unit tests using RSpec, providing a solid framework for the app \n - Utilized the Ruby on Rails v.5 API only mode in an effort to build a micro-service oriented API to serve JSON data to the front end. \n - Utilized Docker to encourage maximum scalability and build automation. \n - As always, followed the Ruby style guide and best practices.",
   designPatterns: "Most notably, the app utilizes A11y accessibility and UX best practices. It also uses the Flux unidirectional data-flow architecture and functional reactive programming techniques. On the back end, it follows the micro-service architecture, serving custom endpoints via a RESTful API. The application uses Docker to automate the build process.",
   technicalInformation: "Built with functional JavaScript, ES2015, React, Redux, CSS Modules, following the unidirectional data-flow architecture. Utilizes best practices for scaling of React Apps. Unit tests written with Expect and Mocha / JSDOM to provide high quality code. Built a Rails API to serve and persist data for the application.",
@@ -106,6 +140,26 @@ p = Project.create(
   reviewerName: "Expert Code Reviewer",
   category: "fullstack"
 )
+
+images = [
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/restaurant-reviewer-swnd/mainpage.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/restaurant-reviewer-swnd/restaurantsmain.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/restaurant-reviewer-swnd/addreview.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/restaurant-reviewer-swnd/reviewmodal.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/restaurant-reviewer-swnd/reviews.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/restaurant-reviewer-swnd/reviewsmain.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/restaurant-reviewer-swnd/singlerestaurant.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/restaurant-reviewer-swnd/singlerestaurantmain.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/restaurant-reviewer-swnd/skiplinks.png?raw=true",
+]
+
+images.each do |i|
+  p.images << ProjectImage.create(
+    url: i
+  )
+end
+
+p.save!
 
 tags = ['React', 'Ruby on Rails', 'Redux', 'GraphQL', 'Apollo', 'Grommet', 'ES6']
 tags.each do |tag|
@@ -130,6 +184,23 @@ p = Project.create(
   category: "fullstack"
 )
 
+images = [
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/meetup-event-planner/meetup-event-planner/main-all.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/meetup-event-planner/meetup-event-planner/main-top.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/meetup-event-planner/meetup-event-planner/events-list.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/meetup-event-planner/meetup-event-planner/single-event-all.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/meetup-event-planner/meetup-event-planner/signup.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/meetup-event-planner/meetup-event-planner/login-main.png?raw=true"
+]
+
+images.each do |i|
+  p.images << ProjectImage.create(
+    url: i
+  )
+end
+
+p.save!
+
 tags = ['React', 'GraphQL', 'Redux', 'Apollo', 'Grommet', 'ES6', 'Ruby on Rails']
 tags.each do |tag|
   p.tags << Tag.find_or_create_by(title: tag)
@@ -151,6 +222,21 @@ p = Project.create(
   category: "frontend"
 )
 
+images = [
+  "https://github.com/RyanCCollins/cdn/blob/master/react-weekly/images/main-all.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/react-weekly/images/main-main.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/react-weekly/images/about-all.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/react-weekly/images/about-main.png?raw=true"
+]
+
+images.each do |i|
+  p.images << ProjectImage.create(
+    url: i
+  )
+end
+
+p.save!
+
 tags = ['React', 'GraphQL', 'Apollo', 'Redux', 'Grommet', 'ES6', 'Node', 'Python']
 tags.each do |tag|
   p.tags << Tag.find_or_create_by(title: tag)
@@ -161,16 +247,30 @@ p.save!
 p = Project.create(
   title: 'Scalable React Boilerplate',
   user: User.all.first,
-  featureImage: "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/corporate-dashboard/main-mockup.jpg?raw=true",
+  featureImage: "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/scalable-react/1.png?raw=true",
   caption: "Best practices React boilerplate, code generation tools and microframework",
   description: "Released an open-source boilerplate, multiple scaffolding tools and React component generators using the knowledge and best practices gained from working on several large-scale React projects. The boilerplate aims to implement best practices for developing with cutting-edge JavaScript in 2016 and both provide a useful starting place for any of my projects going forward. The generators automate all of the most time consuming parts of working with React, scaffolding out components, containers, action creators, reducers and tests in a similar fashion to Rails. The two projects showcase seperate organizational strategies, offering multiple options for different situations.",
-  projectUrl: "https://github.com/RyanCCollins/scalable-react-boilerplate",
+  projectUrl: "https://scalable-react-boilerplate.herokuapp.com/",
   repoUrl: "https://github.com/RyanCCollins/scalable-react-boilerplate",
   milestones: "- Used the experience gained from scaling several large-scale React projects to create multiple open source projects for others to use to learn the best practices. \n - Created demo applications using React and Redux to showcase the projects \n - Wrote slush generators that scaffolds out the starter projects \n - Created scaffolding generators to automate the creation of react / redux components and containers \n - Wrote a contribution guide and maintained an open-source community that uses the best practices outlined in the boilerplate project \n - As always, followed the AirBnB JSX and JavaScript style guides and utilized ESLint to provide exceptional style and code quality",
   designPatterns: "Utilize the Flux unidirectional data flow architecture. The scalable project implements the feature-first organizational pattern, providing maximum scalability.  It integrates Reselect, Webpack Code-chunking and Server-rendered React for maxium performance.  It also integrates GraphQL and Apollo for declarative query collocation",
   technicalInformation: "Built with functional JavaScript, ES2015, React, Redux, CSS Modules, following the unidirectional data-flow architecture. Utilizes best practices for scaling of React Apps. Unit tests written with Expect and Mocha / JSDOM to provide high quality code. Uses the react-redux connect method to hook up react components to the redux store.",
   category: "frontend",
 )
+
+images = [
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/scalable-react/1.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/scalable-react/2.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/scalable-react/3.png?raw=true"
+]
+
+images.each do |i|
+  p.images << ProjectImage.create(
+    url: i
+  )
+end
+
+p.save!
 
 tags = ['React', 'GraphQL', 'Redux', 'Apollo', 'ES6', 'Grommet', 'Node']
 tags.each do |tag|
@@ -192,6 +292,24 @@ p = Project.create(
   technicalInformation: "Built with functional JavaScript, ES2015, React, Redux, CSS Modules, following the unidirectional data-flow architecture. Utilizes best practices for scaling of React Apps. Unit tests written with Expect and Mocha / JSDOM to provide high quality code. Uses the react-redux connect method to hook up react components to the redux store.",
   category: "frontend"
 )
+
+images = [
+  "https://github.com/RyanCCollins/cdn/blob/master/public-transportation/main.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/public-transportation/about.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/public-transportation/confirm-details.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/public-transportation/help.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/public-transportation/schedule.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/public-transportation/slideout.png?raw=true"
+]
+
+images.each do |i|
+  p.images << ProjectImage.create(
+    url: i
+  )
+end
+
+p.save!
+
 tags = ['React', 'Redux', 'Material UI']
 tags.each do |tag|
   p.tags << Tag.find_or_create_by(title: tag)
@@ -211,6 +329,23 @@ p = Project.create(
   technicalInformation: "Implements the Model View Controller design pattern, 12 Factor Micro-Services, build automation.",
   category: "fullstack"
 )
+
+images = [
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/hacksmiths-web/landing.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/hacksmiths-web/members.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/hacksmiths-web/events.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/hacksmiths-web/blog.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/hacksmiths-web/single%20event.png?raw=true"
+]
+
+images.each do |i|
+  p.images << ProjectImage.create(
+    url: i
+  )
+end
+
+p.save!
+
 tags = ['React', 'Sass', 'Foundation', 'ES6', 'Docker']
 tags.each do |tag|
   p.tags << Tag.find_or_create_by(title: tag)
@@ -232,6 +367,23 @@ p = Project.create(
   reviewerName: "Spiros Raptis",
   category: "ios"
 )
+
+images = [
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/hacksmiths-ios/community@3x.PNG?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/hacksmiths-ios/event@3x.PNG?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/hacksmiths-ios/idea-submission@3x.PNG?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/hacksmiths-ios/participants@3x.PNG?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/hacksmiths-ios/slideout@3x.PNG?raw=true",
+]
+
+images.each do |i|
+  p.images << ProjectImage.create(
+    url: i
+  )
+end
+
+p.save!
+
 tags = ['Model View Controller', 'Swift', 'Core Data', 'Model View Presenter']
 tags.each do |tag|
   p.tags << Tag.find_or_create_by(title: tag)
@@ -251,6 +403,24 @@ p = Project.create(
   technicalInformation: "Built with NodeJS, Express, MongoDB and KeystoneJS, utilizing the MVC architecture. Utilized Jade to render views server side and implemented a fast and functional admin dashboard to provide easy access to the site's data. Utilized the Twitter and Github APIs as OAuth providers for the app and deployed via Docker, automating the process of Continuous Delivery.",
   category: "fullstack"
 )
+
+images = [
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/hacksmiths-web/admin-all.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/hacksmiths-web/admin-events.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/hacksmiths-web/admin-filter.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/hacksmiths-web/admin-gallery.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/hacksmiths-web/admin-login.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/hacksmiths-web/admin-mobile.png?raw=true"
+]
+
+images.each do |i|
+  p.images << ProjectImage.create(
+    url: i
+  )
+end
+
+p.save!
+
 tags = ['React', 'Foundation', 'Docker', 'Node', 'REST']
 tags.each do |tag|
   p.tags << Tag.find_or_create_by(title: tag)
@@ -271,6 +441,28 @@ p = Project.create(
   technicalInformation: "Built with React JS the application is a Single Page App that compiles via Webpack Hot Module Reloading. It is truly as cutting edge as it gets, implementing the best parts of ES6 through the use of Babel. It utilizes a number of NPM modules, Post CSS and boasts custom design by the Hacksmiths resident designer, Sean Craig.",
   category: "frontend"
 )
+
+images = [
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/food-drivr-web/donate-einstein.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/food-drivr-web/donate.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/food-drivr-web/donor-signup.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/food-drivr-web/signup.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/food-drivr-web/volunteer-signup.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/food-drivr-web/landing-section-one.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/food-drivr-web/landing-section-two.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/food-drivr-web/landing-section-three.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/food-drivr-web/profile-one.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/food-drivr-web/profile-two.png?raw=true"
+]
+
+images.each do |i|
+  p.images << ProjectImage.create(
+    url: i
+  )
+end
+
+p.save!
+
 tags = ['React', 'Axios', 'ES6']
 tags.each do |tag|
   p.tags << Tag.find_or_create_by(title: tag)
@@ -290,6 +482,20 @@ p = Project.create(
   technicalInformation: "Utilizes the Model View Controller pattern and the AirBnb Ruby Style Guide. Followed the REST architecture, implementing a modern and stable API.",
   category: "backend"
 )
+
+images = [
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/food-drivr-api/food-drivr-erd.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/food-drivr-api/food-drivr-docs-errors.png?raw=true"
+]
+
+images.each do |i|
+  p.images << ProjectImage.create(
+    url: i
+  )
+end
+
+p.save!
+
 tags = ['Ruby on Rails', 'REST']
 tags.each do |tag|
   p.tags << Tag.find_or_create_by(title: tag)
@@ -309,6 +515,24 @@ p = Project.create(
   technicalInformation: "Built in Swift using XCode, the application was built using best practices and design patterns.",
   category: "ios"
 )
+
+images = [
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/food-drivr-app/accepting@3x.PNG?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/food-drivr-app/donation-acceptance@3x.PNG?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/food-drivr-app/donation-history@3x.PNG?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/food-drivr-app/mapview@3x.PNG?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/food-drivr-app/pending-donations@3x.PNG?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/food-drivr-app/profile@3x.PNG?raw=true"
+]
+
+images.each do |i|
+  p.images << ProjectImage.create(
+    url: i
+  )
+end
+
+p.save!
+
 tags = ['Model View Controller', 'Swift', 'Core Data', 'Model View Presenter']
 tags.each do |tag|
   p.tags << Tag.find_or_create_by(title: tag)
