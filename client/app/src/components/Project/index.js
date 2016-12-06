@@ -7,19 +7,27 @@ import Hero from 'grommet-udacity/components/Hero';
 import Box from 'grommet-udacity/components/Box';
 import Markdown from 'grommet-udacity/components/Markdown';
 import Quote from 'grommet-udacity/components/Quote';
-import Columns from 'grommet-udacity/components/Columns';
 import Headline from 'grommet-udacity/components/Headline';
-import Image from 'grommet-udacity/components/Image';
 import Footer from 'grommet-udacity/components/Footer';
 import Button from 'grommet-udacity/components/Button';
 import Article from 'grommet-udacity/components/Article';
 import Menu from 'grommet-udacity/components/Menu';
+import Columns from 'grommet-udacity/components/Columns';
+import Image from 'grommet-udacity/components/Image';
 import SocialGithubIcon from 'grommet-udacity/components/icons/base/SocialGithub';
 import ViewIcon from 'grommet-udacity/components/icons/base/View';
 import { Divider, ProjectMeta } from 'components';
+import Lightbox from 'react-images';
 
 const Project = ({
   project,
+  lightboxIsOpen,
+  onPrev,
+  onNext,
+  onOpen,
+  onClose,
+  onSetImage,
+  currentImage,
 }) => (
   <Box className={styles.alignToTop}>
     <Hero
@@ -139,11 +147,19 @@ const Project = ({
             maxCount={6}
           >
             {project.images.map((image, i) =>
-              <Box key={i}>
+              <Box key={i} onClick={() => onOpen(i)}>
                 <Image src={image.src} alt={`${project.title} image #${i}`} />
               </Box>
             )}
           </Columns>
+          <Lightbox
+            images={project.images.map(p => ({ src: p.src }))}
+            currentImage={currentImage}
+            isOpen={lightboxIsOpen}
+            onClickNext={onNext}
+            onClickPrev={onPrev}
+            onClose={onClose}
+          />
         </Box>
       </Section>
     }
@@ -152,6 +168,12 @@ const Project = ({
 
 Project.propTypes = {
   project: PropTypes.object.isRequired,
+  onPrev: PropTypes.func.isRequired,
+  onNext: PropTypes.func.isRequired,
+  onOpen: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onSetImage: PropTypes.func.isRequired,
+  currentImage: PropTypes.number.isRequired,
 };
 
 export default cssModules(Project, styles);

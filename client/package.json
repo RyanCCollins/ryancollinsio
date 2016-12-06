@@ -159,6 +159,7 @@
     "react-flip-move": "2.6.5",
     "react-foundation": "^0.6.8",
     "react-hot-loader": "^3.0.0-beta.6",
+    "react-images": "^0.5.2",
     "react-intl": "^2.1.3",
     "react-md-editor": "^0.2.2",
     "react-redux": "^4.4.5",

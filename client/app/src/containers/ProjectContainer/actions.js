@@ -19,3 +19,26 @@ export const projectError = (error) => ({
 export const projectClearToast = () => ({
   type: types.PROJECT_CLEAR_TOAST,
 });
+
+
+export const projectCloseLightbox = () => ({
+  type: types.PROJECT_CLOSE_LIGHTBOX,
+});
+
+export const projectOpenLightbox = (index) => ({
+  type: types.PROJECT_OPEN_LIGHT_BOX,
+  index,
+});
+
+export const projectGoToNextImage = () => ({
+  type: types.PROJECT_GO_TO_NEXT_IMAGE,
+});
+
+export const projectGoToPreviousImage = () => ({
+  type: types.PROJECT_GO_TO_PREVIOUS_IMAGE,
+});
+
+export const projectSetCurrentImage = (index) => ({
+  type: types.PROJECT_SET_CURRENT_IMAGE,
+  index,
+});

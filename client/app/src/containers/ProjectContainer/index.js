@@ -94,6 +94,8 @@ class ProjectContainer extends Component { // eslint-disable-line react/prefer-s
       projectError,
       message,
       commentInput,
+      lightboxIsOpen,
+      currentImage,
     } = this.props;
     return (
       <WithLoading isLoading={isLoading}>
@@ -104,7 +106,16 @@ class ProjectContainer extends Component { // eslint-disable-line react/prefer-s
         >
           <Box className="main-content" colorIndex="light-2">
             {project &&
-              <Project project={project} />
+              <Project
+                lightboxIsOpen={lightboxIsOpen}
+                onSetImage={actions.projectSetCurrentImage}
+                onPrev={actions.projectGoToPreviousImage}
+                onNext={actions.projectGoToNextImage}
+                onOpen={actions.projectOpenLightbox}
+                onClose={actions.projectCloseLightbox}
+                project={project}
+                currentImage={currentImage}
+              />
             }
             <CommentFeed
               value={commentInput}
@@ -134,6 +145,8 @@ ProjectContainer.propTypes = {
   upvoteComment: PropTypes.func,
   mutate: PropTypes.func,
   refetch: PropTypes.func,
+  lightboxIsOpen: PropTypes.bool.isRequired,
+  currentImage: PropTypes.number.isRequired,
 };
 
 ProjectContainer.contextTypes = {
@@ -146,6 +159,8 @@ const mapStateToProps = (state) => ({
   projectError: state.project.error,
   message: state.project.message,
   commentInput: state.project.commentInput,
+  lightboxIsOpen: state.project.lightbox.isOpen,
+  currentImage: state.project.lightbox.currentImage,
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}
