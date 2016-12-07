@@ -1532,7 +1532,7 @@ end
 post.save!
 
 Reference.create(
-  avatar: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAaFAAAAJGFiZTQxNmE5LTZhY2ItNDgwNS1iMzgyLTU4ODAxZGM0MTE0OA.jpg',
+  avatar: 'https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/gabriele-cimato-pic.png?raw=true',
   name: 'Gabriele Cimato',
   body: 'Ryan will be a great asset in any field he
       applies his energy to. He is extremely knowledgeable
