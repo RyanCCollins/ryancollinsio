@@ -38,7 +38,7 @@ images.each do |i|
   )
 end
 
-tags = ['React', 'GraphQL', 'Redux', 'Flux', 'ES6']
+tags = ['React', 'GraphQL', 'Redux', 'Flux', 'ES6', 'Bootstrap']
 tags.each do |tag|
   p.tags << Tag.find_or_create_by(title: tag)
 end
@@ -51,15 +51,30 @@ p = Project.create(
   user: User.all.first,
   featureImage: "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/udacity-client.png?raw=true",
   caption: "Component-oriented dynamic SPA for Udacity Alumni Publishing Platform",
-  description: "The Udacity Alumni Development team is building a bespoke publishing platform and social network for the alumni community.",
+  description: "A true feat of engineering, this application serves as a hub for Udacity Alumni from around the world. We built a bespoke publishing platform and social network to connect Alumni from around the world, using many of the most advanced web engineering technologies available.",
   projectUrl: "https://udacity-alumni-client.herokuapp.com/",
   repoUrl: "https://github.com/udacityalumni/alumni-client",
-  milestones: "- Engineered a cutting edge React single page application that utilizes incredibly performant server rendering. \n  - Implemented webpack code-chunking, lazy loading, and other similar performance optimization techniques to cut the time-to-first-byte loading time to milliseconds",
-  designPatterns: "The app utilizes accessibility and UX best practices and contains many dynamic UI components. It uses many performance enhancement techniques, including Server-rendering, code-chunking, lazy-loading, et. al. to make it blindingly performant. It also uses the Flux unidirectional data-flow architecture and functional reactive programming techniques.",
+  milestones: "- As team leader, lead the engineering of the Udacity Alumni Web application, with over 800 commits from 20+ engineers from around the world \n - Engineered a cutting edge React single page application that utilizes incredibly performant server rendering. \n  - Implemented webpack code-chunking, lazy loading, and other similar performance optimization techniques to cut the time-to-first-byte loading time to milliseconds",
+  designPatterns: "The app utilizes accessibility and UX best practices and contains dozens of dynamic UI components. It uses many performance enhancement techniques, including Server-rendering, code-chunking, lazy-loading, et. al. to make it blindingly performant. It also uses the Flux unidirectional data-flow architecture and functional reactive programming techniques.",
   technicalInformation: "Built with functional JavaScript, ES2015, React, Redux, Grommet, CSS Modules, following the unidirectional data-flow architecture. Utilizes best practices for scaling of React Apps. Unit tests written with Jest and Enzyme to provide high quality code.",
   category: "frontend",
   sort_priority: 202
 )
+
+images = [
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/udacity-alumni-client/1.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/udacity-alumni-client/2.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/udacity-alumni-client/3.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/udacity-alumni-client/4.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/udacity-alumni-client/5.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/udacity-alumni-client/6.png?raw=true",
+]
+
+images.each do |i|
+  p.images << ProjectImage.create(
+    src: i
+  )
+end
 
 tags = ['React', 'GraphQL', 'Redux', 'Flux', 'Grommet', 'ES6', 'Apollo']
 tags.each do |tag|
@@ -77,12 +92,26 @@ p = Project.create(
   description: "The Udacity Alumni Development team is building a bespoke publishing platform and social network for the alumni community.  We built a custom GraphQL powered backend API and micro-services for the purposes of serving dynamic data and providing authentication for the front end.",
   projectUrl: "https://udacity-alumni-client.herokuapp.com/",
   repoUrl: "https://github.com/udacityalumni/alumni-api",
-  milestones: "- Built a GraphQL on Rails API to allow for declarative query collocation \n  - Optimized the data-loading functionality using server optimization techniques",
+  milestones: "- Built a GraphQL on Rails API to allow for declarative query collocation \n - As team leader, lead the engineering of the Udacity Alumni Web application, with over 800 commits from 20+ engineers from around the world \n  - Optimized the data-loading functionality using server optimization techniques",
   designPatterns: "Followed the micro-service architecture, serving data via a single endpoint with GraphQL, allowing for declarative collocated queries and performant network requests.",
   technicalInformation: "Built a custom GraphQL back end running on Ruby on Rails.",
   category: "backend",
   sort_priority: 201
 )
+
+images = [
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/udacity-alumni-api/1.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/udacity-alumni-api/2.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/udacity-alumni-api/3.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/udacity-alumni-api/4.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/udacity-alumni-api/5.png?raw=true",
+]
+
+images.each do |i|
+  p.images << ProjectImage.create(
+    src: i
+  )
+end
 
 tags = ['GraphQL', 'Apollo', 'Ruby on Rails']
 tags.each do |tag|
