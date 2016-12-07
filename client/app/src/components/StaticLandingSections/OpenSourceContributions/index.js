@@ -13,12 +13,12 @@ import ListItem from 'grommet-udacity/components/ListItem';
 import { Divider, WithLoading, WithToast } from 'components';
 import cn from 'classnames';
 
-const CommitsList = ({ commits }) => (
+const CommitsList = ({ commits, repo }) => (
   <List align="start">
-    {commits.map((item, i) =>
+    {commits.map((commit, i) =>
       <ListItem key={i}>
-        <Anchor href={item.url}>
-          {`${item.sha.slice(0, 5)} - ${item.message.slice(0, 60)}`}
+        <Anchor href={`https://github.com/${repo.name}/commits/${commit.sha}`}>
+          {`${commit.sha.slice(0, 5)} - ${commit.message.slice(0, 60)}`}
         </Anchor>
       </ListItem>
     )}
@@ -33,14 +33,14 @@ const CommitHeading = ({ item }) => (
           return (
             <Heading align="start" tag="h4" strong>
               {`Pushed ${item.payload.size} commit(s) to `}
-              <a href={item.repo.url}>{item.repo.name}</a>
+              <a href={`https://github.com/${item.repo.name}`}>{item.repo.name}</a>
             </Heading>
           );
         case 'PullRequestEvent':
           return (
             <Heading align="start" tag="h4" strong>
               Opened a <a href={item.payload.pull_request.url}>pull
-              request</a> for <a href={item.repo.url}>{item.repo.name}</a>
+              request</a> for <a href={`https://github.com/${item.repo.name}`}>{item.repo.name}</a>
             </Heading>
           );
         default: return '';
@@ -87,7 +87,7 @@ const OpenSourceContributions = ({
                 <div className="timeline-item-inner">
                   <CommitHeading item={item} />
                   {item.payload.commits &&
-                    <CommitsList commits={item.payload.commits} />
+                    <CommitsList commits={item.payload.commits} repo={item.repo} />
                   }
                 </div>
               </div>
