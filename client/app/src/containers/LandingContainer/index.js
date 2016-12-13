@@ -63,7 +63,7 @@ class LandingContainer extends Component {
           error={errorLoadingData}
           onClearError={actions.clearLandingError}
         />
-        <ReferencesSection references={references} isLoading={isLoading} />
+        <ReferencesSection references={references.sort((a, b) => a.priority > b.priority)} isLoading={isLoading} />
         <TechStackSection techItems={techstack} />
       </Box>
     );
@@ -114,6 +114,7 @@ query loadReferences {
     body
     avatar
     company
+    priority: sort_priority
   }
 }
 `;

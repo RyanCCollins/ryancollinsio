@@ -1,4 +1,6 @@
-{
+var path = require('path');
+
+module.exports = {
   "extends": "eslint-config-airbnb",
   "parser": "babel-eslint",
   "env": {
@@ -13,9 +15,14 @@
       "ignoreRefs": false,
       "allowArrowFunctions": true,
       "allowBind": true
+    }],
+    "graphql/template-strings": [ 2, {
+      env: 'apollo',
+      schemaJsonFilepath: path.resolve(__dirname, './config/schema/schema.json'),
     }]
   },
   "plugins": [
     "react",
+    "graphql"
   ]
 }
