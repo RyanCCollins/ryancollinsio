@@ -63,7 +63,10 @@ class LandingContainer extends Component {
           error={errorLoadingData}
           onClearError={actions.clearLandingError}
         />
-        <ReferencesSection references={references.sort((a, b) => a.priority > b.priority)} isLoading={isLoading} />
+        <ReferencesSection
+          references={references && references.sort((a, b) => a.priority < b.priority)}
+          isLoading={isLoading}
+        />
         <TechStackSection techItems={techstack} />
       </Box>
     );
