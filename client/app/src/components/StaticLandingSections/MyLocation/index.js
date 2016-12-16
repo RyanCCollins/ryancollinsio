@@ -3,6 +3,8 @@ import Section from 'grommet-udacity/components/Section';
 import Headline from 'grommet-udacity/components/Headline';
 import Box from 'grommet-udacity/components/Box';
 import WorldMap from 'grommet-udacity/components/WorldMap';
+import Footer from 'grommet-udacity/components/Footer';
+import Markdown from 'grommet-udacity/components/Markdown';
 import Tip from 'grommet-udacity/components/Tip';
 import { Divider } from 'components';
 import { PinNC, PinCT } from './styles';
@@ -12,6 +14,7 @@ const MyLocation = ({
   isShowingTipCT,
   onToggleTipCT,
   onToggleTipNC,
+  content,
 }) => (
   <Section
     className="section"
@@ -39,6 +42,8 @@ const MyLocation = ({
       />
       {isShowingTipCT &&
         <Tip
+          onClose={onToggleTipCT}
+          style={{ color: 'white' }}
           target="pin-ct"
         >
           Trumbull, CT
@@ -46,7 +51,9 @@ const MyLocation = ({
       }
       {isShowingTipNC &&
         <Tip
+          onClose={onToggleTipNC}
           target="pin-nc"
+          style={{ color: 'white' }}
         >
           Corolla, NC
         </Tip>
@@ -92,6 +99,11 @@ const MyLocation = ({
         ]}
       />
     </Box>
+    <Footer pad="large" align="center" justify="center">
+      <Markdown
+        content={content}
+      />
+    </Footer>
   </Section>
 );
 
@@ -100,6 +112,7 @@ MyLocation.propTypes = {
   isShowingTipCT: PropTypes.bool.isRequired,
   onToggleTipCT: PropTypes.func.isRequired,
   onToggleTipNC: PropTypes.func.isRequired,
+  content: PropTypes.string.isRequired,
 };
 
 

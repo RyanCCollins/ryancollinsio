@@ -56,6 +56,7 @@ class LandingContainer extends Component {
       isMobile,
       isShowingTipNC,
       isShowingTipCT,
+      locationContent,
     } = this.props;
     return (
       <Box
@@ -82,6 +83,7 @@ class LandingContainer extends Component {
         <MyLocation
           isShowingTipNC={isShowingTipNC}
           isShowingTipCT={isShowingTipCT}
+          content={locationContent}
           onToggleTipCT={() => this.handleShowingTip('CT')}
           onToggleTipNC={() => this.handleShowingTip('NC')}
         />
@@ -105,6 +107,7 @@ LandingContainer.propTypes = {
   isMobile: PropTypes.bool.isRequired,
   isShowingTipCT: PropTypes.bool.isRequired,
   isShowingTipNC: PropTypes.bool.isRequired,
+  locationContent: PropTypes.string.isRequired,
 };
 
 // mapStateToProps :: {State} -> {Props}
@@ -119,6 +122,7 @@ const mapStateToProps = (state) => ({
   gitData: filteredGitDataSelector(state.landing),
   isShowingTipNC: state.landing.location.isShowingTipNC,
   isShowingTipCT: state.landing.location.isShowingTipCT,
+  locationContent: state.landing.location.content,
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}

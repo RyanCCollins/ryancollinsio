@@ -8,7 +8,7 @@ export const PinNC = styled.div`
   top: 40%;
   left: 23%;
   @media screen and (max-width: 600px) {
-    top: 34%;
+    top: 37%;
     left: 22%;
   }
   margin-top: 10px;
@@ -41,8 +41,8 @@ export const PinCT = styled.div`
   top: 32%;
   left: 27%;
   @media screen and (max-width: 600px) {
-    top: 34%;
-    left: 22%;
+    top: 36%;
+    left: 24%;
   }
   margin-top: 10px;
   margin-left: 10px;
