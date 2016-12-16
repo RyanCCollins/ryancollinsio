@@ -41,8 +41,8 @@ export const PinCT = styled.div`
   top: 32%;
   left: 27%;
   @media screen and (max-width: 600px) {
-    top: 36%;
-    left: 24%;
+    top: 27%;
+    left: 25%;
   }
   margin-top: 10px;
   margin-left: 10px;
