@@ -25,11 +25,6 @@ module.exports = {
     noParse: /\.elm$/,
     preLoaders: [
       {
-        test: /\.jsx?$/,
-        loaders: ['eslint'],
-        include: path.resolve(ROOT_PATH, './app')
-      },
-      {
         test: /\.elm$/,
         loader: 'elmx-webpack-preloader',
         include: [path.join(__dirname, 'app/src/elm')],

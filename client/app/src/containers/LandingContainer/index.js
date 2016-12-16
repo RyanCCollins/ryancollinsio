@@ -25,13 +25,21 @@ import {
   LanguageSection,
   ReferencesSection,
   TechStackSection,
+  MyLocation,
 } from 'components';
 
 class LandingContainer extends Component {
+  constructor() {
+    super();
+    this.handleShowingTip = this.handleShowingTip.bind(this);
+  }
   componentDidMount() {
     this.props.actions.performLandingAnimation();
     this.props.actions.loadGitData();
     this.props.actions.cycleThroughLogoHovered();
+  }
+  handleShowingTip(location) {
+    this.props.actions.toggleLocationTooltip(location);
   }
   render() {
     const {
@@ -45,6 +53,9 @@ class LandingContainer extends Component {
       errorLoadingData,
       actions,
       isHovered,
+      isMobile,
+      isShowingTipNC,
+      isShowingTipCT,
     } = this.props;
     return (
       <Box
@@ -56,7 +67,7 @@ class LandingContainer extends Component {
         <SummarySection summary={summary} />
         <MilestonesSection milestones={milestones} data={milestoneData} />
         <LanguageSection languages={languages} />
-        <FocusSection chartData={chartData} />
+        <FocusSection isMobile={isMobile} chartData={chartData} />
         <OpenSourceContributions
           gitData={gitData}
           isLoading={loadingData}
@@ -68,6 +79,12 @@ class LandingContainer extends Component {
           isLoading={isLoading}
         />
         <TechStackSection techItems={techstack} />
+        <MyLocation
+          isShowingTipNC={isShowingTipNC}
+          isShowingTipCT={isShowingTipCT}
+          onToggleTipCT={() => this.handleShowingTip('CT')}
+          onToggleTipNC={() => this.handleShowingTip('NC')}
+        />
       </Box>
     );
   }
@@ -85,18 +102,23 @@ LandingContainer.propTypes = {
   gitData: PropTypes.array,
   button: PropTypes.bool.isRequired,
   isHovered: PropTypes.bool.isRequired,
+  isMobile: PropTypes.bool.isRequired,
+  isShowingTipCT: PropTypes.bool.isRequired,
+  isShowingTipNC: PropTypes.bool.isRequired,
 };
 
 // mapStateToProps :: {State} -> {Props}
 const mapStateToProps = (state) => ({
+  isMobile: state.app.isMobile,
   image: state.landing.image,
   headline: state.landing.headline,
-  isMobile: state.app.isMobile,
   loadingData: state.landing.isLoading,
   isHovered: state.landing.isHovered,
   errorLoadingData: state.landing.error,
   button: state.landing.button,
   gitData: filteredGitDataSelector(state.landing),
+  isShowingTipNC: state.landing.location.isShowingTipNC,
+  isShowingTipCT: state.landing.location.isShowingTipCT,
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}

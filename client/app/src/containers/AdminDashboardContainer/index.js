@@ -191,17 +191,7 @@ const ContainerWithData = graphql(adminDashboardQuery, {
   }),
 })(Container);
 
-const adminDashboardMutation = gql`
-  mutation adminDashboard {
-    adminDashboard {
-      __typename
-    }
-  }
-`;
-
-const ContainerWithMutation = graphql(adminDashboardMutation)(ContainerWithData);
-
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ContainerWithMutation);
+)(ContainerWithData);

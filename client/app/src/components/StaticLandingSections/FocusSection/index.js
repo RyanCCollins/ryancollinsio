@@ -17,6 +17,7 @@ import { Divider } from 'components';
 
 const FocusSection = ({
   chartData,
+  isMobile,
 }) => (
   <Section
     className="section"
@@ -35,12 +36,11 @@ const FocusSection = ({
       className={styles.chart}
     >
       <RadarChart
-        cx={300}
-        cy={250}
-        outerRadius={150}
-        width={600}
-        height={500}
-        maxWidth={'100vw'}
+        cx={window ? window.innerWidth / 2 : 400}
+        cy={isMobile ? 250 : 350}
+        outerRadius={isMobile ? 150 : 250}
+        width={window ? window.innerWidth : 400}
+        height={isMobile ? 500 : 700}
         data={chartData}
       >
         <Radar

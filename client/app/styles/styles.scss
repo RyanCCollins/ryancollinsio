@@ -6,6 +6,27 @@
   min-height: 100vh;
 }
 
+@keyframes pulsate {
+  0% {
+    -moz-transform: scale(0.1);
+    -ms-transform: scale(0.1);
+    -webkit-transform: scale(0.1);
+    transform: scale(0.1);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+
+
 @keyframes wave-animation {
   0%,100% {
     transform: rotate(-20deg)

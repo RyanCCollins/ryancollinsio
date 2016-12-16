@@ -9,11 +9,31 @@ export const initialState = {
   isLoading: false,
   error: null,
   isHovered: false,
+  location: {
+    isShowingTipCT: false,
+    isShowingTipNC: true,
+  },
 };
 
 const landingReducer =
   (state = initialState, action) => {
     switch (action.type) {
+      case types.TOGGLE_LANDING_LOCATION_TOOLTIP_NC:
+        return {
+          ...state,
+          location: {
+            ...state.location,
+            isShowingTipNC: !state.location.isShowingTipNC,
+          },
+        };
+      case types.TOGGLE_LANDING_LOCATION_TOOLTIP_CT:
+        return {
+          ...state,
+          location: {
+            ...state.location,
+            isShowingTipCT: !state.location.isShowingTipCT,
+          },
+        };
       case types.TOGGLE_LANDING_LOGO_HOVERED:
         return {
           ...state,
