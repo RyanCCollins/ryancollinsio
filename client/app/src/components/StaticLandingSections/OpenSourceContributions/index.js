@@ -61,6 +61,7 @@ const OpenSourceContributions = ({
       onClose={onClearError}
     >
       <Section
+        id="open-source-section"
         full="horizontal"
         align="center"
         justify="center"

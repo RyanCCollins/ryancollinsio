@@ -17,6 +17,7 @@ const MyLocation = ({
   content,
 }) => (
   <Section
+    id="location-section"
     className="section"
     colorIndex="light-1"
     full="horizontal"

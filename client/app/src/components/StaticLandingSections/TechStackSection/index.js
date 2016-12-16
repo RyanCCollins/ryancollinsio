@@ -10,6 +10,7 @@ const TechStackSection = ({
   techItems,
 }) => (
   <Section
+    id="tech-stack-section"
     className="section full-height"
     colorIndex="light-1"
     full="horizontal"

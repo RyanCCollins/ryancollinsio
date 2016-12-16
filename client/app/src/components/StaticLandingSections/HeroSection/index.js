@@ -18,6 +18,7 @@ const HeroSection = ({
   isHovered,
 }) => (
   <Hero
+    id="hero-section"
     colorIndex="grey-1"
     justify="center"
     size="large"

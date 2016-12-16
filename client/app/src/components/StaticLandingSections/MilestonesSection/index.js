@@ -15,6 +15,7 @@ const MilestonesSection = ({
   data,
 }) => (
   <Section
+    id="milestones-section"
     className="section"
     colorIndex="brand"
     full="horizontal"

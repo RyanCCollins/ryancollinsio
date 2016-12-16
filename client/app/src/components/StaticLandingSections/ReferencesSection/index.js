@@ -15,6 +15,7 @@ const ReferencesSection = ({
   isLoading,
 }) => (
   <Section
+    id="references-section"
     className="section"
     colorIndex="light-2"
     full="horizontal"

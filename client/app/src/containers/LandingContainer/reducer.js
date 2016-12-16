@@ -13,8 +13,8 @@ export const initialState = {
     isShowingTipCT: true,
     isShowingTipNC: false,
     content: `As a digital Nomad, you will find me working from all over the world.
-    I currently rest my head in a quaint beach house in the Outer Banks North Carolina
-    and in a condo in Trumbull, CT.`,
+    I currently rest my head in a quaint beach house in the Outer Banks, North Carolina
+    and in a condo in Trumbull, CT.  Someday, I would like to move to California.`,
   },
 };
 

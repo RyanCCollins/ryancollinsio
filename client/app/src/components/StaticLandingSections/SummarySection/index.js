@@ -12,7 +12,12 @@ import { Divider } from 'components';
 const SummarySection = ({
   summary,
 }) => (
-  <Section className="section" align="center" justify="center">
+  <Section
+    id="summary-section"
+    className="section"
+    align="center"
+    justify="center"
+  >
     <Headline align="center" className="heading">
       Summary
     </Headline>

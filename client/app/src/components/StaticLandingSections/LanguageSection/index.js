@@ -15,7 +15,12 @@ import { Divider } from 'components';
 const LanguageSection = ({
   languages,
 }) => (
-  <Section className="section" colorIndex="light-2" full="horizontal">
+  <Section
+    id="languages-section"
+    className="section"
+    colorIndex="light-2"
+    full="horizontal"
+  >
     <Headline className="heading" align="center">
       Language Usage
     </Headline>

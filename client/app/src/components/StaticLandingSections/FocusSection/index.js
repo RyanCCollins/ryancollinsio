@@ -21,6 +21,7 @@ const FocusSection = ({
 }) => (
   <Section
     className="section"
+    id="focus-section"
     colorIndex="light-1"
     full="horizontal"
     align="center"
