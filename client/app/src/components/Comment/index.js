@@ -16,7 +16,11 @@ const Comment = ({
   <Box direction="column" style={{ width: '100%' }}>
     <Box direction="row">
       <Box align="center" justify="center" className="avatar-box">
-        <img className="avatar avatar__small" src={comment.user.avatar} />
+        <img
+          alt="user avatar"
+          className="avatar avatar__small"
+          src={comment.user.avatar}
+        />
         <Label uppercase>
           {comment.user.name}
         </Label>
@@ -42,9 +46,17 @@ const Comment = ({
 );
 
 Comment.propTypes = {
-  comment: PropTypes.object.isRequired,
-  onLike: PropTypes.func.isRequired,
-  user: PropTypes.object,
+  comment: PropTypes.shape({
+    created_at: PropTypes.string.isRequired,
+    user: PropTypes.shape({
+      avatar: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    }),
+    total_votes: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
+    body: PropTypes.string.isRequired,
+  }),
+  onUpvote: PropTypes.func.isRequired,
 };
 
 export default Comment;

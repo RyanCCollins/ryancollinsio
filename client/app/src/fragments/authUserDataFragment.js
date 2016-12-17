@@ -12,7 +12,7 @@ export const authUserDataFragment = createFragment(
       role
       authToken: auth_token
     }
-  `
+  `,
 );
 
 

@@ -1,9 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as AdminDashboardActionCreators from './actions';
 import cssModules from 'react-css-modules';
-import styles from './index.module.scss';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Box from 'grommet-udacity/components/Box';
@@ -12,8 +10,10 @@ import Section from 'grommet-udacity/components/Section';
 import Tabs from 'grommet-udacity/components/Tabs';
 import Tab from 'grommet-udacity/components/Tab';
 import { Divider, DashboardTable, UserDashboardTable, WithLoading } from 'components';
-import { authUserDataFragment, postData, projectData } from 'fragments';
 import { getPagedPosts, getPagedUsers, getPagedProjects } from './selectors';
+import * as AdminDashboardActionCreators from './actions';
+import styles from './index.module.scss';
+import { projectFragmentAdminDash, postFragmentAdminDash, userFragmentAdminDash } from './fragments';
 
 class AdminDashboardContainer extends Component {
   componentWillReceiveProps({ users, projects, posts }) {
@@ -56,7 +56,7 @@ class AdminDashboardContainer extends Component {
             <Box className={styles.dashboardTable}>
               <Tabs
                 responsive={false}
-                onActive={(index) => actions.setActiveTab(index)}
+                onActive={index => actions.setActiveTab(index)}
                 activeIndex={activeTab}
               >
                 {posts && posts.length > 0 &&
@@ -120,24 +120,53 @@ class AdminDashboardContainer extends Component {
 }
 
 AdminDashboardContainer.propTypes = {
-  actions: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired, // eslint-disable-line
   isLoading: PropTypes.bool.isRequired,
-  projects: PropTypes.array,
-  posts: PropTypes.array,
-  users: PropTypes.array,
-  pagedProjects: PropTypes.array,
-  pagedPosts: PropTypes.array,
-  pagedUsers: PropTypes.array,
+  projects: PropTypes.arrayOf(
+    PropTypes.object,
+  ),
+  posts: PropTypes.arrayOf(
+    PropTypes.object,
+  ),
+  users: PropTypes.arrayOf(
+    PropTypes.object,
+  ),
+  pagedProjects: PropTypes.arrayOf(
+    PropTypes.object,
+  ),
+  pagedPosts: PropTypes.arrayOf(
+    PropTypes.object,
+  ),
+  pagedUsers: PropTypes.arrayOf(
+    PropTypes.object,
+  ),
   isMobile: PropTypes.bool.isRequired,
-  user: PropTypes.object.isRequired,
-  postsConfig: PropTypes.object.isRequired,
-  usersConfig: PropTypes.object.isRequired,
-  projectsConfig: PropTypes.object.isRequired,
+  postsConfig: PropTypes.shape({
+    items: PropTypes.arrayOf(
+      PropTypes.object,
+    ),
+    perPage: PropTypes.number.isRequired,
+    currentPage: PropTypes.number.isRequired,
+  }),
+  usersConfig: PropTypes.shape({
+    items: PropTypes.arrayOf(
+      PropTypes.object,
+    ),
+    perPage: PropTypes.number.isRequired,
+    currentPage: PropTypes.number.isRequired,
+  }),
+  projectsConfig: PropTypes.shape({
+    items: PropTypes.arrayOf(
+      PropTypes.object,
+    ),
+    perPage: PropTypes.number.isRequired,
+    currentPage: PropTypes.number.isRequired,
+  }),
   activeTab: PropTypes.number.isRequired,
 };
 
 // mapStateToProps :: {State} -> {Props}
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   isMobile: state.app.isMobile,
   user: state.app.user,
   postsConfig: state.adminDashboard.posts,
@@ -152,10 +181,10 @@ const mapStateToProps = (state) => ({
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     AdminDashboardActionCreators,
-    dispatch
+    dispatch,
   ),
 });
 
@@ -164,20 +193,20 @@ const Container = cssModules(AdminDashboardContainer, styles);
 const adminDashboardQuery = gql`
 query adminDashboard($authToken: String!) {
   projects {
-    ...projectData
+    ...projectFragmentAdminDash
   }
   posts {
-    ...postData
+    ...postFragmentAdminDash
   }
   users(auth_token: $authToken) {
-    ...authUserData
+    ...userFragmentAdminDash
   }
 }
 `;
 
 const ContainerWithData = graphql(adminDashboardQuery, {
-  options: (ownProps) => ({
-    fragments: [authUserDataFragment, postData, projectData],
+  options: ownProps => ({
+    fragments: [postFragmentAdminDash, projectFragmentAdminDash, userFragmentAdminDash],
     variables: {
       authToken: ownProps.user.authToken,
     },
@@ -193,5 +222,5 @@ const ContainerWithData = graphql(adminDashboardQuery, {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(ContainerWithData);

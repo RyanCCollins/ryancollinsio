@@ -11,7 +11,7 @@ import Button from 'grommet-udacity/components/Button';
 import Select from 'grommet-udacity/components/Select';
 import { LogoImage, MarkdownInput } from 'components';
 
-const calculatedError = (input) =>
+const calculatedError = input => // eslint-disable-line
   input.dirty || input.touched && input.error ? input.error : null;
 
 const ContactForm = ({
@@ -96,7 +96,7 @@ const ContactForm = ({
             value={{ value: categoryInput.value.option, label: categoryInput.value.option }}
             onSelect={({ suggestion }) => categoryInput.onChange(suggestion.option)}
             options={categories.map(category =>
-              `${category.charAt(0).toUpperCase()}${category.slice(1)}`
+              `${category.charAt(0).toUpperCase()}${category.slice(1)}`,
             )}
           />
         </FormField>

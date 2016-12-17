@@ -6,8 +6,8 @@ import React from 'react';
 describe('<AuthFormFooter />', () => {
   it('should render with default props', () => {
     const wrapper = shallow(
-      <AuthFormFooter link="/login" text="Already a Member?" />
+      <AuthFormFooter link="/login" text="Already a Member?" />,
     );
-    expect(shallowToJson(wrapper)).toMatchSnapshot();
+    expect(shallowToJson(wrapper)).toMatchSnapshot();  // eslint-disable-line
   });
 });

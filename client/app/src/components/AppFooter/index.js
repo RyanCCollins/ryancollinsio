@@ -6,8 +6,8 @@ import MailIcon from 'grommet-udacity/components/icons/base/Mail';
 import CodeIcon from 'grommet-udacity/components/icons/base/Code';
 import Section from 'grommet-udacity/components/Section';
 import { SocialIcon, LogoImage } from 'components';
-import socialIcons from './data';
 import cn from 'classnames';
+import socialIcons from './data';
 import { StyledFooter, StyledSection, ButtonWithSeperator } from './styles';
 
 const AppFooter = () => (
@@ -70,13 +70,13 @@ const AppFooter = () => (
           'grommetux-box--pad-none',
           'grommetux-menu',
           'grommetux-menu--row',
-          'grommetux-menu--inline'
+          'grommetux-menu--inline',
         )}
       >
         {socialIcons.map((item, i) =>
           <Anchor key={i} href={item.url}>
             <SocialIcon type={item.type} />
-          </Anchor>
+          </Anchor>,
         )}
       </nav>
     </Section>

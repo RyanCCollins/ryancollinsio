@@ -1,0 +1,103 @@
+exports[`<Comment /> should render with default props 1`] = `
+<Box
+  announce={false}
+  direction="column"
+  focusable={true}
+  pad="none"
+  responsive={true}
+  style={
+    Object {
+      "width": "100%"
+    }
+  }
+  tag="div">
+  <Box
+    announce={false}
+    direction="row"
+    focusable={true}
+    pad="none"
+    responsive={true}
+    tag="div">
+    <Box
+      align="center"
+      announce={false}
+      className="avatar-box"
+      direction="column"
+      focusable={true}
+      justify="center"
+      pad="none"
+      responsive={true}
+      tag="div">
+      <img
+        alt="user avatar"
+        className="avatar avatar__small"
+        src="https://github.com/RyanCCollins/cdn/blob/master/misc/ryanc.jpg?raw=true" />
+      <Label
+        size="medium"
+        uppercase={true}>
+        Admin User
+      </Label>
+    </Box>
+    <Box
+      align="center"
+      announce={false}
+      direction="column"
+      focusable={true}
+      justify="center"
+      pad="none"
+      responsive={true}
+      tag="div">
+      <Heading
+        tag="h4">
+        on Dec 17th 16 9:17:56 am
+      </Heading>
+      <Markdown
+        components={Object {}}
+        content="**Great** project, if I do say so myself.
+      " />
+    </Box>
+  </Box>
+  <Menu
+    closeOnClick={true}
+    direction="row"
+    dropAlign={
+      Object {
+        "left": "left",
+        "top": "top"
+      }
+    }
+    inline={true}
+    pad="none"
+    responsive={false}>
+    <Box
+      align="center"
+      announce={false}
+      direction="row"
+      focusable={true}
+      justify="end"
+      pad="none"
+      responsive={true}
+      style={
+        Object {
+          "width": "100%"
+        }
+      }
+      tag="div">
+      <Value
+        align="center"
+        announce={false}
+        size="small"
+        value={1} />
+      <Button
+        icon={
+          <Like
+            a11yTitleId="like-title"
+            responsive={true} />
+        }
+        onClick={[Function onClick]}
+        plain={true}
+        type="button" />
+    </Box>
+  </Menu>
+</Box>
+`;

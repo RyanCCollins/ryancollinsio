@@ -19,6 +19,7 @@ import {
 import * as LandingActionCreators from './actions';
 import styles from './index.module.scss';
 import { filteredGitDataSelector } from './selectors';
+import referenceFragment from './fragments';
 import {
   milestones,
   summary,
@@ -29,11 +30,24 @@ import {
 } from './data';
 
 class LandingContainer extends Component {
+  constructor() {
+    super();
+    this.state = {
+      cal: '',
+    };
+  }
   componentDidMount() {
-    this.props.actions.performLandingAnimation();
     this.props.actions.loadGitData();
     this.props.actions.cycleThroughLogoHovered();
-    this.props.actions.loadReferrers();
+    if (window) {
+      window.requestAnimationFrame(() => {
+        this.props.actions.performLandingAnimation();
+      });
+    } else {
+      setTimeout(() => {
+        this.props.actions.performLandingAnimation();
+      }, 500);
+    }
   }
   render() {
     const {
@@ -49,7 +63,6 @@ class LandingContainer extends Component {
       isHovered,
       isMobile,
       locationContent,
-      referrers,
     } = this.props;
     return (
       <Box
@@ -76,7 +89,6 @@ class LandingContainer extends Component {
         <MyLocation
           content={locationContent}
         />
-        {referrers && <pre>{JSON.stringify(referrers, null, 2)}</pre>}
       </Box>
     );
   }
@@ -96,7 +108,6 @@ LandingContainer.propTypes = {
   isHovered: PropTypes.bool.isRequired,
   isMobile: PropTypes.bool.isRequired,
   locationContent: PropTypes.string.isRequired,
-  referrers: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 // mapStateToProps :: {State} -> {Props}
@@ -126,17 +137,15 @@ const Container = cssModules(LandingContainer, styles);
 const loadReferencesQuery = gql`
 query loadReferences {
   references {
-    name
-    title
-    body
-    avatar
-    company
-    priority: sort_priority
+    ...referenceFragment
   }
 }
 `;
 
 const ContainerWithReferences = graphql(loadReferencesQuery, {
+  options: () => ({
+    fragments: [referenceFragment],
+  }),
   props: ({ data: { references, loading, error } }) => ({
     references,
     isLoading: loading,

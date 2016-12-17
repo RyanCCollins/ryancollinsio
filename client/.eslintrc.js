@@ -1,4 +1,4 @@
-var path = require('path');
+let path = require('path');
 
 module.exports = {
   "extends": "airbnb",
@@ -6,7 +6,7 @@ module.exports = {
   "env": {
     "browser": true,
     "node": true,
-    "mocha": true
+    "jest": true
   },
   "rules": {
     "func-names": 0,

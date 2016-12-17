@@ -12,9 +12,10 @@ import Label from 'grommet-udacity/components/Label';
 import { Comment, Divider } from 'components';
 import Status from 'grommet-udacity/components/icons/Status';
 import { Link } from 'react-router';
+
 let RichTextEditor;
 if (typeof window !== 'undefined') {
-  RichTextEditor = require('react-rte').default;
+  RichTextEditor = require('react-rte').default; // eslint-disable-line
 }
 
 const CommentFeed = ({
@@ -35,7 +36,7 @@ const CommentFeed = ({
           <Divider />
           <RichTextEditor
             value={value}
-            onChange={(val) => onChange(val)}
+            onChange={val => onChange(val)}
           />
           <Footer
             align="center"
@@ -72,7 +73,7 @@ const CommentFeed = ({
                         onUpvote={onUpvote}
                         comment={comment}
                       />
-                    </ListItem>
+                    </ListItem>,
                 )}
               </List>
             </Columns>
@@ -89,6 +90,11 @@ CommentFeed.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   comments: PropTypes.array,
   onUpvote: PropTypes.func.isRequired,
+  user: PropTypes.shape({
+    avatar: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    authToken: PropTypes.string.isRequired,
+  }),
 };
 
 export default CommentFeed;

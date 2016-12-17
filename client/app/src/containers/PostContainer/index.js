@@ -1,17 +1,18 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as PostActionCreators from './actions';
 import cssModules from 'react-css-modules';
-import styles from './index.module.scss';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Box from 'grommet-udacity/components/Box';
-import postData from 'fragments/postData';
 import { WithLoading, Post, CommentFeed, WithToast } from 'components';
+import postFragment from './fragments';
+import * as PostActionCreators from './actions';
+import styles from './index.module.scss';
+
 let RichTextEditor;
 if (typeof window !== 'undefined') {
-  RichTextEditor = require('react-rte').default;
+  RichTextEditor = require('react-rte').default; // eslint-disable-line
 }
 
 class PostContainer extends Component { // eslint-disable-line react/prefer-stateless-function
@@ -112,7 +113,7 @@ class PostContainer extends Component { // eslint-disable-line react/prefer-stat
             }
             <CommentFeed
               value={commentInput}
-              onChange={(value) => actions.postEditComment(value)}
+              onChange={value => actions.postEditComment(value)}
               onSubmit={this.handleSubmit}
               comments={post && post.comments}
               onUpvote={this.handleUpvote}
@@ -144,7 +145,7 @@ PostContainer.contextTypes = {
 };
 
 // mapStateToProps :: {State} -> {Props}
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   user: state.app.user,
   postError: state.post.error,
   message: state.post.message,
@@ -152,10 +153,10 @@ const mapStateToProps = (state) => ({
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     PostActionCreators,
-    dispatch
+    dispatch,
   ),
 });
 
@@ -164,14 +165,14 @@ const Container = cssModules(PostContainer, styles);
 const loadPostQuery = gql`
   query loadPost($slug: String) {
     post(slug: $slug) {
-      ...postData
+      ...postFragment
     }
   }
 `;
 
 const ContainerWithData = graphql(loadPostQuery, {
-  options: (ownProps) => ({
-    fragments: [postData],
+  options: ownProps => ({
+    fragments: [postFragment],
     skip: !ownProps.params.slug,
     variables: {
       slug: ownProps.params.slug,
@@ -218,5 +219,5 @@ const ContainerWithMoreMutations = graphql(upvoteCommentMutation, {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(ContainerWithMoreMutations);

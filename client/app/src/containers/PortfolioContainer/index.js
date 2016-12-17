@@ -1,9 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as PortfolioActionCreators from './actions';
 import cssModules from 'react-css-modules';
-import styles from './index.module.scss';
 import {
   WithLoading,
   Divider,
@@ -19,8 +17,10 @@ import Box from 'grommet-udacity/components/Box';
 import Anchor from 'grommet-udacity/components/Anchor';
 import Headline from 'grommet-udacity/components/Headline';
 import { reduxForm } from 'redux-form';
-import { getFilteredProjects } from './selectors';
 import FlipMove from 'react-flip-move';
+import { getFilteredProjects } from './selectors';
+import * as PortfolioActionCreators from './actions';
+import styles from './index.module.scss';
 
 export const formFields = [
   'tagSelectionInput',
@@ -44,7 +44,7 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
     const {
       tags,
     } = this.props;
-    const newTags = value.map((tag) => tags[tag] || tag);
+    const newTags = value.map(tag => tags[tag] || tag);
     this.props.actions.portfolioSetTags(newTags);
   }
   handleApplyingFilter() {
@@ -62,7 +62,7 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
     }
   }
   renderProjects(projects) {
-    return projects.map((project) =>
+    return projects.map(project =>
       <Box className={styles.wrapper} key={project.id}>
         <Box className={styles.card} size="medium">
           <Anchor href={`/portfolio/projects/${project.slug}`}>
@@ -73,7 +73,7 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
             />
           </Anchor>
         </Box>
-      </Box>
+      </Box>,
     );
   }
   render() {
@@ -146,7 +146,7 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
           </Section>
           {!isFiltering && allProjects && allProjects.length > perPage &&
             <PaginatorFooter
-              onChange={(newPage) => actions.portfolioSetCurrentPage(newPage)}
+              onChange={newPage => actions.portfolioSetCurrentPage(newPage)}
               currentPage={currentPage}
               total={allProjects.length}
               pageSize={perPage}
@@ -178,7 +178,7 @@ PortfolioContainer.propTypes = {
 };
 
 // mapStateToProps :: {State} -> {Props}
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   projects: getFilteredProjects(state.portfolio),
   currentPage: state.portfolio.currentPage,
   perPage: state.portfolio.perPage,
@@ -190,10 +190,10 @@ const mapStateToProps = (state) => ({
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     PortfolioActionCreators,
-    dispatch
+    dispatch,
   ),
 });
 
@@ -238,7 +238,7 @@ const ContainerWithData = graphql(getProjectsQuery, {
 
 const ConnectedContainer = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(ContainerWithData);
 
 export default reduxForm({

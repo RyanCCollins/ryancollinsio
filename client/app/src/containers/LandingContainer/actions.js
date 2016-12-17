@@ -77,32 +77,3 @@ export const cycleThroughLogoHovered = () => (dispatch) => {
     );
   }, 8000);
 };
-
-export const loadReferrersInitiation = () => ({
-  type: types.LOAD_REFERRER_INITIATION,
-});
-
-export const loadReferrersSuccess = data => ({
-  type: types.LOAD_REFERRER_SUCCESS,
-  data,
-});
-
-export const loadReferrersFailure = error => ({
-  type: types.LOAD_REFERRER_FAILURE,
-  error,
-});
-
-export const loadReferrers = () => (dispatch) => {
-  fetch('/repos/RyanCCollins/scalable-react-boilerplate/traffic/popular/referrers')
-  .then(res => res.json())
-  .then((json) => {
-    dispatch(
-      loadReferrersSuccess(json),
-    );
-  })
-  .catch((e) => {
-    dispatch(
-      loadReferrersFailure(e),
-    );
-  });
-};

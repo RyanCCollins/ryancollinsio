@@ -1,0 +1,12 @@
+exports[`<FeedbackFab /> should render with default props 1`] = `
+<styled.div>
+  <Styled(Button)
+    a11yTitle="Add Review Floating"
+    a11yTitleId="add-review-floating-button"
+    icon={
+      <Styled(Chat)
+        a11yTitle="Add Review Floating"
+        a11yTitleId="add-review-floating-button-icon" />
+    } />
+</styled.div>
+`;

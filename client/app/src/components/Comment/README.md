@@ -1,17 +1,8 @@
 ## Comment Component
-A component that ...
+A reusable comment component
 
 ### Example
 
 ```js
-<Comment />
+<Comment {...props} />
 ```
-
-### Props
-
-| Prop          | Type     | Default     | Possible Values
-| ------------- | -------- | ----------- | ---------------------------------------------
-| **myProp**    | String   |             | Any string value
-
-
-### Other Information
