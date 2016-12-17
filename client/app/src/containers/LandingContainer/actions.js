@@ -15,17 +15,17 @@ export const landingShowButton = () => ({
 export const performLandingAnimation = () => (dispatch) => {
   setTimeout(() => {
     dispatch(
-      landingShowImage()
+      landingShowImage(),
     );
   }, 1000);
   setTimeout(() => {
     dispatch(
-      landingShowHeadline()
+      landingShowHeadline(),
     );
   }, 2000);
   setTimeout(() => {
     dispatch(
-      landingShowButton()
+      landingShowButton(),
     );
   }, 3000);
 };
@@ -38,29 +38,29 @@ export const loadGitDataInitation = () => ({
   type: types.LOAD_GIT_DATA_INITIATION,
 });
 
-export const loadGitDataSuccess = (data) => ({
+export const loadGitDataSuccess = data => ({
   type: types.LOAD_GIT_DATA_SUCCESS,
   data,
 });
 
-export const loadGitDataFailure = (error) => ({
+export const loadGitDataFailure = error => ({
   type: types.LOAD_GIT_DATA_FAILURE,
   error,
 });
 
 export const loadGitData = () => (dispatch) => {
   dispatch(
-    loadGitDataInitation()
+    loadGitDataInitation(),
   );
   fetch('https://api.github.com/users/ryanccollins/events/public')
     .then(res => res.json())
-    .then(json => {
+    .then((json) => {
       dispatch(
-        loadGitDataSuccess(json)
+        loadGitDataSuccess(json),
       );
-    }).catch(err => {
+    }).catch((err) => {
       dispatch(
-        loadGitDataFailure(err)
+        loadGitDataFailure(err),
       );
     });
 };
@@ -73,7 +73,36 @@ export const cycleThroughLogoHovered = () => (dispatch) => {
   dispatch(toggleLogoHovered());
   window.interval = setInterval(() => {
     dispatch(
-      toggleLogoHovered()
+      toggleLogoHovered(),
     );
   }, 8000);
+};
+
+export const loadReferrersInitiation = () => ({
+  type: types.LOAD_REFERRER_INITIATION,
+});
+
+export const loadReferrersSuccess = data => ({
+  type: types.LOAD_REFERRER_SUCCESS,
+  data,
+});
+
+export const loadReferrersFailure = error => ({
+  type: types.LOAD_REFERRER_FAILURE,
+  error,
+});
+
+export const loadReferrers = () => (dispatch) => {
+  fetch('/repos/RyanCCollins/scalable-react-boilerplate/traffic/popular/referrers')
+  .then(res => res.json())
+  .then((json) => {
+    dispatch(
+      loadReferrersSuccess(json),
+    );
+  })
+  .catch((e) => {
+    dispatch(
+      loadReferrersFailure(e),
+    );
+  });
 };

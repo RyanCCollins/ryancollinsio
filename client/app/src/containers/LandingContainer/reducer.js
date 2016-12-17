@@ -6,6 +6,7 @@ export const initialState = {
   headline: false,
   button: false,
   gitData: null,
+  referrers: null,
   isLoading: false,
   error: null,
   isHovered: false,
@@ -19,6 +20,23 @@ export const initialState = {
 const landingReducer =
   (state = initialState, action) => {
     switch (action.type) {
+      case types.LOAD_REFERRER_INITIATION:
+        return {
+          ...state,
+          isLoading: true,
+        };
+      case types.LOAD_REFERRER_SUCCESS:
+        return {
+          ...state,
+          isLoading: false,
+          referrers: action.data,
+        };
+      case types.LOAD_REFERRER_FAILURE:
+        return {
+          ...state,
+          isLoading: false,
+          error: action.error,
+        };
       case types.TOGGLE_LANDING_LOGO_HOVERED:
         return {
           ...state,

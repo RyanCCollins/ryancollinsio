@@ -1,21 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as LandingActionCreators from './actions';
 import cssModules from 'react-css-modules';
-import styles from './index.module.scss';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Box from 'grommet-udacity/components/Box';
-import { filteredGitDataSelector } from './selectors';
-import {
-  milestones,
-  summary,
-  chartData,
-  languages,
-  techstack,
-  milestoneData,
-} from './data';
 import {
   HeroSection,
   SummarySection,
@@ -27,12 +16,24 @@ import {
   TechStackSection,
   MyLocation,
 } from 'components';
+import * as LandingActionCreators from './actions';
+import styles from './index.module.scss';
+import { filteredGitDataSelector } from './selectors';
+import {
+  milestones,
+  summary,
+  chartData,
+  languages,
+  techstack,
+  milestoneData,
+} from './data';
 
 class LandingContainer extends Component {
   componentDidMount() {
     this.props.actions.performLandingAnimation();
     this.props.actions.loadGitData();
     this.props.actions.cycleThroughLogoHovered();
+    this.props.actions.loadReferrers();
   }
   render() {
     const {
@@ -47,9 +48,8 @@ class LandingContainer extends Component {
       actions,
       isHovered,
       isMobile,
-      isShowingTipNC,
-      isShowingTipCT,
       locationContent,
+      referrers,
     } = this.props;
     return (
       <Box
@@ -76,6 +76,7 @@ class LandingContainer extends Component {
         <MyLocation
           content={locationContent}
         />
+        {referrers && <pre>{JSON.stringify(referrers, null, 2)}</pre>}
       </Box>
     );
   }
@@ -83,22 +84,23 @@ class LandingContainer extends Component {
 
 LandingContainer.propTypes = {
   isLoading: PropTypes.bool.isRequired,
-  referenceError: PropTypes.object.isRequired,
-  actions: PropTypes.object.isRequired,
+  referenceError: PropTypes.object.isRequired, // eslint-disable-line
+  actions: PropTypes.object.isRequired, // eslint-disable-line
   image: PropTypes.bool.isRequired,
   headline: PropTypes.bool.isRequired,
-  references: PropTypes.array,
+  references: PropTypes.array, // eslint-disable-line
   loadingData: PropTypes.bool.isRequired,
-  errorLoadingData: PropTypes.object,
-  gitData: PropTypes.array,
+  errorLoadingData: PropTypes.object, // eslint-disable-line
+  gitData: PropTypes.array, // eslint-disable-line
   button: PropTypes.bool.isRequired,
   isHovered: PropTypes.bool.isRequired,
   isMobile: PropTypes.bool.isRequired,
   locationContent: PropTypes.string.isRequired,
+  referrers: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 // mapStateToProps :: {State} -> {Props}
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   isMobile: state.app.isMobile,
   image: state.landing.image,
   headline: state.landing.headline,
@@ -107,14 +109,15 @@ const mapStateToProps = (state) => ({
   errorLoadingData: state.landing.error,
   button: state.landing.button,
   gitData: filteredGitDataSelector(state.landing),
+  referrers: state.landing.referrers,
   locationContent: state.landing.location.content,
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     LandingActionCreators,
-    dispatch
+    dispatch,
   ),
 });
 
@@ -143,5 +146,5 @@ const ContainerWithReferences = graphql(loadReferencesQuery, {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(ContainerWithReferences);

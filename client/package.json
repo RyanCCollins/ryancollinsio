@@ -18,7 +18,8 @@
       "production": {
         "plugins": [
           [
-            "babel-plugin-webpack-alias", {
+            "babel-plugin-webpack-alias",
+            {
               "config": "./webpack.config.prod.js"
             }
           ]
@@ -27,7 +28,8 @@
       "test": {
         "plugins": [
           [
-            "babel-plugin-webpack-loaders", {
+            "babel-plugin-webpack-loaders",
+            {
               "config": "./config/webpack/webpack.test.config.js",
               "verbose": false
             }
@@ -194,11 +196,13 @@
     "babel-runtime": "^6.11.6",
     "enzyme": "^2.4.1",
     "enzyme-to-json": "^1.0.3",
-    "eslint": "^2.8.0",
-    "eslint-config-airbnb": "latest",
-    "eslint-plugin-graphql": "^0.4.0",
+    "eslint": "^3.12.2",
+    "eslint-config-airbnb": "^13.0.0",
     "eslint-loader": "^1.1.1",
-    "eslint-plugin-react": "latest",
+    "eslint-plugin-graphql": "^0.4.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.8.0",
     "null-loader": "0.1.1",
     "plop": "1.5.0",
     "redux-devtools": "^3.0.1",
