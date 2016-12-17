@@ -10,8 +10,6 @@ export const initialState = {
   error: null,
   isHovered: false,
   location: {
-    isShowingTipCT: true,
-    isShowingTipNC: false,
     content: `As a digital Nomad, you will find me working from all over the world.
     I currently rest my head in a quaint beach house in the Outer Banks, North Carolina
     and in a condo in Trumbull, CT.  Someday, I would like to move to California.`,
@@ -21,22 +19,6 @@ export const initialState = {
 const landingReducer =
   (state = initialState, action) => {
     switch (action.type) {
-      case types.TOGGLE_LANDING_LOCATION_TOOLTIP_NC:
-        return {
-          ...state,
-          location: {
-            ...state.location,
-            isShowingTipNC: !state.location.isShowingTipNC,
-          },
-        };
-      case types.TOGGLE_LANDING_LOCATION_TOOLTIP_CT:
-        return {
-          ...state,
-          location: {
-            ...state.location,
-            isShowingTipCT: !state.location.isShowingTipCT,
-          },
-        };
       case types.TOGGLE_LANDING_LOGO_HOVERED:
         return {
           ...state,

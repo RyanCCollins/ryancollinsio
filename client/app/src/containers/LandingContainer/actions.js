@@ -77,27 +77,3 @@ export const cycleThroughLogoHovered = () => (dispatch) => {
     );
   }, 8000);
 };
-
-export const toggleNCTip = () => ({
-  type: types.TOGGLE_LANDING_LOCATION_TOOLTIP_NC,
-});
-
-export const toggleCTTip = () => ({
-  type: types.TOGGLE_LANDING_LOCATION_TOOLTIP_CT,
-});
-
-export const toggleLocationTooltip = (location) => (dispatch) => {
-  switch (location) {
-    case 'CT':
-      dispatch(
-        toggleCTTip()
-      );
-      break;
-    case 'NC':
-      dispatch(
-        toggleNCTip()
-      );
-      break;
-    default: break;
-  }
-};

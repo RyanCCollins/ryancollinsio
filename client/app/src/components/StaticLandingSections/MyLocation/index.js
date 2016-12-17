@@ -28,14 +28,8 @@ const MyLocation = ({
       justify="center"
       style={{ position: 'relative' }}
     >
-      <PinCT
-        onClick={onToggleTipCT}
-        id="pin-ct"
-      />
-      <PinNC
-        onClick={onToggleTipNC}
-        id="pin-nc"
-      />
+      <PinCT />
+      <PinNC />
       <WorldMap
         series={[
           {

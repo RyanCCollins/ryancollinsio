@@ -24,7 +24,7 @@ const SummarySection = ({
     <Divider />
     <Box align="center">
       <img
-        src="https://github.com/RyanCCollins/cdn/blob/master/misc/ryanc.jpg?raw=true"
+        src="https://github.com/RyanCCollins/cdn/blob/master/misc/me-new.png?raw=true"
         className={styles.avatar}
       />
       <Heading className="heading">

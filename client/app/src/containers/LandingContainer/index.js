@@ -29,17 +29,10 @@ import {
 } from 'components';
 
 class LandingContainer extends Component {
-  constructor() {
-    super();
-    this.handleShowingTip = this.handleShowingTip.bind(this);
-  }
   componentDidMount() {
     this.props.actions.performLandingAnimation();
     this.props.actions.loadGitData();
     this.props.actions.cycleThroughLogoHovered();
-  }
-  handleShowingTip(location) {
-    this.props.actions.toggleLocationTooltip(location);
   }
   render() {
     const {
@@ -81,11 +74,7 @@ class LandingContainer extends Component {
         />
         <TechStackSection techItems={techstack} />
         <MyLocation
-          isShowingTipNC={isShowingTipNC}
-          isShowingTipCT={isShowingTipCT}
           content={locationContent}
-          onToggleTipCT={() => this.handleShowingTip('CT')}
-          onToggleTipNC={() => this.handleShowingTip('NC')}
         />
       </Box>
     );
@@ -105,8 +94,6 @@ LandingContainer.propTypes = {
   button: PropTypes.bool.isRequired,
   isHovered: PropTypes.bool.isRequired,
   isMobile: PropTypes.bool.isRequired,
-  isShowingTipCT: PropTypes.bool.isRequired,
-  isShowingTipNC: PropTypes.bool.isRequired,
   locationContent: PropTypes.string.isRequired,
 };
 
@@ -120,8 +107,6 @@ const mapStateToProps = (state) => ({
   errorLoadingData: state.landing.error,
   button: state.landing.button,
   gitData: filteredGitDataSelector(state.landing),
-  isShowingTipNC: state.landing.location.isShowingTipNC,
-  isShowingTipCT: state.landing.location.isShowingTipCT,
   locationContent: state.landing.location.content,
 });
 
