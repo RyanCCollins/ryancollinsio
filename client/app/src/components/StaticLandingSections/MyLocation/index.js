@@ -5,15 +5,10 @@ import Box from 'grommet-udacity/components/Box';
 import WorldMap from 'grommet-udacity/components/WorldMap';
 import Footer from 'grommet-udacity/components/Footer';
 import Markdown from 'grommet-udacity/components/Markdown';
-import Tip from 'grommet-udacity/components/Tip';
 import { Divider } from 'components';
 import { PinNC, PinCT } from './styles';
 
 const MyLocation = ({
-  isShowingTipNC,
-  isShowingTipCT,
-  onToggleTipCT,
-  onToggleTipNC,
   content,
 }) => (
   <Section
@@ -41,24 +36,6 @@ const MyLocation = ({
         onClick={onToggleTipNC}
         id="pin-nc"
       />
-      {isShowingTipCT &&
-        <Tip
-          onClose={onToggleTipCT}
-          style={{ color: 'white' }}
-          target="pin-ct"
-        >
-          Trumbull, CT
-        </Tip>
-      }
-      {isShowingTipNC &&
-        <Tip
-          onClose={onToggleTipNC}
-          target="pin-nc"
-          style={{ color: 'white' }}
-        >
-          Corolla, NC
-        </Tip>
-      }
       <WorldMap
         series={[
           {
@@ -109,10 +86,6 @@ const MyLocation = ({
 );
 
 MyLocation.propTypes = {
-  isShowingTipNC: PropTypes.bool.isRequired,
-  isShowingTipCT: PropTypes.bool.isRequired,
-  onToggleTipCT: PropTypes.func.isRequired,
-  onToggleTipNC: PropTypes.func.isRequired,
   content: PropTypes.string.isRequired,
 };
 

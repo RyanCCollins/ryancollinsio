@@ -533,6 +533,7 @@
   background-color: #fff;
   border: 1px solid #ddd;
   margin-bottom: 20px;
+  margin-top: 10px;
 }
 
 .app-src-components-StaticLandingSections-ReferencesSection-___index-module__carouselItem___2aPlq {
@@ -623,15 +624,13 @@
 .app-src-components-StaticLandingSections-FocusSection-___index-module__chart___oWgQl {
   box-sizing: border-box;
   padding: 20px;
-  width: 600px;
-  height: 600px;
   max-width: 100vw;
   background-color: #fff;
 }
 
 .app-src-components-StaticLandingSections-FocusSection-___index-module__chart___oWgQl tspan {
   font-size: 23px;
-  margin: 5px;
+  margin: 20px;
 }
 
 .app-src-components-StaticLandingSections-SummarySection-___index-module__innerContainer___31wfb {
@@ -24651,6 +24650,30 @@ tr.ant-table-expanded-row, tr.ant-table-expanded-row:hover {
 .full-height {
   min-height: 100vh; }
 
+@-webkit-keyframes pulsate {
+  0% {
+    -webkit-transform: scale(0.1);
+    transform: scale(0.1);
+    opacity: 0; }
+  50% {
+    opacity: 1; }
+  100% {
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+    opacity: 0; } }
+
+@keyframes pulsate {
+  0% {
+    -webkit-transform: scale(0.1);
+    transform: scale(0.1);
+    opacity: 0; }
+  50% {
+    opacity: 1; }
+  100% {
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+    opacity: 0; } }
+
 @-webkit-keyframes wave-animation {
   0%, 100% {
     -webkit-transform: rotate(-20deg);
@@ -25652,4 +25675,4 @@ textarea {
   100% {
     opacity: 1; } }
 
-/*# sourceMappingURL=main.e93cc0cc14cf5c51f727259b9e687059.css.map*/
+/*# sourceMappingURL=main.3f6b8bb6d724f04d9937a1882c82987f.css.map*/
