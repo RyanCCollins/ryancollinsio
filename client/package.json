@@ -18,8 +18,7 @@
       "production": {
         "plugins": [
           [
-            "babel-plugin-webpack-alias",
-            {
+            "babel-plugin-webpack-alias", {
               "config": "./webpack.config.prod.js"
             }
           ]
@@ -28,8 +27,7 @@
       "test": {
         "plugins": [
           [
-            "babel-plugin-webpack-loaders",
-            {
+            "babel-plugin-webpack-loaders", {
               "config": "./config/webpack/webpack.test.config.js",
               "verbose": false
             }
@@ -72,6 +70,7 @@
     "setup": "npm install",
     "serve:bundle": "cross-env NODE_ENV=production PORT=1337 node server.js",
     "postinstall": "npm run deploy",
+    "preinstall": "npm run rebuild node-sass",
     "push": "cd .. && git subtree push --prefix client heroku master && cd client"
   },
   "repository": {
