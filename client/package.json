@@ -63,14 +63,13 @@
     "generate:container": "plop --plopfile config/generators/index.js container",
     "generate:page": "plop --plopfile config/generators/index.js page",
     "lint": "eslint . --ext .js --ext .jsx; exit 0",
-    "predeploy": "rimraf server/public/*.*",
+    "predeploy": "rimraf server/public/*.* && npm run rebuild node-sass",
     "deploy": "cross-env NODE_ENV=production ./node_modules/.bin/webpack --config ./webpack.config.prod.js",
     "start": "npm run dev",
     "clean": "rm -rf app/dist app/build",
     "setup": "npm install",
     "serve:bundle": "cross-env NODE_ENV=production PORT=1337 node server.js",
     "postinstall": "npm run deploy",
-    "preinstall": "npm run rebuild node-sass",
     "push": "cd .. && git subtree push --prefix client heroku master && cd client"
   },
   "repository": {
