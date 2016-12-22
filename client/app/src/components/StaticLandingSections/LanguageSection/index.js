@@ -9,7 +9,7 @@ import Columns from 'grommet-udacity/components/Columns';
 import Footer from 'grommet-udacity/components/Footer';
 import Button from 'grommet-udacity/components/Button';
 import { Divider } from 'components';
-import { Card } from 'styles'; // eslint-disable-line
+import { Card } from '../../../../styles'; // eslint-disable-line
 
 const LanguageSection = ({
   languages,
