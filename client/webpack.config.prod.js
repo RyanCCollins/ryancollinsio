@@ -116,6 +116,7 @@ module.exports = {
       pages: path.resolve(ROOT_PATH, 'app/src/pages'),
       fragments: path.resolve(ROOT_PATH, 'app/src/fragments'),
       elm: path.resolve(ROOT_PATH, 'app/src/elm'),
+      styles: path.resolve(ROOT_PATH, 'app/styles'),
     },
   },
   output: {

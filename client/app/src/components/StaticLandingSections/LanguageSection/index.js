@@ -1,6 +1,4 @@
 import React, { PropTypes } from 'react';
-import cssModules from 'react-css-modules';
-import styles from './index.module.scss';
 import Section from 'grommet-udacity/components/Section';
 import Headline from 'grommet-udacity/components/Headline';
 import Box from 'grommet-udacity/components/Box';
@@ -11,6 +9,7 @@ import Columns from 'grommet-udacity/components/Columns';
 import Footer from 'grommet-udacity/components/Footer';
 import Button from 'grommet-udacity/components/Button';
 import { Divider } from 'components';
+import { Card } from 'styles'; // eslint-disable-line
 
 const LanguageSection = ({
   languages,
@@ -31,21 +30,23 @@ const LanguageSection = ({
       justify="center"
     >
       {languages.map((language, i) =>
-        <Box className={styles.language} align="center" justify="center" key={i}>
-          <Meter
-            type="arc"
-            colorIndex="brand"
-            value={language.value}
-            label={
-              <Box align="center" direction="column">
-                <Value value={`${language.value}%`} size="medium" />
-                <Heading align="center" tag="h2" strong>
-                  {`${language.label} `}
-                </Heading>
-              </Box>
-            }
-          />
-        </Box>
+        <Card key={i}>
+          <Box align="center" justify="center">
+            <Meter
+              type="arc"
+              colorIndex="brand"
+              value={language.value}
+              label={
+                <Box align="center" direction="column">
+                  <Value value={`${language.value}%`} size="medium" />
+                  <Heading align="center" tag="h2" strong>
+                    {`${language.label} `}
+                  </Heading>
+                </Box>
+              }
+            />
+          </Box>,
+        </Card>,
       )}
     </Columns>
     <Footer align="center" justify="center" pad="large">
@@ -59,7 +60,12 @@ const LanguageSection = ({
 );
 
 LanguageSection.propTypes = {
-  languages: PropTypes.array.isRequired,
+  languages: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      value: PropTypes.number.isRequired,
+    }),
+  ),
 };
 
 export default cssModules(LanguageSection, styles);
