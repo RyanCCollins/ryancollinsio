@@ -68,4 +68,4 @@ LanguageSection.propTypes = {
   ),
 };
 
-export default cssModules(LanguageSection, styles);
+export default LanguageSection;
