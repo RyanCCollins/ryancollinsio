@@ -33,6 +33,7 @@ class ResponsiveImage extends Component {
           className={matchHeight ? styles.responsiveImageMatchHeight : styles.responsiveImage}
         >
           <img
+            alt="responsive"
             className={className}
             onLoad={this.setImageLoadedState}
             src={src || MissingVisual}

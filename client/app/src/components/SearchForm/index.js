@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
 import Search from 'grommet-udacity/components/Search';
 import Button from 'grommet-udacity/components/Button';
@@ -14,6 +13,8 @@ import Section from 'grommet-udacity/components/Section';
 import Box from 'grommet-udacity/components/Box';
 import Heading from 'grommet-udacity/components/Heading';
 import { Select as TagSelect } from 'antd';
+import styles from './index.module.scss';
+
 const Option = TagSelect.Option;
 
 const SearchForm = ({
@@ -44,7 +45,7 @@ const SearchForm = ({
         <Search
           className={styles.search}
           align="left"
-          placeHolder="Start typing to search projects..."
+          placeHolder="Search projects..."
           inline
           fill
           responsive={false}
@@ -88,7 +89,7 @@ const SearchForm = ({
               inline
               value={selectedCategories}
               onChange={onChangeCategories}
-              options={categories.map((item) =>
+              options={categories.map(item =>
                 ({ label: item, value: item.toLowerCase() }))
               }
             />
@@ -108,7 +109,6 @@ const SearchForm = ({
               placeholder="Start typing to find projects by Tag."
               allowClear
               onChange={onChangeTags}
-              id="tag-input"
             >
               {tags.map(({ title, id }) =>
                 <Option
@@ -116,7 +116,7 @@ const SearchForm = ({
                   value={title}
                 >
                   {title}
-                </Option>
+                </Option>,
               )}
             </TagSelect>
           </Box>
@@ -153,16 +153,18 @@ SearchForm.propTypes = {
   onChange: PropTypes.func.isRequired,
   searchTerm: PropTypes.string,
   onChangeTags: PropTypes.func.isRequired,
-  inputTags: PropTypes.array.isRequired,
+  tags: PropTypes.array.isRequired, // eslint-disable-line
+  inputTags: PropTypes.array.isRequired, // eslint-disable-line
+  isFiltering: PropTypes.bool.isRequired,
   onToggleModal: PropTypes.func.isRequired,
   isShowingModal: PropTypes.bool.isRequired,
   onApplyFilters: PropTypes.func.isRequired,
   onClearFilters: PropTypes.func.isRequired,
   filteredTotal: PropTypes.number.isRequired,
   unfilteredTotal: PropTypes.number.isRequired,
-  categories: PropTypes.array,
+  categories: PropTypes.array, // eslint-disable-line
   onChangeCategories: PropTypes.func.isRequired,
-  selectedCategories: PropTypes.array,
+  selectedCategories: PropTypes.array, // eslint-disable-line
 };
 
 export default cssModules(SearchForm, styles);

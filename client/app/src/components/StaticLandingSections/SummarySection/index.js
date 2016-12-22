@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import cssModules from 'react-css-modules';
-import styles from './index.module.scss';
 import Section from 'grommet-udacity/components/Section';
 import Headline from 'grommet-udacity/components/Headline';
 import Box from 'grommet-udacity/components/Box';
@@ -8,13 +7,15 @@ import Markdown from 'grommet-udacity/components/Markdown';
 import Heading from 'grommet-udacity/components/Heading';
 import Label from 'grommet-udacity/components/Label';
 import { Divider } from 'components';
+import styles from './index.module.scss';
 
 const SummarySection = ({
   summary,
 }) => (
   <Section
     id="summary-section"
-    className="section"
+    full="horizontal"
+    className="half-section gradient-green"
     align="center"
     justify="center"
   >
@@ -24,6 +25,7 @@ const SummarySection = ({
     <Divider />
     <Box align="center">
       <img
+        alt="ryan collins"
         src="https://github.com/RyanCCollins/cdn/blob/master/misc/me-new.png?raw=true"
         className={styles.avatar}
       />

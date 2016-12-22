@@ -2,10 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import * as AppActions from 'containers/AppContainer/actions';
 import Box from 'grommet-udacity/components/Box';
 import Value from 'grommet-udacity/components/Value';
-import Anchor from 'grommet-udacity/components/Anchor';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Container, WaveGoodbye, Seeya, EasterEgg } from './styles';
+import { Container, WaveGoodbye, Seeya } from './styles';
 
 class LogoutPage extends Component {
   constructor() {
@@ -50,18 +49,13 @@ class LogoutPage extends Component {
           </Seeya>
           <Value value={this.state.count} />
         </Box>
-        <Box align="center" justify="center">
-          <Anchor href="/giphy/search/easter/egg">
-            <EasterEgg src="https://cdn1.iconfinder.com/data/icons/egg-bunny-green/94/wink-512.png" />
-          </Anchor>
-        </Box>
       </Container>
     );
   }
 }
 
 LogoutPage.propTypes = {
-  actions: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 LogoutPage.contextTypes = {
@@ -69,10 +63,10 @@ LogoutPage.contextTypes = {
 };
 
 // mapDispatchToProps :: Dispatch -> {Action}
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     AppActions,
-    dispatch
+    dispatch,
   ),
 });
 

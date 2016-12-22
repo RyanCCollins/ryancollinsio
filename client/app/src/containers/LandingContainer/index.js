@@ -15,6 +15,7 @@ import {
   ReferencesSection,
   TechStackSection,
   MyLocation,
+  SummarySectionTwo,
 } from 'components';
 import * as LandingActionCreators from './actions';
 import styles from './index.module.scss';
@@ -72,6 +73,7 @@ class LandingContainer extends Component {
       >
         <HeroSection isHovered={isHovered} button={button} image={image} headline={headline} />
         <SummarySection summary={summary} />
+        <SummarySectionTwo />
         <MilestonesSection milestones={milestones} data={milestoneData} />
         <LanguageSection languages={languages} />
         <FocusSection isMobile={isMobile} chartData={chartData} />

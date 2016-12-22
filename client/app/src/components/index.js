@@ -1,4 +1,7 @@
 /* GENERATOR: Assemble all components for export */
+export SvgIcon from './SvgIcon';
+export UdacityLogo from './UdacityLogo';
+export BlitzLogo from './BlitzLogo';
 export Alert from './Alert';
 export FeedbackForm from './FeedbackForm';
 export FeedbackFab from './FeedbackFab';
@@ -23,6 +26,7 @@ export AuthFormFooter from './AuthFormFooter';
 export LoginForm from './LoginForm';
 export PaginatorFooter from './PaginatorFooter';
 export TagList from './TagList';
+export SummarySectionTwo from './StaticLandingSections/SummarySectionTwo';
 export TechStackSection from './StaticLandingSections/TechStackSection';
 export MyLocation from './StaticLandingSections/MyLocation';
 export ReferencesSection from './StaticLandingSections/ReferencesSection';

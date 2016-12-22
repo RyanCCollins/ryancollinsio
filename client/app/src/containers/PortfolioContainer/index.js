@@ -27,10 +27,27 @@ export const formFields = [
 ];
 
 class PortfolioContainer extends Component { // eslint-disable-line react/prefer-stateless-function
+  static renderProjects(projects) {
+    return projects.map(project =>
+      <Box className={styles.wrapper} key={project.id}>
+        <Box className={styles.card}>
+          <Anchor href={`/portfolio/projects/${project.slug}`}>
+            <ResponsiveImage
+              matchHeight={false}
+              src={project.featureImage}
+              className={styles.image}
+            />
+            <div className={styles.overlay}>
+              <p>{project.title}</p>
+            </div>
+          </Anchor>
+        </Box>
+      </Box>,
+    );
+  }
   constructor() {
     super();
     this.handleTags = this.handleTags.bind(this);
-    this.renderProjects = this.renderProjects.bind(this);
     this.handleApplyingFilter = this.handleApplyingFilter.bind(this);
     this.handleResettingFilter = this.handleResettingFilter.bind(this);
     this.handleSearching = this.handleSearching.bind(this);
@@ -60,21 +77,6 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
     } else {
       this.props.actions.portfolioSetSearchTerm(term);
     }
-  }
-  renderProjects(projects) {
-    return projects.map(project =>
-      <Box className={styles.wrapper} key={project.id}>
-        <Box className={styles.card} size="medium">
-          <Anchor href={`/portfolio/projects/${project.slug}`}>
-            <ResponsiveImage
-              matchHeight={false}
-              src={project.featureImage}
-              className={styles.image}
-            />
-          </Anchor>
-        </Box>
-      </Box>,
-    );
   }
   render() {
     const {
@@ -132,7 +134,7 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
                 staggerDelayBy={40}
                 staggerDurationBy={40}
               >
-                {this.renderProjects(projects)}
+                {PortfolioContainer.renderProjects(projects)}
               </FlipMove>
             :
               <Section>

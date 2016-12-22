@@ -1,4 +1,11 @@
 /* eslint-disable */
-const summary = "Passionate Full Stack web engineer, specializing in cutting-edge Front End technologies.  Incorporating the latest web technologies to build highly reactive UI components, progressive web apps, scalable back end APIs and more, focusing on design patterns, style and perfect test coverage.";
+const summary = `
+Passionate software engineer, specializing in cutting-edge UI development, incorporating the latest web technologies
+to build highly reactive user interface components, progressive web / mobile apps, scalable back end systems and more.
+
+I am an _avid_ functional programmer and an aspiring data-scientist, spending my free-time studying Machine Learning and AI.
+
+I currently work as an independant contractor, and am also leading and contributing to a number of exciting open-source projects.
+`;
 
 export default summary;
