@@ -6,13 +6,12 @@ const Card = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: left;
   margin-right: 1.69492%;
   padding: 1.2rem;
-  width: 22rem;
-  max-width: 33.3%;
+  width: 15rem;
+  max-width: 25%;
   background: #fafbfc;
-  height: 25.5rem;
+  height: 15rem;
   border: 1px solid #dbe2e8;
   box-shadow: 12px 15px 20px 0px rgba(46,61,73,0.15);
   border-radius: 6px;
