@@ -6,6 +6,14 @@
   min-height: 100vh;
 }
 
+.grommetux-hero--bg-center {
+  width: 100% !important;
+}
+
+#app {
+  overflow: hidden;
+}
+
 @keyframes pulsate {
   0% {
     -moz-transform: scale(0.1);

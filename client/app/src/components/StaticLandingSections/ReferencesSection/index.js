@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import cssModules from 'react-css-modules';
-import styles from './index.module.scss';
 import Section from 'grommet-udacity/components/Section';
 import Headline from 'grommet-udacity/components/Headline';
 import Heading from 'grommet-udacity/components/Heading';
@@ -9,6 +8,7 @@ import Paragraph from 'grommet-udacity/components/Paragraph';
 import Label from 'grommet-udacity/components/Label';
 import Carousel from 'grommet-udacity/components/Carousel';
 import { Divider, WithLoading } from 'components';
+import styles from './index.module.scss';
 
 const ReferencesSection = ({
   references,
@@ -37,29 +37,33 @@ const ReferencesSection = ({
             autoplay
             className={styles.carousel}
           >
-              {references.map((reference, i) =>
-                <Box
-                  className={`${styles.carouselItem}`}
-                  key={i}
-                >
-                  <img src={reference.avatar} className={styles.avatar} />
-                  <Box className={styles.referenceText}>
-                    <Heading className="heading">
-                      {reference.name}
-                    </Heading>
-                    <Label uppercase className={styles.labelText}>
-                      {reference.title}
-                    </Label>
-                    <Label uppercase className={styles.labelBottom}>
-                      {reference.company}
-                    </Label>
-                    <hr className={styles.seperator} />
-                    <Paragraph>
-                      {reference.body}
-                    </Paragraph>
-                  </Box>
+            {references.map((reference, i) =>
+              <Box
+                className={`${styles.carouselItem}`}
+                key={i}
+              >
+                <img
+                  alt="reference avatar"
+                  src={reference.avatar}
+                  className={styles.avatar}
+                />
+                <Box className={styles.referenceText}>
+                  <Heading className="heading">
+                    {reference.name}
+                  </Heading>
+                  <Label uppercase className={styles.labelText}>
+                    {reference.title}
+                  </Label>
+                  <Label uppercase className={styles.labelBottom}>
+                    {reference.company}
+                  </Label>
+                  <hr className={styles.seperator} />
+                  <Paragraph>
+                    {reference.body}
+                  </Paragraph>
                 </Box>
-              )}
+              </Box>,
+            )}
           </Carousel>
         }
       </Box>
@@ -68,7 +72,9 @@ const ReferencesSection = ({
 );
 
 ReferencesSection.propTypes = {
-  references: PropTypes.array.isRequired,
+  references: PropTypes.arrayOf(
+    PropTypes.object,
+  ).isRequired,
   isLoading: PropTypes.bool.isRequired,
 };
 

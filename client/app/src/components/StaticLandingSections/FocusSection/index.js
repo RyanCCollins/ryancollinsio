@@ -37,7 +37,7 @@ const FocusSection = ({
         cx={window ? window.innerWidth / 2 : 400}
         cy={isMobile ? 250 : 350}
         outerRadius={isMobile ? 150 : 250}
-        width={window ? window.innerWidth : 400}
+        width={window ? window.innerWidth - 60 : 400}
         height={isMobile ? 500 : 700}
         data={chartData}
       >

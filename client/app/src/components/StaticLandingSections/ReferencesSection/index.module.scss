@@ -64,5 +64,6 @@
 }
 
 .box {
-  max-width: 100vw;
+  max-width: calc(100vw - 30px);
+  box-sizing: border-box;
 }
