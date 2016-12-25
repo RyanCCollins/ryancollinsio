@@ -27,7 +27,7 @@ const SummarySectionTwo = () => (
             </Logo>
           </CardTop>
           <CardBottom>
-            <ProjectName tag="h2">
+            <ProjectName align="center" tag="h2">
               Udacity Alumni
             </ProjectName>
           </CardBottom>
