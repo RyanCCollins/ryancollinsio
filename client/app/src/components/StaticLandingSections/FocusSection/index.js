@@ -18,7 +18,7 @@ const FocusSection = ({
   isMobile,
 }) => (
   <Section
-    className="section gradient-venice"
+    className="section gradient-colored-lense"
     id="focus-section"
     full="horizontal"
     align="center"
@@ -44,8 +44,8 @@ const FocusSection = ({
         <Radar
           name="Mike"
           dataKey="A"
-          stroke="#ffffff"
-          fill="#ff590a"
+          stroke="#00ff5e"
+          fill="#88008b"
           fillOpacity={0.7}
         />
         <PolarGrid />
