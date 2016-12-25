@@ -6,7 +6,7 @@ const FocusSectionTwo = ({ chartData }) => (
   <Section
     className="section"
     id="focus-section-two"
-    colorIndex="light-1"
+    colorIndex="light-2"
     full="horizontal"
     align="center"
     justify="center"
@@ -15,9 +15,12 @@ const FocusSectionTwo = ({ chartData }) => (
       legend
       size="large"
       type="circle"
-      max={100}
+      max={1000}
       series={chartData.map((item, i) =>
-        ({ label: item.subject, value: item.A, colorIndex: `graph-${i + 1}` }),
+        ({
+          ...item,
+          colorIndex: ['brand', 'critical', 'warning', 'ok'][i],
+        }),
       )}
     />
   </Section>
@@ -26,10 +29,8 @@ const FocusSectionTwo = ({ chartData }) => (
 FocusSectionTwo.propTypes = {
   chartData: PropTypes.arrayOf(
     PropTypes.shape({
-      A: PropTypes.number.isRequired,
-      B: PropTypes.number.isRequired,
-      subject: PropTypes.string.isRequired,
-      fullMark: PropTypes.string.isRequired,
+      value: PropTypes.number.isRequired,
+      label: PropTypes.string.isRequired,
     }),
   ).isRequired,
 };

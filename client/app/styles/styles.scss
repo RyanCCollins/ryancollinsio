@@ -49,6 +49,36 @@
   background: linear-gradient(to bottom, #FFE1FF 0%, #C9DAF8 100%);
 }
 
+.gradient-cloud {
+  background: #ECE9E6;
+  background: -webkit-linear-gradient(to left, #ECE9E6 , #FFFFFF);
+  background: linear-gradient(to left, #ECE9E6 , #FFFFFF);
+}
+
+.gradient-moonrise {
+  background: #DAE2F8;
+  background: -webkit-linear-gradient(to left, #DAE2F8 , #D6A4A4);
+  background: linear-gradient(to left, #DAE2F8 , #D6A4A4);
+}
+
+.gradient-light-1 {
+  background: #83a4d4;
+  background: -webkit-linear-gradient(to left, #83a4d4 , #b6fbff);
+  background: linear-gradient(to left, #83a4d4 , #b6fbff);
+}
+
+.gradient-bourbon {
+  background: #EC6F66;
+  background: -webkit-linear-gradient(to left, #EC6F66 , #F3A183);
+  background: linear-gradient(to left, #EC6F66 , #F3A183);
+}
+
+.gradient-venice {
+  background: #6190E8;
+  background: -webkit-linear-gradient(to left, #6190E8 , #A7BFE8);
+  background: linear-gradient(to left, #6190E8 , #A7BFE8);
+}
+
 .main-content {
   padding-bottom: 60px;
 }

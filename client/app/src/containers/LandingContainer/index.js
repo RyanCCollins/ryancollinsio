@@ -29,6 +29,7 @@ import {
   languages,
   techstack,
   milestoneData,
+  meterData,
 } from './data';
 
 class LandingContainer extends Component {
@@ -78,7 +79,7 @@ class LandingContainer extends Component {
         <MilestonesSection milestones={milestones} data={milestoneData} />
         <LanguageSection languages={languages} />
         <FocusSection isMobile={isMobile} chartData={chartData} />
-        <FocusSectionTwo chartData={chartData} />
+        <FocusSectionTwo chartData={meterData} />
         <OpenSourceContributions
           gitData={gitData}
           isLoading={loadingData}

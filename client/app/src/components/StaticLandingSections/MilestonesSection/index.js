@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import cssModules from 'react-css-modules';
-import styles from './index.module.scss';
 import Section from 'grommet-udacity/components/Section';
 import Headline from 'grommet-udacity/components/Headline';
 import Box from 'grommet-udacity/components/Box';
@@ -9,6 +8,7 @@ import Value from 'grommet-udacity/components/Value';
 import Tiles from 'grommet-udacity/components/Tiles';
 import Tile from 'grommet-udacity/components/Tile';
 import { Divider } from 'components';
+import styles from './index.module.scss';
 
 const MilestonesSection = ({
   milestones,
@@ -16,14 +16,14 @@ const MilestonesSection = ({
 }) => (
   <Section
     id="milestones-section"
-    className="section"
     colorIndex="brand"
+    className="section"
     full="horizontal"
     pad="large"
   >
     <Headline
       align="center"
-      className={`${styles.invertedHeader} heading`}
+      className={`heading ${styles.inverted}`}
     >
       Milestones
     </Headline>
@@ -36,7 +36,7 @@ const MilestonesSection = ({
               <Value value={item.value} size="large" />
               {item.description}
             </Box>
-          </Tile>
+          </Tile>,
         )}
       </Tiles>
     </Box>
@@ -51,7 +51,9 @@ const MilestonesSection = ({
 
 MilestonesSection.propTypes = {
   milestones: PropTypes.string.isRequired,
-  data: PropTypes.array.isRequired,
+  data: PropTypes.arrayOf(
+    PropTypes.object,
+  ).isRequired,
 };
 
 export default cssModules(MilestonesSection, styles);

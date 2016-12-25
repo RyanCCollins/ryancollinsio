@@ -29,7 +29,7 @@ const LanguageSection = ({
           <Box align="center" justify="center" pad="medium">
             <Meter
               type="arc"
-              colorIndex="brand"
+              colorIndex="graph-1"
               value={language.value}
               label={
                 <Box align="center" direction="column">

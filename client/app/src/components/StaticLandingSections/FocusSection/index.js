@@ -2,9 +2,7 @@ import React, { PropTypes } from 'react';
 import cssModules from 'react-css-modules';
 import Section from 'grommet-udacity/components/Section';
 import Headline from 'grommet-udacity/components/Headline';
-import Footer from 'grommet-udacity/components/Footer';
 import Box from 'grommet-udacity/components/Box';
-import Button from 'grommet-udacity/components/Button';
 import {
   Radar,
   RadarChart,
@@ -20,17 +18,16 @@ const FocusSection = ({
   isMobile,
 }) => (
   <Section
-    className="section gradient-green"
+    className="section gradient-venice"
     id="focus-section"
-    colorIndex="light-1"
     full="horizontal"
     align="center"
     justify="center"
   >
-    <Headline align="center" className="heading">
+    <Headline style={{ color: 'white' }} align="center" className="heading">
       Areas of Focus
     </Headline>
-    <Divider />
+    <Divider inverted />
     <Box
       align="center"
       justify="center"
@@ -47,22 +44,15 @@ const FocusSection = ({
         <Radar
           name="Mike"
           dataKey="A"
-          stroke="#8884d8"
-          fill="#8884d8"
-          fillOpacity={0.6}
+          stroke="#ffffff"
+          fill="#ff590a"
+          fillOpacity={0.7}
         />
         <PolarGrid />
         <PolarAngleAxis dataKey="subject" />
         <PolarRadiusAxis />
       </RadarChart>
     </Box>
-    <Footer align="center" justify="center" pad="large">
-      <Button
-        primary
-        href="https://medium.com/@ryancollinsio"
-        label="Follow Me on Medium"
-      />
-    </Footer>
   </Section>
 );
 

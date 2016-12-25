@@ -15,7 +15,7 @@ const SummarySection = ({
   <Section
     id="summary-section"
     full="horizontal"
-    className="half-section gradient-green"
+    className="half-section"
     align="center"
     justify="center"
   >

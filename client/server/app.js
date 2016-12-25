@@ -6,13 +6,13 @@ import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import { ApolloProvider } from 'react-apollo';
 import { getDataFromTree } from 'react-apollo/server';
-import store from '../app/src/store.js';
-import { routes } from '../app/src/routes.js';
 import { createNetworkInterface } from 'apollo-client';
+import styleSheet from 'styled-components/lib/models/StyleSheet';
 import Html from './utils/Html';
 import createApolloClient from './utils/create-apollo-client';
 import manifest from './public/manifest.json';
-import styleSheet from 'styled-components/lib/models/StyleSheet';
+import store from '../app/src/store.js';
+import { routes } from '../app/src/routes.js';
 
 const PORT = process.env.PORT || 1338;
 const IP = '0.0.0.0';
@@ -24,7 +24,7 @@ const apiUrl = `${baseUrl}graphql`;
 
 app.use(morgan('combined'));
 app.use(compression());
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(`${__dirname}/public`));
 
 app.use((req, res) => {
   match({ routes, location: req.url },
