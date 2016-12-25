@@ -5,11 +5,10 @@ import Box from 'grommet-udacity/components/Box';
 import Meter from 'grommet-udacity/components/Meter';
 import Value from 'grommet-udacity/components/Value';
 import Heading from 'grommet-udacity/components/Heading';
-import Columns from 'grommet-udacity/components/Columns';
 import Footer from 'grommet-udacity/components/Footer';
 import Button from 'grommet-udacity/components/Button';
 import { Divider } from 'components';
-import { Card } from '../../../../styles'; // eslint-disable-line
+import { Card, Columns } from './styles';
 
 const LanguageSection = ({
   languages,
@@ -24,14 +23,10 @@ const LanguageSection = ({
       Language Usage
     </Headline>
     <Divider />
-    <Columns
-      maxCount={4}
-      align="center"
-      justify="center"
-    >
+    <Columns>
       {languages.map((language, i) =>
         <Card key={i}>
-          <Box align="center" justify="center">
+          <Box align="center" justify="center" pad="medium">
             <Meter
               type="arc"
               colorIndex="brand"
@@ -45,7 +40,7 @@ const LanguageSection = ({
                 </Box>
               }
             />
-          </Box>,
+          </Box>
         </Card>,
       )}
     </Columns>

@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import cssModules from 'react-css-modules';
-import styles from './index.module.scss';
 import Section from 'grommet-udacity/components/Section';
 import Headline from 'grommet-udacity/components/Headline';
 import Footer from 'grommet-udacity/components/Footer';
@@ -14,6 +13,7 @@ import {
   PolarRadiusAxis,
 } from 'recharts';
 import { Divider } from 'components';
+import styles from './index.module.scss';
 
 const FocusSection = ({
   chartData,
@@ -53,7 +53,7 @@ const FocusSection = ({
         />
         <PolarGrid />
         <PolarAngleAxis dataKey="subject" />
-        <PolarRadiusAxis/>
+        <PolarRadiusAxis />
       </RadarChart>
     </Box>
     <Footer align="center" justify="center" pad="large">
@@ -67,7 +67,15 @@ const FocusSection = ({
 );
 
 FocusSection.propTypes = {
-  chartData: PropTypes.array.isRequired,
+  chartData: PropTypes.arrayOf(
+    PropTypes.shape({
+      A: PropTypes.number.isRequired,
+      B: PropTypes.number.isRequired,
+      subject: PropTypes.string.isRequired,
+      fullMark: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  isMobile: PropTypes.bool.isRequired,
 };
 
 export default cssModules(FocusSection, styles);

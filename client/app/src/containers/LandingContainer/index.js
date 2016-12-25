@@ -9,6 +9,7 @@ import {
   HeroSection,
   SummarySection,
   FocusSection,
+  FocusSectionTwo,
   OpenSourceContributions,
   MilestonesSection,
   LanguageSection,
@@ -77,6 +78,7 @@ class LandingContainer extends Component {
         <MilestonesSection milestones={milestones} data={milestoneData} />
         <LanguageSection languages={languages} />
         <FocusSection isMobile={isMobile} chartData={chartData} />
+        <FocusSectionTwo chartData={chartData} />
         <OpenSourceContributions
           gitData={gitData}
           isLoading={loadingData}

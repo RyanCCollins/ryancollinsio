@@ -26,6 +26,7 @@ export AuthFormFooter from './AuthFormFooter';
 export LoginForm from './LoginForm';
 export PaginatorFooter from './PaginatorFooter';
 export TagList from './TagList';
+export FocusSectionTwo from './StaticLandingSections/FocusSectionTwo';
 export SummarySectionTwo from './StaticLandingSections/SummarySectionTwo';
 export TechStackSection from './StaticLandingSections/TechStackSection';
 export MyLocation from './StaticLandingSections/MyLocation';
