@@ -118,7 +118,7 @@
     "css-modules-require-hook": "^4.0.5",
     "elm": "^0.18.0",
     "elm-hot-loader": "^0.5.3",
-    "elm-webpack-loader": "^3.1.0",
+    "elm-webpack-loader": "^3.0.6",
     "elmx-webpack-preloader": "^1.1.1",
     "enzyme": "^2.4.1",
     "enzyme-to-json": "^1.0.3",
