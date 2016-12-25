@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
-import * as AppActions from 'containers/AppContainer/actions';
 import Box from 'grommet-udacity/components/Box';
 import Value from 'grommet-udacity/components/Value';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Container, WaveGoodbye, Seeya } from './styles';
+import * as AppActions from 'containers/AppContainer/actions'; // eslint-disable-line
 
 class LogoutPage extends Component {
   constructor() {

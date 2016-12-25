@@ -1,9 +1,9 @@
 import React from 'react';
 import { Router } from 'react-router';
 import { ApolloProvider } from 'react-apollo';
+import { AppContainer } from 'containers'; // eslint-disable-line
 import store, { history } from './store';
 import client from './apolloClient';
-import { AppContainer } from 'containers';
 
 /* eslint-disable */
 // Polyfill for the System.import
@@ -18,11 +18,11 @@ if (typeof System === 'undefined') {
 
 // Switching to system.import to make use of dynamic tree shaking
 // https://medium.com/modus-create-front-end-development/automatic-code-splitting-for-react-router-w-es6-imports-a0abdaa491e9#.msrxv8fwd
-const errorLoading = (err) =>
+const errorLoading = err =>
   console.error('Dynamic loading failed' + err); // eslint-disable-line
 
-const loadRoute = (cb) =>
-  (module) =>
+const loadRoute = cb =>
+  module =>
     cb(null, module.default);
 
 export const routes = {
@@ -32,7 +32,7 @@ export const routes = {
     getComponent(location, callback) {
       System.import('./pages/LandingPage') // eslint-disable-line block-scoped-var
         .then(loadRoute(callback))
-        .catch((err) => errorLoading(err));
+        .catch(err => errorLoading(err));
     },
   },
   childRoutes: [
@@ -41,7 +41,7 @@ export const routes = {
       getComponent(location, callback) {
         System.import('./pages/SignupPage')  // eslint-disable-line block-scoped-var
           .then(loadRoute(callback))
-          .catch((err) => errorLoading(err));
+          .catch(err => errorLoading(err));
       },
     },
     {
@@ -49,7 +49,7 @@ export const routes = {
       getComponent(location, callback) {
         System.import('./pages/LoginPage')  // eslint-disable-line block-scoped-var
           .then(loadRoute(callback))
-          .catch((err) => errorLoading(err));
+          .catch(err => errorLoading(err));
       },
     },
     {
@@ -57,7 +57,7 @@ export const routes = {
       getComponent(location, callback) {
         System.import('./pages/LogoutPage')  // eslint-disable-line block-scoped-var
           .then(loadRoute(callback))
-          .catch((err) => errorLoading(err));
+          .catch(err => errorLoading(err));
       },
     },
     {
@@ -65,7 +65,7 @@ export const routes = {
       getComponent(location, callback) {
         System.import('./pages/UserProfilePage')  // eslint-disable-line block-scoped-var
           .then(loadRoute(callback))
-          .catch((err) => errorLoading(err));
+          .catch(err => errorLoading(err));
       },
     },
     {
@@ -73,7 +73,7 @@ export const routes = {
       getComponent(location, callback) {
         System.import('./pages/ContactPage')  // eslint-disable-line block-scoped-var
           .then(loadRoute(callback))
-          .catch((err) => errorLoading(err));
+          .catch(err => errorLoading(err));
       },
     },
     {
@@ -81,7 +81,7 @@ export const routes = {
       getComponent(location, callback) {
         System.import('./pages/AdminDashboardPage')  // eslint-disable-line block-scoped-var
           .then(loadRoute(callback))
-          .catch((err) => errorLoading(err));
+          .catch(err => errorLoading(err));
       },
     },
     {
@@ -89,7 +89,7 @@ export const routes = {
       getComponent(location, callback) {
         System.import('./pages/TutorialsPage')  // eslint-disable-line block-scoped-var
           .then(loadRoute(callback))
-          .catch((err) => errorLoading(err));
+          .catch(err => errorLoading(err));
       },
     },
     {
@@ -97,7 +97,7 @@ export const routes = {
       getComponent(location, callback) {
         System.import('./pages/TutorialPage')  // eslint-disable-line block-scoped-var
           .then(loadRoute(callback))
-          .catch((err) => errorLoading(err));
+          .catch(err => errorLoading(err));
       },
     },
     {
@@ -105,7 +105,7 @@ export const routes = {
       getComponent(location, callback) {
         System.import('./pages/SearchPage')  // eslint-disable-line block-scoped-var
           .then(loadRoute(callback))
-          .catch((err) => errorLoading(err));
+          .catch(err => errorLoading(err));
       },
     },
     {
@@ -113,15 +113,7 @@ export const routes = {
       getComponent(location, callback) {
         System.import('./pages/AboutPage')  // eslint-disable-line block-scoped-var
           .then(loadRoute(callback))
-          .catch((err) => errorLoading(err));
-      },
-    },
-    {
-      path: '/giphy/search/easter/egg',
-      getComponent(location, callback) {
-        System.import('./pages/GiphySearchPage')  // eslint-disable-line block-scoped-var
-          .then(loadRoute(callback))
-          .catch((err) => errorLoading(err));
+          .catch(err => errorLoading(err));
       },
     },
 /* GENERATOR: Newly generated Routes go here */
@@ -130,7 +122,7 @@ export const routes = {
       getComponent(location, callback) {
         System.import('./pages/ProjectPage') // eslint-disable-line block-scoped-var
           .then(loadRoute(callback))
-          .catch((err) => errorLoading(err));
+          .catch(err => errorLoading(err));
       },
     },
     {
@@ -138,7 +130,7 @@ export const routes = {
       getComponent(location, callback) {
         System.import('./pages/PortfolioPage') // eslint-disable-line block-scoped-var
           .then(loadRoute(callback))
-          .catch((err) => errorLoading(err));
+          .catch(err => errorLoading(err));
       },
     },
     {
@@ -146,7 +138,7 @@ export const routes = {
       getComponent(location, callback) {
         System.import('./pages/BlogPage') // eslint-disable-line block-scoped-var
           .then(loadRoute(callback))
-          .catch((err) => errorLoading(err));
+          .catch(err => errorLoading(err));
       },
     },
     {
@@ -154,7 +146,7 @@ export const routes = {
       getComponent(location, callback) {
         System.import('./pages/PostPage') // eslint-disable-line block-scoped-var
           .then(loadRoute(callback))
-          .catch((err) => errorLoading(err));
+          .catch(err => errorLoading(err));
       },
     },
     {
@@ -162,7 +154,7 @@ export const routes = {
       getComponent(location, callback) {
         System.import('./pages/CreatePostPage') // eslint-disable-line block-scoped-var
           .then(loadRoute(callback))
-          .catch((err) => errorLoading(err));
+          .catch(err => errorLoading(err));
       },
     },
     {
@@ -170,7 +162,7 @@ export const routes = {
       getComponent(location, callback) {
         System.import('./pages/CreateProjectPage') // eslint-disable-line block-scoped-var
           .then(loadRoute(callback))
-          .catch((err) => errorLoading(err));
+          .catch(err => errorLoading(err));
       },
     },
     {
@@ -178,7 +170,7 @@ export const routes = {
       getComponent(location, callback) {
         System.import('./pages/ArchivePage') // eslint-disable-line block-scoped-var
           .then(loadRoute(callback))
-          .catch((err) => errorLoading(err));
+          .catch(err => errorLoading(err));
       },
     },
     {
@@ -186,13 +178,13 @@ export const routes = {
       getComponent(location, callback) {
         System.import('./pages/NotFoundPage') // eslint-disable-line block-scoped-var
           .then(loadRoute(callback))
-          .catch((err) => errorLoading(err));
+          .catch(err => errorLoading(err));
       },
     },
   ],
 };
 
-const RouterApp = (props) => (
+const RouterApp = props => (
   <ApolloProvider {...props} store={store} client={client}>
     <Router
       history={history} // Scroll to top on route transitions
