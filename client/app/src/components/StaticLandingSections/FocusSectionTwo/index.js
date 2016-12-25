@@ -15,7 +15,7 @@ const FocusSectionTwo = ({ chartData }) => (
       legend
       size="large"
       type="circle"
-      max={Math.max(chartData.map(i => i.A))}
+      max={100}
       series={chartData.map((item, i) =>
         ({ label: item.subject, value: item.A, colorIndex: `graph-${i + 1}` }),
       )}

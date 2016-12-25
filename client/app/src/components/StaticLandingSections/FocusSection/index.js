@@ -20,7 +20,7 @@ const FocusSection = ({
   isMobile,
 }) => (
   <Section
-    className="section"
+    className="section gradient-green"
     id="focus-section"
     colorIndex="light-1"
     full="horizontal"

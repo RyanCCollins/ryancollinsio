@@ -1,22 +1,17 @@
 import React from 'react';
 import Section from 'grommet-udacity/components/Section';
-import Headline from 'grommet-udacity/components/Headline';
 import GrommetIcon from 'grommet-udacity/components/icons/Grommet';
-import { Divider, BlitzLogo, UdacityLogo } from 'components';
+import { BlitzLogo, UdacityLogo } from 'components';
 import Logos, { Card, Logo, ProjectName, CardLink, CardTop, CardBottom } from './styles';
 
 const SummarySectionTwo = () => (
   <Section
     full="horizontal"
     id="summary-section-2"
-    className="half-section"
+    className="half-section gradient-purple"
     align="center"
     justify="center"
   >
-    <Headline align="center" className="heading">
-      Projects
-    </Headline>
-    <Divider />
     <Logos>
       <Card>
         <CardLink href="https://github.com/udacityalumni">
