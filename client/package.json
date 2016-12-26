@@ -70,8 +70,9 @@
     "start": "npm run dev",
     "clean": "rm -rf app/dist app/build",
     "install:elm": "elm-package install",
-    "setup": "npm install && npm run install:elm",
+    "setup": "npm install",
     "serve:bundle": "cross-env NODE_ENV=production PORT=1337 node server.js",
+    "preinstall": "npm run install:elm",
     "postinstall": "npm run deploy",
     "push": "cd .. && git subtree push --prefix client heroku master && cd client"
   },
