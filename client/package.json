@@ -69,7 +69,7 @@
     "deploy": "cross-env NODE_ENV=production ./node_modules/.bin/webpack --config ./webpack.config.prod.js",
     "start": "npm run dev",
     "clean": "rm -rf app/dist app/build",
-    "install:elm": "elm-package install",
+    "install:elm": "elm-package install -y",
     "setup": "npm install",
     "serve:bundle": "cross-env NODE_ENV=production PORT=1337 node server.js",
     "preinstall": "npm run install:elm",
