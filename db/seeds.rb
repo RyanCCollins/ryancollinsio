@@ -8,12 +8,13 @@ User.create(
 p = Project.create!(
   title: 'Scalable React TypeScript Boilerplate',
   user: User.all.first,
+  description: "A scalable react boilerplate that uses TypeScript.  Based on the Scalable React Boilerplate project, the main difference being that this project embraces static types using TypeScript.",
   featureImage: "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/srtsb/main.png?raw=true",
   projectUrl: "https://scalable-react-ts-boilerplate.herokuapp.com/",
   repoUrl: "https://github.com/RyanCCollins/scalable-react-ts-boilerplate",
-  milestones: "- Built a scalable, feature-first boilerplate / micro-framework using TypeScript. - Developed a documentation webpage for user's of the site. - Built dozens of reusable component primitives with typed APIs",
-  designPatterns: "This boilerplate utilizes many best practices. It implements static typing using TypeScript.  It uses Redux and the Flux unidirectional data flow.  It also uses styled-components, which allows for collocated component based CSS styles.",
-  technicalInformation: "Built with TypeScript, React, Redux and many other libraries using the feature-first architecture.  Utilizes Functional Programming and Immutable data structures.  The app is universal and renders serverside using an express applications.",
+  milestones: "- Built a scalable, feature-first boilerplate / micro-framework using TypeScript. \n - Developed a documentation webpage for user's of the site. \n - Built dozens of reusable component primitives with typed APIs",
+  designPatterns: "This boilerplate utilizes many best practices. It implements static typing using TypeScript, providing type-safety and self-documentation.  It uses Redux and the Flux unidirectional data flow.  It also uses styled-components.",
+  technicalInformation: "Built with TypeScript, React, Redux and many other libraries using the feature-first architecture.  Utilizes Functional Reactive Programming and Immutable data structures.  The app is universal and renders serverside using an express application.",
   category: "frontend",
   sort_priority: 203
 )
@@ -84,9 +85,9 @@ p = Project.create(
   description: "A true feat of engineering, this application serves as a hub for Udacity Alumni from around the world. We built a bespoke publishing platform and social network to connect Alumni from around the world, using many of the most advanced web engineering technologies available.",
   projectUrl: "https://udacity-alumni-client.herokuapp.com/",
   repoUrl: "https://github.com/udacityalumni/alumni-client",
-  milestones: "- As team leader, lead the engineering of the Udacity Alumni Web application, with over 800 commits from 20+ engineers from around the world \n - Engineered a cutting edge React single page application that utilizes incredibly performant server rendering. \n  - Implemented webpack code-chunking, lazy loading, and other similar performance optimization techniques to cut the time-to-first-byte loading time to milliseconds",
-  designPatterns: "The app utilizes accessibility and UX best practices and contains dozens of dynamic UI components. It uses many performance enhancement techniques, including Server-rendering, code-chunking, lazy-loading, et. al. to make it blindingly performant. It also uses the Flux unidirectional data-flow architecture and functional reactive programming techniques.",
-  technicalInformation: "Built with functional JavaScript, ES2015, React, Redux, Grommet, CSS Modules, following the unidirectional data-flow architecture. Utilizes best practices for scaling of React Apps. Unit tests written with Jest and Enzyme to provide high quality code.",
+  milestones: "- As team leader, lead the engineering of the Udacity Alumni Web application, with over 800 commits from 20+ engineers from around the world \n - Engineered a cutting edge React single page application that utilizes server rendering, providing exceptional performance. \n  - Implemented webpack code-chunking, lazy loading, and other similar performance optimization techniques to cut the time-to-first-byte loading time to milliseconds",
+  designPatterns: "The app utilizes accessibility and UX best practices and contains dozens of dynamic UI components. It uses many performance enhancement techniques, including Server-rendering, code-chunking, lazy-loading, et. al. It also uses the Flux unidirectional data-flow architecture and functional reactive programming techniques.",
+  technicalInformation: "Built with functional JavaScript, ES2015, React, Redux, Grommet, CSS Modules, following the unidirectional data-flow architecture. Utilizes best practices for scaling of React applications. Unit tests written with Jest and Enzyme to provide high quality code.",
   category: "frontend",
   sort_priority: 202
 )
@@ -159,7 +160,7 @@ p = Project.create(
   description: "A complete rewrite of RyanCollins.io, built with the latest and greatest technologies.  The application will be used for me to broadcast online courses, blog, post about my recent work, etc.",
   projectUrl: "https://ryancollins.herokuapp.com/",
   repoUrl: "https://github.com/RyanCCollins/ryancollinsio",
-  milestones: "- Built a GraphQL on Rails API to allow for declarative query collocation \n  - Developed a cutting edge React single page application that utilizes incredibly performant server rendering. \n  - Implemented webpack code-chunking, lazy loading, and other similar performance optimization techniques to cut the time-to-first-byte loading time to milliseconds \n  - Built an accompanying React Native app",
+  milestones: "- Built a GraphQL on Rails API to allow for declarative query collocation \n  - Developed a cutting edge React single page application that utilizes server rendering to increase performance exponentially. \n  - Implemented webpack code-chunking, lazy loading, and other similar performance optimization techniques to cut the time-to-first-byte loading time to milliseconds \n  - Built an accompanying React Native app",
   designPatterns: "The app utilizes service worker and app cache to provide an offline experience.  It utilizes accessibility and UX best practices and contains many dynamic UI components. It uses many performance enhancement techniques, including Server-rendering, code-chunking, lazy-loading, et. al. to make it blindingly performant. It also uses the Flux unidirectional data-flow architecture and functional reactive programming techniques. On the back end, it follows the micro-service architecture, serving data via a single endpoint with GraphQL, allowing for declarative collocated queries and performant network requests.",
   technicalInformation: "Built with functional JavaScript, ES2015, React, Redux, Grommet, CSS Modules, following the unidirectional data-flow architecture. Utilizes best practices for scaling of React Apps. Unit tests written with Jest and Enzyme to provide high quality code. Built a custom GraphQL back end running on Ruby on Rails.",
   category: "fullstack",
