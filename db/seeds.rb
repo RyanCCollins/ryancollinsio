@@ -4,6 +4,36 @@ User.create(
   password: "Password123!"
 )
 
+# React TS Boilerplate
+p = Project.create!(
+  title: 'Scalable React TypeScript Boilerplate',
+  user: User.all.first,
+  featureImage: "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/srtsb/main.png?raw=true",
+  projectUrl: "https://scalable-react-ts-boilerplate.herokuapp.com/",
+  repoUrl: "https://github.com/RyanCCollins/scalable-react-ts-boilerplate",
+  milestones: "- Built a scalable, feature-first boilerplate / micro-framework using TypeScript. - Developed a documentation webpage for user's of the site. - Built dozens of reusable component primitives with typed APIs",
+  designPatterns: "This boilerplate utilizes many best practices. It implements static typing using TypeScript.  It uses Redux and the Flux unidirectional data flow.  It also uses styled-components, which allows for collocated component based CSS styles.",
+  technicalInformation: "Built with TypeScript, React, Redux and many other libraries using the feature-first architecture.  Utilizes Functional Programming and Immutable data structures.  The app is universal and renders serverside using an express applications.",
+  category: "frontend",
+  sort_priority: 203
+)
+
+images = [
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/srtsb/main.png?raw=true",
+  "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/srtsb/all.png?raw=true",
+]
+
+images.each do |i|
+  p.images << ProjectImage.create(
+    src: i
+  )
+end
+
+tags = ['React', 'TypeScript', 'Redux', 'Flux', 'ES6', 'Node', 'Express']
+tags.each do |tag|
+  p.tags << Tag.find_or_create_by(title: tag)
+end
+
 # Calendar web app
 
 p = Project.create!(
