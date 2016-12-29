@@ -8,6 +8,8 @@ import { StyledWrapper, StyledArticle } from './styles';
 import { Main } from 'elm/Main'; // eslint-disable-line
 import { Divider } from 'components'; // eslint-disable-line
 
+const isClient = typeof document !== 'undefined';
+
 const markdownContent = `### Congrats on finding the easter egg!
   \n I have put together a Giphy Search app for your amusement.
   I built it using Elm, although it bootstraps via React.  Take a look at my
@@ -30,7 +32,9 @@ class GiphySearchContainer extends Component { // eslint-disable-line
           </StyledArticle>
         </Section>
         <Section>
-          <Elm src={Main} />
+          {isClient &&
+            <Elm src={Main} />
+          }
         </Section>
       </StyledWrapper>
     );
