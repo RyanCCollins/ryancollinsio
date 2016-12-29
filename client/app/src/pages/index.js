@@ -1,5 +1,4 @@
 /* GENERATOR: Assemble all pages for export */
-export GiphySearchPage from './GiphySearchPage/index';
 export AboutPage from './AboutPage/index';
 export SearchPage from './SearchPage/index';
 export TutorialPage from './TutorialPage/index';

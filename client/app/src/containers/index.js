@@ -1,5 +1,4 @@
 /* GENERATOR: Assemble all containers for export */
-export GiphySearchContainer from './GiphySearchContainer';
 export AboutContainer from './AboutContainer';
 export FeedbackContainer from './FeedbackContainer';
 export SearchContainer from './SearchContainer';

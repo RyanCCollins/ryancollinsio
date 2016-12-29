@@ -116,14 +116,6 @@ export const routes = {
           .catch(err => errorLoading(err));
       },
     },
-    {
-      path: '/giphy/search/easter/egg',
-      getComponent(location, callback) {
-        System.import('./pages/GiphySearchPage')  // eslint-disable-line block-scoped-var
-          .then(loadRoute(callback))
-          .catch(err => errorLoading(err));
-      },
-    },
 /* GENERATOR: Newly generated Routes go here */
     {
       path: '/portfolio/projects/:slug',

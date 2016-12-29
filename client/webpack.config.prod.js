@@ -29,24 +29,11 @@ module.exports = {
     ],
   },
   module: {
-    noParse: /\.elm$/,
-    preLoaders: [
-      {
-        test: /\.jsx?$/,
-        loaders: [],
-        include: path.resolve(ROOT_PATH, './app'),
-      },
-    ],
     loaders: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         loaders: ['babel'],
-      },
-      {
-        test:    /\.elm$/,
-        exclude: [/elm-stuff/, /node_modules/],
-        loader:  'elm-webpack'
       },
       {
         test: /\.svg$/,
@@ -109,13 +96,12 @@ module.exports = {
     };
   },
   resolve: {
-    extensions: ['', '.js', '.jsx', '.json', '.elm'],
+    extensions: ['', '.js', '.jsx', '.json'],
     alias: {
       components: path.resolve(ROOT_PATH, 'app/src/components'),
       containers: path.resolve(ROOT_PATH, 'app/src/containers'),
       pages: path.resolve(ROOT_PATH, 'app/src/pages'),
       fragments: path.resolve(ROOT_PATH, 'app/src/fragments'),
-      elm: path.resolve(ROOT_PATH, 'app/src/elm'),
       styles: path.resolve(ROOT_PATH, 'app/styles'),
     },
   },
