@@ -368,11 +368,12 @@ a.active {
 }
 
 body, html {
-  overflow-x:hidden;
+  overflow-x: hidden;
 }
 
 html {
-  overflow-y: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 input, textarea {

@@ -34,10 +34,10 @@ const FocusSection = ({
       className={styles.chart}
     >
       <RadarChart
-        cx={window ? window.innerWidth / 2 : 400}
-        cy={isMobile ? 250 : 350}
-        outerRadius={isMobile ? 150 : 250}
-        width={window ? window.innerWidth - 60 : 400}
+        cx={window ? (window.innerWidth / 2) : 400}
+        cy={isMobile ? 200 : 350}
+        outerRadius={isMobile ? 125 : 250}
+        width={window ? window.innerWidth - 20 : 400}
         height={isMobile ? 500 : 700}
         data={chartData}
       >
