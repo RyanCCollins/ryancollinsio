@@ -1563,7 +1563,7 @@ end
 post.save!
 
 Reference.create(
-  avatar: 'https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/gabriele-cimato-pic.png?raw=true',
+  avatar: 'https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/andres.jpg?raw=true',
   name: 'Andres Narvaez',
   body: 'Ryan is an incredibly smart worker with a high proficiency in his field,
     quick turnaround times, and a producer of high-quality code.
