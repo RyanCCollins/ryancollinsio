@@ -1564,6 +1564,26 @@ post.save!
 
 Reference.create(
   avatar: 'https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/gabriele-cimato-pic.png?raw=true',
+  name: 'Andres Narvaez',
+  body: 'Ryan is an incredibly smart worker with a high proficiency in his field,
+    quick turnaround times, and a producer of high-quality code.
+    His contributions were a major reason why we delivered the new
+    mentor/student scheduling platform to Udacity to their full satisfaction.
+    He is the type of developer who goes above and beyond to understand a
+    problem and arrive at an efficient solution, with great enthusiasm,
+    which has led him to accumulate a wealth of experience using popular
+    technologies such as React/Redux. He always knows the right questions
+    to ask before committing to code and I have always been able to
+    count on him to deliver what our clients expect. His communications
+    skills are superb, has an impressive Internet presence with a sense
+    of UX (just visit his website, or find him on Medium!), and he is just
+    a great person to work with. I would recommend Ryan to any progressive/game changing team!',
+  title: 'Technical Project Manager',
+  company: 'Udacity Blitz'
+)
+
+Reference.create(
+  avatar: 'https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/gabriele-cimato-pic.png?raw=true',
   name: 'Gabriele Cimato',
   body: 'Ryan will be a great asset in any field he
       applies his energy to. He is extremely knowledgeable
@@ -1577,7 +1597,7 @@ Reference.create(
       Back-End team and even hopping in with the Mobile one as well.
       His dedication and knowledge as a developer are inspiring!',
   title: 'Lead Full Stack Engineer',
-  company: "Food Perk"
+  company: 'Food Perk'
 )
 
 Reference.create(
