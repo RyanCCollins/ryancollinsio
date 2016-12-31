@@ -1,7 +1,7 @@
-import update from 'react-addons-update';
+import { fromJS } from 'immutable';
 import * as types from './constants';
 
-export const initialState = {
+export const initialState = fromJS({
   image: false,
   headline: false,
   button: false,
@@ -14,55 +14,37 @@ export const initialState = {
     I currently rest my head in a quaint beach house in the Outer Banks, North Carolina
     and in a condo in Trumbull, CT.  Someday, I would like to move to California.`,
   },
-};
+});
 
 const landingReducer =
   (state = initialState, action) => {
     switch (action.type) {
       case types.TOGGLE_LANDING_LOGO_HOVERED:
-        return {
-          ...state,
-          isHovered: !state.isHovered,
-        };
+        return state
+          .set('isHovered', !state.get('isHovered'));
       case types.CLEAR_LANDING_ERROR:
-        return {
-          ...state,
-          error: null,
-        };
+        return state
+          .set('error', null);
       case types.LOAD_GIT_DATA_INITIATION:
-        return {
-          ...state,
-          isLoading: true,
-        };
+        return state
+          .set('isLoading', true);
       case types.LOAD_GIT_DATA_SUCCESS:
-        return {
-          ...state,
-          isLoading: false,
-          gitData: action.data,
-        };
+        return state
+          .set('isLoading', true)
+          .set('gitData', action.data);
       case types.LOAD_GIT_DATA_FAILURE:
-        return {
-          ...state,
-          isLoading: false,
-          error: action.error,
-        };
+        return state
+          .set('isLoading', false)
+          .set('error', action.error);
       case types.LANDING_SHOW_IMAGE:
-        return update(state, {
-          image: {
-            $set: true,
-          },
-        });
+        return state
+          .set('image', true);
       case types.LANDING_SHOW_HEADLINE:
-        return update(state, {
-          headline: {
-            $set: true,
-          },
-        });
+        return state
+          .set('headline', true);
       case types.LANDING_SHOW_BUTTON:
-        return {
-          ...state,
-          button: true,
-        };
+        return state
+          .set('button', true);
       default:
         return state;
     }

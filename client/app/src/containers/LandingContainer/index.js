@@ -1,10 +1,11 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import cssModules from 'react-css-modules';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Box from 'grommet-udacity/components/Box';
+import { createStructuredSelector } from 'reselect';
 import {
   HeroSection,
   SummarySection,
@@ -20,7 +21,17 @@ import {
 } from 'components';
 import * as LandingActionCreators from './actions';
 import styles from './index.module.scss';
-import { filteredGitDataSelector } from './selectors';
+import {
+  filteredGitDataSelector,
+  selectImage,
+  selectHeadline,
+  selectIsLoading,
+  selectIsHovered,
+  selectButton,
+  selectReferrers,
+  selectLocation,
+  selectError,
+} from './selectors';
 import referenceFragment from './fragments';
 import {
   milestones,
@@ -32,7 +43,7 @@ import {
   meterData,
 } from './data';
 
-class LandingContainer extends Component {
+class LandingContainer extends PureComponent {
   constructor() {
     super();
     this.state = {
@@ -64,8 +75,7 @@ class LandingContainer extends Component {
       errorLoadingData,
       actions,
       isHovered,
-      isMobile,
-      locationContent,
+      location,
     } = this.props;
     return (
       <Box
@@ -78,7 +88,7 @@ class LandingContainer extends Component {
         <SummarySectionTwo />
         <MilestonesSection milestones={milestones} data={milestoneData} />
         <LanguageSection languages={languages} />
-        <FocusSection isMobile={isMobile} chartData={chartData} />
+        <FocusSection isMobile={false} chartData={chartData} />
         <FocusSectionTwo chartData={meterData} />
         <OpenSourceContributions
           gitData={gitData}
@@ -92,7 +102,7 @@ class LandingContainer extends Component {
         />
         <TechStackSection techItems={techstack} />
         <MyLocation
-          content={locationContent}
+          content={location.content}
         />
       </Box>
     );
@@ -111,22 +121,22 @@ LandingContainer.propTypes = {
   gitData: PropTypes.array, // eslint-disable-line
   button: PropTypes.bool.isRequired,
   isHovered: PropTypes.bool.isRequired,
-  isMobile: PropTypes.bool.isRequired,
-  locationContent: PropTypes.string.isRequired,
+  location: PropTypes.shape({
+    content: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 // mapStateToProps :: {State} -> {Props}
-const mapStateToProps = state => ({
-  isMobile: state.app.isMobile,
-  image: state.landing.image,
-  headline: state.landing.headline,
-  loadingData: state.landing.isLoading,
-  isHovered: state.landing.isHovered,
-  errorLoadingData: state.landing.error,
-  button: state.landing.button,
-  gitData: filteredGitDataSelector(state.landing),
-  referrers: state.landing.referrers,
-  locationContent: state.landing.location.content,
+const mapStateToProps = createStructuredSelector({
+  image: selectImage(),
+  headline: selectHeadline(),
+  loadingData: selectIsLoading(),
+  errorLoadingData: selectError(),
+  button: selectButton(),
+  referrers: selectReferrers(),
+  location: selectLocation(),
+  gitData: filteredGitDataSelector(),
+  isHovered: selectIsHovered(),
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}

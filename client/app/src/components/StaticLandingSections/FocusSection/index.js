@@ -1,3 +1,4 @@
+import { pure } from 'recompose';
 import React, { PropTypes } from 'react';
 import cssModules from 'react-css-modules';
 import Section from 'grommet-udacity/components/Section';
@@ -68,4 +69,5 @@ FocusSection.propTypes = {
   isMobile: PropTypes.bool.isRequired,
 };
 
-export default cssModules(FocusSection, styles);
+const PureComponent = pure(FocusSection);
+export default cssModules(PureComponent, styles);
