@@ -12,22 +12,21 @@ export const landingShowButton = () => ({
   type: types.LANDING_SHOW_BUTTON,
 });
 
-export const performLandingAnimation = () => (dispatch) => {
-  setTimeout(() => {
-    dispatch(
-      landingShowImage(),
-    );
-  }, 1000);
-  setTimeout(() => {
-    dispatch(
-      landingShowHeadline(),
-    );
-  }, 2000);
-  setTimeout(() => {
-    dispatch(
-      landingShowButton(),
-    );
-  }, 3000);
+const timeout = (interval = 1000) => async (f) => {
+  await setTimeout(() => {}, interval);
+  f();
+};
+
+export const performLandingAnimation = () => async (dispatch) => {
+  await timeout(1000)(
+    dispatch(landingShowImage()),
+  );
+  await timeout(2000)(
+    dispatch(landingShowHeadline()),
+  );
+  await timeout(3000)(
+    dispatch(landingShowButton()),
+  );
 };
 
 export const clearLandingError = () => ({
@@ -74,5 +73,5 @@ export const cycleThroughLogoHovered = () => (dispatch) => {
     dispatch(
       toggleLogoHovered(),
     );
-  }, 8000);
+  }, 10000);
 };

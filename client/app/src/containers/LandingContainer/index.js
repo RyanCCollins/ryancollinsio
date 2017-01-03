@@ -33,13 +33,7 @@ import {
 } from './data';
 
 class LandingContainer extends Component {
-  constructor() {
-    super();
-    this.state = {
-      cal: '',
-    };
-  }
-  componentDidMount() {
+  async componentDidMount() {
     this.props.actions.loadGitData();
     this.props.actions.cycleThroughLogoHovered();
     if (window) {
@@ -47,9 +41,8 @@ class LandingContainer extends Component {
         this.props.actions.performLandingAnimation();
       });
     } else {
-      setTimeout(() => {
-        this.props.actions.performLandingAnimation();
-      }, 500);
+      await setTimeout(() => {}, 1000);
+      this.props.actions.performLandingAnimation();
     }
   }
   componentWillUnmount() {
