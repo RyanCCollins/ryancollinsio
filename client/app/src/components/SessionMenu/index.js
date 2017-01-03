@@ -3,8 +3,9 @@ import Menu from 'grommet-udacity/components/Menu';
 import Anchor from 'grommet-udacity/components/Anchor';
 import Heading from 'grommet-udacity/components/Heading';
 import Box from 'grommet-udacity/components/Box';
-import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
+import styles from './index.module.scss';
+
 const noAvatar = 'http://bit.ly/2dqCGdd';
 
 const NoUserMenu = ({ pathname }) => (
@@ -30,6 +31,10 @@ const NoUserMenu = ({ pathname }) => (
   </Menu>
 );
 
+NoUserMenu.propTypes = {
+  pathname: PropTypes.string.isRequired,
+};
+
 const SessionIcon = ({
   user,
 }) => (
@@ -39,6 +44,7 @@ const SessionIcon = ({
     justify="center"
   >
     <img
+      alt="avatar"
       src={user.avatar || noAvatar}
       className={styles.userAvatar}
     />
@@ -47,6 +53,14 @@ const SessionIcon = ({
     </Heading>
   </Box>
 );
+
+SessionIcon.propTypes = {
+  user: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    avatar: PropTypes.string,
+    role: PropTypes.string.isRequired,
+  }),
+};
 
 const SessionMenu = ({
   onLogout,
@@ -115,7 +129,12 @@ const SessionMenu = ({
 );
 
 SessionMenu.propTypes = {
-  user: PropTypes.object,
+  onLogout: PropTypes.func.isRequired,
+  user: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    avatar: PropTypes.string,
+    role: PropTypes.string.isRequired,
+  }),
   pathname: PropTypes.string.isRequired,
 };
 

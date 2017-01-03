@@ -1,10 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as AppContainerActionCreators from './actions';
 import App from 'grommet-udacity/components/App';
 import { Navigation, AppFooter } from 'components';
-import { FeedbackContainer } from 'containers';
+import { FeedbackContainer } from 'containers'; // eslint-disable-line
+import { findScrollParents } from '../../utils';
+import * as AppContainerActionCreators from './actions';
+import { selectNavDocked } from './selectors';
 
 class AppContainer extends Component {
   constructor() {
@@ -12,10 +14,12 @@ class AppContainer extends Component {
     this.handleMobile = this.handleMobile.bind(this);
     this.handleToggleNav = this.handleToggleNav.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.handleNavDocking = this.handleNavDocking.bind(this);
   }
   componentDidMount() {
     this.props.actions.loadPersistedUser();
     this.handleMobile();
+    this.handleNavDocking();
     if (window) {
       window.addEventListener('resize', this.handleMobile);
     }
@@ -44,6 +48,25 @@ class AppContainer extends Component {
       appSetMobile(isMobile);
     }
   }
+  handleNavDocking() {
+    const { navDocked } = this.props;
+    if (this.props.location.pathname !== '/') {
+      this.props.actions.dockNavigation();
+    } else if (navDocked) {
+      const crown = document.querySelector('.app-src-components-StaticLandingSections-HeroSection-___index-module__logoImageWrapper___sVW1s');
+      const scrollParents = findScrollParents(crown);
+      scrollParents.forEach(p =>
+        p.addEventListener('scroll', () => {
+          const crownTop = crown.getBoundingClientRect().top;
+          if (crownTop <= 79) {
+            this.props.actions.dockNavigation();
+          } else {
+            this.props.actions.unDockNavigation();
+          }
+        }),
+      );
+    }
+  }
   handleToggleNav() {
     this.props.actions.appToggleNav();
   }
@@ -55,10 +78,12 @@ class AppContainer extends Component {
       isMobile,
       navIsActive,
       searchTerm,
+      navDocked,
     } = this.props;
     return (
       <App inline centered={false}>
         <Navigation
+          docked={navDocked}
           searchTerm={searchTerm}
           onSearch={this.handleSearch}
           pathname={location.pathname}
@@ -78,11 +103,12 @@ class AppContainer extends Component {
 }
 
 AppContainer.propTypes = {
-  user: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired,
+  navDocked: PropTypes.bool.isRequired,
+  user: PropTypes.object.isRequired, // eslint-disable-line
+  location: PropTypes.object.isRequired, // eslint-disable-line
   children: PropTypes.node.isRequired,
-  navLinks: PropTypes.array.isRequired,
-  actions: PropTypes.object.isRequired,
+  navLinks: PropTypes.array.isRequired, // eslint-disable-line
+  actions: PropTypes.object.isRequired, // eslint-disable-line
   isMobile: PropTypes.bool.isRequired,
   navIsActive: PropTypes.bool.isRequired,
   searchTerm: PropTypes.string,
@@ -93,19 +119,20 @@ AppContainer.contextTypes = {
 };
 
 // mapStateToProps :: {State} -> {Props}
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   user: state.app.user,
   searchTerm: state.app.searchTerm,
   isMobile: state.app.isMobile,
   navLinks: state.app.navLinks,
   navIsActive: state.app.navIsActive,
+  navDocked: selectNavDocked(state),
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     AppContainerActionCreators,
-    dispatch
+    dispatch,
   ),
 });
 
@@ -113,5 +140,5 @@ const Container = AppContainer;
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Container);

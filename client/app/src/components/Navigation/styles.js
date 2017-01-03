@@ -6,3 +6,8 @@ export const StyledBox = styled(Box)`
   flex-grow: 1 !important;
   margin-right: 12px !important;
 `;
+
+/* eslint-disable */
+export const Content = styled.main`
+  transform: ${props => props.docked ? '' : 'translate(0px, 79px)'};
+`;

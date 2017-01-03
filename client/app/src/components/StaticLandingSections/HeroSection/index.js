@@ -7,9 +7,9 @@ import Animate from 'grommet-udacity/components/Animate';
 import Footer from 'grommet-udacity/components/Footer';
 import Button from 'grommet-udacity/components/Button';
 import { LogoImage } from 'components';
-import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
 import cn from 'classnames';
+import styles from './index.module.scss';
 
 const HeroSection = ({
   headline,
@@ -18,13 +18,17 @@ const HeroSection = ({
   isHovered,
 }) => (
   <Hero
-    id="hero-section"
     colorIndex="grey-1"
     justify="center"
     size="large"
     backgroundImage="https://github.com/RyanCCollins/cdn/blob/master/misc/pattern-2.png?raw=true"
   >
-    <Box align="center" justify="center" style={{ width: '100%' }}>
+    <Box
+      id="hero"
+      align="center"
+      justify="center"
+      style={{ width: '100%', marginTop: 100 }}
+    >
       <Animate
         visible={image}
         enter={{ animation: 'slide-down', duration: 1500 }}

@@ -1,5 +1,5 @@
-import * as types from './constants';
 import update from 'react-addons-update';
+import * as types from './constants';
 
 export const initialState = {
   isMobile: false,
@@ -26,11 +26,22 @@ export const initialState = {
       name: 'Tutorials',
     },
   ],
+  navDocked: true,
 };
 
 const appContainerReducer =
   (state = initialState, action) => {
     switch (action.type) {
+      case types.UNDOCK_NAVIGATION:
+        return {
+          ...state,
+          navDocked: true,
+        };
+      case types.APP_DOCK_NAVIGATION:
+        return {
+          ...state,
+          navDocked: false,
+        };
       case types.APP_ON_TOGGLE_NAV:
         return update(state, {
           navIsActive: {

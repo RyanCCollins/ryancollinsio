@@ -4,7 +4,7 @@ import Header from 'grommet-udacity/components/Header';
 import Title from 'grommet-udacity/components/Title';
 import MenuIcon from 'grommet-udacity/components/icons/base/Menu';
 import Search from 'grommet-udacity/components/Search';
-import { StyledBox } from './styles';
+import { StyledBox, Content } from './styles';
 
 const Navigation = ({
   isMobile,
@@ -16,17 +16,23 @@ const Navigation = ({
   pathname,
   onSearch,
   searchTerm,
+  docked,
 }) => (
   <div>
     {!isMobile &&
       <Navbar
         pathname={pathname}
         user={user}
+        docked={docked}
         navLinks={navLinks}
         onSearch={onSearch}
       />
     }
-    {!isMobile && children}
+    {!isMobile &&
+      <Content docked={docked}>
+        {children}
+      </Content>
+    }
     {isMobile &&
       <MobileNav
         pathname={pathname}
@@ -34,7 +40,6 @@ const Navigation = ({
         navActive={navIsActive}
         onToggleNav={onToggleNav}
         navLinks={navLinks}
-        pathname={pathname}
       >
         <Header
           direction="row"
@@ -54,25 +59,37 @@ const Navigation = ({
           </StyledBox>
           <Title onClick={onToggleNav} a11yTitle="Open Menu Right">
             <MenuIcon
-              colorIndex="brand"
+              colorIndex="#666"
               size="medium"
               type="control"
             />
           </Title>
         </Header>
-        {children}
+        <Content docked={docked}>
+          {children}
+        </Content>
       </MobileNav>
     }
   </div>
 );
 
 Navigation.propTypes = {
+  docked: PropTypes.bool.isRequired,
   isMobile: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
-  user: PropTypes.object.isRequired,
+  user: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    avatar: PropTypes.string,
+    role: PropTypes.string.isRequired,
+  }),
+  navLinks: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
+    }).isRequired,
+  ).isRequired,
   onSearch: PropTypes.func.isRequired,
   navIsActive: PropTypes.bool.isRequired,
-  navLinks: PropTypes.array.isRequired,
   onToggleNav: PropTypes.func.isRequired,
   pathname: PropTypes.string.isRequired,
   searchTerm: PropTypes.string,

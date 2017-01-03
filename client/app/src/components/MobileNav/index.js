@@ -48,14 +48,11 @@ class MobileNav extends Component {
             <Link
               key={i}
               to={link.url}
-              className={
-                pathname.split('/')[1].toLowerCase() === link.name.toLowerCase() ?
-                  'active' : 'inactive'
-              }
+              className={`${'nav-item '}${pathname.split('/')[1].toLowerCase() === link.name.toLowerCase() ? 'active' : 'inactive'}`}
               onClick={() => onToggleNav()}
             >
               {link.name}
-            </Link>
+            </Link>,
           )}
         </Menu>
         <Footer

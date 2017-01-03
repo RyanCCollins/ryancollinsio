@@ -1,9 +1,8 @@
 import React, { PropTypes } from 'react';
-import Header from 'grommet-udacity/components/Header';
 import Anchor from 'grommet-udacity/components/Anchor';
 import Search from 'grommet-udacity/components/Search';
 import { SessionMenu, NavTitle } from 'components';
-import { StyledBox, StyledMenu } from './styles';
+import { StyledBox, StyledMenu, NavHeader } from './styles';
 
 const Navbar = ({
   pathname,
@@ -11,10 +10,11 @@ const Navbar = ({
   user,
   onSearch,
   searchTerm,
+  docked,
 }) => (
   <nav>
-    <Header justify="between">
-      <NavTitle isClient={typeof window !== 'undefined'} />
+    <NavHeader docked={docked} justify="between">
+      <NavTitle isClient={typeof document !== 'undefined'} />
       <StyledMenu
         direction="row"
         align="center"
@@ -28,7 +28,7 @@ const Navbar = ({
             href={item.url}
           >
             {item.name}
-          </Anchor>
+          </Anchor>,
         )}
         <StyledBox>
           <Search
@@ -38,14 +38,27 @@ const Navbar = ({
             placeHolder="Start typing..."
           />
         </StyledBox>
-        <SessionMenu pathname={pathname} user={user} />
+        {!docked &&
+          <SessionMenu pathname={pathname} user={user} />
+        }
       </StyledMenu>
-    </Header>
+    </NavHeader>
   </nav>
 );
 
 Navbar.propTypes = {
-  navLinks: PropTypes.array.isRequired,
+  docked: PropTypes.bool.isRequired,
+  user: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    avatar: PropTypes.string,
+    role: PropTypes.string.isRequired,
+  }),
+  navLinks: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
+    }).isRequired,
+  ).isRequired,
   pathname: PropTypes.string.isRequired,
   onSearch: PropTypes.func.isRequired,
   searchTerm: PropTypes.string,
