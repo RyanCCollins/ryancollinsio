@@ -70,10 +70,9 @@ export const toggleLogoHovered = () => ({
 });
 
 export const cycleThroughLogoHovered = () => (dispatch) => {
-  dispatch(toggleLogoHovered());
-  // window.interval = setInterval(() => {
-  //   dispatch(
-  //     toggleLogoHovered(),
-  //   );
-  // }, 20000);
+  window.interval = setInterval(() => {
+    dispatch(
+      toggleLogoHovered(),
+    );
+  }, 8000);
 };

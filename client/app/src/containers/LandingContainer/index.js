@@ -52,6 +52,11 @@ class LandingContainer extends Component {
       }, 500);
     }
   }
+  componentWillUnmount() {
+    if (window) {
+      window.clearInterval(window.interval);
+    }
+  }
   render() {
     const {
       image,
