@@ -51,7 +51,7 @@ class AppContainer extends Component {
   handleNavDocking() {
     if (this.props.location.pathname !== '/') {
       this.props.actions.unDockNavigation();
-    } else {
+    } else if (this.props.navDocked) {
       const crown = document.querySelector('.app-src-components-StaticLandingSections-HeroSection-___index-module__logoImageWrapper___sVW1s');
       const scrollParents = findScrollParents(crown);
       scrollParents.forEach(p =>
@@ -60,7 +60,7 @@ class AppContainer extends Component {
           const crownTop = crown.getBoundingClientRect().top;
           if (crownTop <= 79 && navDocked) {
             debounce(this.props.actions.unDockNavigation());
-          } else if (!navDocked) {
+          } else if (crownTop > 79 && !navDocked) {
             debounce(this.props.actions.dockNavigation());
           }
         }),
