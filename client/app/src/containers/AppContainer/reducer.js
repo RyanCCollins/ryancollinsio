@@ -32,12 +32,12 @@ export const initialState = {
 const appContainerReducer =
   (state = initialState, action) => {
     switch (action.type) {
-      case types.UNDOCK_NAVIGATION:
+      case types.APP_DOCK_NAVIGATION:
         return {
           ...state,
           navDocked: true,
         };
-      case types.APP_DOCK_NAVIGATION:
+      case types.APP_UNDOCK_NAVIGATION:
         return {
           ...state,
           navDocked: false,

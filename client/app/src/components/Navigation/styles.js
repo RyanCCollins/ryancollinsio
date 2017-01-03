@@ -9,5 +9,5 @@ export const StyledBox = styled(Box)`
 
 /* eslint-disable */
 export const Content = styled.main`
-  transform: ${props => props.docked ? '' : 'translate(0px, 79px)'};
+  transform: ${props => (props.docked || props.isHome) ? '' : 'translate(0px, 79px)'};
 `;

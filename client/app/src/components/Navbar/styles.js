@@ -22,3 +22,10 @@ export const NavHeader = styled(Header)`
   z-index: 1600;
   box-shadow: ${props => props.docked ? 'none' : '-3px 1px 5px 0 hsla(0, 0%, 86%,.5)'};
 `;
+
+
+export const RightMenu = styled.div`
+  div {
+    display: ${props => props.isVisible ? 'flex' : 'none'};
+  }
+`;

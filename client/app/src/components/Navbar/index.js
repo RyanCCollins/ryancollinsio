@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import Anchor from 'grommet-udacity/components/Anchor';
 import Search from 'grommet-udacity/components/Search';
 import { SessionMenu, NavTitle } from 'components';
-import { StyledBox, StyledMenu, NavHeader } from './styles';
+import { StyledBox, StyledMenu, NavHeader, RightMenu } from './styles';
 
 const Navbar = ({
   pathname,
@@ -38,9 +38,9 @@ const Navbar = ({
             placeHolder="Start typing..."
           />
         </StyledBox>
-        {!docked &&
+        <RightMenu isVisible={!docked}>
           <SessionMenu pathname={pathname} user={user} />
-        }
+        </RightMenu>
       </StyledMenu>
     </NavHeader>
   </nav>

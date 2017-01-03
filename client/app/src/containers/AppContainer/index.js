@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import App from 'grommet-udacity/components/App';
 import { Navigation, AppFooter } from 'components';
 import { FeedbackContainer } from 'containers'; // eslint-disable-line
-import { findScrollParents } from '../../utils';
+import { findScrollParents, debounce } from '../../utils';
 import * as AppContainerActionCreators from './actions';
 import { selectNavDocked } from './selectors';
 
@@ -49,19 +49,19 @@ class AppContainer extends Component {
     }
   }
   handleNavDocking() {
-    const { navDocked } = this.props;
     if (this.props.location.pathname !== '/') {
-      this.props.actions.dockNavigation();
-    } else if (navDocked) {
+      this.props.actions.unDockNavigation();
+    } else {
       const crown = document.querySelector('.app-src-components-StaticLandingSections-HeroSection-___index-module__logoImageWrapper___sVW1s');
       const scrollParents = findScrollParents(crown);
       scrollParents.forEach(p =>
         p.addEventListener('scroll', () => {
+          const { navDocked } = this.props;
           const crownTop = crown.getBoundingClientRect().top;
-          if (crownTop <= 79) {
-            this.props.actions.dockNavigation();
-          } else {
-            this.props.actions.unDockNavigation();
+          if (crownTop <= 79 && navDocked) {
+            debounce(this.props.actions.unDockNavigation());
+          } else if (!navDocked) {
+            debounce(this.props.actions.dockNavigation());
           }
         }),
       );

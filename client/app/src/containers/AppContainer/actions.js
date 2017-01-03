@@ -46,7 +46,7 @@ export const dockNavigation = () => ({
 });
 
 export const unDockNavigation = () => ({
-  type: types.UNDOCK_NAVIGATION,
+  type: types.APP_UNDOCK_NAVIGATION,
 });
 
 export const loadPersistedUser = () => (dispatch) => {

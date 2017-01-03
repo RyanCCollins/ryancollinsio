@@ -29,7 +29,7 @@ const Navigation = ({
       />
     }
     {!isMobile &&
-      <Content docked={docked}>
+      <Content isHome={pathname === '/'} docked={docked}>
         {children}
       </Content>
     }
@@ -65,7 +65,7 @@ const Navigation = ({
             />
           </Title>
         </Header>
-        <Content docked={docked}>
+        <Content isHome={pathname === '/'} docked={docked}>
           {children}
         </Content>
       </MobileNav>
