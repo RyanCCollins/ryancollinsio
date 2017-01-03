@@ -17,6 +17,7 @@ module.exports = {
   devtool: 'source-map',
   entry: {
     main: [
+      'babel-polyfill',
       path.resolve(ROOT_PATH, 'app/src/index')
     ],
     vendor: [

@@ -11,6 +11,7 @@ const ROOT_PATH = path.resolve(__dirname);
 module.exports = {
   devtool: 'eval',
   entry: [
+    'babel-polyfill',
     'react-hot-loader/patch',
     'webpack-dev-server/client?http://localhost:1337',
     'webpack/hot/only-dev-server',
