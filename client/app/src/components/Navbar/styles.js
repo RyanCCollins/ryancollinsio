@@ -20,11 +20,13 @@ export const StyledBox = styled(Box)`
 /* eslint-disable */
 export const NavHeader = styled(Header)`
   minHeight: 79px !important;
+  will-change: background, box-shadow;
   background: ${props => props.docked ? 'transparent' : '#304da5'};
   position: fixed;
   top: 0;
   z-index: 10;
-  box-shadow: ${props => props.docked ? 'none' : '-3px 1px 5px 0 hsla(0, 0%, 86%,.5)'};
+  box-shadow: ${props => props.docked ? 'none' : '0 0 2px rgba(0,0,0,.5)'};
+  transition: background 0.5s;
 `;
 
 
