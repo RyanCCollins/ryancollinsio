@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import App from 'grommet-udacity/components/App';
 import { Navigation, AppFooter } from 'components';
 import { FeedbackContainer } from 'containers'; // eslint-disable-line
-import { findScrollParents, debounce } from '../../utils';
+import { debounce } from '../../utils';
 import * as AppContainerActionCreators from './actions';
 import { selectNavDocked } from './selectors';
 
@@ -15,6 +15,7 @@ class AppContainer extends Component {
     this.handleToggleNav = this.handleToggleNav.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.handleNavDocking = this.handleNavDocking.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
   }
   componentDidMount() {
     this.props.actions.loadPersistedUser();
@@ -27,6 +28,7 @@ class AppContainer extends Component {
   componentWillUnmount() {
     if (window) {
       window.removeEventListener('resize', this.handleMobile);
+      window.removeEventListener('scroll', this.handleScroll);
     }
   }
   handleSearch({ target }) {
@@ -52,20 +54,17 @@ class AppContainer extends Component {
     if (this.props.location.pathname !== '/') {
       this.props.actions.unDockNavigation();
     } else if (this.props.navDocked) {
-      const crown = document.querySelector('.app-src-components-StaticLandingSections-HeroSection-___index-module__logoImageWrapper___sVW1s');
-      const scrollParents = findScrollParents(crown);
-      scrollParents.forEach(p =>
-        p.addEventListener('scroll', () => {
-          console.warn(`Called scroll`); // eslint-disable-line
-          const { navDocked } = this.props;
-          const crownTop = crown.getBoundingClientRect().top;
-          if (crownTop <= 79 && navDocked) {
-            debounce(this.props.actions.unDockNavigation());
-          } else if (crownTop > 79 && !navDocked) {
-            debounce(this.props.actions.dockNavigation());
-          }
-        }),
-      );
+      window.addEventListener('scroll', this.handleScroll);
+    }
+  }
+  handleScroll() {
+    const crown = document.querySelector('.app-src-components-StaticLandingSections-HeroSection-___index-module__logoImageWrapper___sVW1s');
+    const { navDocked } = this.props;
+    const crownTop = crown.getBoundingClientRect().top;
+    if (crownTop <= 79 && navDocked) {
+      debounce(this.props.actions.unDockNavigation());
+    } else if (crownTop > 79 && !navDocked) {
+      debounce(this.props.actions.dockNavigation());
     }
   }
   handleToggleNav() {
