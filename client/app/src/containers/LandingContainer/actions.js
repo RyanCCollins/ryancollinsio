@@ -12,21 +12,19 @@ export const landingShowButton = () => ({
   type: types.LANDING_SHOW_BUTTON,
 });
 
-const timeout = (interval = 1000) => async (f) => {
-  await setTimeout(() => {}, interval);
-  f();
+const dispatchWaterfall = (dispatch, interval = 1500) => (fs) => {
+  fs.forEach((f, i) => {
+    setTimeout(() => dispatch(f()), (interval * (i + 1)));
+  });
 };
 
-export const performLandingAnimation = () => async (dispatch) => {
-  await timeout(1000)(
-    dispatch(landingShowImage()),
-  );
-  await timeout(2000)(
-    dispatch(landingShowHeadline()),
-  );
-  await timeout(3000)(
-    dispatch(landingShowButton()),
-  );
+export const performLandingAnimation = () => (dispatch) => {
+  const waterfall = dispatchWaterfall(dispatch);
+  waterfall([
+    landingShowImage,
+    landingShowHeadline,
+    landingShowButton,
+  ]);
 };
 
 export const clearLandingError = () => ({
