@@ -18,7 +18,8 @@
       "production": {
         "plugins": [
           [
-            "babel-plugin-webpack-alias", {
+            "babel-plugin-webpack-alias",
+            {
               "config": "./webpack.config.prod.js"
             }
           ]
@@ -27,7 +28,8 @@
       "test": {
         "plugins": [
           [
-            "babel-plugin-webpack-loaders", {
+            "babel-plugin-webpack-loaders",
+            {
               "config": "./config/webpack/webpack.test.config.js",
               "verbose": false
             }
@@ -141,13 +143,13 @@
     "minimist": "^1.2.0",
     "moment": "^2.17.1",
     "morgan": "^1.7.0",
-    "node-sass": "^3.4.2",
+    "node-sass": "^4.1.1",
     "npm-install-webpack-plugin": "^4.0.3",
     "offline-plugin": "^3.4.2",
     "postcss-loader": "^1.1.0",
     "precss": "^1.4.0",
     "react": "^15.1.0",
-    "react-addons-css-transition-group": "^15.2.1",
+    "react-addons-css-transition-group": "^15.4.1",
     "react-addons-test-utils": "^15.3.2",
     "react-addons-update": "^15.3.2",
     "react-apollo": "^0.5.13",
