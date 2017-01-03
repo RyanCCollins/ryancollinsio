@@ -21,7 +21,7 @@ export const StyledBox = styled(Box)`
 export const NavHeader = styled(Header)`
   minHeight: 79px !important;
   will-change: background, box-shadow;
-  background: ${props => props.docked ? 'transparent' : '#304da5'};
+  background: ${props => props.docked ? 'transparent' : '#3E2F5B'};
   position: fixed;
   top: 0;
   z-index: 10;
