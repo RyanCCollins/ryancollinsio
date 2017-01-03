@@ -2,8 +2,9 @@ import styled from 'styled-components';
 
 const Logo = styled.div`
   height: 40px;
+  left: -77px;
   width: 77px !important;
-  animation: fadeInFromRight 2s linear;
+  animation: ${props => props.animation};
   background-image:url('${props => props.url}');
   background-repeat:no-repeat;
   background-size:contain;
