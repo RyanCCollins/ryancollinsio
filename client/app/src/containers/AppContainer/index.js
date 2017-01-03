@@ -6,7 +6,7 @@ import { Navigation, AppFooter } from 'components';
 import { FeedbackContainer } from 'containers'; // eslint-disable-line
 import { debounce } from '../../utils';
 import * as AppContainerActionCreators from './actions';
-import { selectNavDocked } from './selectors';
+import { findScrollParents, selectNavDocked } from './selectors';
 
 class AppContainer extends Component {
   constructor() {
@@ -55,6 +55,13 @@ class AppContainer extends Component {
       this.props.actions.unDockNavigation();
     } else if (this.props.navDocked) {
       window.addEventListener('scroll', this.handleScroll);
+      const crown = document.querySelector('.app-src-components-StaticLandingSections-HeroSection-___index-module__logoImageWrapper___sVW1s');
+      const scrollParents = findScrollParents(crown);
+      scrollParents.forEach(p =>
+        p.addEventListener('scroll', () => {
+          this.handleScroll();
+        }),
+      );
     }
   }
   handleScroll() {
