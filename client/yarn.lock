@@ -1777,6 +1777,10 @@ console-control-strings@^1.0.0, console-control-strings@~1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/console-control-strings/-/console-control-strings-1.1.0.tgz#3d7cf4464db6446ea644bf4b39507f9851008e8e"
 
+consolidated-events@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/consolidated-events/-/consolidated-events-1.0.1.tgz#70f475f4a5d6d20428e702da1b8870d9cc031a14"
+
 constant-case@^1.1.0:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/constant-case/-/constant-case-1.1.2.tgz#8ec2ca5ba343e00aa38dbf4e200fd5ac907efd63"
@@ -7249,6 +7253,12 @@ react-smooth@0.1.11:
     lodash "~4.13.1"
     raf "^3.2.0"
     react-addons-transition-group "^0.14.0 || ^15.0.0"
+
+react-waypoint:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/react-waypoint/-/react-waypoint-4.1.0.tgz#40f0b78c20add9d6cfd861e6e806f894495119c0"
+  dependencies:
+    consolidated-events "^1.0.1"
 
 react@^0.14.0:
   version "0.14.8"

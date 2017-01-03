@@ -4,9 +4,8 @@ import { bindActionCreators } from 'redux';
 import App from 'grommet-udacity/components/App';
 import { Navigation, AppFooter } from 'components';
 import { FeedbackContainer } from 'containers'; // eslint-disable-line
-import { debounce } from '../../utils';
 import * as AppContainerActionCreators from './actions';
-import { findScrollParents, selectNavDocked } from './selectors';
+import { selectNavDocked } from './selectors';
 
 class AppContainer extends Component {
   constructor() {
@@ -15,7 +14,6 @@ class AppContainer extends Component {
     this.handleToggleNav = this.handleToggleNav.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.handleNavDocking = this.handleNavDocking.bind(this);
-    this.handleScroll = this.handleScroll.bind(this);
   }
   componentDidMount() {
     this.props.actions.loadPersistedUser();
@@ -53,25 +51,8 @@ class AppContainer extends Component {
   handleNavDocking() {
     if (this.props.location.pathname !== '/') {
       this.props.actions.unDockNavigation();
-    } else if (this.props.navDocked) {
-      window.addEventListener('scroll', this.handleScroll);
-      const crown = document.querySelector('.app-src-components-StaticLandingSections-HeroSection-___index-module__logoImageWrapper___sVW1s');
-      const scrollParents = findScrollParents(crown);
-      scrollParents.forEach(p =>
-        p.addEventListener('scroll', () => {
-          this.handleScroll();
-        }),
-      );
-    }
-  }
-  handleScroll() {
-    const crown = document.querySelector('.app-src-components-StaticLandingSections-HeroSection-___index-module__logoImageWrapper___sVW1s');
-    const { navDocked } = this.props;
-    const crownTop = crown.getBoundingClientRect().top;
-    if (crownTop <= 79 && navDocked) {
-      debounce(this.props.actions.unDockNavigation());
-    } else if (crownTop > 79 && !navDocked) {
-      debounce(this.props.actions.dockNavigation());
+    } else {
+      this.props.actions.dockNavigation();
     }
   }
   handleToggleNav() {

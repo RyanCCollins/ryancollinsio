@@ -107,6 +107,7 @@ a:focus {
 
 a.navLink {
   position: relative;
+  color: antiquewhite !important;
   &:hover:before {
     transform: scaleX(1);
   }
@@ -116,7 +117,7 @@ a.navLink {
     left: 0;
     bottom: -4px;
     height: 4px;
-    background: #FF5912;
+    background: #ecd018;
     width: 100%;
     transition: all 0.2s ease-in-out;
     transform: scaleX(0);
@@ -168,7 +169,8 @@ label {
 }
 
 a.active {
-  border-bottom: 4px solid #FF5912;
+  border-bottom: 4px solid #ecd018;
+  color: azure !important;
 }
 
 .section {
@@ -250,12 +252,12 @@ a.active {
 }
 
 ::selection {
-  background: #ff590a;
+  background: #ecd018;
   color: #fff !important;
 }
 
 ::-moz-selection {
-  background: #ff590a;
+  background: #ecd018;
   color: #fff !important;
 }
 

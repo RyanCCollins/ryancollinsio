@@ -19,6 +19,7 @@ import {
   SummarySectionTwo,
 } from 'components';
 import * as LandingActionCreators from './actions';
+import * as AppActionCreators from '../AppContainer/actions';
 import styles from './index.module.scss';
 import { filteredGitDataSelector } from './selectors';
 import referenceFragment from './fragments';
@@ -33,6 +34,11 @@ import {
 } from './data';
 
 class LandingContainer extends Component {
+  constructor() {
+    super();
+    this.handleWaypointEnter = this.handleWaypointEnter.bind(this);
+    this.handleWaypointLeave = this.handleWaypointLeave.bind(this);
+  }
   async componentDidMount() {
     this.props.actions.loadGitData();
     this.props.actions.cycleThroughLogoHovered();
@@ -49,6 +55,12 @@ class LandingContainer extends Component {
     if (window) {
       window.clearInterval(window.interval);
     }
+  }
+  handleWaypointEnter() {
+    this.props.actions.dockNavigation();
+  }
+  handleWaypointLeave() {
+    this.props.actions.unDockNavigation();
   }
   render() {
     const {
@@ -71,7 +83,14 @@ class LandingContainer extends Component {
         justify="center"
         className={styles.landing}
       >
-        <HeroSection isHovered={isHovered} button={button} image={image} headline={headline} />
+        <HeroSection
+          onEnterWaypoint={this.handleWaypointEnter}
+          onLeaveWaypoint={this.handleWaypointLeave}
+          isHovered={isHovered}
+          button={button}
+          image={image}
+          headline={headline}
+        />
         <SummarySection summary={summary} />
         <SummarySectionTwo />
         <MilestonesSection milestones={milestones} data={milestoneData} />
@@ -130,7 +149,10 @@ const mapStateToProps = state => ({
 // mapDispatchToProps :: Dispatch -> {Action}
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
-    LandingActionCreators,
+    {
+      ...LandingActionCreators,
+      ...AppActionCreators,
+    },
     dispatch,
   ),
 });

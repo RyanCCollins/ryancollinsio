@@ -11,12 +11,16 @@ export const StyledMenu = styled(Menu)`
 
 export const StyledBox = styled(Box)`
   flex: 1 !important;
+  svg {
+    stroke: antiquewhite !important;
+    fill: antiquewhite !important;
+  }
 `;
 
 /* eslint-disable */
 export const NavHeader = styled(Header)`
   minHeight: 79px !important;
-  background: ${props => props.docked ? 'transparent' : 'white'};
+  background: ${props => props.docked ? 'transparent' : '#304da5'};
   position: fixed;
   top: 0;
   z-index: 10;
