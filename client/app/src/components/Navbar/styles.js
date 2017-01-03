@@ -12,8 +12,8 @@ export const StyledMenu = styled(Menu)`
 export const StyledBox = styled(Box)`
   flex: 1 !important;
   svg {
-    stroke: antiquewhite !important;
-    fill: antiquewhite !important;
+    stroke: azure !important;
+    fill: azure !important;
   }
 `;
 
