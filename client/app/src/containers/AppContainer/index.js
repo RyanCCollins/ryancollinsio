@@ -56,6 +56,7 @@ class AppContainer extends Component {
       const scrollParents = findScrollParents(crown);
       scrollParents.forEach(p =>
         p.addEventListener('scroll', () => {
+          console.warn(`Called scroll`); // eslint-disable-line
           const { navDocked } = this.props;
           const crownTop = crown.getBoundingClientRect().top;
           if (crownTop <= 79 && navDocked) {
