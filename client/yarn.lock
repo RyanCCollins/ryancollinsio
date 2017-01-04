@@ -2956,16 +2956,6 @@ fb-watchman@^1.8.0, fb-watchman@^1.9.0:
   dependencies:
     bser "^1.0.2"
 
-fbjs@^0.3.1:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.3.2.tgz#033a540595084b5de3509a405d06f1a2a8e5b9fb"
-  dependencies:
-    core-js "^1.0.0"
-    loose-envify "^1.0.0"
-    promise "^7.0.3"
-    ua-parser-js "^0.7.9"
-    whatwg-fetch "^0.9.0"
-
 fbjs@^0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.6.1.tgz#9636b7705f5ba9684d44b72f78321254afc860f7"
@@ -5307,13 +5297,6 @@ lower-case@^1.1.0, lower-case@^1.1.1, lower-case@^1.1.2:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/lower-case/-/lower-case-1.1.3.tgz#c92393d976793eee5ba4edb583cf8eae35bd9bfb"
 
-lru-cache@^4.0.0:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-4.0.2.tgz#1d17679c069cda5d040991a09dbc2c0db377e55e"
-  dependencies:
-    pseudomap "^1.0.1"
-    yallist "^2.0.0"
-
 lru-cache@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-4.0.1.tgz#1343955edaf2e37d9b9e7ee7241e27c4b9fb72be"
@@ -7087,14 +7070,6 @@ react-desc@^0.1.0:
   dependencies:
     react "^15.3.2"
 
-react-dom-stream:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/react-dom-stream/-/react-dom-stream-0.5.1.tgz#33475b06eae707c7295785cbc874a4b02660d513"
-  dependencies:
-    envify "^3.0.0"
-    fbjs "^0.3.1"
-    lru-cache "^4.0.0"
-
 react-dom@^0.14.0:
   version "0.14.8"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-0.14.8.tgz#0f1c547514263f771bd31814a739e5306575069e"
@@ -7277,13 +7252,21 @@ react-smooth@0.1.11:
     raf "^3.2.0"
     react-addons-transition-group "^0.14.0 || ^15.0.0"
 
+react-ssr-optimization:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/react-ssr-optimization/-/react-ssr-optimization-0.0.5.tgz#3062a2657b2bc9a1cf6a8aa9ca62fc00b4fe8eda"
+  dependencies:
+    lodash "^4.12.0"
+    lru-cache "^4.0.1"
+    react "^0.14.8"
+
 react-waypoint:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/react-waypoint/-/react-waypoint-4.1.0.tgz#40f0b78c20add9d6cfd861e6e806f894495119c0"
   dependencies:
     consolidated-events "^1.0.1"
 
-react@^0.14.0:
+react@^0.14.0, react@^0.14.8:
   version "0.14.8"
   resolved "https://registry.yarnpkg.com/react/-/react-0.14.8.tgz#078dfa454d4745bcc54a9726311c2bf272c23684"
   dependencies:
