@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import App from 'grommet-udacity/components/App';
 import { Navigation, AppFooter } from 'components';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { FeedbackContainer } from 'containers'; // eslint-disable-line
 import * as AppContainerActionCreators from './actions';
 import { selectNavDocked } from './selectors';
@@ -81,7 +82,13 @@ class AppContainer extends Component {
           navLinks={navLinks}
           onToggleNav={this.handleToggleNav}
         >
-          {React.cloneElement(this.props.children, this.props)}
+          <ReactCSSTransitionGroup
+            transitionName="appear"
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={1}
+          >
+            {React.cloneElement(this.props.children, this.props)}
+          </ReactCSSTransitionGroup>
         </Navigation>
         <FeedbackContainer />
         {!navIsActive && <AppFooter />}

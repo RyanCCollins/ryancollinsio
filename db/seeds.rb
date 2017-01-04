@@ -656,7 +656,7 @@ p.save!
 
 the_post = Post.create(
   user: User.first,
-  title: "ES2015 JavaScript vs. Elm vs. TypeScript"
+  title: "ES2015 JavaScript vs. Elm vs. TypeScript",
   feature_image: "https://cdn-images-1.medium.com/max/800/0*dr-Nr-6WsphJPBFb.png",
   body: "## In search of the perfect Front End Language
 \n
