@@ -45,21 +45,20 @@ export const loadGitDataFailure = error => ({
   error,
 });
 
-export const loadGitData = () => (dispatch) => {
-  dispatch(
-    loadGitDataInitation(),
-  );
-  fetch('https://api.github.com/users/ryanccollins/events/public')
-    .then(res => res.json())
-    .then((json) => {
-      dispatch(
-        loadGitDataSuccess(json),
-      );
-    }).catch((err) => {
-      dispatch(
-        loadGitDataFailure(err),
-      );
-    });
+export const loadGitData = () => async (dispatch) => {
+  dispatch(loadGitDataInitation());
+  try {
+    await setTimeout(() => {}, 2000);
+    const res = await fetch('https://api.github.com/users/ryanccollins/events/public');
+    const json = await res.json();
+    dispatch(
+      loadGitDataSuccess(json),
+    );
+  } catch (err) {
+    dispatch(
+      loadGitDataFailure(err),
+    );
+  }
 };
 
 export const toggleLogoHovered = () => ({

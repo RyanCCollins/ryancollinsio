@@ -20,7 +20,7 @@ export const StyledBox = styled(Box)`
 /* eslint-disable */
 export const NavHeader = styled(Header)`
   minHeight: 79px !important;
-  will-change: background, box-shadow;
+  will-change: background, box-shadow, transform;
   background: ${props => props.docked ? 'transparent' : '#3E2F5B'};
   position: fixed;
   top: 0;
