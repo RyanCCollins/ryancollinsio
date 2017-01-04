@@ -8,5 +8,5 @@ export const StyledTitle = styled(Title)`
 export const NotYetRendered = styled.div`
    height: 40px;
    width: 77px;
-   background-color: #fff;
+   background: transparent;
 `;

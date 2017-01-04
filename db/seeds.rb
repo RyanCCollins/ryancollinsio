@@ -656,9 +656,12 @@ p.save!
 
 the_post = Post.create(
   user: User.first,
+  category: 'frontend',
+  sort_priority: 200,
   title: "ES2015 JavaScript vs. Elm vs. TypeScript",
   feature_image: "https://cdn-images-1.medium.com/max/800/0*dr-Nr-6WsphJPBFb.png",
-  body: "## In search of the perfect Front End Language
+  body: "#ES2015 JavaScript vs. Elm vs. TypeScript \n
+  ## In search of the perfect Front End Language
 \n
 As a Front End focused software engineer, one of my goals is to constantly
 evolve the tools and methodologies I use in my work. Change is baked right into
@@ -807,6 +810,8 @@ the_post.save!
 
 the_post = Post.create(
   user: User.first,
+  category: 'frontend',
+  sort_priority: 199,
   title: "Performance Optimizing A React Single Page App — Part 2",
   feature_image: 'https://cdn-images-1.medium.com/max/800/1*vgmd53ACeiyX_JbYF6geQg.png',
   body: "This is a brief followup to my [past
@@ -1030,6 +1035,8 @@ the_post.save!
 the_post = Post.create(
   user: User.first,
   title: 'Performance Optimizing a React Single Page App-Part 1',
+  category: 'frontend',
+  sort_priority: 198,
   feature_image: 'https://cdn-images-1.medium.com/max/800/1*b3JmmosHi_E1aVEzF2MalA.png',
   body: "Note, this is part one in a two-part series about React performance
 optimization. Part 2 can be [found
@@ -1382,6 +1389,8 @@ post = Post.create(
   user: User.first,
   feature_image: "http://res.cloudinary.com/dc1qjoyvn/image/upload/v1472925105/ciqbx025nb8gmmkpuc1w.png",
   title: "Embracing Immutable Architecture",
+  category: 'frontend',
+  sort_priority: 197,
   body: "I believe as a community, many of us JavaScript engineers have embraced Immutable Architecture. Whether we realize it or not, a new way of building apps has crept into the mainstream JavaScript ecosystem and it is here to stay.
 \n \n
 So what is Immutable Architecture, anyways?
@@ -1465,6 +1474,8 @@ post = Post.create(
   user: User.first,
   feature_image: "http://res.cloudinary.com/dc1qjoyvn/image/upload/v1472593988/ge3wvwgvomm5tc04zjsz.png",
   title: "Feature First Organization",
+  category: 'frontend',
+  sort_priority: 196,
   body: "Colocation is in. Your organization starts and ends with the feature you are implementing. You know you are doing it right if your entire app is a composition of feature-first components and your components are modular to the point where you can pluck components for reuse by dragging and dropping the folder they reside in. [The original article was posted on Medium](https://medium.com/front-end-hacking/the-secret-to-organization-in-functional-programming-913484e85fc9#.kwiqkohbv) and featured on [Front End Weekly](https://medium.com/front-end-hacking), a curated publication for Front End JavaScript engineering content.
 \n \n
 ## Feature First
@@ -1556,6 +1567,8 @@ post = Post.create(
   user: User.first,
   feature_image: "http://res.cloudinary.com/dc1qjoyvn/image/upload/v1468092213/efjetjkyzb6b9tcxrxqp.png",
   title: "Lessons Learned From Functional Reactive Programming",
+  category: 'frontend',
+  sort_priority: 195,
   body: "The author of [Elm-lang](http://elm-lang.org/papers/concurrent-frp.pdf), a progressive functional language built to create Front End Web GUIs states in his senior thesis that 'Functional Reactive Programming (FRP) is a declarative way to create reactive systems.'
 \n
 He goes on to further define the need for FRP in building user interfaces and defining how FRP has shown great potential in other areas: 'FRP has already shown its potential in a diversity of domains: robotics, music synthesis, animation, video games, and graphical user interfaces. These domains are reactive because they require interaction with a wide range of outside inputs, from keyboards to accelerometers.'
