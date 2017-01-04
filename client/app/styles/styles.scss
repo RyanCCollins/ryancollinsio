@@ -1254,23 +1254,6 @@ textarea {
   }
 }
 
-.timeline-item-inner {
-  background-color: white;
-  border-radius: .15em;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04), 0 2px 0 rgba(0, 0, 0, 0.04);
-  color: #555;
-  display: block;
-  padding: 1em;
-  &:hover, &:focus {
-    color: #555;
-    outline: none;
-    text-decoration: none;
-  }
-  &:hover h3, &:focus h3 {
-    text-decoration: underline;
-  }
-}
-
 @media (max-width: 767px) {
   .timeline-path {
     left: 5px;
