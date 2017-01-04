@@ -24,7 +24,7 @@ export const NavHeader = styled(Header)`
   background: ${props => props.docked ? 'transparent' : '#3E2F5B'};
   position: fixed;
   top: 0;
-  z-index: 10;
+  z-index: 9;
   box-shadow: ${props => props.docked ? 'none' : '0 0 2px rgba(0,0,0,.5)'};
   transition: background 0.5s;
 `;
