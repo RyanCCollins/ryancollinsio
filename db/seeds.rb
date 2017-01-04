@@ -660,7 +660,7 @@ the_post = Post.create(
   sort_priority: 200,
   title: "ES2015 JavaScript vs. Elm vs. TypeScript",
   feature_image: "https://cdn-images-1.medium.com/max/800/0*dr-Nr-6WsphJPBFb.png",
-  body: "#ES2015 JavaScript vs. Elm vs. TypeScript \n
+  body: "# ES2015 JavaScript vs. Elm vs. TypeScript \n
   ## In search of the perfect Front End Language
 \n
 As a Front End focused software engineer, one of my goals is to constantly
