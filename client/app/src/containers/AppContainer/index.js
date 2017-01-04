@@ -50,10 +50,10 @@ class AppContainer extends Component {
     }
   }
   handleNavDocking() {
-    if (this.props.location.pathname !== '/') {
-      this.props.actions.unDockNavigation();
-    } else {
+    if (this.props.location.pathname === '/') {
       this.props.actions.dockNavigation();
+    } else {
+      this.props.actions.unDockNavigation();
     }
   }
   handleToggleNav() {
