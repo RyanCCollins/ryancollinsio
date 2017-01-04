@@ -17,7 +17,7 @@ export const Card = styled.div`
   justify-content: center;
   margin-right: 1.69492%;
   width: 22.5rem !important;
-  background: #fafbfc;
+  background: azure;
   height: 20rem;
   border: 1px solid #dbe2e8;
   box-shadow: 12px 15px 20px 0px rgba(46,61,73,0.15);

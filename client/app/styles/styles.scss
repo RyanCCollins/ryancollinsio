@@ -155,7 +155,7 @@ a.navLink {
     position: absolute;
     left: 0;
     bottom: -4px;
-    height: 4px;
+    height: 3px;
     background: #ecd018;
     width: 100%;
     transition: all 0.2s ease-in-out;
@@ -208,7 +208,7 @@ label {
 }
 
 a.active {
-  border-bottom: 4px solid #ecd018;
+  border-bottom: 3px solid #ecd018;
   color: azure !important;
 }
 
