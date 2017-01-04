@@ -12,7 +12,7 @@ export const landingShowButton = () => ({
   type: types.LANDING_SHOW_BUTTON,
 });
 
-const dispatchWaterfall = (dispatch, interval = 1500) => (fs) => {
+const dispatchWaterfall = (dispatch, interval = 1000) => (fs) => {
   fs.forEach((f, i) => {
     setTimeout(() => dispatch(f()), (interval * (i + 1)));
   });
