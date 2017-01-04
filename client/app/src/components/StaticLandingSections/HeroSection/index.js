@@ -30,8 +30,14 @@ const HeroSection = ({
       id="hero"
       align="center"
       justify="center"
-      style={{ width: '100%', marginTop: 100 }}
+      className={styles.heroBox}
     >
+      <Waypoint
+        topOffset="95px"
+        className={styles.waypoint}
+        onEnter={onEnterWaypoint}
+        onLeave={onLeaveWaypoint}
+      />
       <Animate
         visible={image}
         enter={{ animation: 'slide-down', duration: 1500 }}
@@ -39,10 +45,6 @@ const HeroSection = ({
         keep
       >
         <LogoImage />
-        <Waypoint
-          onEnter={onEnterWaypoint}
-          onLeave={onLeaveWaypoint}
-        />
       </Animate>
       <Animate
         visible={image}

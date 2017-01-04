@@ -7,6 +7,7 @@ export const StyledMenu = styled(Menu)`
   flex-direction: row !important;
   flex-grow: 1 !important;
   align-items: center;
+  margin-left: 30px;
 `;
 
 export const StyledBox = styled(Box)`
@@ -29,6 +30,16 @@ export const NavHeader = styled(Header)`
   transition: background 0.5s;
 `;
 
+
+export const LogoWrapper = styled.div`
+  position: absolute;
+  left: calc(50% - 49px);
+  margin-right: 0 !important;
+  display: ${props => props.isVisible ? 'block' : 'none'};
+  @media screen and (max-width: 900px) {
+    display: none !important;
+  }
+`;
 
 export const RightMenu = styled.div`
   div {

@@ -27,6 +27,7 @@ module.exports = {
       'antd',
       'react-rte',
       'recharts',
+      'react-waypoint'
     ],
   },
   module: {
