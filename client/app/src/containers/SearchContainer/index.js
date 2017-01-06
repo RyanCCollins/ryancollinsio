@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as SearchActionCreators from './actions';
 import Box from 'grommet-udacity/components/Box';
 import Section from 'grommet-udacity/components/Section';
 import SearchIcon from 'grommet-udacity/components/icons/base/Search';
@@ -13,27 +12,18 @@ import Menu from 'grommet-udacity/components/Menu';
 import Header from 'grommet-udacity/components/Header';
 import Title from 'grommet-udacity/components/Title';
 import cssModules from 'react-css-modules';
-import styles from './index.module.scss';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import { getFilteredSearchData } from './selectors';
+import { Maybe } from 'functional-components';
 import { WithLoading, ResponsiveImage, QueryNotFound } from 'components';
+import { tutorialData, postData, projectData } from 'fragments'; // eslint-disable-line
 import {
   SectionLast,
   NavigationItem,
 } from './styles';
-import {
-  tutorialData,
-  postData,
-  projectData,
-} from 'fragments';
-
-const Maybe = ({ predicate, children }) => predicate ?
-  <div>
-    {children}
-  </div>
- :
-  <noscript />;
+import * as SearchActionCreators from './actions';
+import styles from './index.module.scss';
+import { getFilteredSearchData } from './selectors';
 
 const totalResults = (data) => {
   let total = 0;
