@@ -34,6 +34,7 @@ class AppContainer extends Component {
     if (target.value) {
       this.props.actions.setSearchTerm(target.value);
       if (this.props.location.pathname !== '/search') {
+        this.props.actions.unDockNavigation();
         this.context.router.push('/search');
       }
     } else {
