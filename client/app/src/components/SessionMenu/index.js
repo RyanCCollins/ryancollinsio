@@ -76,16 +76,25 @@ const SessionMenu = ({
               <Menu
                 icon={<SessionIcon user={user} />}
                 inline={false}
+                colorIndex="neutral-2"
                 dropAlign={{ top: 'top', right: 'right' }}
                 a11yTitle="Session Menu"
                 className={styles.rightMenu}
               >
-                <Anchor href="/user/profile">
+                <Anchor
+                  href="/user/profile"
+                  className="navLink"
+                >
                   My Profile
                 </Anchor>
-                <Anchor href="/logout" onClick={onLogout}>
+                <Anchor
+                  className="navLink"
+                  href="/logout"
+                  onClick={onLogout}
+                >
                   Logout
                 </Anchor>
+                <div className={styles.menuSpacer} />
               </Menu>
             );
           case 'admin':
@@ -95,23 +104,29 @@ const SessionMenu = ({
                 dropAlign={{ bottom: 'bottom' }}
                 a11yTitle="Session"
                 inline={false}
+                colorIndex="neutral-2"
                 className={styles.rightMenu}
               >
                 <Anchor
-                  className={pathname === '/user/profile' ? 'navLink active' : 'navLink'}
+                  className="navLink"
                   href="/user/profile"
                 >
                   My Profile
                 </Anchor>
                 <Anchor
-                  className={pathname === '/admin/dashboard' ? 'navLink active' : 'navLink'}
+                  className="navLink"
                   href="/admin/dashboard"
                 >
                   Dashboard
                 </Anchor>
-                <Anchor href="/logout" onClick={onLogout}>
+                <Anchor
+                  className="navLink"
+                  href="/logout"
+                  onClick={onLogout}
+                >
                   Logout
                 </Anchor>
+                <div className={styles.menuSpacer} />
               </Menu>
             );
           default:
