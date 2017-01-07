@@ -1,4 +1,31 @@
 {
+<<<<<<< HEAD
+  "/0.c42611c70cb76ec4f1d3.chunk.js": "/0.c42611c70cb76ec4f1d3.chunk.js",
+  "/1.dc48abfecb0613554256.chunk.js": "/1.dc48abfecb0613554256.chunk.js",
+  "/10.b8fe821856939e111487.chunk.js": "/10.b8fe821856939e111487.chunk.js",
+  "/11.a69e3959ca93b30cf5ad.chunk.js": "/11.a69e3959ca93b30cf5ad.chunk.js",
+  "/12.435e876aedb59b70bb7a.chunk.js": "/12.435e876aedb59b70bb7a.chunk.js",
+  "/13.8ff7eedfd0676b529f6a.chunk.js": "/13.8ff7eedfd0676b529f6a.chunk.js",
+  "/14.b45fc3e28493bebc1c73.chunk.js": "/14.b45fc3e28493bebc1c73.chunk.js",
+  "/15.fbbec35c4155a8a72747.chunk.js": "/15.fbbec35c4155a8a72747.chunk.js",
+  "/16.0d29fae51d974db7b709.chunk.js": "/16.0d29fae51d974db7b709.chunk.js",
+  "/17.c3710f848977be6dd584.chunk.js": "/17.c3710f848977be6dd584.chunk.js",
+  "/18.8a9295f01005a3be106f.chunk.js": "/18.8a9295f01005a3be106f.chunk.js",
+  "/2.3aaf4203b7f6a0877619.chunk.js": "/2.3aaf4203b7f6a0877619.chunk.js",
+  "/3.775eb1cf7ed41ed0e293.chunk.js": "/3.775eb1cf7ed41ed0e293.chunk.js",
+  "/4.1f57251fc252fdb65c59.chunk.js": "/4.1f57251fc252fdb65c59.chunk.js",
+  "/5.3226365ecb920b7e9962.chunk.js": "/5.3226365ecb920b7e9962.chunk.js",
+  "/6.d49c2b6e7c88aa748199.chunk.js": "/6.d49c2b6e7c88aa748199.chunk.js",
+  "/7.27e5e51ff5506e21ad9b.chunk.js": "/7.27e5e51ff5506e21ad9b.chunk.js",
+  "/8.1fc0713939af806d9264.chunk.js": "/8.1fc0713939af806d9264.chunk.js",
+  "/9.f521ce969797575b5996.chunk.js": "/9.f521ce969797575b5996.chunk.js",
+  "/app/src/components/LogoImage/crown.png": "/app/src/components/LogoImage/crown.3a7ee6e43b9b3dd086d6d2a6a3e5d32f.png",
+  "/app/src/components/ResponsiveImage/missing-visual.png": "/app/src/components/ResponsiveImage/missing-visual.a36832a1e392634b93b1f2e54dc81960.png",
+  "/main.css": "/main.508b38c003b0becfdd968f1eba454c2a.css",
+  "/main.css.map": "/main.508b38c003b0becfdd968f1eba454c2a.css.map",
+  "/main.js": "/main.475a95e6dcf95e7e6134.js",
+  "/vendor.js": "/vendor.d473821171addb2de135.js"
+=======
   "/0.3e81e119110a58751449.chunk.js": "/0.3e81e119110a58751449.chunk.js",
   "/1.6002cd5c64bb2fcdd376.chunk.js": "/1.6002cd5c64bb2fcdd376.chunk.js",
   "/10.a6b74b71e26369edda70.chunk.js": "/10.a6b74b71e26369edda70.chunk.js",
@@ -23,4 +50,5 @@
   "/main.css.map": "/main.b4e0c4d03ccace0bf96795e5d20575f0.css.map",
   "/main.js": "/main.330e5fceccf5f1c3e473.js",
   "/vendor.js": "/vendor.7ebf7eab5cfbb9553fc8.js"
+>>>>>>> 9970da98e92cc446501fbb0259bc9d0052eb047a
 }

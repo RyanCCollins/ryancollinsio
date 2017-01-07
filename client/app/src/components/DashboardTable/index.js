@@ -7,9 +7,9 @@ import Tile from 'grommet-udacity/components/Tile';
 import List from 'grommet-udacity/components/List';
 import Label from 'grommet-udacity/components/Label';
 import ListItem from 'grommet-udacity/components/ListItem';
-import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
 import { DashboardTableButtonMenu, PaginatorFooter } from 'components';
+import styles from './index.module.scss';
 
 const DashboardTable = ({
   items,
@@ -86,7 +86,7 @@ const DashboardTable = ({
                       </Box>
                     </Box>
                   </Tile>
-                </ListItem>
+                </ListItem>,
               )}
             </tbody>
           </Box>
@@ -132,7 +132,7 @@ const DashboardTable = ({
                     onShow={() => onShow(item)}
                   />
                 </td>
-              </TableRow>
+              </TableRow>,
             )}
           </tbody>
         </Table>
@@ -148,11 +148,11 @@ const DashboardTable = ({
 );
 
 DashboardTable.propTypes = {
-  items: PropTypes.array.isRequired,
+  items: PropTypes.array.isRequired, // eslint-disable-line
   isMobile: PropTypes.bool.isRequired,
   perPage: PropTypes.number.isRequired,
   currentPage: PropTypes.number.isRequired,
-  allItems: PropTypes.array.isRequired,
+  allItems: PropTypes.array.isRequired, // eslint-disable-line
   onChangePage: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
   onEdit: PropTypes.func.isRequired,
