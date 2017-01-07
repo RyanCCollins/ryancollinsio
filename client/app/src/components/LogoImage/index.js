@@ -1,15 +1,11 @@
 import React from 'react';
-import styles from './index.module.scss';
-import cssModules from 'react-css-modules';
-import CrownLogo from './crown.png';
+import Logo from './styles';
 
 const LogoImage = () => (
-  <img
-    src={CrownLogo}
-    alt="Ryan Collins Logo"
-    className={styles.logoImage}
-    id="ryancollins-logo"
+  <Logo
+    animation="fadeIn 1.5s ease-out 0.2s"
+    url="https://github.com/RyanCCollins/cdn/blob/master/ryancollinsio-v3/crown.png?raw=true"
   />
 );
 
-export default cssModules(LogoImage, styles);
+export default LogoImage;

@@ -3,14 +3,13 @@ import cssModules from 'react-css-modules';
 import Section from 'grommet-udacity/components/Section';
 import Headline from 'grommet-udacity/components/Headline';
 import Footer from 'grommet-udacity/components/Footer';
-import Box from 'grommet-udacity/components/Box';
 import Button from 'grommet-udacity/components/Button';
-import Heading from 'grommet-udacity/components/Heading';
 import { Divider, WithLoading, WithToast } from 'components';
 import cn from 'classnames';
 import styles from './index.module.scss';
 import CommitHeading from './CommitHeading';
 import CommitsList from './CommitsList';
+import { Container, TimeLineItemInner } from './styles';
 
 const OpenSourceContributions = ({
   gitData,
@@ -34,7 +33,7 @@ const OpenSourceContributions = ({
           Open Source Contributions
         </Headline>
         <Divider />
-        <Box className={styles.container}>
+        <Container>
           <div className="timeline">
             <div className="timeline-path" />
             <div className="timeline-item--offset" />
@@ -48,16 +47,16 @@ const OpenSourceContributions = ({
                 )}
               >
                 <div className="timeline-item-node" />
-                <div className="timeline-item-inner">
+                <TimeLineItemInner>
                   <CommitHeading item={item} />
                   {item.payload.commits &&
                     <CommitsList commits={item.payload.commits} repo={item.repo} />
                   }
-                </div>
+                </TimeLineItemInner>
               </div>,
             )}
           </div>
-        </Box>
+        </Container>
         <Footer align="center" justify="center" pad="large">
           <Button
             primary

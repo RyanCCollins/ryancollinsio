@@ -1,19 +1,19 @@
 import * as types from './constants';
 
 // portfolioSetProjects :: Array -> {Action}
-export const portfolioSetProjects = (projects) => ({
+export const portfolioSetProjects = projects => ({
   type: types.PORTFOLIO_SET_PROJECTS,
   projects,
 });
 
 // portfolioSetProjects :: Int -> {Action}
-export const portfolioSetCurrentPage = (page) => ({
+export const portfolioSetCurrentPage = page => ({
   type: types.PORTFOLIO_SET_CURRENT_PAGE,
   page,
 });
 
 // portfolioSetSearchTerm :: String -> {Action}
-export const portfolioSetSearchTerm = (term) => ({
+export const portfolioSetSearchTerm = term => ({
   type: types.PORTFOLIO_SET_SEARCH_TERM,
   term,
 });
@@ -24,7 +24,7 @@ export const portfolioClearSearchTerm = () => ({
 });
 
 // portfolioSetTags :: Array -> {Action}
-export const portfolioSetTags = (tags) => ({
+export const portfolioSetTags = tags => ({
   type: types.PORTFOLIO_SET_TAGS,
   tags,
 });
@@ -45,7 +45,7 @@ export const portfolioToggleModal = () => ({
 });
 
 // portfolioSetSelectedCategories :: Array -> {Action}
-export const portfolioSetSelectedCategories = (categories) => ({
+export const portfolioSetSelectedCategories = categories => ({
   type: types.PORTFOLIO_SET_SELECTED_CATEGORIES,
   categories,
 });

@@ -92,7 +92,8 @@ class SearchContainer extends Component {
                       >
                         Posts
                         <span className={styles.numberIndicator}>
-                          {filteredSearchData.posts && filteredSearchData.posts.length || 0}
+                          {(filteredSearchData.posts &&
+                            filteredSearchData.posts.length) || 0}
                         </span>
                       </NavigationItem>
                       <NavigationItem
@@ -101,7 +102,8 @@ class SearchContainer extends Component {
                       >
                         Projects
                         <span className={styles.numberIndicator}>
-                          {filteredSearchData.projects && filteredSearchData.projects.length || 0}
+                          {(filteredSearchData.projects &&
+                            filteredSearchData.projects.length) || 0}
                         </span>
                       </NavigationItem>
                       <NavigationItem
@@ -110,7 +112,8 @@ class SearchContainer extends Component {
                       >
                         Tutorials
                         <span className={styles.numberIndicator}>
-                          {filteredSearchData.tutorials && filteredSearchData.tutorials.length || 0}
+                          {(filteredSearchData.tutorials &&
+                            filteredSearchData.tutorials.length) || 0}
                         </span>
                       </NavigationItem>
                     </Menu>
@@ -133,30 +136,30 @@ class SearchContainer extends Component {
                               <div className={styles.itemImage}>
                                 <ResponsiveImage matchHeight={false} src={item.image} />
                               </div>
-                            </div>
+                            </div>,
                           )
                       :
-                        <QueryNotFound itemName="Posts" />
+                          <QueryNotFound itemName="Posts" />
                     }
                     </Maybe>
                     <Maybe predicate={activeIndex === 1}>
                       {filteredSearchData.projects &&
                         filteredSearchData.projects.length > 0 ?
                         filteredSearchData.projects.map((item, i) =>
-                            <div className={styles.card} key={i}>
-                              <div className={styles.textContent}>
-                                <Heading tag="h3" strong>
-                                  {item.title}
-                                </Heading>
-                                <Markdown content={item.description.slice(0, 100)} />
-                                <Anchor primary href={`/portfolio/projects/${item.slug}`}>
+                          <div className={styles.card} key={i}>
+                            <div className={styles.textContent}>
+                              <Heading tag="h3" strong>
+                                {item.title}
+                              </Heading>
+                              <Markdown content={item.description.slice(0, 100)} />
+                              <Anchor primary href={`/portfolio/projects/${item.slug}`}>
                                   View Project
                                 </Anchor>
-                              </div>
-                              <div className={styles.itemImage}>
-                                <ResponsiveImage matchHeight={false} src={item.featureImage} />
-                              </div>
                             </div>
+                            <div className={styles.itemImage}>
+                              <ResponsiveImage matchHeight={false} src={item.featureImage} />
+                            </div>
+                          </div>,
                         )
                       :
                         <QueryNotFound itemName="Projects" />
@@ -179,7 +182,7 @@ class SearchContainer extends Component {
                               <div className={styles.itemImage}>
                                 <ResponsiveImage matchHeight={false} src={item.image} />
                               </div>
-                            </div>
+                            </div>,
                           )
                         :
                           <QueryNotFound itemName="Tutorials" />
@@ -208,19 +211,25 @@ class SearchContainer extends Component {
 
 SearchContainer.propTypes = {
   searchTerm: PropTypes.string,
-  searchData: PropTypes.object,
-  filteredSearchData: PropTypes.object,
-  actions: PropTypes.object.isRequired,
+  searchData: PropTypes.object, // eslint-disable-line
+  filteredSearchData: PropTypes.object, // eslint-disable-line
+  actions: PropTypes.object.isRequired, // eslint-disable-line
   isLoading: PropTypes.bool.isRequired,
   requiresFetch: PropTypes.bool.isRequired,
-  projects: PropTypes.array,
-  posts: PropTypes.array,
-  tutorials: PropTypes.array,
+  projects: PropTypes.arrayOf(
+    PropTypes.object.isRequired,
+  ),
+  posts: PropTypes.arrayOf(
+    PropTypes.object.isRequired,
+  ),
+  tutorials: PropTypes.arrayOf(
+    PropTypes.object.isRequired,
+  ),
   activeIndex: PropTypes.number.isRequired,
 };
 
 // mapStateToProps :: {State} -> {Props}
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   searchTerm: state.app.searchTerm,
   searchData: state.search.searchData,
   requiresFetch: state.search.requiresFetch,
@@ -229,10 +238,10 @@ const mapStateToProps = (state) => ({
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     SearchActionCreators,
-    dispatch
+    dispatch,
   ),
 });
 
@@ -270,5 +279,5 @@ const ContainerWithData = graphql(searchQuery, {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(ContainerWithData);

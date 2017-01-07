@@ -1,4 +1,4 @@
-$main-color: rgba(255, 255, 255, 0.7);
+$main-color: rgba(240, 255, 255, 0.8);
 
 .logoImageWrapper {
   position: absolute;
@@ -7,6 +7,9 @@ $main-color: rgba(255, 255, 255, 0.7);
   margin-right: auto;
   left: calc(50% - 35px);
   width: 77px !important;
+  @media screen and (max-height: 900px) {
+    top: 100px;
+  }
 }
 
 .headingText {
@@ -20,7 +23,6 @@ $main-color: rgba(255, 255, 255, 0.7);
 .footer {
   margin-top: 20px;
 }
-
 .button {
   color: $main-color !important;
   border-color: $main-color !important;
@@ -71,6 +73,11 @@ $main-color: rgba(255, 255, 255, 0.7);
   position: relative;
   height: 200px;
   width: 200px;
+}
+
+.heroBox {
+  padding-top: 100px !important;
+  width: 100% !important;
 }
 
 .reactive::before {

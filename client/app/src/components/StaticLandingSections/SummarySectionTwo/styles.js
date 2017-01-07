@@ -26,12 +26,12 @@ export const Logo = styled.div`
 
 export const ProjectName = styled(Heading)`
   padding: 20px;
-  text-decoration: none !important;
   color: #666;
 `;
 
 export const CardLink = styled(Anchor)`
   padding: 1rem;
+  text-decoration: none !important;
 `;
 
 export const CardTop = styled(Box)`
@@ -58,7 +58,7 @@ export const Card = styled.div`
   margin-right: 1.69492%;
   padding: 1.2rem;
   width: 22rem;
-  background: #fafbfc;
+  background: whitesmoke;
   height: 25.5rem;
   border: 1px solid #dbe2e8;
   box-shadow: 12px 15px 20px 0px rgba(46,61,73,0.15);

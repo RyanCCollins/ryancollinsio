@@ -12,7 +12,7 @@ export const landingShowButton = () => ({
   type: types.LANDING_SHOW_BUTTON,
 });
 
-const dispatchWaterfall = (dispatch, interval = 1500) => (fs) => {
+const dispatchWaterfall = (dispatch, interval = 1000) => (fs) => {
   fs.forEach((f, i) => {
     setTimeout(() => dispatch(f()), (interval * (i + 1)));
   });
@@ -45,21 +45,20 @@ export const loadGitDataFailure = error => ({
   error,
 });
 
-export const loadGitData = () => (dispatch) => {
-  dispatch(
-    loadGitDataInitation(),
-  );
-  fetch('https://api.github.com/users/ryanccollins/events/public')
-    .then(res => res.json())
-    .then((json) => {
-      dispatch(
-        loadGitDataSuccess(json),
-      );
-    }).catch((err) => {
-      dispatch(
-        loadGitDataFailure(err),
-      );
-    });
+export const loadGitData = () => async (dispatch) => {
+  dispatch(loadGitDataInitation());
+  try {
+    await setTimeout(() => {}, 2000);
+    const res = await fetch('https://api.github.com/users/ryanccollins/events/public');
+    const json = await res.json();
+    dispatch(
+      loadGitDataSuccess(json),
+    );
+  } catch (err) {
+    dispatch(
+      loadGitDataFailure(err),
+    );
+  }
 };
 
 export const toggleLogoHovered = () => ({

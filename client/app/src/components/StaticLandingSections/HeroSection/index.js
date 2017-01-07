@@ -8,6 +8,7 @@ import Footer from 'grommet-udacity/components/Footer';
 import Button from 'grommet-udacity/components/Button';
 import { LogoImage } from 'components';
 import cssModules from 'react-css-modules';
+import Waypoint from 'react-waypoint';
 import cn from 'classnames';
 import styles from './index.module.scss';
 
@@ -16,6 +17,8 @@ const HeroSection = ({
   image,
   button,
   isHovered,
+  onEnterWaypoint,
+  onLeaveWaypoint,
 }) => (
   <Hero
     colorIndex="grey-1"
@@ -27,8 +30,14 @@ const HeroSection = ({
       id="hero"
       align="center"
       justify="center"
-      style={{ width: '100%', marginTop: 100 }}
+      className={styles.heroBox}
     >
+      <Waypoint
+        topOffset="95px"
+        className={styles.waypoint}
+        onEnter={onEnterWaypoint}
+        onLeave={onLeaveWaypoint}
+      />
       <Animate
         visible={image}
         enter={{ animation: 'slide-down', duration: 1500 }}
@@ -78,10 +87,12 @@ const HeroSection = ({
 );
 
 HeroSection.propTypes = {
+  onEnterWaypoint: PropTypes.func.isRequired,
   button: PropTypes.bool.isRequired,
   image: PropTypes.bool.isRequired,
   headline: PropTypes.bool.isRequired,
   isHovered: PropTypes.bool.isRequired,
+  onLeaveWaypoint: PropTypes.func.isRequired,
 };
 
 export default cssModules(HeroSection, styles);

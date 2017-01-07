@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
 import Section from 'grommet-udacity/components/Section';
 import Heading from 'grommet-udacity/components/Heading';
@@ -18,6 +17,7 @@ import SocialGithubIcon from 'grommet-udacity/components/icons/base/SocialGithub
 import ViewIcon from 'grommet-udacity/components/icons/base/View';
 import { Divider, ProjectMeta } from 'components';
 import Lightbox from 'react-images';
+import styles from './index.module.scss';
 
 const Project = ({
   project,
@@ -142,14 +142,14 @@ const Project = ({
         >
           <Columns
             masonry
-            align="center"
+            className={styles.columns}
             justify="center"
             maxCount={6}
           >
             {project.images.map((image, i) =>
               <Box key={i} onClick={() => onOpen(i)}>
                 <Image src={image.src} alt={`${project.title} image #${i}`} />
-              </Box>
+              </Box>,
             )}
           </Columns>
           <Lightbox
@@ -160,7 +160,7 @@ const Project = ({
             onClickPrev={onPrev}
             onClose={onClose}
             showThumbnails
-            onClickThumbnail={(i) => onSetImage(i)}
+            onClickThumbnail={i => onSetImage(i)}
           />
         </Box>
       </Section>
@@ -169,7 +169,8 @@ const Project = ({
 );
 
 Project.propTypes = {
-  project: PropTypes.object.isRequired,
+  lightboxIsOpen: PropTypes.bool.isRequired,
+  project: PropTypes.object.isRequired, // eslint-disable-line
   onPrev: PropTypes.func.isRequired,
   onNext: PropTypes.func.isRequired,
   onOpen: PropTypes.func.isRequired,

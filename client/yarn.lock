@@ -1773,6 +1773,10 @@ console-control-strings@^1.0.0, console-control-strings@~1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/console-control-strings/-/console-control-strings-1.1.0.tgz#3d7cf4464db6446ea644bf4b39507f9851008e8e"
 
+consolidated-events@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/consolidated-events/-/consolidated-events-1.0.1.tgz#70f475f4a5d6d20428e702da1b8870d9cc031a14"
+
 constant-case@^1.1.0:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/constant-case/-/constant-case-1.1.2.tgz#8ec2ca5ba343e00aa38dbf4e200fd5ac907efd63"
@@ -5682,7 +5686,11 @@ node-pre-gyp@^0.6.29:
     tar "~2.2.1"
     tar-pack "~3.3.0"
 
+<<<<<<< HEAD
 node-sass@^3.4.2:
+=======
+node-sass@^3.4.4:
+>>>>>>> 9970da98e92cc446501fbb0259bc9d0052eb047a
   version "3.13.1"
   resolved "https://registry.yarnpkg.com/node-sass/-/node-sass-3.13.1.tgz#7240fbbff2396304b4223527ed3020589c004fc2"
   dependencies:
@@ -6991,7 +6999,11 @@ rc@~1.1.6:
     minimist "^1.2.0"
     strip-json-comments "~1.0.4"
 
-react-addons-css-transition-group@^15.2.1, react-addons-css-transition-group@^15.3.0:
+react-addons-css-transition-group:
+  version "15.4.1"
+  resolved "https://registry.yarnpkg.com/react-addons-css-transition-group/-/react-addons-css-transition-group-15.4.1.tgz#60b133fac5116e4009e56ab0674dc2ddcc1a18f6"
+
+react-addons-css-transition-group@^15.3.0:
   version "15.3.2"
   resolved "https://registry.yarnpkg.com/react-addons-css-transition-group/-/react-addons-css-transition-group-15.3.2.tgz#d8fa52bec9bb61bdfde8b9e4652b80297cbff667"
 
@@ -7238,7 +7250,21 @@ react-smooth@0.1.11:
     raf "^3.2.0"
     react-addons-transition-group "^0.14.0 || ^15.0.0"
 
-react@^0.14.0:
+react-ssr-optimization:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/react-ssr-optimization/-/react-ssr-optimization-0.0.5.tgz#3062a2657b2bc9a1cf6a8aa9ca62fc00b4fe8eda"
+  dependencies:
+    lodash "^4.12.0"
+    lru-cache "^4.0.1"
+    react "^0.14.8"
+
+react-waypoint:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/react-waypoint/-/react-waypoint-4.1.0.tgz#40f0b78c20add9d6cfd861e6e806f894495119c0"
+  dependencies:
+    consolidated-events "^1.0.1"
+
+react@^0.14.0, react@^0.14.8:
   version "0.14.8"
   resolved "https://registry.yarnpkg.com/react/-/react-0.14.8.tgz#078dfa454d4745bcc54a9726311c2bf272c23684"
   dependencies:

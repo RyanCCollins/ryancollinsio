@@ -8,12 +8,12 @@ User.create(
 p = Project.create!(
   title: 'Scalable React TypeScript Boilerplate',
   user: User.all.first,
-  description: "A scalable react boilerplate that uses TypeScript.  Based on the Scalable React Boilerplate project, the main difference being that this project embraces static types using TypeScript.",
+  description: "A React + TypeScript boilerplate that follows the feature-first architecture for maximum scalability.  Based on the Scalable React Boilerplate project, the main difference being that this project embraces static types using TypeScript.  By implementing statically typed interfaces, this project is a great starter project for component libraries, web apps, or even static websites.",
   featureImage: "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/srtsb/main.png?raw=true",
   projectUrl: "https://scalable-react-ts-boilerplate.herokuapp.com/",
   repoUrl: "https://github.com/RyanCCollins/scalable-react-ts-boilerplate",
-  milestones: "- Built a scalable, feature-first boilerplate / micro-framework using TypeScript. \n - Developed a documentation webpage for user's of the site. \n - Built dozens of reusable component primitives with typed APIs",
-  designPatterns: "This boilerplate utilizes many best practices. It implements static typing using TypeScript, providing type-safety and self-documentation.  It uses Redux and the Flux unidirectional data flow.  It also uses styled-components.",
+  milestones: "- Built a scalable, feature-first React boilerplate / micro-framework using TypeScript. \n - Developed a documentation webpage for user's of the library. \n - Built dozens of reusable component primitives with typed APIs. \n - Wrote a publication on the merits of utilizing typed APIs when developing React User Interface Libraries.",
+  designPatterns: "This project implements static typing using TypeScript, providing type-safety and self-documentation.  It uses Redux and the Flux unidirectional data flow, along with Styled-Components.  Finally, it incorporates the feature-first architecture, which promots code reuse by seperating reusable UI from project specific UI.",
   technicalInformation: "Built with TypeScript, React, Redux and many other libraries using the feature-first architecture.  Utilizes Functional Reactive Programming and Immutable data structures.  The app is universal and renders serverside using an express application.",
   category: "frontend",
   sort_priority: 203
@@ -30,7 +30,7 @@ images.each do |i|
   )
 end
 
-tags = ['React', 'TypeScript', 'Redux', 'Flux', 'ES6', 'Node', 'Express']
+tags = ['React', 'TypeScript', 'Redux', 'Flux', 'ES6', 'Node', 'Express', 'Server Rendered']
 tags.each do |tag|
   p.tags << Tag.find_or_create_by(title: tag)
 end
@@ -107,7 +107,7 @@ images.each do |i|
   )
 end
 
-tags = ['React', 'GraphQL', 'Redux', 'Flux', 'Grommet', 'ES6', 'Apollo']
+tags = ['React', 'GraphQL', 'Redux', 'Flux', 'Grommet', 'ES6', 'Apollo', 'Server Rendered']
 tags.each do |tag|
   p.tags << Tag.find_or_create_by(title: tag)
 end
@@ -182,7 +182,7 @@ images.each do |i|
   )
 end
 
-tags = ['React', 'GraphQL', 'Redux', 'Flux', 'Grommet', 'ES6', 'Apollo', 'Ruby on Rails']
+tags = ['React', 'GraphQL', 'Redux', 'Flux', 'Grommet', 'ES6', 'Apollo', 'Ruby on Rails', 'Server Rendered']
 tags.each do |tag|
   p.tags << Tag.find_or_create_by(title: tag)
 end
@@ -225,7 +225,7 @@ end
 
 p.save!
 
-tags = ['React', 'GraphQL', 'Redux', 'Grommet', 'ES6', 'Apollo', 'Node']
+tags = ['React', 'GraphQL', 'Redux', 'Grommet', 'ES6', 'Apollo', 'Node', 'Server Rendered']
 tags.each do |tag|
   p.tags << Tag.find_or_create_by(title: tag)
 end
@@ -271,7 +271,7 @@ end
 
 p.save!
 
-tags = ['React', 'Ruby on Rails', 'Redux', 'GraphQL', 'Apollo', 'Grommet', 'ES6']
+tags = ['React', 'Ruby on Rails', 'Redux', 'GraphQL', 'Apollo', 'Grommet', 'ES6', 'Server Rendered']
 tags.each do |tag|
   p.tags << Tag.find_or_create_by(title: tag)
 end
@@ -312,7 +312,7 @@ end
 
 p.save!
 
-tags = ['React', 'GraphQL', 'Redux', 'Apollo', 'Grommet', 'ES6', 'Ruby on Rails']
+tags = ['React', 'GraphQL', 'Redux', 'Apollo', 'Grommet', 'ES6', 'Ruby on Rails', 'Server Rendered']
 tags.each do |tag|
   p.tags << Tag.find_or_create_by(title: tag)
 end
@@ -349,7 +349,7 @@ end
 
 p.save!
 
-tags = ['React', 'GraphQL', 'Apollo', 'Redux', 'Grommet', 'ES6', 'Node', 'Python']
+tags = ['React', 'GraphQL', 'Apollo', 'Redux', 'Grommet', 'ES6', 'Node', 'Server Rendered', 'Python']
 tags.each do |tag|
   p.tags << Tag.find_or_create_by(title: tag)
 end
@@ -384,7 +384,7 @@ end
 
 p.save!
 
-tags = ['React', 'GraphQL', 'Redux', 'Apollo', 'ES6', 'Grommet', 'Node']
+tags = ['React', 'GraphQL', 'Redux', 'Apollo', 'ES6', 'Grommet', 'Node', 'Server Rendered']
 tags.each do |tag|
   p.tags << Tag.find_or_create_by(title: tag)
 end
@@ -656,6 +656,162 @@ p.save!
 
 the_post = Post.create(
   user: User.first,
+  category: 'frontend',
+  sort_priority: 200,
+  title: "ES2015 JavaScript vs. Elm vs. TypeScript",
+  feature_image: "https://cdn-images-1.medium.com/max/800/0*dr-Nr-6WsphJPBFb.png",
+  body: "# ES2015 JavaScript vs. Elm vs. TypeScript \n
+  ## In search of the perfect Front End Language
+\n
+As a Front End focused software engineer, one of my goals is to constantly
+evolve the tools and methodologies I use in my work. Change is baked right into
+my DNA, and rightfully so considering my chosen profession I might add. People
+often speak of [JavaScript fatigue](https://medium.com/search?q=javascript
+fatigue), a syndrome where engineers get burnt out from the constant change in
+the JavaScript ecosystem. This is not a problem for me. I embrace the change and
+I try to move faster than it, which of course is not always possible. That said,
+when it comes to making alterations at the language level, I am often more
+cautious and I take my time to make decisions based on experience.
+\n
+Over the past year, I have written JavaScript professionally and have
+experimented significantly with two additional flavors of JavaScript supersets,
+if you will, including Elm and TypeScript. In this article, I will compare each
+of these language choices and make a conclusion as to which is my language of
+choice for 2017.
+\n
+\n
+### JavaScript
+\n
+JavaScript has undergone some serious transformations over the years. Most
+recently, it received the biggest update to the language ever. The JavaScript we
+are writing nowadays with ES2015 and onward is a totally different animal
+compared to what you might be used to seeing with pre-ES2015 JavaScript. If you
+are not familiar, we are using a tool called [Babel](https://babeljs.io/) that
+takes new JavaScript and changes (transpiles) it into JavaScript that can be
+understood by modern web-browsers.
+\n
+The release of ES2015 gave me motivation to write JavaScript full-time, where in
+the past I would never have considered making a career out of it. It’s a very
+exciting time to be a Front End Engineer. Using web technologies nowadays, we
+are able to make just about anything you can think of. Dynamic web applications,
+native and browser-based mobile apps, virtual reality, artificial intelligence,
+APIs & web-servers, cross-platform desktop apps, et. al.
+\n
+Beyond just the syntactic updates to the language, one of the major changes has
+come with the tooling that is now available. Using Webpack, we no longer need to
+load modules via script tags and are able to bundle up our code in such a way
+that is compatible with web-browsers. This has enabled Front End Engineers to
+think about UI application design in terms of components, making it simple to
+package up reusable interface component libraries.
+\n
+Overall, JavaScript is a very exciting language to work with, but at the end of
+the day, it is still missing some key features in my opinion. On the top of the
+list is static-typing, followed closely by native immutable data structures.
+Although there are libraries that help to fill in the gaps, namely
+[Flow](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=3&cad=rja&uact=8&ved=0ahUKEwj3z_jFlqLRAhXCOCYKHf3mAKIQFggyMAI&url=https://flowtype.org/&usg=AFQjCNHjkhdusPST_3mtgYlEMsU6yzHSsg&sig2=6rMFTU2UTXLa9M7PF_GEug)
+and [Immutable.js](https://facebook.github.io/immutable-js/), it can be tough to
+find a common ground from project to project. For this reason, vanilla
+JavaScript is not my top choice for Front End languages going forward.
+\n
+\n
+### Elm
+\n
+I spent roughly 3–4 months reading books about Elm before I took the dive into
+using it for a project. I have to say that Elm is by far my favorite of the
+three and in fact might be one of my favorite languages of all time. First-class
+support for: static typing, persistent immutable data structures, auto-currying,
+[ADTs](https://en.wikipedia.org/wiki/Algebraic_data_type), the Elm architecture,
+etc. The list goes on and on. Elm is a Front End Functional Programmer’s best
+friend and is right up my alley.
+\n
+With all of this said, Elm is not my top choice for Front End languages. Elm is
+still very much a niche language without a terrible amount of widespread
+industry acceptance. My desire to be involved in a number of projects as an
+independent contractor keeps me motivated to use more mainstream technologies
+for the time being. Perhaps in a year or so, Elm will rank number 1 for me.
+\n
+\n
+### TypeScript
+\n
+Let’s get real for a second. Nowadays we are building just about everything with
+JavaScript. For the most part, this works great. We are able to eliminate nearly
+all bugs and performance issues using immutable data structures and Flux /
+Redux. There is still one class of bugs that pop up quite frequently, however.
+This entire class of bugs can be fixed with static type checking and TypeScript
+is designed to do just that. With TypeScript, you are still writing the
+JavaScript that you are already used to, but you have first-class support for
+static-typing bundled into an extremely modern and fast compiler.
+\n
+TypeScript is a blast to work with and is very easy to get setup with it. Using
+Webpack makes incorporating TypeScript as easy as installing a loader and saving
+files to a .ts(x) extension. Other than a few demonstration projects, the first
+real project that I made using TypeScript as the main language is the
+[scalable-react-ts-boilerplate](https://github.com/RyanCCollins/scalable-react-ts-boilerplate)
+project. This project is a spin-off of another [boilerplate
+micro-framework](https://github.com/RyanCCollins/scalable-react-boilerplate)
+that I built as leader of the [Udacity Alumni Web
+Team](https://medium.com/udacity/introducing-the-udacity-alumni-web-team-f69e7609a0aa#.ecop5gu0v).
+It implements the same feature-first architectural pattern, but using TypeScript
+as the main language.
+\n
+In building this project, the realization that I made is that TypeScript is very
+well fit for building UI component libraries. As part of this boilerplate, I
+built a dozen or so reusable UI components, which demonstrated the capacity of
+TypeScript to facilitate self-documenting APIs. This is also the case for
+GraphQL, a library that I am also incredibly fond of, as it also deploys a
+static type system which facilitates automatic documentation of your
+application’s data layer. Due to the fact that in 2017, I will be working as a
+core contributor on several UI Component libraries, TypeScript is starting to
+make a lot of sense for me.
+\n
+By incorporating a static type-checking tool like Flow, JavaScript on it’s own
+is a very powerful language and is on the same level as TypeScript in terms of
+its abilities. The main reason why I prefer TypeScript at the current point in
+time is that it encourages the use of type-safety more so than Flow. It has been
+my experience that when you work with a team on a project, Flow does nothing to
+enforce the usage of static-typing, meaning that your team members can very
+easily sidestep Flow’s type-checking. With TypeScript, it is a given that anyone
+working on the project will be using static typing and you end up with higher
+quality code as a result.
+\n
+\n
+### Summary
+\n
+While there are dozens of solid choices for Front End languages these days, it
+is my opinion that the three that I wrote about here are the best available
+choices. ESNext will be one of the top choices for a long time to come due to
+its mainstream acceptance. It is a very good language and is leaps and bounds
+more evolved than its predecessors were. Elm is my favorite language of the
+bunch due to its functional nature, but due to the fact that it’s still fairly
+niche it is not going to be my primary language anytime soon. All in all,
+TypeScript is my top choice. The fact that I am writing nearly the exact same
+thing as with JavaScript, other than adding type annotations, makes TypeScript
+the perfect middle-ground for me.
+\n
+\n
+### Resources
+\n
+* [Getting Started with TypeScript React and
+Webpack](https://medium.com/@fay_jai/getting-started-with-reactjs-typescript-and-webpack-95dcaa0ed33c)
+* [TypeScript Deep Dive](https://www.gitbook.com/book/basarat/typescript/details)
+* [An enhanced GraphQL experience with
+TypeScript](https://dev-blog.apollodata.com/graphql-dx-d35bcf51c943#.gxoxk6lyu)
+* [JavaScript Code Quality with Free
+Tools](https://dev-blog.apollodata.com/javascript-code-quality-with-free-tools-9a6d80e29f2d#.txqeh1lnb)
+* [5 Benefits of static GraphQL
+Queries](https://dev-blog.apollodata.com/5-benefits-of-static-graphql-queries-b7fa90b0b69a#.vx5w52wyj)"
+)
+
+tags = ['Front End', 'Elm', 'TypeScript']
+tags.each do |tag|
+  the_post.tags << Tag.find_or_create_by(title: tag)
+end
+the_post.save!
+
+the_post = Post.create(
+  user: User.first,
+  category: 'frontend',
+  sort_priority: 199,
   title: "Performance Optimizing A React Single Page App — Part 2",
   feature_image: 'https://cdn-images-1.medium.com/max/800/1*vgmd53ACeiyX_JbYF6geQg.png',
   body: "This is a brief followup to my [past
@@ -879,6 +1035,8 @@ the_post.save!
 the_post = Post.create(
   user: User.first,
   title: 'Performance Optimizing a React Single Page App-Part 1',
+  category: 'frontend',
+  sort_priority: 198,
   feature_image: 'https://cdn-images-1.medium.com/max/800/1*b3JmmosHi_E1aVEzF2MalA.png',
   body: "Note, this is part one in a two-part series about React performance
 optimization. Part 2 can be [found
@@ -1231,6 +1389,8 @@ post = Post.create(
   user: User.first,
   feature_image: "http://res.cloudinary.com/dc1qjoyvn/image/upload/v1472925105/ciqbx025nb8gmmkpuc1w.png",
   title: "Embracing Immutable Architecture",
+  category: 'frontend',
+  sort_priority: 197,
   body: "I believe as a community, many of us JavaScript engineers have embraced Immutable Architecture. Whether we realize it or not, a new way of building apps has crept into the mainstream JavaScript ecosystem and it is here to stay.
 \n \n
 So what is Immutable Architecture, anyways?
@@ -1314,6 +1474,8 @@ post = Post.create(
   user: User.first,
   feature_image: "http://res.cloudinary.com/dc1qjoyvn/image/upload/v1472593988/ge3wvwgvomm5tc04zjsz.png",
   title: "Feature First Organization",
+  category: 'frontend',
+  sort_priority: 196,
   body: "Colocation is in. Your organization starts and ends with the feature you are implementing. You know you are doing it right if your entire app is a composition of feature-first components and your components are modular to the point where you can pluck components for reuse by dragging and dropping the folder they reside in. [The original article was posted on Medium](https://medium.com/front-end-hacking/the-secret-to-organization-in-functional-programming-913484e85fc9#.kwiqkohbv) and featured on [Front End Weekly](https://medium.com/front-end-hacking), a curated publication for Front End JavaScript engineering content.
 \n \n
 ## Feature First
@@ -1405,6 +1567,8 @@ post = Post.create(
   user: User.first,
   feature_image: "http://res.cloudinary.com/dc1qjoyvn/image/upload/v1468092213/efjetjkyzb6b9tcxrxqp.png",
   title: "Lessons Learned From Functional Reactive Programming",
+  category: 'frontend',
+  sort_priority: 195,
   body: "The author of [Elm-lang](http://elm-lang.org/papers/concurrent-frp.pdf), a progressive functional language built to create Front End Web GUIs states in his senior thesis that 'Functional Reactive Programming (FRP) is a declarative way to create reactive systems.'
 \n
 He goes on to further define the need for FRP in building user interfaces and defining how FRP has shown great potential in other areas: 'FRP has already shown its potential in a diversity of domains: robotics, music synthesis, animation, video games, and graphical user interfaces. These domains are reactive because they require interaction with a wide range of outside inputs, from keyboards to accelerometers.'

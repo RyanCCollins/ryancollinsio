@@ -1,19 +1,20 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as ProjectActionCreators from './actions';
+import projectData from 'fragments/projectData'; // eslint-disable-line
 import { WithLoading, WithToast, Project, CommentFeed } from 'components';
-import projectData from 'fragments/projectData';
 import Box from 'grommet-udacity/components/Box';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
+import * as ProjectActionCreators from './actions';
+
 let RichTextEditor;
 if (typeof window !== 'undefined') {
-  RichTextEditor = require('react-rte').default;
+  RichTextEditor = require('react-rte').default; // eslint-disable-line
 }
 
 
-class ProjectContainer extends Component { // eslint-disable-line react/prefer-stateless-function
+class ProjectContainer extends Component {
   constructor() {
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -119,7 +120,7 @@ class ProjectContainer extends Component { // eslint-disable-line react/prefer-s
             }
             <CommentFeed
               value={commentInput}
-              onChange={(value) => actions.projectEditComment(value)}
+              onChange={value => actions.projectEditComment(value)}
               onSubmit={this.handleSubmit}
               comments={project && project.comments}
               onUpvote={this.handleUpvote}
@@ -134,14 +135,14 @@ class ProjectContainer extends Component { // eslint-disable-line react/prefer-s
 
 ProjectContainer.propTypes = {
   isLoading: PropTypes.bool,
-  project: PropTypes.object,
-  loadingError: PropTypes.object,
-  actions: PropTypes.object.isRequired,
-  user: PropTypes.object.isRequired,
-  projectError: PropTypes.object,
+  project: PropTypes.object, // eslint-disable-line
+  loadingError: PropTypes.object, // eslint-disable-line
+  actions: PropTypes.object.isRequired, // eslint-disable-line
+  user: PropTypes.object.isRequired, // eslint-disable-line
+  projectError: PropTypes.object, // eslint-disable-line
   message: PropTypes.string,
-  commentInput: PropTypes.object,
-  params: PropTypes.object.isRequired,
+  commentInput: PropTypes.object, // eslint-disable-line
+  params: PropTypes.object.isRequired, // eslint-disable-line
   upvoteComment: PropTypes.func,
   mutate: PropTypes.func,
   refetch: PropTypes.func,
@@ -154,7 +155,7 @@ ProjectContainer.contextTypes = {
 };
 
 // mapStateToProps :: {State} -> {Props}
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   user: state.app.user,
   projectError: state.project.error,
   message: state.project.message,
@@ -164,10 +165,10 @@ const mapStateToProps = (state) => ({
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     ProjectActionCreators,
-    dispatch
+    dispatch,
   ),
 });
 
@@ -180,7 +181,7 @@ const getProjectsQuery = gql`
 `;
 
 const ContainerWithData = graphql(getProjectsQuery, {
-  options: (ownProps) => ({
+  options: ownProps => ({
     fragments: [projectData],
     skip: !ownProps.params.slug,
     variables: {
@@ -228,5 +229,5 @@ const ContainerWithMoreMutations = graphql(upvoteCommentMutation, {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(ContainerWithMoreMutations);
