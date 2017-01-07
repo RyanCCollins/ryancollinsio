@@ -18,7 +18,8 @@
       "production": {
         "plugins": [
           [
-            "babel-plugin-webpack-alias", {
+            "babel-plugin-webpack-alias",
+            {
               "config": "./webpack.config.prod.js"
             }
           ]
@@ -27,7 +28,8 @@
       "test": {
         "plugins": [
           [
-            "babel-plugin-webpack-loaders", {
+            "babel-plugin-webpack-loaders",
+            {
               "config": "./config/webpack/webpack.test.config.js",
               "verbose": false
             }
@@ -157,6 +159,7 @@
     "react-elm-components": "^1.0.1",
     "react-flip-move": "2.6.5",
     "react-foundation": "^0.6.8",
+    "react-ga": "^2.1.2",
     "react-hot-loader": "^3.0.0-beta.6",
     "react-images": "^0.5.2",
     "react-intl": "^2.1.3",
