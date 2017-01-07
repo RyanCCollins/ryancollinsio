@@ -1,9 +1,13 @@
 import React from 'react';
 import { Router } from 'react-router';
 import { ApolloProvider } from 'react-apollo';
+import { initialize, set, pageview } from 'react-ga';
 import { AppContainer } from 'containers'; // eslint-disable-line
 import store, { history } from './store';
 import client from './apolloClient';
+
+// initialize google analytics
+initialize('UA-75828309-1');
 
 /* eslint-disable */
 // Polyfill for the System.import
@@ -188,7 +192,11 @@ const RouterApp = props => (
   <ApolloProvider {...props} store={store} client={client}>
     <Router
       history={history} // Scroll to top on route transitions
-      onUpdate={() => window.scrollTo(0, 0)} // eslint-disable-line
+      onUpdate={() => {
+        window.scrollTo(0, 0);
+        set({ page: window.location.pathname });
+        pageview(window.location.pathname);
+      }}
     >
       {routes}
     </Router>
