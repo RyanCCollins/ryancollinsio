@@ -7,7 +7,7 @@ import store, { history } from './store';
 import client from './apolloClient';
 
 // initialize google analytics
-if (window) {
+if (typeof window !== 'undefined') {
   ReactGA.initialize('UA-75828309-1');
 }
 
