@@ -127,7 +127,7 @@ const FocusSectionTwo = ({
             </Box>,
           )}
         </Box>
-      </Box>
+      </BorderedBox>
       <Box basis="1/3" align="center" pad="medium">
         <Box align="start" responsive>
           <Heading tag="h5" strong justify="left">
