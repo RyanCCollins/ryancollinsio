@@ -1,4 +1,5 @@
 import * as types from './constants';
+import { debounce } from '../../utils';
 
 export const landingShowImage = () => ({
   type: types.LANDING_SHOW_IMAGE,
@@ -45,6 +46,16 @@ export const loadGitDataFailure = error => ({
   error,
 });
 
+export const selectActiveLanguageElement = element => ({
+  type: types.SELECT_ACTIVE_LANGUAGE_ELEMENT,
+  element,
+});
+
+export const setActiveFlavor = index => ({
+  type: types.SET_ACTIVE_FLAVOR,
+  index,
+});
+
 export const loadGitData = () => async (dispatch) => {
   dispatch(loadGitDataInitation());
   try {
@@ -63,6 +74,24 @@ export const loadGitData = () => async (dispatch) => {
 
 export const toggleLogoHovered = () => ({
   type: types.TOGGLE_LANDING_LOGO_HOVERED,
+});
+
+export const toggleActiveMeterAction = index => ({
+  type: types.TOGGLE_ACTIVE_METER,
+  index,
+});
+
+export const toggleActiveMeter = index => (dispatch) => {
+  debounce(
+    dispatch(
+      toggleActiveMeterAction(index),
+    ),
+  );
+};
+
+export const setActiveLanguageHotSpot = index => ({
+  type: types.SET_ACTIVE_LANGUAGE_HOTSPOT,
+  index,
 });
 
 export const cycleThroughLogoHovered = () => (dispatch) => {

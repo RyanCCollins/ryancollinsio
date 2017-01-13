@@ -12,6 +12,8 @@ import { Card, Columns } from './styles';
 
 const LanguageSection = ({
   languages,
+  activeElement,
+  onSelectActiveElement,
 }) => (
   <Section
     id="languages-section"
@@ -20,30 +22,40 @@ const LanguageSection = ({
     full="horizontal"
   >
     <Headline className="heading" align="center">
-      Language Usage
+      Language Confidence
     </Headline>
     <Divider />
-    <Columns>
-      {languages.map((language, i) =>
-        <Card key={i}>
-          <Box align="center" justify="center" pad="medium">
-            <Meter
-              type="arc"
-              colorIndex="graph-1"
-              value={language.value}
-              label={
-                <Box align="center" direction="column">
-                  <Value value={`${language.value}%`} size="medium" />
-                  <Heading align="center" tag="h2" strong>
-                    {`${language.label} `}
-                  </Heading>
-                </Box>
-              }
-            />
-          </Box>
-        </Card>,
-      )}
-    </Columns>
+    <Box pad="medium">
+      <Columns>
+        {languages.map((language, i) =>
+          <Card key={i}>
+            <Box align="center" justify="center" pad="medium">
+              <Meter
+                type="arc"
+                colorIndex="graph-1"
+                activeIndex={activeElement === i ? 0 : null}
+                onActive={(index) => {
+                  if (index === 0) {
+                    onSelectActiveElement(i);
+                  } else {
+                    onSelectActiveElement();
+                  }
+                }}
+                value={language.value}
+                label={
+                  <Box align="center" direction="column">
+                    <Value value={`${language.value}%`} size="medium" />
+                    <Heading align="center" tag="h2" strong>
+                      {`${language.label} `}
+                    </Heading>
+                  </Box>
+                }
+              />
+            </Box>
+          </Card>,
+        )}
+      </Columns>
+    </Box>
     <Footer align="center" justify="center" pad="large">
       <Button
         primary
@@ -61,6 +73,8 @@ LanguageSection.propTypes = {
       value: PropTypes.number.isRequired,
     }),
   ),
+  activeElement: PropTypes.number,
+  onSelectActiveElement: PropTypes.func.isRequired,
 };
 
 export default LanguageSection;

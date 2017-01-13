@@ -214,7 +214,6 @@ a.active {
 
 .section {
   padding: 200px 0 !important;
-  text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -226,11 +225,10 @@ a.active {
 
 .main-text {
   p {
-    font-size: 20px;
+    font-size: 29px !important;
     padding: 10px 40px;
     line-height: 1.75rem;
     letter-spacing: 1.3px;
-    font-family: 'Merriweather', serif;
     @media screen and (max-width: 600px) {
       padding: 10px 10px;
     }

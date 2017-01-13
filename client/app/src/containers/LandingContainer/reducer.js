@@ -14,11 +14,35 @@ export const initialState = {
     I currently rest my head in a quaint beach house in the Outer Banks, North Carolina
     and in a condo in Trumbull, CT.  Someday, I would like to move to California.`,
   },
+  activeIndex: null,
+  activeIndexFlavors: null,
+  activeLanguageElement: null,
+  activeLanguageHotSpot: 11,
 };
 
 const landingReducer =
   (state = initialState, action) => {
     switch (action.type) {
+      case types.SET_ACTIVE_FLAVOR:
+        return {
+          ...state,
+          activeIndexFlavors: action.index,
+        };
+      case types.SET_ACTIVE_LANGUAGE_HOTSPOT:
+        return {
+          ...state,
+          activeLanguageHotSpot: action.index || initialState.activeLanguageHotSpot,
+        };
+      case types.SELECT_ACTIVE_LANGUAGE_ELEMENT:
+        return {
+          ...state,
+          activeLanguageElement: action.element,
+        };
+      case types.TOGGLE_ACTIVE_METER:
+        return {
+          ...state,
+          activeIndex: action.index,
+        };
       case types.TOGGLE_LANDING_LOGO_HOVERED:
         return {
           ...state,

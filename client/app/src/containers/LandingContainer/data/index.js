@@ -5,3 +5,5 @@ export chartData from './chartData';
 export languages from './languages';
 export techstack from './techstack';
 export meterData from './meterData';
+export languageUsage from './languageUsage';
+export flavors from './flavorsOfJavaScript';

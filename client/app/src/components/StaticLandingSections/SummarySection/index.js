@@ -23,7 +23,7 @@ const SummarySection = ({
       Summary
     </Headline>
     <Divider />
-    <Box align="center">
+    <Box align="center" pad="medium">
       <img
         alt="ryan collins"
         src="https://github.com/RyanCCollins/cdn/blob/master/misc/me-new.png?raw=true"
@@ -33,7 +33,7 @@ const SummarySection = ({
         Ryan Collins
       </Heading>
       <Label uppercase className={styles.labelText}>
-        Full Stack & UI Engineer
+        Full Stack, UI Engineer
       </Label>
       <hr className={styles.seperator} />
     </Box>

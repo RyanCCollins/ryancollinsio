@@ -7,6 +7,7 @@ export const Columns = styled(Box)`
   justify-content: center;
   flex-wrap: wrap;
   flex-direction: row !important;
+  max-width: 1200px
 `;
 
 export const Card = styled.div`

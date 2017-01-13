@@ -8,7 +8,6 @@ import Box from 'grommet-udacity/components/Box';
 import {
   HeroSection,
   SummarySection,
-  FocusSection,
   FocusSectionTwo,
   OpenSourceContributions,
   MilestonesSection,
@@ -26,11 +25,12 @@ import referenceFragment from './fragments';
 import {
   milestones,
   summary,
-  chartData,
   languages,
   techstack,
   milestoneData,
   meterData,
+  languageUsage,
+  flavors,
 } from './data';
 
 class LandingContainer extends Component {
@@ -74,8 +74,11 @@ class LandingContainer extends Component {
       errorLoadingData,
       actions,
       isHovered,
-      isMobile,
       locationContent,
+      activeIndex,
+      activeLanguageElement,
+      activeLanguageHotSpot,
+      activeIndexFlavors,
     } = this.props;
     return (
       <Box
@@ -94,9 +97,22 @@ class LandingContainer extends Component {
         <SummarySection summary={summary} />
         <SummarySectionTwo />
         <MilestonesSection milestones={milestones} data={milestoneData} />
-        <LanguageSection languages={languages} />
-        <FocusSection isMobile={isMobile} chartData={chartData} />
-        <FocusSectionTwo chartData={meterData} />
+        <LanguageSection
+          activeElement={activeLanguageElement}
+          onSelectActiveElement={actions.selectActiveLanguageElement}
+          languages={languages}
+        />
+        <FocusSectionTwo
+          activeIndexFlavors={activeIndexFlavors}
+          onActiveFlavors={actions.setActiveFlavor}
+          flavorsOfJavaScript={flavors}
+          onActiveLanguageHotSpot={actions.setActiveLanguageHotSpot}
+          activeLanguageHotSpot={activeLanguageHotSpot}
+          languageUsageData={languageUsage}
+          activeIndex={activeIndex}
+          onActive={actions.toggleActiveMeter}
+          chartData={meterData}
+        />
         <OpenSourceContributions
           gitData={gitData}
           isLoading={loadingData}
@@ -128,8 +144,11 @@ LandingContainer.propTypes = {
   gitData: PropTypes.array, // eslint-disable-line
   button: PropTypes.bool.isRequired,
   isHovered: PropTypes.bool.isRequired,
-  isMobile: PropTypes.bool.isRequired,
+  activeIndex: PropTypes.number.isRequired,
   locationContent: PropTypes.string.isRequired,
+  activeLanguageElement: PropTypes.number.isRequired,
+  activeLanguageHotSpot: PropTypes.number.isRequired,
+  activeIndexFlavors: PropTypes.number.isRequired,
 };
 
 // mapStateToProps :: {State} -> {Props}
@@ -142,8 +161,12 @@ const mapStateToProps = state => ({
   errorLoadingData: state.landing.error,
   button: state.landing.button,
   gitData: filteredGitDataSelector(state.landing),
+  activeIndex: state.landing.activeIndex,
   referrers: state.landing.referrers,
   locationContent: state.landing.location.content,
+  activeLanguageHotSpot: state.landing.activeLanguageHotSpot,
+  activeLanguageElement: state.landing.activeLanguageElement,
+  activeIndexFlavors: state.landing.activeIndexFlavors,
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}

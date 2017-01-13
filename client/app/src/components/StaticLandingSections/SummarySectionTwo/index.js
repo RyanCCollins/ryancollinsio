@@ -15,7 +15,7 @@ const SummarySectionTwo = () => (
     justify="center"
   >
     <Headline align="center" className="heading">
-      Projects
+      Current Projects
     </Headline>
     <Divider />
     <Logos>
