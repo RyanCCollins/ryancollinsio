@@ -57,11 +57,11 @@ const FocusSectionTwo = ({
               ...item,
               colorIndex: ['brand', 'critical', 'warning', 'ok'][i],
             }),
-          ).reverse()}
+          )}
         />
         <Box direction="column" justify="start">
           {chartData.map((item, i) =>
-            <Box direction="row" align="center" justify="between">
+            <Box key={i} direction="row" align="center" justify="between">
               <Legend
                 activeIndex={activeIndex}
                 onActive={() => onActive(i)}
@@ -71,7 +71,7 @@ const FocusSectionTwo = ({
                 }]}
               />
             </Box>,
-          ).reverse()}
+          )}
         </Box>
       </Box>
       <BorderedBox
@@ -120,7 +120,7 @@ const FocusSectionTwo = ({
         </Box>
         <Box direction="column" justify="start">
           {languageUsageData.map((item, i) =>
-            <Box direction="row" align="center" justify="between">
+            <Box key={i} direction="row" align="center" justify="between">
               <Legend
                 series={[{
                   colorIndex: ['brand', 'critical', 'warning', 'ok'][i],
@@ -153,11 +153,11 @@ const FocusSectionTwo = ({
               ...item,
               colorIndex: ['brand', 'critical', 'warning', 'ok'][i],
             }),
-          ).reverse()}
+          )}
         />
         <Box direction="column" justify="start">
           {flavorsOfJavaScript.map((item, i) =>
-            <Box direction="row" align="center" justify="between">
+            <Box key={i} direction="row" align="center" justify="between">
               <Legend
                 activeIndex={activeIndexFlavors}
                 onActive={() => onActiveFlavors(i)}
@@ -167,7 +167,7 @@ const FocusSectionTwo = ({
                 }]}
               />
             </Box>,
-          ).reverse()}
+          )}
         </Box>
       </Box>
     </Box>

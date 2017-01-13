@@ -7,5 +7,7 @@ export default styled(Box)`
   @media screen and (max-width: 768px) {
     border-top: 3px solid #425563;
     border-bottom: 3px solid #425563;
+    border-right: none;
+    border-left: none;
   }
 `;

@@ -7,12 +7,12 @@ import CheckmarkIcon from 'grommet-udacity/components/icons/base/Checkmark';
 import Layer from 'grommet-udacity/components/Layer';
 import Footer from 'grommet-udacity/components/Footer';
 import Header from 'grommet-udacity/components/Header';
-import FilterControl from 'grommet-addons/components/FilterControl';
 import Select from 'grommet/components/Select';
 import Section from 'grommet-udacity/components/Section';
 import Box from 'grommet-udacity/components/Box';
 import Heading from 'grommet-udacity/components/Heading';
 import { Select as TagSelect } from 'antd';
+import { FilterControl } from 'components';
 import styles from './index.module.scss';
 
 const Option = TagSelect.Option;

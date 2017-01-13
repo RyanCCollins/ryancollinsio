@@ -24,6 +24,7 @@ module.exports = {
       'react',
       'react-dom',
       'grommet-udacity',
+      'grommet',
       'antd',
       'react-rte',
       'recharts',

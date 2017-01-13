@@ -3467,12 +3467,45 @@ graphql@^0.8.1:
   dependencies:
     iterall "1.0.2"
 
-grommet-addons@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/grommet-addons/-/grommet-addons-0.1.0.tgz#2f858e5704ef5507fdba653cbcbd89bc6556bd51"
+grommet, grommet@1.1.0:
+  version "1.1.0"
+  resolved "https://github.com/grommet/grommet/tarball/stable#ce7389d7f56588cbb0a886ea67c41e86ad2c9c7b"
   dependencies:
-    grommet "https://github.com/grommet/grommet/tarball/stable"
-    react-router "^2.8.1"
+    classnames "^2.2.3"
+    deep-assign "^2.0.0"
+    hammerjs "^2.0.1"
+    intl "^1.0.0"
+    inuit-clearfix "^0.2.1"
+    inuit-defaults "~0.2.1"
+    inuit-functions "~0.2.0"
+    inuit-headings "~0.3.0"
+    inuit-images "~0.3.3"
+    inuit-list-bare "~0.3.0"
+    inuit-lists "~0.1.0"
+    inuit-mixins "~0.2.3"
+    inuit-normalize "~4.1.1"
+    inuit-page "~0.2.1"
+    inuit-reset "~0.1.1"
+    inuit-responsive-settings "~0.1.2"
+    inuit-responsive-tools "~0.1.1"
+    inuit-shared "~0.1.5"
+    lodash.zip "^4.2.0"
+    markdown-to-jsx "^4.0.3"
+    moment "^2.13.0"
+    react "^15.3.0"
+    react-addons-transition-group "^15.3.0"
+    react-desc "^1.0.0"
+    react-dom "^15.3.0"
+    react-intl "^2.1.2"
+    react-router "2 - 3"
+    superagent "^3.3.1"
+
+"grommet-addons@https://github.com/RyanCCollins/grommet-addons/tarball/master":
+  version "0.3.0"
+  resolved "https://github.com/RyanCCollins/grommet-addons/tarball/master#83e6ee5d463ad45e572695aa37fef6cc65c5ccf3"
+  dependencies:
+    grommet "1.1.0"
+    react-router "^3.0.0"
 
 grommet-udacity@v0.1.13:
   version "0.1.13"
@@ -3508,39 +3541,6 @@ grommet-udacity@v0.1.13:
     shelljs "^0.7.0"
     superagent "^2.2.0"
     yargs "^5.0.0"
-
-"grommet@https://github.com/grommet/grommet/tarball/stable":
-  version "1.1.0"
-  resolved "https://github.com/grommet/grommet/tarball/stable#ce7389d7f56588cbb0a886ea67c41e86ad2c9c7b"
-  dependencies:
-    classnames "^2.2.3"
-    deep-assign "^2.0.0"
-    hammerjs "^2.0.1"
-    intl "^1.0.0"
-    inuit-clearfix "^0.2.1"
-    inuit-defaults "~0.2.1"
-    inuit-functions "~0.2.0"
-    inuit-headings "~0.3.0"
-    inuit-images "~0.3.3"
-    inuit-list-bare "~0.3.0"
-    inuit-lists "~0.1.0"
-    inuit-mixins "~0.2.3"
-    inuit-normalize "~4.1.1"
-    inuit-page "~0.2.1"
-    inuit-reset "~0.1.1"
-    inuit-responsive-settings "~0.1.2"
-    inuit-responsive-tools "~0.1.1"
-    inuit-shared "~0.1.5"
-    lodash.zip "^4.2.0"
-    markdown-to-jsx "^4.0.3"
-    moment "^2.13.0"
-    react "^15.3.0"
-    react-addons-transition-group "^15.3.0"
-    react-desc "^1.0.0"
-    react-dom "^15.3.0"
-    react-intl "^2.1.2"
-    react-router "2 - 3"
-    superagent "^3.3.1"
 
 growly@^1.2.0:
   version "1.3.0"
@@ -7331,11 +7331,21 @@ react-router-redux@^4.0.4:
   version "4.0.7"
   resolved "https://registry.yarnpkg.com/react-router-redux/-/react-router-redux-4.0.7.tgz#9b1fde4e70106c50f47214e12bdd888cfb96e2a6"
 
-react-router@^2.3.0, react-router@^2.8.1:
+react-router@^2.3.0:
   version "2.8.1"
   resolved "https://registry.yarnpkg.com/react-router/-/react-router-2.8.1.tgz#73e9491f6ceb316d0f779829081863e378ee4ed7"
   dependencies:
     history "^2.1.2"
+    hoist-non-react-statics "^1.2.0"
+    invariant "^2.2.1"
+    loose-envify "^1.2.0"
+    warning "^3.0.0"
+
+react-router@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/react-router/-/react-router-3.0.1.tgz#a4bf86441bd796e86a1c41d61397b604e2e4b98f"
+  dependencies:
+    history "^3.0.0"
     hoist-non-react-statics "^1.2.0"
     invariant "^2.2.1"
     loose-envify "^1.2.0"
