@@ -21,10 +21,10 @@
   justify-content: center;
   p {
     line-height: 1.75;
+    max-width: 676px !important;
+    font-size: 24px !important;
     text-align: justify;
     font-weight: 400;
-    font-size: 20 !important;
-    font-family: 'Merriweather', serif;
     padding-left: 10px;
     padding-right: 10px;
   }
@@ -33,6 +33,7 @@
 .seperator {
   border-color: #ff590a !important;
   width: 90px;
+  margin-bottom: 40px;
   border-top-width: 2px;
   margin-left: auto;
   margin-right: auto;

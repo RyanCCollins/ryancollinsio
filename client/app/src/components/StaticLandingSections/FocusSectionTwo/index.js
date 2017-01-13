@@ -11,6 +11,7 @@ import Chart, {
   Layers,
   Area,
   HotSpots,
+  Marker,
 } from 'grommet-udacity/components/chart/Chart';
 import { Divider } from 'components';
 import BorderedBox from './styles';
@@ -63,14 +64,14 @@ const FocusSectionTwo = ({
             <Box direction="row" align="center" justify="between">
               <Legend
                 activeIndex={activeIndex}
-                onActive={index => onActive(index)}
+                onActive={() => onActive(i)}
                 series={[{
                   colorIndex: ['brand', 'critical', 'warning', 'ok'][i],
                   label: item.label,
                 }]}
               />
             </Box>,
-          )}
+          ).reverse()}
         </Box>
       </Box>
       <BorderedBox
@@ -86,15 +87,9 @@ const FocusSectionTwo = ({
         </Box>
         <Chart
           vertical
-          hotSpots
         >
           <Base height="small" />
           <Layers>
-            <HotSpots
-              count={12}
-              activeIndex={activeLanguageHotSpot}
-              onActive={index => onActiveLanguageHotSpot(index)}
-            />
             {languageUsageData.map((item, i) =>
               <Area
                 key={i}
@@ -104,6 +99,18 @@ const FocusSectionTwo = ({
                 values={item.values}
               />,
             )}
+            <Marker
+              vertical
+              colorIndex="graph-2"
+              count={12}
+              index={activeLanguageHotSpot}
+            />
+            <HotSpots
+              colorIndex="graph-2"
+              count={12}
+              activeIndex={activeLanguageHotSpot}
+              onActive={index => onActiveLanguageHotSpot(index)}
+            />
           </Layers>
         </Chart>
         <Box align="start" responsive>
@@ -153,14 +160,14 @@ const FocusSectionTwo = ({
             <Box direction="row" align="center" justify="between">
               <Legend
                 activeIndex={activeIndexFlavors}
-                onActive={index => onActiveFlavors(index)}
+                onActive={() => onActiveFlavors(i)}
                 series={[{
                   colorIndex: ['brand', 'critical', 'warning', 'ok'][i],
                   label: item.label,
                 }]}
               />
             </Box>,
-          )}
+          ).reverse()}
         </Box>
       </Box>
     </Box>

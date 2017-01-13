@@ -30,7 +30,7 @@ const ReferencesSection = ({
       fullscreen={false}
       isLoading={isLoading}
     >
-      <Box className={styles.box}>
+      <Box className={styles.box} pad="medium">
         {references && references.length > 0 &&
           <Carousel
             persistentNav={false}
@@ -47,18 +47,18 @@ const ReferencesSection = ({
                   src={reference.avatar}
                   className={styles.avatar}
                 />
-                <Box className={styles.referenceText}>
-                  <Heading className="heading">
+                <Box align="center" className={styles.referenceText}>
+                  <Heading className="heading" align="center">
                     {reference.name}
                   </Heading>
-                  <Label uppercase className={styles.labelText}>
+                  <Label align="center" uppercase className={styles.labelText}>
                     {reference.title}
                   </Label>
-                  <Label uppercase className={styles.labelBottom}>
+                  <Label uppercase align="center" className={styles.labelBottom}>
                     {reference.company}
                   </Label>
                   <hr className={styles.seperator} />
-                  <Paragraph>
+                  <Paragraph size="medium">
                     {reference.body}
                   </Paragraph>
                 </Box>
