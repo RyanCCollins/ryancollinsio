@@ -1,21 +1,12 @@
 import React, { PropTypes } from 'react';
-import cssModules from 'react-css-modules';
 import Section from 'grommet-udacity/components/Section';
 import Headline from 'grommet-udacity/components/Headline';
-import Box from 'grommet-udacity/components/Box';
-import {
-  Radar,
-  RadarChart,
-  PolarGrid,
-  PolarAngleAxis,
-  PolarRadiusAxis,
-} from 'recharts';
+import Distribution from 'grommet-udacity/components/Distribution';
+import Box from 'grommet/components/Box';
 import { Divider } from 'components';
-import styles from './index.module.scss';
 
 const FocusSection = ({
   chartData,
-  isMobile,
 }) => (
   <Section
     className="section gradient-colored-lense"
@@ -28,30 +19,16 @@ const FocusSection = ({
       Areas of Focus
     </Headline>
     <Divider inverted />
-    <Box
-      align="center"
-      justify="center"
-      className={styles.chart}
-    >
-      <RadarChart
-        cx={window ? (window.innerWidth / 2) : 400}
-        cy={isMobile ? 200 : 350}
-        outerRadius={isMobile ? 125 : 250}
-        width={window ? window.innerWidth - 20 : 400}
-        height={isMobile ? 500 : 700}
-        data={chartData}
-      >
-        <Radar
-          name="Mike"
-          dataKey="A"
-          stroke="#00ff5e"
-          fill="#88008b"
-          fillOpacity={0.7}
-        />
-        <PolarGrid />
-        <PolarAngleAxis dataKey="subject" />
-        <PolarRadiusAxis />
-      </RadarChart>
+    <Box pad="large" justify="center">
+      <Distribution
+        series={chartData.map((item, i) =>
+          ({
+            label: item.label,
+            value: item.value,
+            colorIndex: ['brand', 'critical', 'warning', 'ok'][i],
+          }),
+        )}
+      />
     </Box>
   </Section>
 );
@@ -59,13 +36,10 @@ const FocusSection = ({
 FocusSection.propTypes = {
   chartData: PropTypes.arrayOf(
     PropTypes.shape({
-      A: PropTypes.number.isRequired,
-      B: PropTypes.number.isRequired,
-      subject: PropTypes.string.isRequired,
-      fullMark: PropTypes.string.isRequired,
+      value: PropTypes.number.isRequired,
+      label: PropTypes.string.isRequired,
     }),
   ).isRequired,
-  isMobile: PropTypes.bool.isRequired,
 };
 
-export default cssModules(FocusSection, styles);
+export default FocusSection;

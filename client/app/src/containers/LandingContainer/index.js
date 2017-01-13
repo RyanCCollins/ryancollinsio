@@ -8,6 +8,7 @@ import Box from 'grommet-udacity/components/Box';
 import {
   HeroSection,
   SummarySection,
+  FocusSection,
   FocusSectionTwo,
   OpenSourceContributions,
   MilestonesSection,
@@ -31,6 +32,7 @@ import {
   meterData,
   languageUsage,
   flavors,
+  chartData as focusChartData,
 } from './data';
 
 class LandingContainer extends Component {
@@ -101,6 +103,9 @@ class LandingContainer extends Component {
           activeElement={activeLanguageElement}
           onSelectActiveElement={actions.selectActiveLanguageElement}
           languages={languages}
+        />
+        <FocusSection
+          chartData={focusChartData}
         />
         <FocusSectionTwo
           activeIndexFlavors={activeIndexFlavors}
