@@ -16,8 +16,8 @@ export default function FilterControl(props: {
   const bottom = (unfilteredTotal !== filteredTotal) ? filteredTotal : '.';
 
   return (
-    <Button onClick={onClick}>
-      <Box align="center" pad={{ horizontal: 'small' }}>
+    <Button onClick={onClick} className="no-border">
+      <Box align="center">
         <Label size="small">{top}</Label>
         <FilterIcon />
         <Label size="small">{bottom}</Label>
