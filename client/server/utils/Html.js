@@ -32,7 +32,7 @@ function Html({ content, state, scriptHash, vendorHash, cssHash, styles }) {
         <meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png" />
         <meta name="theme-color" content="#ffffff" />
         <title>RyanCollins.io</title>
-        <link href="https://fonts.googleapis.com/css?family=Oswald|Merriweather" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Oswald|Merriweather|Lobster" rel="stylesheet" type="text/css" />
         <script src={`${vendorHash}`} type="text/javascript" />
         <link href={`${cssHash}`} rel="stylesheet" />
         <style dangerouslySetInnerHTML={{ __html: styles }} />
