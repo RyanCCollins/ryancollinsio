@@ -1,7 +1,6 @@
 /* eslint-disable */
 const webpack = require('webpack');
 const path = require('path');
-const HtmlwebpackPlugin = require('html-webpack-plugin');
 const NpmInstallPlugin = require('npm-install-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OfflinePlugin = require('offline-plugin');
@@ -49,10 +48,6 @@ module.exports = {
       {
         test: /\.md$/,
         loader: "html!markdown"
-      },
-      {
-        test: /\.inline\.scss$/,
-        loader: 'isomorphic-style-loader!css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]!resolve-url-loader!postcss-loader!sass-loader'
       },
       {
         test: /\.module\.scss$/,
@@ -145,22 +140,6 @@ module.exports = {
       },
       safeToUseOptionalCaches: true,
       AppCache: false,
-    }),
-    new HtmlwebpackPlugin({
-      template: 'config/templates/_index.html',
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeRedundantAttributes: true,
-        useShortDoctype: true,
-        removeEmptyAttributes: true,
-        removeStyleLinkTypeAttributes: true,
-        keepClosingSlash: true,
-        minifyJS: true,
-        minifyCSS: true,
-        minifyURLs: true,
-      },
-      inject: true,
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
