@@ -53,7 +53,9 @@ module.exports = {
         test: /\.module\.scss$/,
         loader: ExtractTextPlugin.extract({
           fallbackLoader: 'style-loader',
-          loader: 'css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]!resolve-url-loader!postcss-loader!sass-loader'
+          loader: 'css-loader?modules&importLoaders=1&localIdentName' + 
+            '=[path]___[name]__[local]___[hash:base64:5]' +
+            '!resolve-url-loader!postcss-loader!sass-loader'
         }),
       },
       {
@@ -132,17 +134,15 @@ module.exports = {
       publicPath: '/',
       caches: {
         main: [':rest:'],
-
-        // All chunks marked as `additional`, loaded after main section
-        // and do not prevent SW to install. Change to `optional` if
-        // do not want them to be preloaded at all (cached only when first loaded)
         additional: ['*.chunk.js'],
       },
       safeToUseOptionalCaches: true,
       AppCache: false,
     }),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
+      'process.env.NODE_ENV': JSON.stringify(
+        process.env.NODE_ENV || 'development'
+      )
     }),
     new webpack.optimize.OccurrenceOrderPlugin(true),
     new webpack.optimize.DedupePlugin(),
