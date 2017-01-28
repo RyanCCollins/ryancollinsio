@@ -26,8 +26,16 @@ module.exports = {
       'grommet',
       'antd',
       'react-rte',
-      'recharts',
-      'react-waypoint'
+      'react-waypoint',
+      'react-apollo',
+      'apollo-client',
+      'classnames',
+      'history',
+      'moment',
+      'react-flip-move',
+      'react-ga',
+      'redux-form',
+      'redux'
     ],
   },
   module: {
