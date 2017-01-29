@@ -4,6 +4,7 @@ import Anchor from 'grommet-udacity/components/Anchor';
 import Button from 'grommet-udacity/components/Button';
 import MailIcon from 'grommet-udacity/components/icons/base/Mail';
 import CodeIcon from 'grommet-udacity/components/icons/base/Code';
+import Box from 'grommet-udacity/components/Box';
 import Section from 'grommet-udacity/components/Section';
 import { SocialIcon, LogoImage } from 'components';
 import cn from 'classnames';
@@ -14,13 +15,16 @@ const AppFooter = () => (
   <StyledFooter
     primary
     pad="large"
-    colorIndex="light-2"
+    colorIndex="neutral-1"
     direction="column"
   >
     <StyledSection
       align="center"
+      pad="medium"
     >
-      <LogoImage />
+      <Box pad="medium">
+        <LogoImage />
+      </Box>
       <Heading tag="h3">
         Made with 🎉 by{' '}
         <a href="https://github.com/ryanccollins">
