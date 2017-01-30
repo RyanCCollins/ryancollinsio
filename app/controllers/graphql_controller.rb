@@ -6,11 +6,12 @@ class GraphqlController < ApplicationController
   def create
     query_string = params[:query]
     query_variables = ensure_hash(params[:variables])
-    document = get_document(query_string)
-
     result = CapstoneSchema.execute(
-      document: document,
-      variables: query_variables
+      query_string,
+      variables: query_variables,
+      context: {
+        optics_agent: env[:optics_agent].with_document(query_string)
+      }
     )
     render json: result
   end
@@ -25,26 +26,5 @@ class GraphqlController < ApplicationController
       else
         query_variables
       end
-    end
-
-    def get_document(query_string)
-      cache_key = Base64.encode64(query_string)
-      document = Rails.cache.fetch(cache_key)
-
-      if document
-        logger.info "###############################"
-        logger.info "Got cached document #{document}"
-        logger.info "###############################"
-      else
-        logger.info "####################################"
-        logger.info "Parsing query string #{query_string}"
-        logger.info "Cached at key #{cache_key}"
-        logger.info "####################################"
-
-        document = GraphQL.parse(query_string)
-        Rails.cache.write(cache_key, document)
-      end
-
-      document
     end
 end
