@@ -46,6 +46,7 @@ GEM
     builder (3.2.2)
     byebug (9.0.6)
     concurrent-ruby (1.0.2)
+    dalli (2.7.6)
     database_cleaner (1.5.3)
     devise (4.2.0)
       bcrypt (~> 3.0)
@@ -214,6 +215,7 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
+  dalli
   database_cleaner (~> 1.5.3)
   devise
   dotenv-rails
