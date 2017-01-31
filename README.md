@@ -21,10 +21,11 @@ There are two options for installation:
     npm run setup
 
 3. **Run development server**
+   cd client/
 
    npm run start
 
-   Your app will be served at: http://0.0.0.0:1337/
+   Your app will be served at: http://localhost:1337/
 
 or, you can install it using Slush via the npm package
 ```
