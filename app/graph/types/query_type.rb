@@ -49,11 +49,11 @@ QueryType = GraphQL::ObjectType.define do
     resolve -> (_obj, args, _ctx) do
       if args[:tag]
         tag = Tag.where(title: args[:tag]).first
-        tag.posts.all.sort_by{ |i| i.updated_at }.reverse
+        tag.posts.all.sort_by{ |i| i.updated_at }.reverse.sort_by{ |i| -i.sort_priority }
       elsif args[:status]
-        Post.where(status: args[:status]).all.sort_by{ |i| i.updated_at }.reverse
+        Post.where(status: args[:status]).all.sort_by{ |i| i.updated_at }.reverse.sort_by{ |i| -i.sort_priority }
       else
-        Post.all.sort_by{ |i| i.updated_at }.reverse
+        Post.all.sort_by{ |i| i.updated_at }.reverse.sort_by{ |i| -i.sort_priority }
       end
     end
   end

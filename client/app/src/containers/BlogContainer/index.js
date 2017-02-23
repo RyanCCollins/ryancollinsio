@@ -1,10 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as BlogActionCreators from './actions';
 import cssModules from 'react-css-modules';
-import styles from './index.module.scss';
-import { WithLoading, WithToast } from 'components';
+import { WithLoading, WithToast, PaginatorFooter, Divider, PostPreview } from 'components';
 import Section from 'grommet-udacity/components/Section';
 import Box from 'grommet-udacity/components/Box';
 import Columns from 'grommet-udacity/components/Columns';
@@ -12,8 +10,9 @@ import Headline from 'grommet-udacity/components/Headline';
 import Heading from 'grommet-udacity/components/Heading';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import { PostPreview, Divider, PaginatorFooter } from 'components';
 import { getVisiblePostsFiltered } from './selectors';
+import * as BlogActionCreators from './actions';
+import styles from './index.module.scss';
 
 class BlogContainer extends Component {
   componentWillReceiveProps({ allPosts }) {
@@ -58,7 +57,7 @@ class BlogContainer extends Component {
                         isFiltering={false}
                         key={i}
                         post={post}
-                      />
+                      />,
                     )}
                   </Columns>
                 </Section>
@@ -72,7 +71,7 @@ class BlogContainer extends Component {
             </Box>
             {allPosts && allPosts.length > perPage &&
               <PaginatorFooter
-                onChange={(newPage) => actions.blogSetCurrentPage(newPage)}
+                onChange={newPage => actions.blogSetCurrentPage(newPage)}
                 currentPage={currentPage}
                 total={allPosts.length}
                 pageSize={perPage}
@@ -85,9 +84,9 @@ class BlogContainer extends Component {
   }
 }
 
+/* eslint-disable react/forbid-prop-types */
 BlogContainer.propTypes = {
   isLoading: PropTypes.bool.isRequired,
-  postTags: PropTypes.array,
   postError: PropTypes.object,
   posts: PropTypes.array,
   allPosts: PropTypes.array,
@@ -97,17 +96,17 @@ BlogContainer.propTypes = {
 };
 
 // mapStateToProps :: {State} -> {Props}
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   currentPage: state.blog.currentPage,
   perPage: state.blog.perPage,
   posts: getVisiblePostsFiltered(state.blog),
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     BlogActionCreators,
-    dispatch
+    dispatch,
   ),
 });
 
@@ -160,5 +159,5 @@ const ContainerWithData = graphql(loadPostsQuery, {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(ContainerWithData);
