@@ -657,6 +657,418 @@ p.save!
 the_post = Post.create(
   user: User.first,
   category: 'frontend',
+  sort_priority: 201,
+  title: 'Scaling JavaScript Apps with GraphQL and Apollo',
+  feature_image: 'https://cdn-images-1.medium.com/max/800/1*IHFSOkPgFqI6clmF81SPQw.png',
+  body: "
+# Scaling JavaScript Apps with GraphQL & Apollo
+\n
+Note: to see code examples, please read this article on [Medium](https://medium.com/@ryancollinsio/scaling-javascript-apps-with-graphql-8f99b0e2df18#.c8n3jslyi).
+\n
+I originally agreed to write this article as a favor to a good friend of mine,
+[Andres Narvaez](https://medium.com/@drdrace), who is a technical project
+manager at [Udacity Blitz](https://blitz.com/). As a technical project manager,
+Andres’ job is to manage a team of software engineers to deliver complex
+software projects to start up clients around the world.
+\n
+After a particularly complex project that we worked on recently, Andres and I
+started having discussions about what tools we could use to ensure that we were
+able to deliver products of the highest quality at scale, on time and under
+budget.
+\n
+I had written an article about building a full on web application with [Ruby,
+JavaScript and
+GraphQL](https://medium.com/ryancollinsio/building-a-full-on-graphql-app-b261f6cfea93#.ep4mm0ucv)
+and was asked to revisit the topic from a standpoint of a Full Stack JavaScript
+app.
+\n
+I’d like to take this as an opportunity to look at one of my recent open source
+projects, which does just that. I’ll talk about the thought process that went
+into making it and why I think this particular combination of technologies is
+the answer to scaling distributed web applications.
+\n
+\n
+### The what and why of GraphQL
+\n
+Before we jump into the how, let’s first talk about the what and the why of
+GraphQL. First of all, what even is GraphQL?
+\n
+> GraphQL is a query language for APIs and a runtime for fulfilling those queries
+> with your existing data.
+\n
+Okay great, so GraphQL is a query language, but why would we even need a query
+language?
+\n
+In my opinion, one of the most challenging parts of being a client-side
+developer is having to define your data requirements ahead of time. It’s
+impossible to truly understand all of the details of your project until you’ve
+been working on it for a while. By the time you discover the edge-cases, the
+back end work has already been done and it can be hard to request changes at
+that point.
+\n
+The problem with having to make changes to your data requirements with
+traditional REST architecture is that it has an effect on multiple components of
+your application that are coupled together over a large distance. When you have
+components of a distributed application that are tightly coupled, it makes them
+brittle and hard to change. This is one of the areas where GraphQL really
+shines.
+\n
+According to the GraphQL documentation site
+\n
+> GraphQL provides a complete and understandable description of the data in your
+> API, gives clients the power to ask for exactly what they need and nothing more,
+makes it easier to evolve APIs over time, and enables powerful developer tools.
+— Graphql.org
+\n
+GraphQL introduces a deterministic approach to fetching data, making it easier
+to evolve your client without the need for the constant back and forth between
+the front end and back end teams. Not that I don’t enjoy working with back end
+folks, but it does add time and complexity to a project for sure. With that
+said, let’s take a look at how we can get started with GraphQL.
+\n
+\n
+#### Using GraphQL with NodeJS
+\n
+*NOTE: If you want a full picture of the code shown below, please reference the
+*[Scalable React TypeScript boilerplate
+project](https://github.com/RyanCCollins/scalable-react-typescript-boilerplate)*.
+Even though this project is mainly in TypeScript, I’ve stripped out the majority
+of the type annotations to make it easy to use as reference for any JavaScript
+project.*
+\n
+*Also, the documentation for this project *[contains an overview of the file
+tree](https://github.com/RyanCCollins/scalable-react-typescript-boilerplate/blob/master/README.md#file-tree-structure)*
+for both the server and client, in case you need to reference it.*
+\n
+First of all, we need a GraphQL server. For my project, I chose ExpressJS, but
+you could just as easily use Koa, Hapi, SailsJS, or whatever else you want. I’ll
+start by creating a  file in the root level server directory, where we will
+attach the necessary GraphQL middleware to the Express application.
+\n
+As you can see, I wrote a function that takes as input an Express application
+and returns a promise of a new Express application decorated with a few
+endpoints that power the GraphQL server.
+\n
+I’ve also attached the [GraphiQL](https://github.com/graphql/graphiql) tool to
+the server, which provides a user interface for interacting with GraphQL
+queries. This tool is truly invaluable as it gives you the ability to explore
+the data in real-time and it presents documentation that is automatically
+generated from the GraphQL schema (*more on this later*).
+\n
+One thing to note here is that I am using the  module instead of using . As you
+can see from the
+[documentation](https://github.com/apollographql/graphql-server), this module
+was built by the Apollo team to provide a more robust and production ready
+GraphQL server.
+\n
+Lastly, I also added a function that will create a JSON file that contains the
+schema. I am using [async
+await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)
+to make sure that the schema is safely stored on disk before resolving from the
+function.
+\n
+Next, I’ve created the main server application within the root level  module.
+\n
+The majority of this code is related to getting the Express server up and
+running and rendering React server-side. I could have added the GraphQL entry to
+this file, but I decided it would be more modular to import it from another
+module. Once the  promise has resolved, I can apply the standard Express
+middleware, add the React server-rendering boilerplate and then get my
+application running.
+\n
+The next step is to define the data model. In this case, I used MongoDB with
+Mongoose to make this project as simple as possible. Although MongoDB can be a
+great choice for many applications, I would leave this decision up to you.
+GraphQL does not care about what database you use to store your data. This could
+just as easily been a PostgresSQL database, a JSON file, or even an HTTP request
+to another API.
+\n
+Once the models have been defined, the final step is to introduce the GraphQL
+schema’s type system. The idea with the type system is to describe to GraphQL
+what types of data you have available in your API.
+\n
+In the case of the demo application for this article, I have two main models:
+Post and Comment. The code below demonstrates how to add GraphQL types based on
+the Mongoose schemas for the Post and Comment models.
+\n
+The process of generating a GraphQL schema is fairly straight forward and can be
+[automated](https://www.npmjs.com/package/mongoose-schema-to-graphql) fairly
+easily. The idea is to describe a data model, whatever it may be, in terms that
+GraphQL can understand. The important part here is to give a type to each field
+within the model.
+\n
+One thing to note is that the types above are output types. They represent the
+return value from a query, data that can be read but not written to. If you are
+intending on writing rather than reading data, you will need to create input
+types as well. I’ve added the [comment input
+type](https://github.com/RyanCCollins/scalable-react-typescript-boilerplate/blob/master/src/server/graph/types/comment/commentInput.ts)
+below to demonstrate this and will come back to this later.
+\n
+\n
+### Queries
+\n
+Next, let’s look at GraphQL
+[Queries](https://github.com/RyanCCollins/scalable-react-typescript-boilerplate/tree/master/src/server/graph/queries)
+on the server.
+\n
+Queries are the code that glues together the GraphQL schema and the actual data.
+Each query has a resolver function that takes any number of arguments and
+returns the data from the model.
+\n
+Here I have two queries, one to get the entire list of posts and another to get
+a single post by ID. To accomplish this, I export an object that tells GraphQL
+which type I want to use and contains a resolver function that queries the Post
+model, returning the data that is needed to resolve the query. GraphQL is smart
+enough to see that my model returns the same properties that I defined in my
+schema and it takes care of the rest. In this case, the Post model contains a
+field that will populate the related comments when a request to get a single
+post is made.
+\n
+\n
+#### Exploring the Data
+\n
+I want to take a brief pause to revisit an earlier topic, which is the awesome
+tooling that GraphQL provides out of the box. When you run your server, you have
+the option of attaching the GraphiQL IDE to your API. When you visit the
+specified URL, you have the ability to interact with your data in real-time.
+\n
+As you can see below, as I am typing the  query from above into the IDE, I get
+intelligent autocompletion that shows me exactly the fields that are available
+as defined by the schema we created earlier.
+\n
+![](https://cdn-images-1.medium.com/max/800/1*feAOisgHU7lYBUq884-Z5w.gif)
+\n
+When I execute the query, I am given back a response that matches the request
+exactly. Lee Byron, the creator of GraphQL suggests that a GraphQL document
+\n
+> Is like JSON without the values
+\n
+![](https://cdn-images-1.medium.com/max/600/1*6CVKBr5c6dQUMuAz-EnRCw.png)
+![](https://cdn-images-1.medium.com/max/600/1*06vKSpbshhK_bg8hAr5E7A.png)
+<span class="figcaption_hack">An example query and query response, showing that the structure matches exactly
+what was requested</span>
+\n
+There is nothing better than predictability in Computer Science. Using our
+tooling to provide determinism in a world full of chaos is just plain smart! By
+using this tool, I am able to define my React component APIs around the shape of
+the response, making the process much smoother than with a traditional endpoint.
+On top of that, GraphQL affords us some pretty awesome performance gains out of
+the box, essentially fixing the problem of over-fetching data.
+\n
+\n
+#### Mutations
+\n
+[Mutations](https://github.com/RyanCCollins/scalable-react-typescript-boilerplate/tree/master/src/server/graph/mutations)
+are fairly similar to queries in execution. The main difference, as noted
+earlier, is that we use mutations to write data to the database rather than to
+read data.
+\n
+The code above demonstrates that a mutation takes as input a GraphQL type, in
+this case the  and returns a GraphQL type, in this case a boolean indicating
+whether the request succeeded or not. Within the resolver function, I created a
+new model given the input data and saved it to the database. If that request
+fails, an error is returned, otherwise I return true indicating that the model
+was saved properly.
+\n
+Now that we have the grunt of the work behind us in order to read and write data
+to the database, we can examine what this looks like from the client’s
+perspective.
+\n
+\n
+#### Client Side GraphQL Setup
+\n
+*NOTE: If you are looking for a non-typescript version, please refer to this
+*[article on the
+subject](https://medium.com/react-weekly/implementing-graphql-in-your-redux-app-dad7acf39e1b#.bjhlkhoi0)*.*
+\n
+For this example, I am using two libraries (Apollo Client and React Apollo) to
+help minimize the boilerplate involved in setting up GraphQL on the client.
+Apollo and GraphQL are language and framework agnostic, so I choose to use
+TypeScript and React since these are technologies that I am very passionate
+about.
+\n
+First of all, I instantiated an instance of the apolloClient and a network
+interface within my  entry file that connects to the url where the Express app
+is running. Also, I’ve wrapped the entire app inside of the  and provided the
+apollo reducer to my main reducer because React Apollo uses redux to manage its
+state behind the scenes.
+\n
+\n
+#### Executing a query on the client
+\n
+Now I am ready to start writing queries within my React containers. I will start
+by fetching the blog posts.
+\n
+The first step is to create a GraphQL query document. It is possible to
+collocate this within your container module, but for the sake of scalability, I
+take the approach of separating concerns. Following the [feature-first
+approach](https://medium.com/front-end-hacking/the-secret-to-organization-in-functional-programming-913484e85fc9#.7svr3ohb9)
+to code organization, this file lives within the same folder as the container
+that utilizes it. I am using the  library, which allows me to write GraphQL
+documents within a template string.
+\n
+<span class="figcaption_hack">graphql query document</span>
+\n
+This query should look familiar. It looks a lot like the GraphQL post type that
+I defined earlier. A GraphQL query represents the structure of the response that
+you request. This gives me the power to request exactly the data I need for my
+container, which makes the response predictable / deterministic.
+\n
+Within the container, I am using the react-apollo library to hookup the query to
+my container. The  function is a higher-order function that takes the data
+returned from the query, plus a few others, and maps them to properties within
+the container.
+\n
+Let’s take a step back and look at what I just did. I created a React container,
+just like I would otherwise, and injected the exact data needed for the
+container as regular ol’ props. It’s almost like I am importing the data from a
+local JSON file directly. This makes it very straight-forward to develop my
+front end UI components. I don’t have to put much thought into how I fetch the
+data needed, or how I need to parse it afterwards. I don’t have to fetch data
+from several endpoint when I need to represent a complex object graph. It’s as
+simple as dropping in the GraphQL query and mapping the result to the
+container’s props.
+\n
+By putting in the work up front to write the GraphQL boilerplate that’s
+required, it frees us from having to work with the back end developer to iterate
+on the API when we find that the data requirements are changing over time.
+\n
+\n
+#### Executing a mutation on the client
+\n
+For this example, I am going to show you a bit of a more complex container to
+demonstrate how to use a mutation to write data to the database through a
+GraphQL endpoint. The container also contains a query that will provide the data
+for the blog post and its comments to the container before and after the
+mutation is sent.
+\n
+The comment mutation is mapped to the container in a similar fashion as the
+query. Since this mutation takes input data, it is a bit more complex, but still
+fairly straightforward. The  higher order function maps the  function to a
+property that can be used within the container. When a user submits a comment,
+the  function is called, passing in the input data. After the mutation has
+completed, the data is re-fetched to update the user interface (note that you
+can also use [optimistic
+responses](http://dev.apollodata.com/react/optimistic-ui.html) for this).
+\n
+Let’s take a look at this in the GraphiQL IDE again. This time, I have pasted in
+the mutation from above and am demonstrating how you can pass variables into a
+mutation or query through the IDE. The procedure is essentially the same when
+you use this in your app.
+\n
+![](https://cdn-images-1.medium.com/max/800/1*fAO69_l6kejStfbQ1UrcOA.gif)
+\n
+\n
+### Benefits of Static Typed APIs
+\n
+You may not realize this, but we’ve touched on a number of the benefits of
+Static typing already. GraphQL embraces static typing, which means that it is
+able to support some fantastic tooling out of the box. The autocompletion within
+GraphiQL is a great example and in fact you can enable this in your editor.
+Using the eslint-plugin-graphql eslint plugin, you can even lint your GraphQL
+documents.
+\n
+You will find a dozen or so tools on the Apollo team’s github page that can be
+used to harness the power of static types. One example that I am very interested
+in exploring is the
+[Apollo-Codegen](https://github.com/apollographql/apollo-codegen) tool, which
+will generate TypeScript or FlowTypes from your GraphQL schema.
+\n
+Another major benefit of the GraphQL type system is that it allows for
+auto-generation of documentation. In fact, within the GraphiQL IDE, you can see
+the auto-generated documentation for your API. Take a look at the gif below for
+an example of how easy it is to explore the API.
+\n
+![](https://cdn-images-1.medium.com/max/800/1*GqbnmLpfYqYgUshTV1R0Yw.gif)
+\n
+The real benefit of all this tooling is the efficiency that you are afforded
+once you have set up all of the boilerplate for your app. You spend less time
+working with the server developers to iterate on the API and less time writing
+code to fetch and parse data. You also do not have to spend time documenting
+your API, which can save a ton of time in the long run. As the API evolves, you
+do not run the risk of your documentation falling out of sync as things change.
+The schema will be updated automatically, along with the documentation, and can
+be kept in a central repository so that your entire team has access to the most
+up-t0-date documentation.
+\n
+\n
+### Summing it up
+\n
+GraphQL is an incredible tool that can be used to build robust APIs that scale
+exceptionally well. It can be incrementally adopted on top of any project and
+can eventually completely replace your (soon to be) deprecated REST APIs. By
+employing a static type system, GraphQL enables you to take advantage of a
+multitude of tools that can be used to speed up development time, both for the
+client-side and server-side developers.
+\n
+GraphQL is framework / language agnostic and has been adopted by plenty of heavy
+hitters in the tech-industry. There is a thriving ecosystem behind GraphQL that
+is building tools faster than you can say “custom endpoint”. The best tools are
+coming out of the [Apollo team](https://apollographql.slack.com/messages), who
+were some of the engineers behind the Meteor framework and they are committed to
+making the GraphQL development experience world-class.
+\n
+This past week was the [Apollo GraphQL Contributor
+week](https://dev-blog.apollodata.com/apollo-contributor-week-starts-today-39dd139c70ee#.52v38b2nh),
+which motivated me to introduce Apollo GraphQL into an open source project that
+I sponsor and to write about it. The Apollo team is doing fantastic work and
+supporting the GraphQL ecosystem. [Much
+respect](https://medium.com/@ryancollinsio/sashko-stubailo-and-team-apollo-are-killing-it-4f2e1d7eccd8#.w0pwq5c5g)
+to them for the amazing work they are doing!
+\n
+If you are on the fence about GraphQL, now is the time to jump on board. I hope
+that this article has helped you to see some of the benefits of using GraphQL
+and has taught you a bit about the implementation details.
+\n
+If you have any questions or require clarification, please don’t hesitate to
+leave a note in the comments!
+\n
+Also, if you are interested in contributing to any of the
+[scalable-react](https://github.com/scalable-react) open source projects, we’d
+love to hear from you on [slack](http://here for an invite/). We are working
+hard to build React / Apollo GraphQL boilerplates that scale. Right now, we are
+working on the [TypeScript
+version](https://github.com/scalable-react/scalable-react-typescript-boilerplate)
+of the [original
+scalable-react-boilerplate](https://github.com/scalable-react/scalable-react-boilerplate).
+We’d love for you to submit a PR if you find any areas that you think can be
+improved upon.
+\n
+\n
+### Resources
+\n
+* [Building a Full on GraphQL
+App](https://medium.com/ryancollinsio/building-a-full-on-graphql-app-b261f6cfea93#.hm9xx5xtj)
+* [Implementing GraphQL in your Redux
+App](https://medium.com/react-weekly/implementing-graphql-in-your-redux-app-dad7acf39e1b#.8x6etwzcy)
+* [Apollo](http://www.apollostack.com/) Stack website
+* [Learn GraphQL](https://learngraphql.com/)
+* [GraphQL Specification](https://facebook.github.io/graphql/) — This document is
+especially useful if you are serious about integrating GraphQL.
+* [GraphQL Concepts
+Visualized](https://medium.com/apollo-stack/the-concepts-of-graphql-bc68bd819be3#.94scr3agl)
+— An amazing article that explores how our data can be expressed by
+[Graphs](https://en.wikipedia.org/wiki/Graph_theory).
+* [JavaScript Code Quality w/ Free
+Tools](https://dev-blog.apollodata.com/javascript-code-quality-with-free-tools-9a6d80e29f2d)
+— An article about improving DX w/ TypeScript by [Sashko
+Stubailo](https://medium.com/@stubailo)
+* [Graphql](https://medium.com/tag/graphql?source=post)
+* [JavaScript](https://medium.com/tag/javascript?source=post)
+* [Typescript](https://medium.com/tag/typescript?source=post)
+* [Node](https://medium.com/tag/node?source=post)
+  "
+)
+
+tags = ['Front End', 'GraphQL', 'Apollo', 'TypeScript']
+tags.each do |tag|
+  the_post.tags << Tag.find_or_create_by(title: tag)
+end
+the_post.save!
+
+the_post = Post.create(
+  user: User.first,
+  category: 'frontend',
   sort_priority: 200,
   title: "ES2015 JavaScript vs. Elm vs. TypeScript",
   feature_image: "https://cdn-images-1.medium.com/max/800/0*dr-Nr-6WsphJPBFb.png",
