@@ -1,5 +1,6 @@
 ![ryancollinsio](https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/ryancollinsio.png?raw=true)
-# RyanCollins.io v-3.0
+
+# RyanCollins.io
 A complete rewrite of RyanCollins.io, built with the latest and greatest technologies. The application will be used for me to broadcast online courses, blog, post about my recent work, etc.
 
 A GraphQL on Rails API and React / Elm front end single page app.
@@ -20,10 +21,11 @@ There are two options for installation:
     npm run setup
 
 3. **Run development server**
+   cd client/
 
    npm run start
 
-   Your app will be served at: http://0.0.0.0:1337/
+   Your app will be served at: http://localhost:1337/
 
 or, you can install it using Slush via the npm package
 ```
