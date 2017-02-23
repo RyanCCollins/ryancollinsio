@@ -845,7 +845,7 @@ exactly. Lee Byron, the creator of GraphQL suggests that a GraphQL document
 \n
 ![](https://cdn-images-1.medium.com/max/600/1*6CVKBr5c6dQUMuAz-EnRCw.png)
 ![](https://cdn-images-1.medium.com/max/600/1*06vKSpbshhK_bg8hAr5E7A.png)
-<span class="figcaption_hack">An example query and query response, showing that the structure matches exactly
+<span class='figcaption_hack'>An example query and query response, showing that the structure matches exactly
 what was requested</span>
 \n
 There is nothing better than predictability in Computer Science. Using our
@@ -907,7 +907,7 @@ to code organization, this file lives within the same folder as the container
 that utilizes it. I am using the  library, which allows me to write GraphQL
 documents within a template string.
 \n
-<span class="figcaption_hack">graphql query document</span>
+<span class='figcaption_hack'>graphql query document</span>
 \n
 This query should look familiar. It looks a lot like the GraphQL post type that
 I defined earlier. A GraphQL query represents the structure of the response that
