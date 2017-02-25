@@ -18,13 +18,13 @@ const NoUserMenu = ({ pathname }) => (
   >
     <Anchor
       className={pathname === '/login' ? 'navLink active' : 'navLink'}
-      href="/login"
+      path="/login"
     >
       Log In
     </Anchor>
     <Anchor
       className={pathname === '/signup' ? 'navLink active' : 'navLink'}
-      href="/signup"
+      path="/signup"
     >
       Sign Up
     </Anchor>
