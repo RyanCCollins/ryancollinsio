@@ -24,7 +24,7 @@ const Navbar = ({
           <Anchor
             key={i}
             className={`/${pathname.split('/')[1]}` === item.url ? 'navLink active' : 'navLink'}
-            href={item.url}
+            path={item.url}
           >
             {item.name}
           </Anchor>,
