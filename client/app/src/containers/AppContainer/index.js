@@ -24,6 +24,11 @@ class AppContainer extends Component {
       window.addEventListener('resize', this.handleMobile);
     }
   }
+  componentWillReceiveProps({ location }) {
+    if (location !== this.props.location) {
+      this.handleNavDocking();
+    }
+  }
   componentWillUnmount() {
     if (window) {
       window.removeEventListener('resize', this.handleMobile);
