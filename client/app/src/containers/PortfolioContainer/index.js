@@ -14,7 +14,7 @@ import Section from 'grommet-udacity/components/Section';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Box from 'grommet-udacity/components/Box';
-import Anchor from 'grommet-udacity/components/Anchor';
+import Anchor from 'grommet/components/Anchor';
 import Headline from 'grommet-udacity/components/Headline';
 import { reduxForm } from 'redux-form';
 import FlipMove from 'react-flip-move';
@@ -31,7 +31,7 @@ class PortfolioContainer extends Component { // eslint-disable-line react/prefer
     return projects.map(project =>
       <Box className={styles.wrapper} key={project.id}>
         <Box className={styles.card}>
-          <Anchor href={`/portfolio/projects/${project.slug}`}>
+          <Anchor path={`/portfolio/projects/${project.slug}`}>
             <ResponsiveImage
               matchHeight={false}
               src={project.featureImage}

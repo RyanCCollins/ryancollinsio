@@ -3,7 +3,7 @@ import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
 import Box from 'grommet-udacity/components/Box';
 import Card from 'grommet-udacity/components/Card';
-import Anchor from 'grommet-udacity/components/Anchor';
+import Anchor from 'grommet/components/Anchor';
 import Heading from 'grommet-udacity/components/Heading';
 import Markdown from 'grommet-udacity/components/Markdown';
 import { ResponsiveImage, TagList } from 'components';
@@ -31,7 +31,7 @@ const PostPreview = ({
         }
         label={post.author.name}
         thumbnail={
-          <Anchor href={`/blog/posts/${post.slug}`}>
+          <Anchor path={`/blog/posts/${post.slug}`}>
             <ResponsiveImage src={post.image} matchHeight />
           </Anchor>
         }
@@ -49,7 +49,7 @@ const PostPreview = ({
           <Anchor
             primary
             label="Read More"
-            href={`/blog/posts/${post.slug}`}
+            path={`/blog/posts/${post.slug}`}
           />
         }
       />
