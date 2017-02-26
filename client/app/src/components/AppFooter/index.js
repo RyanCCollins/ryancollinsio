@@ -1,7 +1,7 @@
 import React from 'react';
 import Heading from 'grommet-udacity/components/Heading';
-import Anchor from 'grommet-udacity/components/Anchor';
-import Button from 'grommet-udacity/components/Button';
+import Anchor from 'grommet/components/Anchor';
+import Button from 'grommet/components/Button';
 import MailIcon from 'grommet-udacity/components/icons/base/Mail';
 import CodeIcon from 'grommet-udacity/components/icons/base/Code';
 import Box from 'grommet-udacity/components/Box';
@@ -55,13 +55,13 @@ const AppFooter = () => (
       <ButtonWithSeperator
         icon={<CodeIcon />}
         plain
-        href="/about"
+        path="/about"
         label="About Me"
       />
       <Button
         icon={<MailIcon />}
         plain
-        href="/contact"
+        path="/contact"
         label="Contact Me"
       />
     </Section>
