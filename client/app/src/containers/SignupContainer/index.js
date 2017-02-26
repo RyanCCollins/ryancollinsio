@@ -31,7 +31,7 @@ class SignupContainer extends Component {
       user,
       isLoading,
     } = this.props;
-    if (user.authToken != null) { // eslint-disable-line
+    if (user && user.authToken != null) { // eslint-disable-line
       this.context.router.push('/user/profile');
     }
     if (typeof window !== 'undefined' && isLoading) {
