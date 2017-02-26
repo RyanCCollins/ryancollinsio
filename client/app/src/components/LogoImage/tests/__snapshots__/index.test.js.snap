@@ -1,6 +1,5 @@
 exports[`<Header /> should render with default props 1`] = `
-<img
-  alt="Ryan Collins Logo"
-  id="ryancollins-logo"
-  src={Object {}} />
+<styled.div
+  animation="fadeIn 1.5s ease-out 0.2s"
+  url="https://github.com/RyanCCollins/cdn/blob/master/ryancollinsio-v3/crown.png?raw=true" />
 `;

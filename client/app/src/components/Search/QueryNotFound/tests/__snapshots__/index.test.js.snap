@@ -1,12 +1,15 @@
 exports[`<QueryNotFound /> should render with default props 1`] = `
 <div>
-  <img
-    src="https://github.com/RyanCCollins/cdn/blob/master/misc/thinking-face.png?raw=true" />
   <div>
-    <p>
-      Sorry, but we couldn\'t find any 
-       that matched your query.
-    </p>
+    🤔
+  </div>
+  <div>
+    <Heading
+      align="center"
+      strong={true}
+      tag="h3">
+      Sorry, but we couldn\'t find any items that matched your query.
+    </Heading>
   </div>
 </div>
 `;

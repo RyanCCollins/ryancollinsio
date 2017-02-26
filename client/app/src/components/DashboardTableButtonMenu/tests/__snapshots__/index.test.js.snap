@@ -24,6 +24,7 @@ exports[`<DashboardTableButtonMenu /> should render with default props 1`] = `
         a11yTitleId="edit-title"
         responsive={true} />
     }
+    onClick={[Function proxy]}
     plain={true}
     style={
       Object {
@@ -37,6 +38,7 @@ exports[`<DashboardTableButtonMenu /> should render with default props 1`] = `
         a11yTitleId="trash-title"
         responsive={true} />
     }
+    onClick={[Function proxy]}
     plain={true}
     style={
       Object {
@@ -50,6 +52,7 @@ exports[`<DashboardTableButtonMenu /> should render with default props 1`] = `
         a11yTitleId="view-title"
         responsive={true} />
     }
+    onClick={[Function proxy]}
     plain={true}
     style={
       Object {
