@@ -24,7 +24,7 @@ class AppContainer extends Component {
       window.addEventListener('resize', this.handleMobile);
     }
   }
-  componentWillReceiveProps({ location }) {
+  componentDidUpdate({ location }) {
     if (location !== this.props.location) {
       this.handleNavDocking();
     }
