@@ -5,7 +5,7 @@ import Heading from 'grommet-udacity/components/Heading';
 import Box from 'grommet-udacity/components/Box';
 import Animate from 'grommet-udacity/components/Animate';
 import Footer from 'grommet-udacity/components/Footer';
-import Button from 'grommet-udacity/components/Button';
+import Button from 'grommet/components/Button';
 import { LogoImage } from 'components';
 import cssModules from 'react-css-modules';
 import Waypoint from 'react-waypoint';
@@ -79,7 +79,7 @@ const HeroSection = ({
         keep
       >
         <Footer className={styles.footer}>
-          <Button className={styles.button} href="/contact" label="Get in Touch" />
+          <Button className={styles.button} path="/contact" label="Get in Touch" />
         </Footer>
       </Animate>
     </Box>

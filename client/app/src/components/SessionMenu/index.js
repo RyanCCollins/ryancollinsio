@@ -82,14 +82,14 @@ const SessionMenu = ({
                 className={styles.rightMenu}
               >
                 <Anchor
-                  href="/user/profile"
+                  path="/user/profile"
                   className="navLink"
                 >
                   My Profile
                 </Anchor>
                 <Anchor
                   className="navLink"
-                  href="/logout"
+                  path="/logout"
                   onClick={onLogout}
                 >
                   Logout
@@ -109,19 +109,19 @@ const SessionMenu = ({
               >
                 <Anchor
                   className="navLink"
-                  href="/user/profile"
+                  path="/user/profile"
                 >
                   My Profile
                 </Anchor>
                 <Anchor
                   className="navLink"
-                  href="/admin/dashboard"
+                  path="/admin/dashboard"
                 >
                   Dashboard
                 </Anchor>
                 <Anchor
                   className="navLink"
-                  href="/logout"
+                  path="/logout"
                   onClick={onLogout}
                 >
                   Logout
