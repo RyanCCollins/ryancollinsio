@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import Anchor from 'grommet-udacity/components/Anchor';
+import Anchor from 'grommet/components/Anchor';
 import Search from 'grommet-udacity/components/Search';
 import { SessionMenu, LogoImage } from 'components';
 import { StyledBox, LogoWrapper, StyledMenu, NavHeader, RightMenu } from './styles';

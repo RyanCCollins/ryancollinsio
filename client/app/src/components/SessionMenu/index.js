@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import Menu from 'grommet-udacity/components/Menu';
-import Anchor from 'grommet-udacity/components/Anchor';
+import Anchor from 'grommet/components/Anchor';
 import Heading from 'grommet-udacity/components/Heading';
 import Box from 'grommet-udacity/components/Box';
 import cssModules from 'react-css-modules';
