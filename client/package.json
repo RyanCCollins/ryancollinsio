@@ -98,7 +98,7 @@
   "homepage": "https://github.com/RyanCCollins/scalable-react-boilerplate#readme",
   "dependencies": {
     "antd": "^2.1.0",
-    "apollo-client": "^0.8.5",
+    "apollo-client": "^0.5.20",
     "assemble": "^0.3.83",
     "autoprefixer": "^6.5.1",
     "babel-core": "^6.3.15",

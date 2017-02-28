@@ -15,5 +15,4 @@ export const authUserDataFragment = createFragment(
   `,
 );
 
-
 export default authUserDataFragment;

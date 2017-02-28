@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as FeedbackActionCreators from './actions';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { FeedbackFab, FeedbackForm, WithLoading } from 'components';
 import Layer from 'grommet-udacity/components/Layer';
 import { reduxForm } from 'redux-form';
+import * as FeedbackActionCreators from './actions';
 import validation from './utils';
 import { StyledBox } from './styles';
 
@@ -47,7 +47,7 @@ class FeedbackContainer extends Component {
           '  I appreciate it greatly as it will help me to make this site better.';
         this.props.actions.feedbackSubmissionMessage(message);
       })
-      .catch(err => {
+      .catch((err) => {
         this.props.actions.feedbackSubmissionError(err);
       });
   }
@@ -110,7 +110,7 @@ FeedbackContainer.contextTypes = {
 };
 
 // mapStateToProps :: {State} -> {Props}
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   isVisible: state.feedback.modal.isVisible,
   isSubmitting: state.feedback.isSubmitting,
   message: state.feedback.message,
@@ -119,10 +119,10 @@ const mapStateToProps = (state) => ({
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     FeedbackActionCreators,
-    dispatch
+    dispatch,
   ),
 });
 
@@ -148,5 +148,5 @@ const ContainerWithMutation = graphql(feedbackMutation, {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(ContainerWithMutation);
