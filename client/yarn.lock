@@ -3371,6 +3371,10 @@ graphql-anywhere@^1.0.0:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/graphql-anywhere/-/graphql-anywhere-1.1.2.tgz#897d2868d35723ce7d8b4ead3455c285ea51a2d2"
 
+graphql-anywhere@^2.0.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/graphql-anywhere/-/graphql-anywhere-2.2.0.tgz#652c3fa23a4a6cfeb98817512fb48100b97f3d5c"
+
 graphql-tag@^1.1.1, graphql-tag@^1.1.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-1.2.2.tgz#b25d081332bc5323f03b32d4c5e7bfec753efc7a"
@@ -6999,10 +7003,11 @@ react-addons-update@^15.3.2:
     fbjs "^0.8.4"
     object-assign "^4.1.0"
 
-react-apollo@^0.5.13:
-  version "0.5.16"
-  resolved "https://registry.yarnpkg.com/react-apollo/-/react-apollo-0.5.16.tgz#8363f4f4269c7025b7922546a34de9a4f57c94df"
+react-apollo@^0.12.0:
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/react-apollo/-/react-apollo-0.12.0.tgz#60025d0738a7962367c8d4fbe95f8917d6dc05c8"
   dependencies:
+    graphql-anywhere "^2.0.0"
     hoist-non-react-statics "^1.2.0"
     invariant "^2.2.1"
     lodash.flatten "^4.2.0"
@@ -7010,6 +7015,8 @@ react-apollo@^0.5.13:
     lodash.isobject "^3.0.2"
     lodash.pick "^4.4.0"
     object-assign "^4.0.1"
+  optionalDependencies:
+    react-dom "0.14.x || 15.* || ^15.0.0"
 
 react-css-modules@^3.7.6:
   version "3.7.10"
@@ -7035,17 +7042,17 @@ react-desc@^1.0.0:
   dependencies:
     react "^15.3.2"
 
-react-dom@^0.14.0:
-  version "0.14.8"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-0.14.8.tgz#0f1c547514263f771bd31814a739e5306575069e"
-
-react-dom@^15.0.1, react-dom@^15.3.0:
+"react-dom@0.14.x || 15.* || ^15.0.0", react-dom@^15.0.1, react-dom@^15.3.0:
   version "15.4.2"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.4.2.tgz#015363f05b0a1fd52ae9efdd3a0060d90695208f"
   dependencies:
     fbjs "^0.8.1"
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
+
+react-dom@^0.14.0:
+  version "0.14.8"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-0.14.8.tgz#0f1c547514263f771bd31814a739e5306575069e"
 
 react-draggable@^2.1.0:
   version "2.2.3"
