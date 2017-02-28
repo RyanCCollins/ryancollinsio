@@ -4,7 +4,8 @@ import morgan from 'morgan';
 import React from 'react';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
-import { ApolloProvider, getDataFromTree } from 'react-apollo';
+import { ApolloProvider } from 'react-apollo';
+import { getDataFromTree } from 'react-apollo/server';
 import { createNetworkInterface } from 'apollo-client';
 import styleSheet from 'styled-components/lib/models/StyleSheet';
 import Html from './utils/Html';
@@ -49,9 +50,9 @@ app.use((req, res) => {
             <RouterContext {...renderProps} />
           </ApolloProvider>
         );
-        getDataFromTree(component).then(() => {
+        getDataFromTree(component).then((ctx) => {
           const content = renderToString(component);
-          const state = { apollo: client.getInitialState() };
+          const state = { apollo: ctx.store.getState() };
           const html = (
             <Html
               content={content}
