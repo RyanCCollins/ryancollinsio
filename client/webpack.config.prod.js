@@ -3,10 +3,10 @@ const webpack = require('webpack');
 const path = require('path');
 const NpmInstallPlugin = require('npm-install-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const OfflinePlugin = require('offline-plugin');
 const autoprefixer = require('autoprefixer');
 const precss = require('precss');
 const ManifestPlugin = require('webpack-manifest-plugin');
+const ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin');
 
 const ROOT_PATH = path.resolve(__dirname);
 const PORT = process.env.PORT || 1337;
@@ -137,15 +137,8 @@ module.exports = {
       minChunks: 2,
       async: true,
     }),
-    new OfflinePlugin({
-      relativePaths: false,
-      publicPath: '/',
-      caches: {
-        main: [':rest:'],
-        additional: ['*.chunk.js'],
-      },
-      safeToUseOptionalCaches: true,
-      AppCache: false,
+    new ServiceWorkerWebpackPlugin({
+      entry: path.join(__dirname, './app/src/sw.js')
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(

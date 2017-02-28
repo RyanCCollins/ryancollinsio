@@ -4,9 +4,6 @@ import thunk from 'redux-thunk';
 import { browserHistory } from 'react-router';
 import rootReducer from './reducers';
 import client from './apolloClient';
-const isClient = typeof document !== 'undefined';
-const isDeveloping = process.env.NODE_ENV !== 'production';
-
 /* GENERATOR: Import all of your initial state */
 import { initialState as feedback } from './containers/FeedbackContainer/reducer';
 import { initialState as search } from './containers/SearchContainer/reducer';
@@ -22,10 +19,13 @@ import { initialState as landing } from './containers/LandingContainer/reducer';
 import { initialState as createProject } from './containers/CreateProjectContainer/reducer';
 import { initialState as createPost } from './containers/CreatePostContainer/reducer';
 import { initialState as blog } from './containers/BlogContainer/reducer';
-import { initialState as app } from 'containers/AppContainer/reducer';
-import { initialState as portfolio } from 'containers/PortfolioContainer/reducer';
-import { initialState as project } from 'containers/ProjectContainer/reducer';
-import { initialState as post } from 'containers/PostContainer/reducer';
+import { initialState as app } from './containers/AppContainer/reducer';
+import { initialState as portfolio } from './containers/PortfolioContainer/reducer';
+import { initialState as project } from './containers/ProjectContainer/reducer';
+import { initialState as post } from './containers/PostContainer/reducer';
+
+const isClient = typeof document !== 'undefined';
+const isDeveloping = process.env.NODE_ENV !== 'production';
 
 const initialState = {
   /* GENERATOR: Compile all of your initial state */
@@ -55,6 +55,7 @@ const routingMiddleware = routerMiddleware(browserHistory);
 const middlewares = [thunk, routingMiddleware, client.middleware()];
 
 if (isDeveloping && isClient) {
+  // eslint-disable-next-line
   const createLogger = require('redux-logger');
   const loggerMiddleware = createLogger();
   middlewares.push(loggerMiddleware);
@@ -73,7 +74,7 @@ if (isClient && isDeveloping) {
 
 const composedEnhancers = compose(
   applyMiddleware(...middlewares),
-  ...enhancers
+  ...enhancers,
 );
 
 /* Hopefully by now you understand what a store is and how redux uses them,

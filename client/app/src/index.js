@@ -2,7 +2,6 @@ import React from 'react';
 import { render } from 'react-dom';
 import { match } from 'react-router';
 import 'antd/dist/antd.css';
-import { install } from 'offline-plugin/runtime';
 import RouterApp, { routes } from './routes';
 import { history } from './store';
 import '../styles/styles.scss';
@@ -19,7 +18,12 @@ match({ history, routes },
   });
 
 if (isProduction) {
-  install();
+  /* eslint-disable */
+  if ('serviceWorker' in navigator) {
+    const runtime = require('serviceworker-webpack-plugin/lib/runtime');
+    runtime.register();
+  }
+/* eslint-enable */
 } else if (module.hot) {
   module.hot.accept('./routes', () => {
     const NewRouterApp = require('./routes').default; // eslint-disable-line
