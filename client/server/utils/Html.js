@@ -39,13 +39,13 @@ function Html({ content, state, scriptHash, vendorHash, cssHash, styles }) {
       </head>
       <body>
         <div id="app" dangerouslySetInnerHTML={{ __html: content }} />
-        <script src={`${scriptHash}`} charSet="UTF-8" />
         <script
           dangerouslySetInnerHTML={{ __html:
             `window.__APOLLO_STATE__=${serialize(state, { isJSON: true })};`,
           }}
           charSet="UTF-8"
         />
+        <script src={`${scriptHash}`} charSet="UTF-8" />
       </body>
     </html>
   );
