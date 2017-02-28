@@ -50,8 +50,9 @@ app.use((req, res) => {
             <RouterContext {...renderProps} />
           </ApolloProvider>
         );
-        getDataFromTree(component).then((ctx) => {
+        getDataFromTree(component).then(() => {
           const content = renderToString(component);
+          const state = { apollo: client.getInitialState() };
           const html = (
             <Html
               content={content}
@@ -59,7 +60,7 @@ app.use((req, res) => {
               vendorHash={manifest['/vendor.js']}
               cssHash={manifest['/main.css']}
               styles={styles}
-              state={ctx.store.getState()}
+              state={state}
             />
           );
           res.status(200).send(`<!doctype html>\n${renderToStaticMarkup(html)}`);

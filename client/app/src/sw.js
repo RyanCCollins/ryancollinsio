@@ -1,4 +1,5 @@
 // @flow
+/* eslint-disable no-console */
 const DEBUG = process.env.DEBUG || false;
 const { assets } = global.serviceWorkerOption;
 const CACHE_NAME = (new Date()).toISOString();

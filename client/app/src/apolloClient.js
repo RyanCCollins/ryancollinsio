@@ -2,6 +2,7 @@ import ApolloClient, {
   createNetworkInterface,
   addTypeName,
 } from 'apollo-client';
+
 const isProduction = true;
 const baseUrl = isProduction ?
   'https://ryancollinsio.herokuapp.com/graphql' : 'http://localhost:3000/graphql';

@@ -14,14 +14,14 @@ import userProfile from './containers/UserProfileContainer/reducer';
 import login from './containers/LoginContainer/reducer';
 import signup from './containers/SignupContainer/reducer';
 import archive from './containers/ArchiveContainer/reducer';
-import landing from 'containers/LandingContainer/reducer';
-import createProject from 'containers/CreateProjectContainer/reducer';
-import createPost from 'containers/CreatePostContainer/reducer';
-import blog from 'containers/BlogContainer/reducer';
-import app from 'containers/AppContainer/reducer';
-import portfolio from 'containers/PortfolioContainer/reducer';
-import post from 'containers/PostContainer/reducer';
-import project from 'containers/ProjectContainer/reducer';
+import landing from './containers/LandingContainer/reducer';
+import createProject from './containers/CreateProjectContainer/reducer';
+import createPost from './containers/CreatePostContainer/reducer';
+import blog from './containers/BlogContainer/reducer';
+import app from './containers/AppContainer/reducer';
+import portfolio from './containers/PortfolioContainer/reducer';
+import post from './containers/PostContainer/reducer';
+import project from './containers/ProjectContainer/reducer';
 
 const rootReducer = combineReducers({
   landing,
