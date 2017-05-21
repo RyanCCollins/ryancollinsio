@@ -190,12 +190,21 @@ export const routes = {
   ],
 };
 
+function scrollToTop() {
+  if (typeof window !== 'undefined') {
+    console.log('Called scroll to top');
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    });
+  }
+}
+
 const RouterApp = props => (
   <ApolloProvider {...props} store={store} client={client}>
     <Router
       history={history} // Scroll to top on route transitions
       onUpdate={() => {
-        window.scrollTo(0, 0);
+        scrollToTop();
         ReactGA.set({ page: window.location.pathname });
         ReactGA.pageview(window.location.pathname);
       }}
