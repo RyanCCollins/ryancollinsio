@@ -27,17 +27,19 @@
   opacity: 1;
 }
 
-.grommet li:not(.grommetux-list-item) {
-  max-width: 776px;
-  margin-left: 0px;
-  margin-top: 24px;
-  margin-bottom: 24px;
-  font-size: 26px !important;
-  font-weight: 100;
-  line-height: 1.375;
-  font-family: "Source Sans Pro", Arial, sans-serif;
-  padding-left: 20px !important;
-  color: #666;
+ul:not(.ant-pagination) {
+  > li:not(.grommetux-list-item) {
+    max-width: 776px;
+    margin-left: 0px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    font-size: 26px !important;
+    font-weight: 100;
+    line-height: 1.375;
+    font-family: "Source Sans Pro", Arial, sans-serif;
+    padding-left: 20px !important;
+    color: #666;
+  }
 }
 
 .grommetux-distribution--medium {
