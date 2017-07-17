@@ -11,8 +11,8 @@ import styleSheet from 'styled-components/lib/models/StyleSheet';
 import Html from './utils/Html';
 import createApolloClient from './utils/create-apollo-client';
 import manifest from './public/manifest.json';
-import store from '../app/src/store';
 import { routes } from '../app/src/routes';
+import store from '../app/src/store';
 
 const PORT = process.env.PORT || 1338;
 const IP = '0.0.0.0';
