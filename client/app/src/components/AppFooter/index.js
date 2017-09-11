@@ -6,6 +6,7 @@ import MailIcon from 'grommet-udacity/components/icons/base/Mail';
 import CodeIcon from 'grommet-udacity/components/icons/base/Code';
 import Box from 'grommet-udacity/components/Box';
 import Section from 'grommet-udacity/components/Section';
+
 import { SocialIcon, LogoImage } from 'components';
 import cn from 'classnames';
 import socialIcons from './data';
