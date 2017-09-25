@@ -3,8 +3,8 @@ import { Router } from 'react-router';
 import { ApolloProvider } from 'react-apollo';
 import ReactGA from 'react-ga';
 import { AppContainer } from 'containers'; // eslint-disable-line
-import store, { history } from './store';
 import client from './apolloClient';
+import store, { history } from './store';
 
 // initialize google analytics
 if (typeof window !== 'undefined') {
