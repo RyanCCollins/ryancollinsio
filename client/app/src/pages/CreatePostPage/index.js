@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import cssModules from 'react-css-modules';
+import { CreatePostContainer } from 'containers'; // eslint-disable-line
 import styles from './index.module.scss';
-import { CreatePostContainer } from 'containers';
 
 const CreatePostPage = ({ location }) => (
   <div className={styles.container}>
@@ -10,7 +10,9 @@ const CreatePostPage = ({ location }) => (
 );
 
 CreatePostPage.propTypes = {
-  location: PropTypes.object.isRequired,
+  location: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 export default cssModules(CreatePostPage, styles);
