@@ -1,18 +1,18 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as CreatePostActionCreators from './actions';
 import cssModules from 'react-css-modules';
-import styles from './index.module.scss';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { reduxForm } from 'redux-form';
 import Headline from 'grommet-udacity/components/Headline';
 import Box from 'grommet-udacity/components/Box';
 import { WithToast, Divider, CreatePostForm, WithLoading } from 'components';
-import { postData } from 'fragments';
+import { postData } from 'fragments'; // eslint-disable-line
 import Section from 'grommet-udacity/components/Section';
 import serializer from './model';
+import * as CreatePostActionCreators from './actions';
+import styles from './index.module.scss';
 
 export const formFields = [
   'titleInput',
@@ -28,17 +28,11 @@ class CreatePostContainer extends Component {
     this.handleCurrentTags = this.handleCurrentTags.bind(this);
     this.handleLoadingFromPost = this.handleLoadingFromPost.bind(this);
   }
-  componentDidMount() {
-    if (!this.props.user.authToken) {
-      this.context.router.push('/');
-    }
-  }
   componentWillReceiveProps({ post, selectedTags }) {
     if (post && post !== this.props.post) {
       this.handleLoadingFromPost(post);
     }
     if (selectedTags && selectedTags !== this.props.selectedTags) {
-      console.log(`Called this.setState when tags changed`);
       this.setState(this.state);
     }
   }
@@ -50,7 +44,7 @@ class CreatePostContainer extends Component {
     fields.bodyInput.onChange(post.body);
     fields.featureImageInput.onChange(post.image);
     this.props.actions.createPostSetSelectedTags(
-      post.tags.map(tag => ({ id: tag.id, title: tag.title }))
+      post.tags.map(tag => ({ id: tag.id, title: tag.title })),
     );
   }
   handleSubmit() {
@@ -79,7 +73,7 @@ class CreatePostContainer extends Component {
       tags,
     } = this.props;
     this.props.actions.createPostSetSelectedTags(
-      vals.map(tag => tags[tag] || { title: tag })
+      vals.map(tag => tags[tag] || { title: tag }),
     );
   }
   render() {
@@ -101,7 +95,7 @@ class CreatePostContainer extends Component {
         <WithToast
           message={message}
           error={tagsError || errorMessage}
-          onClose={(type) => actions.createPostClearToast(type)}
+          onClose={type => actions.createPostClearToast(type)}
         >
           <Box className={styles.createPost} colorIndex="light-2">
             <Headline align="center">
@@ -146,7 +140,7 @@ CreatePostContainer.contextTypes = {
 };
 
 // mapStateToProps :: {State} -> {Props}
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   user: state.app.user,
   selectedTags: state.createPost.selectedTags,
   message: state.createPost.message,
@@ -154,10 +148,10 @@ const mapStateToProps = (state) => ({
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     CreatePostActionCreators,
-    dispatch
+    dispatch,
   ),
 });
 
@@ -210,7 +204,7 @@ const loadPostQuery = gql`
 `;
 
 const ContainerWithPost = graphql(loadPostQuery, {
-  options: (ownProps) => ({
+  options: ownProps => ({
     fragments: [postData],
     skip: !ownProps.location.query.postId,
     variables: {
@@ -224,5 +218,5 @@ const ContainerWithPost = graphql(loadPostQuery, {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(ContainerWithPost);

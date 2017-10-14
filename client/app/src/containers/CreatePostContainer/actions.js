@@ -1,19 +1,19 @@
 import * as types from './constants';
 
 // createPostSetSelectedTags :: None -> {Action}
-export const createPostSetSelectedTags = (tags) => ({
+export const createPostSetSelectedTags = tags => ({
   type: types.CREATE_POST_SET_SELECTED_TAGS,
   tags,
 });
 
 // createPostSetMessage :: String -> {Action}
-export const createPostSetMessage = (message) => ({
+export const createPostSetMessage = message => ({
   type: types.CREATE_POST_SET_MESSAGE,
   message,
 });
 
 // createPostSetError :: Object -> {Action}
-export const createPostSetError = (error) => ({
+export const createPostSetError = error => ({
   type: types.CREATE_POST_SET_ERROR,
   error,
 });
@@ -28,17 +28,17 @@ export const createPostClearError = () => ({
   type: types.CREATE_POST_CLEAR_ERROR,
 });
 
-export const createPostClearToast = (type) =>
+export const createPostClearToast = type =>
   (dispatch) => {
     switch (type) {
       case 'error':
         dispatch(
-          createPostClearError()
+          createPostClearError(),
         );
         break;
       case 'message':
         dispatch(
-          createPostClearMessage()
+          createPostClearMessage(),
         );
         break;
       default: break;
