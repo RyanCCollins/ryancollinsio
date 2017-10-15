@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
 import Box from 'grommet-udacity/components/Box';
 import Card from 'grommet-udacity/components/Card';
@@ -8,6 +7,7 @@ import Heading from 'grommet-udacity/components/Heading';
 import Markdown from 'grommet-udacity/components/Markdown';
 import { ResponsiveImage, TagList } from 'components';
 import { highlightContent } from './utils';
+import styles from './index.module.scss';
 
 const PostPreview = ({
   post,

@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
 import Form from 'grommet-udacity/components/Form';
 import Heading from 'grommet-udacity/components/Heading';
@@ -10,8 +9,9 @@ import Button from 'grommet-udacity/components/Button';
 import Box from 'grommet-udacity/components/Box';
 import { AuthFormFooter, LogoImage } from 'components';
 import calculatedError from './utils/error';
+import styles from './index.module.scss';
 
-const checkMatches = (field1, field2) =>
+const checkMatches = (field1, field2) => // eslint-disable-line
   field1.value !== field2.value && field2.touched ?
     'Passwords must match' : null;
 

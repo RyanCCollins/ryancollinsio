@@ -3,7 +3,6 @@ import Section from 'grommet-udacity/components/Section';
 import GrommetIcon from 'grommet-udacity/components/icons/Grommet';
 import { Divider, BlitzLogo, UdacityLogo } from 'components';
 import Headline from 'grommet-udacity/components/Headline';
-import Animate from 'grommet/components/Animate';
 import Logos, {
   Card,
   Logo,

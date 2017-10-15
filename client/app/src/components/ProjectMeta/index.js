@@ -22,7 +22,7 @@ const ProjectMeta = ({
           <Divider />
           <Tags align="center" justify="center">
             {project.tags && project.tags.map((tag, i) =>
-              <Tag key={i} label={tag.title} />
+              <Tag key={i} label={tag.title} />,
             )}
           </Tags>
         </Article>
@@ -74,7 +74,7 @@ const ProjectMeta = ({
 );
 
 ProjectMeta.propTypes = {
-  post: PropTypes.shape({
+  project: PropTypes.shape({
     title: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,
     slug: PropTypes.string.isRequired,

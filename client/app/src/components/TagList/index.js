@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
-import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
 import Anchor from 'grommet-udacity/components/Anchor';
 import Box from 'grommet-udacity/components/Box';
+import styles from './index.module.scss';
 
 const TagList = ({
   tags,
@@ -26,7 +26,7 @@ const TagList = ({
 );
 
 TagList.propTypes = {
-  links: PropTypes.array.isRequired,
+  tags: PropTypes.array.isRequired,
   seperator: PropTypes.string.isRequired,
 };
 

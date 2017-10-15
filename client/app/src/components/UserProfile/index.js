@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
 import { EditableText } from 'components';
 import Section from 'grommet-udacity/components/Section';
@@ -15,6 +14,7 @@ import CloseIcon from 'grommet-udacity/components/icons/base/Close';
 import EditIcon from 'grommet-udacity/components/icons/base/Edit';
 import CheckBox from 'grommet-udacity/components/CheckBox';
 import FormField from 'grommet-udacity/components/FormField';
+import styles from './index.module.scss';
 
 const UserProfile = ({
   user,
@@ -152,6 +152,8 @@ const UserProfile = ({
 );
 
 UserProfile.propTypes = {
+  user: PropTypes.object.isRequired,
+  bioInput: PropTypes.string.isRequired,
   onEditEmail: PropTypes.func.isRequired,
   isEditing: PropTypes.bool.isRequired,
   emailInput: PropTypes.string.isRequired,

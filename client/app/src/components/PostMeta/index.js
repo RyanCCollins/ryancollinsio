@@ -25,19 +25,19 @@ const PostMeta = ({
             {post.tags && post.tags.map((tag, i) =>
               <Anchor key={i} href={`/blog/archive?tag=${encodeURIComponent(tag.title)}`}>
                 <Tag label={tag.title} />
-              </Anchor>
+              </Anchor>,
             )}
           </Tags>
         </Article>
       </Box>
     </Section>
     <Section>
-    <Box className="container">
-      <Article className="panel">
-        <Heading align="center">
+      <Box className="container">
+        <Article className="panel">
+          <Heading align="center">
           Share this Article
         </Heading>
-        <Divider />
+          <Divider />
           <Box align="center">
             <Menu
               inline

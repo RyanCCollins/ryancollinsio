@@ -1,8 +1,8 @@
 import React, { PropTypes, Component } from 'react';
-import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
 import Animate from 'grommet-udacity/components/Animate';
 import MissingVisual from './missing-visual.png';
+import styles from './index.module.scss';
 
 class ResponsiveImage extends Component {
   constructor() {

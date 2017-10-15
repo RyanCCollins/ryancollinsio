@@ -170,7 +170,7 @@ const Project = ({
 
 Project.propTypes = {
   lightboxIsOpen: PropTypes.bool.isRequired,
-  project: PropTypes.object.isRequired, // eslint-disable-line
+  project: PropTypes.object.isRequired,
   onPrev: PropTypes.func.isRequired,
   onNext: PropTypes.func.isRequired,
   onOpen: PropTypes.func.isRequired,

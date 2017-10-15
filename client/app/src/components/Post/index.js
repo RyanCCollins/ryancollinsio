@@ -5,9 +5,9 @@ import Section from 'grommet-udacity/components/Section';
 import Markdown from 'grommet-udacity/components/Markdown';
 import Headline from 'grommet-udacity/components/Headline';
 import Hero from 'grommet-udacity/components/Hero';
-import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
 import { PostMeta } from 'components';
+import styles from './index.module.scss';
 
 const Post = ({
   post,

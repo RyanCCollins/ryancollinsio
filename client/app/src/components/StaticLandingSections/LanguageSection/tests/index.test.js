@@ -1,7 +1,7 @@
-import LanguageSection from '../index';
 import { shallow } from 'enzyme';
 import { shallowToJson } from 'enzyme-to-json';
 import React from 'react';
+import LanguageSection from '../index';
 
 const languages = [
   {
@@ -26,7 +26,7 @@ describe('<LanguageSection />', () => {
     const wrapper = shallow(
       <LanguageSection
         languages={languages}
-      />
+      />,
     );
     expect(shallowToJson(wrapper)).toMatchSnapshot();
   });

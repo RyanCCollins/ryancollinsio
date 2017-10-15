@@ -29,6 +29,7 @@ WithToast.propTypes = {
   children: PropTypes.node.isRequired,
   error: PropTypes.object,
   message: PropTypes.string,
+  onClose: PropTypes.func.isRequired,
 };
 
 export default WithToast;

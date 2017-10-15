@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
 import cssModules from 'react-css-modules';
-import styles from './index.module.scss';
 import Section from 'grommet-udacity/components/Section';
 import Headline from 'grommet-udacity/components/Headline';
 import Heading from 'grommet-udacity/components/Heading';
 import { Divider } from 'components';
+import styles from './index.module.scss';
 
 const TechStackSection = ({
   techItems,
@@ -37,7 +37,7 @@ const TechStackSection = ({
                 {item.description}
               </div>
             </div>
-          </div>
+          </div>,
         )}
       </div>
     </div>

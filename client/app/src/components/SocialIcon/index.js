@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
-import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
 import SocialGithubIcon from 'grommet-udacity/components/icons/base/SocialGithub';
 import SocialMediumIcon from 'grommet-udacity/components/icons/base/SocialMedium';
 import SocialLinkedinOptionIcon from 'grommet-udacity/components/icons/base/SocialLinkedin';
 import SocialTwitterIcon from 'grommet-udacity/components/icons/base/SocialTwitter';
+import styles from './index.module.scss';
 
 const SocialIcon = ({
   type,

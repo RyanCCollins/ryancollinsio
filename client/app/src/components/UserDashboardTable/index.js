@@ -8,9 +8,9 @@ import List from 'grommet-udacity/components/List';
 import Label from 'grommet-udacity/components/Label';
 import Value from 'grommet-udacity/components/Value';
 import ListItem from 'grommet-udacity/components/ListItem';
-import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
 import { DashboardTableButtonMenu, PaginatorFooter } from 'components';
+import styles from './index.module.scss';
 
 const UserDashboardTable = ({
   users,
@@ -88,7 +88,7 @@ const UserDashboardTable = ({
                       </Box>
                     </Box>
                   </Tile>
-                </ListItem>
+                </ListItem>,
               )}
             </tbody>
           </Box>
@@ -128,7 +128,7 @@ const UserDashboardTable = ({
                     onShow={onShow}
                   />
                 </td>
-              </TableRow>
+              </TableRow>,
             )}
           </tbody>
         </Table>

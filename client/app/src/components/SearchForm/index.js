@@ -153,8 +153,8 @@ SearchForm.propTypes = {
   onChange: PropTypes.func.isRequired,
   searchTerm: PropTypes.string,
   onChangeTags: PropTypes.func.isRequired,
-  tags: PropTypes.array.isRequired, // eslint-disable-line
-  inputTags: PropTypes.array.isRequired, // eslint-disable-line
+  tags: PropTypes.array.isRequired,
+  inputTags: PropTypes.array.isRequired,
   isFiltering: PropTypes.bool.isRequired,
   onToggleModal: PropTypes.func.isRequired,
   isShowingModal: PropTypes.bool.isRequired,
@@ -162,9 +162,9 @@ SearchForm.propTypes = {
   onClearFilters: PropTypes.func.isRequired,
   filteredTotal: PropTypes.number.isRequired,
   unfilteredTotal: PropTypes.number.isRequired,
-  categories: PropTypes.array, // eslint-disable-line
+  categories: PropTypes.array,
   onChangeCategories: PropTypes.func.isRequired,
-  selectedCategories: PropTypes.array, // eslint-disable-line
+  selectedCategories: PropTypes.array,
 };
 
 export default cssModules(SearchForm, styles);
