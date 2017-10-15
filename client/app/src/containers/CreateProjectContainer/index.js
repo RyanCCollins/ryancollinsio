@@ -36,11 +36,6 @@ class CreateProjectContainer extends Component {
     this.handleTags = this.handleTags.bind(this);
     this.handleLoadingFromProject = this.handleLoadingFromProject.bind(this);
   }
-  componentDidMount() {
-    if (!this.props.user.authToken) {
-      this.context.router.push('/');
-    }
-  }
   componentWillReceiveProps({ project }) {
     if (project && project !== this.props.project) {
       this.handleLoadingFromProject(project);
