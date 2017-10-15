@@ -4,7 +4,6 @@ import ChatIcon from 'grommet-udacity/components/icons/base/Chat';
 
 export const FabIcon = styled(ChatIcon)`
   stroke: white !important;
-
 `;
 
 export const FabContainer = styled.div`

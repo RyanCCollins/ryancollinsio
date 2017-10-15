@@ -3,8 +3,8 @@ import Footer from 'grommet-udacity/components/Footer';
 import Button from 'grommet-udacity/components/Button';
 import FormFields from 'grommet-udacity/components/FormFields';
 import Heading from 'grommet-udacity/components/Heading';
-import calculatedError from './utils';
 import { MarkdownInput, Alert } from 'components';
+import calculatedError from './utils';
 import { StyledFormField, StyledForm, StyledBox } from './styles';
 
 const FeedbackForm = ({
@@ -82,8 +82,7 @@ const FeedbackForm = ({
 );
 
 FeedbackForm.propTypes = {
-  nameInput: PropTypes.object.isRequired,
-  emailInput: PropTypes.object.isRequired,
+  message: PropTypes.string.isRequired,
   feedbackInput: PropTypes.object.isRequired,
   urlInput: PropTypes.object.isRequired,
   invalid: PropTypes.bool.isRequired,

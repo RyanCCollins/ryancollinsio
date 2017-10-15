@@ -1,6 +1,5 @@
 /* @flow */
 import React from 'react';
-// $FlowFixMe grommet-udacity is not found
 import Box from 'grommet-udacity/components/Box';
 import Label from 'grommet-udacity/components/Label';
 import Button from 'grommet-udacity/components/Button';

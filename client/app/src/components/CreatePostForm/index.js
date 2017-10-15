@@ -6,6 +6,7 @@ import Footer from 'grommet-udacity/components/Footer';
 import Button from 'grommet-udacity/components/Button';
 import { MarkdownInput } from 'components';
 import { Select } from 'antd';
+
 const Option = Select.Option;
 
 const CreatePostForm = ({
@@ -93,7 +94,7 @@ const CreatePostForm = ({
                 label={tag.title}
               >
                 {tag.title}
-              </Option>
+              </Option>,
             )}
           </Select>
         </FormField>

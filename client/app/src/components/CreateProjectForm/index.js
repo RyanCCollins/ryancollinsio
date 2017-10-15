@@ -7,6 +7,7 @@ import Button from 'grommet-udacity/components/Button';
 import Select from 'grommet-udacity/components/Select';
 import { MarkdownInput } from 'components';
 import { Select as TagSelect } from 'antd';
+
 const Option = TagSelect.Option;
 
 const CreateProjectForm = ({
@@ -214,7 +215,7 @@ const CreateProjectForm = ({
             tags
             style={{ width: '100%' }}
             id="tag-input"
-            defaultValue={initialTags.map((item) => item.title)}
+            defaultValue={initialTags.map(item => item.title)}
             searchPlaceholder="Start typing to add a tag."
             onChange={onChangeTags}
           >
@@ -224,7 +225,7 @@ const CreateProjectForm = ({
                 label={tag.title}
               >
                 {tag.title}
-              </Option>
+              </Option>,
             )}
           </TagSelect>
         </FormField>
@@ -256,6 +257,9 @@ CreateProjectForm.propTypes = {
   fields: PropTypes.object.isRequired,
   invalid: PropTypes.bool.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  pastTags: PropTypes.array.isRequired,
+  initialTags: PropTypes.array.isRequired,
+  onChangeTags: PropTypes.func.isRequired,
 };
 
 export default CreateProjectForm;

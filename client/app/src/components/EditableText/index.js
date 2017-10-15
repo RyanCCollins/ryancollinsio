@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
-import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
 import Section from 'grommet-udacity/components/Section';
 import Box from 'grommet-udacity/components/Box';
 import FormField from 'grommet-udacity/components/FormField';
+import styles from './index.module.scss';
 
 const EditableText = ({
   isEditing,

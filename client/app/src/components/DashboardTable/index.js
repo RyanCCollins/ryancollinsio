@@ -148,11 +148,11 @@ const DashboardTable = ({
 );
 
 DashboardTable.propTypes = {
-  items: PropTypes.array.isRequired, // eslint-disable-line
+  items: PropTypes.array.isRequired,
   isMobile: PropTypes.bool.isRequired,
   perPage: PropTypes.number.isRequired,
   currentPage: PropTypes.number.isRequired,
-  allItems: PropTypes.array.isRequired, // eslint-disable-line
+  allItems: PropTypes.array.isRequired,
   onChangePage: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
   onEdit: PropTypes.func.isRequired,

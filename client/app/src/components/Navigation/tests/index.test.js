@@ -1,12 +1,12 @@
-import Navigation from '../index';
 import { shallow } from 'enzyme';
 import { shallowToJson } from 'enzyme-to-json';
 import React from 'react';
+import Navigation from '../index';
 
 describe('<Navigation />', () => {
   it('should render with default props', () => {
     const wrapper = shallow(
-      <Navigation />
+      <Navigation />,
     );
     expect(shallowToJson(wrapper)).toMatchSnapshot();
   });

@@ -49,7 +49,7 @@ exports[`<Comment /> should render with default props 1`] = `
       tag="div">
       <Heading
         tag="h4">
-        on Feb 25th 17 6:32:44 pm
+        on Oct 14th 17 10:21:10 pm
       </Heading>
       <Markdown
         components={Object {}}
