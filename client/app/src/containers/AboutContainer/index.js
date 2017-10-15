@@ -7,9 +7,9 @@ import LinkPreviousIcon from 'grommet-udacity/components/icons/base/LinkPrevious
 import Markdown from 'grommet-udacity/components/Markdown';
 import Heading from 'grommet-udacity/components/Heading';
 import Box from 'grommet-udacity/components/Box';
-import about from './index.md';
 import { Divider, WithLoading } from 'components';
 import { StyledBox, AvatarImage, StyledArticle, BoxWrapper } from './styles';
+import about from './index.md';
 
 const AboutContainer = ({ history }) => (
   <StyledBox pad="large">
