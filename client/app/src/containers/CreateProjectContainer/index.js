@@ -1,18 +1,18 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as CreateProjectActionCreators from './actions';
 import cssModules from 'react-css-modules';
-import styles from './index.module.scss';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { reduxForm } from 'redux-form';
 import Box from 'grommet-udacity/components/Box';
 import Section from 'grommet-udacity/components/Section';
 import Headline from 'grommet-udacity/components/Headline';
+import { projectData } from 'fragments';
 import { Divider, CreateProjectForm, WithToast, WithLoading } from 'components';
 import fieldsToSubmission from './model/serialization';
-import { projectData } from 'fragments';
+import * as CreateProjectActionCreators from './actions';
+import styles from './index.module.scss';
 
 export const formFields = [
   'titleInput',
@@ -56,7 +56,7 @@ class CreateProjectContainer extends Component {
     fields.descriptionInput.onChange(project.description);
     fields.repoUrlInput.onChange(project.repoUrl);
     fields.categoryInput.onChange(
-      `${project.category.charAt(0).toUpperCase()}${project.category.slice(1)}`
+      `${project.category.charAt(0).toUpperCase()}${project.category.slice(1)}`,
     );
     fields.milestonesInput.onChange(project.milestones);
     fields.technicalReviewInput.onChange(project.technicalReview);
@@ -64,13 +64,13 @@ class CreateProjectContainer extends Component {
     fields.technicalInformationInput.onChange(project.technicalInformation);
     fields.designPatternsInput.onChange(project.designPatterns);
     fields.featureImageInput.onChange(project.featureImage);
-    this.props.actions.createProjectSetTags(project.tags.map((item) => ({ title: item.title })));
+    this.props.actions.createProjectSetTags(project.tags.map(item => ({ title: item.title })));
   }
   handleTags(value) {
     const {
       tags,
     } = this.props;
-    const newTags = value.map((tag) => tags[tag] || { title: tag });
+    const newTags = value.map(tag => tags[tag] || { title: tag });
     this.props.actions.createProjectSetTags(newTags);
   }
   handleSubmit() {
@@ -84,7 +84,7 @@ class CreateProjectContainer extends Component {
       fieldsToSubmission(
         fields,
         user,
-      )
+      ),
     )
     .then(() => {
       const message = 'The project has successfully been created.';
@@ -116,7 +116,7 @@ class CreateProjectContainer extends Component {
         <WithToast
           message={message}
           error={createEventError || tagsError}
-          onClose={(type) => actions.clearCreateProjectToast(type)}
+          onClose={type => actions.clearCreateProjectToast(type)}
         >
           <Box className={styles.createProject}>
             <Headline align="center">
@@ -160,7 +160,7 @@ CreateProjectContainer.contextTypes = {
 };
 
 // mapStateToProps :: {State} -> {Props}
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   createEventError: state.createProject.error,
   message: state.createProject.message,
   selectedTags: state.createProject.selectedTags,
@@ -168,10 +168,10 @@ const mapStateToProps = (state) => ({
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     CreateProjectActionCreators,
-    dispatch
+    dispatch,
   ),
 });
 
@@ -203,7 +203,7 @@ const loadProjectQuery = gql`
 `;
 
 const ContainerWithProjects = graphql(loadProjectQuery, {
-  options: (ownProps) => ({
+  options: ownProps => ({
     skip: !ownProps.location.query.projectId,
     fragments: [projectData],
     variables: {
@@ -234,5 +234,5 @@ const FormContainer = reduxForm({
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(FormContainer);
