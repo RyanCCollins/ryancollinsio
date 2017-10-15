@@ -8,7 +8,7 @@ import { reduxForm } from 'redux-form';
 import Headline from 'grommet-udacity/components/Headline';
 import Box from 'grommet-udacity/components/Box';
 import { WithToast, Divider, CreatePostForm, WithLoading } from 'components';
-import { postData } from 'fragments'; // eslint-disable-line
+import { postData } from 'fragments';
 import Section from 'grommet-udacity/components/Section';
 import serializer from './model';
 import * as CreatePostActionCreators from './actions';

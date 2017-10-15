@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import styles from './index.module.scss';
 import cssModules from 'react-css-modules';
 import Box from 'grommet-udacity/components/Box';
 import Form from 'grommet-udacity/components/Form';
@@ -10,9 +9,10 @@ import Footer from 'grommet-udacity/components/Footer';
 import Button from 'grommet-udacity/components/Button';
 import Select from 'grommet-udacity/components/Select';
 import { LogoImage, MarkdownInput } from 'components';
+import styles from './index.module.scss';
 
 const calculatedError = input => // eslint-disable-line
-  input.dirty || input.touched && input.error ? input.error : null;
+  (input.dirty || input.touched) && input.error ? input.error : null;
 
 const ContactForm = ({
   nameInput,
@@ -132,6 +132,7 @@ ContactForm.propTypes = {
   emailInput: PropTypes.object.isRequired,
   categoryInput: PropTypes.object.isRequired,
   messageInput: PropTypes.object.isRequired,
+  categories: PropTypes.array.isRequired,
   onSubmit: PropTypes.func.isRequired,
   invalid: PropTypes.bool.isRequired,
 };

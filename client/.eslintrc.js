@@ -17,6 +17,7 @@ module.exports = {
   },
   "rules": {
     "func-names": 0,
+    "react/forbid-prop-types": 0,
     "eol-last": 0,
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/jsx-no-bind": [ 2, {

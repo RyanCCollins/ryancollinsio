@@ -1,13 +1,13 @@
 import * as types from './constants';
 
 // createProjectError :: String -> {Action}
-export const createProjectError = (error) => ({
+export const createProjectError = error => ({
   type: types.CREATE_PROJECT_ERROR,
   error,
 });
 
 // createProjectMessage :: String -> {Action}
-export const createProjectMessage = (message) => ({
+export const createProjectMessage = message => ({
   type: types.CREATE_PROJECT_MESSAGE,
   message,
 });
@@ -22,17 +22,17 @@ export const clearCreateProjectMessage = () => ({
   type: types.CLEAR_CREATE_PROJECT_MESSAGE,
 });
 
-export const clearCreateProjectToast = (type) =>
+export const clearCreateProjectToast = type =>
   (dispatch) => {
     switch (type) {
       case 'error':
         dispatch(
-          clearCreateProjectError()
+          clearCreateProjectError(),
         );
         break;
       case 'message':
         dispatch(
-          clearCreateProjectMessage()
+          clearCreateProjectMessage(),
         );
         break;
       default:
@@ -41,7 +41,7 @@ export const clearCreateProjectToast = (type) =>
   };
 
 // createProjectAddTag :: String -> {Action}
-export const createProjectSetTags = (tags) => ({
+export const createProjectSetTags = tags => ({
   type: types.CREATE_PROJECT_SET_TAGS,
   tags,
 });
