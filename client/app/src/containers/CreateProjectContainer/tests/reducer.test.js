@@ -5,7 +5,7 @@ import createProjectReducer, { initialState } from '../reducer';
 describe('createProjectReducer', () => {
   it('returns the initial state', () => {
     expect(
-      createProjectReducer(undefined, {})
+      createProjectReducer(undefined, {}),
     ).toEqual(initialState);
   });
   it('should handle reducer for CREATE_PROJECT_SET_TAGS', () => {
@@ -24,7 +24,7 @@ describe('createProjectReducer', () => {
       createProjectReducer(stateBefore, {
         type: types.CREATE_PROJECT_SET_TAGS,
         tags,
-      })
+      }),
     ).toEqual(stateAfter);
   });
   it('should handle reducer for CREATE_PROJECT_ERROR', () => {
@@ -39,7 +39,7 @@ describe('createProjectReducer', () => {
       createProjectReducer(stateBefore, {
         type: types.CREATE_PROJECT_ERROR,
         error,
-      })
+      }),
     ).toEqual(stateAfter);
   });
   it('should handle reducer for CREATE_PROJECT_MESSAGE', () => {
@@ -54,7 +54,7 @@ describe('createProjectReducer', () => {
       createProjectReducer(stateBefore, {
         type: types.CREATE_PROJECT_MESSAGE,
         message,
-      })
+      }),
     ).toEqual(stateAfter);
   });
   it('should handle reducer for CLEAR_CREATE_PROJECT_ERROR', () => {
@@ -68,7 +68,7 @@ describe('createProjectReducer', () => {
     expect(
       createProjectReducer(stateBefore, {
         type: types.CLEAR_CREATE_PROJECT_ERROR,
-      })
+      }),
     ).toEqual(stateAfter);
   });
   it('should handle reducer for CLEAR_CREATE_PROJECT_MESSAGE', () => {
@@ -82,7 +82,7 @@ describe('createProjectReducer', () => {
     expect(
       createProjectReducer(stateBefore, {
         type: types.CLEAR_CREATE_PROJECT_MESSAGE,
-      })
+      }),
     ).toEqual(stateAfter);
   });
 });

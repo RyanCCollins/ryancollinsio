@@ -8,7 +8,7 @@ import Layer from 'grommet-udacity/components/Layer';
 import { reduxForm } from 'redux-form';
 import * as FeedbackActionCreators from './actions';
 import validation from './utils';
-import { StyledBox } from './styles';
+import StyledBox from './styles';
 
 export const formFields = [
   'urlInput',

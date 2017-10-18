@@ -121,7 +121,6 @@ class CreatePostContainer extends Component {
 
 CreatePostContainer.propTypes = {
   submitPostMutation: PropTypes.func.isRequired,
-  location: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,
   message: PropTypes.string,
   fields: PropTypes.object.isRequired,

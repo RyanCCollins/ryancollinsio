@@ -10,7 +10,7 @@ describe('CreateProject actions', () => {
       error,
     };
     expect(
-      actions.createProjectError(error)
+      actions.createProjectError(error),
     ).toEqual(expected);
   });
   it('should have a type of CREATE_PROJECT_MESSAGE', () => {
@@ -20,7 +20,7 @@ describe('CreateProject actions', () => {
       message,
     };
     expect(
-      actions.createProjectMessage(message)
+      actions.createProjectMessage(message),
     ).toEqual(expected);
   });
   it('should have a type of CLEAR_CREATE_PROJECT_ERROR', () => {
@@ -28,7 +28,7 @@ describe('CreateProject actions', () => {
       type: types.CLEAR_CREATE_PROJECT_ERROR,
     };
     expect(
-      actions.clearCreateProjectError()
+      actions.clearCreateProjectError(),
     ).toEqual(expected);
   });
   it('should have a type of CLEAR_CREATE_PROJECT_MESSAGE', () => {
@@ -36,7 +36,7 @@ describe('CreateProject actions', () => {
       type: types.CLEAR_CREATE_PROJECT_MESSAGE,
     };
     expect(
-      actions.clearCreateProjectMessage()
+      actions.clearCreateProjectMessage(),
     ).toEqual(expected);
   });
   it('should have a type of CREATE_PROJECT_SET_TAGS', () => {
@@ -48,7 +48,7 @@ describe('CreateProject actions', () => {
       tags,
     };
     expect(
-      actions.createProjectSetTags(tags)
+      actions.createProjectSetTags(tags),
     ).toEqual(expected);
   });
 });
