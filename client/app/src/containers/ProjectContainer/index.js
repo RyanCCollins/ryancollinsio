@@ -13,7 +13,6 @@ if (typeof window !== 'undefined') {
   RichTextEditor = require('react-rte').default; // eslint-disable-line
 }
 
-
 class ProjectContainer extends Component {
   constructor() {
     super();
