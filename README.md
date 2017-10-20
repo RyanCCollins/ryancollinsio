@@ -1,6 +1,6 @@
 # RyanCollins.io
 
-A GraphQL on Rails API and React single page app.
+Professional portfolio for me, Ryan Collins. A GraphQL on Rails API and React single page app.
 
 # Documentation 
 See [Scalable React Boilerplate](https://github.com/scalable-react/scalable-react-boilerplate) for docs
