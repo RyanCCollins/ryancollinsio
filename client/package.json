@@ -167,6 +167,7 @@
     "react-rte": "^0.10.1",
     "react-scroll": "^1.4.4",
     "react-waypoint": "^4.1.0",
+    "recompose": "^0.26.0",
     "redbox-react": "^1.3.2",
     "redux": "^3.5.2",
     "redux-form": "^5.2.5",

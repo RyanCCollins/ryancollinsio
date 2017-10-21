@@ -1,20 +1,21 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as TutorialActionCreators from './actions';
 import cssModules from 'react-css-modules';
-import styles from './index.module.scss';
 import Box from 'grommet-udacity/components/Box';
 import Section from 'grommet-udacity/components/Section';
 import Headline from 'grommet-udacity/components/Headline';
 import Paragraph from 'grommet-udacity/components/Paragraph';
 import Markdown from 'grommet-udacity/components/Markdown';
-import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
+import { compose } from 'recompose';
 import { Divider, WithLoading, CommentFeed, WithToast } from 'components';
+import withData from './gql';
+import * as TutorialActionCreators from './actions';
+import styles from './index.module.scss';
+
 let RichTextEditor;
 if (typeof window !== 'undefined') {
-  RichTextEditor = require('react-rte').default;
+  RichTextEditor = require('react-rte').default; // eslint-disable-line
 }
 
 class TutorialContainer extends Component {
@@ -142,7 +143,7 @@ class TutorialContainer extends Component {
           </Section>
           <CommentFeed
             value={commentInput}
-            onChange={(value) => actions.tutorialEditComment(value)}
+            onChange={value => actions.tutorialEditComment(value)}
             onSubmit={this.handleSubmit}
             comments={tutorial && tutorial.comments}
             onUpvote={this.handleUpvote}
@@ -157,7 +158,6 @@ class TutorialContainer extends Component {
 TutorialContainer.propTypes = {
   tutorial: PropTypes.object,
   isLoading: PropTypes.bool,
-  params: PropTypes.object.isRequired,
   upvoteComment: PropTypes.func,
   mutate: PropTypes.func,
   refetch: PropTypes.func,
@@ -173,7 +173,7 @@ TutorialContainer.contextTypes = {
 };
 
 // mapStateToProps :: {State} -> {Props}
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   user: state.app.user,
   commentInput: state.tutorial.commentInput,
   commentError: state.tutorial.error,
@@ -181,92 +181,19 @@ const mapStateToProps = (state) => ({
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     TutorialActionCreators,
-    dispatch
+    dispatch,
   ),
 });
 
 const Container = cssModules(TutorialContainer, styles);
 
-const tutorialQuery = gql`
-  query tutorial($slug: String!) {
-    tutorial(slug: $slug) {
-      id
-      link
-      title
-      description
-      status
-      slug
-      comments {
-        id
-        body
-        total_votes
-        user {
-          name
-          avatar
-          bio
-        }
-      }
-      user {
-        name
-        avatar
-        bio
-      }
-      body
-      image
-    }
-  }
-`;
-
-const ContainerWithData = graphql(tutorialQuery, {
-  options: (ownProps) => ({
-    skip: !ownProps.params.slug,
-    variables: {
-      slug: ownProps.params.slug,
-    },
-  }),
-  props: ({ data: { loading, tutorial, refetch } }) => ({
-    tutorial,
-    isLoading: loading,
-    refetch,
-  }),
-})(Container);
-
-const createCommentMutation = gql`
-  mutation createTutorialComment($authToken: String!,
-    $comment: CommentInput, $id: ID!) {
-      CreateTutorialComment(input: {
-        auth_token: $authToken,
-        comment: $comment,
-        tutorial_id: $id
-      }) {
-        tutorial_comment {
-          id
-        }
-      }
-    }
-`;
-
-const ContainerWithMutation = graphql(createCommentMutation)(ContainerWithData);
-
-const upvoteCommentMutation = gql`
-mutation upvoteComment($authToken: String!, $id: ID!) {
-  VoteTutorialComment(input: { auth_token: $authToken, tutorial_comment_id: $id }) {
-    total_votes
-  }
-}
-`;
-
-const ContainerWithMoreMutations = graphql(upvoteCommentMutation, {
-  props: ({ mutate }) => ({
-    upvoteComment: mutate,
-  }),
-})(ContainerWithMutation);
-
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ContainerWithMoreMutations);
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  ),
+  withData,
+)(Container);
