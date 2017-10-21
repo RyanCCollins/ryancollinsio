@@ -17,7 +17,7 @@ const Comment = ({
 }) => (
   <Box direction="column" style={{ width: '100%' }}>
     <Box direction="row">
-      <Box direction="row" align="center" justify="center" className="avatar-box">
+      <Box separator="right" direction="row" align="center" justify="center" className="avatar-box">
         <img
           style={{ marginRight: 8 }}
           alt="user avatar"
@@ -32,21 +32,19 @@ const Comment = ({
         <Markdown content={comment.body} />
       </Box>
     </Box>
-    <Menu direction="row" inline responsive={false}>
-      <Box align="center" justify="between" style={{ width: '100%' }} direction="row">
-        <Heading tag="h4">
-          {`on ${moment(comment.created_at).format('MMM Do YY h:mm:ss a')}`}
-        </Heading>
-        <Box>
-          <Value size="small" value={comment.total_votes} />
-          <Button
-            plain
-            icon={<LikeIcon />}
-            onClick={() => onUpvote(comment.id)}
-          />
-        </Box>
-      </Box>
-    </Menu>
+    <Box align="center" justify="between" style={{ width: '100%' }} direction="row">
+      <Heading tag="h4">
+        {`on ${moment(comment.created_at).format('MMM Do YY h:mm:ss a')}`}
+      </Heading>
+      <Menu align="center" direction="row" inline responsive={false}>
+        <Value size="small" value={comment.total_votes} />
+        <Button
+          plain
+          icon={<LikeIcon />}
+          onClick={() => onUpvote(comment.id)}
+        />
+      </Menu>
+    </Box>
   </Box>
 );
 
