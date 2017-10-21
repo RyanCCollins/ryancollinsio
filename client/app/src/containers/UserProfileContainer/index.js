@@ -1,16 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as UserProfileActionCreators from './actions';
 import * as AppActions from 'containers/AppContainer/actions';
 import Section from 'grommet-udacity/components/Section';
-import Box from 'grommet-udacity/components/Box';
 import { authUserDataFragment } from 'fragments';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { UserProfile, LoadingIndicator, ToastMessage } from 'components';
+import * as UserProfileActionCreators from './actions';
 import ProfileSubmission from './model/submission';
-import { StyledBox } from './styles';
+import StyledBox from './styles';
 
 class UserProfileContainer extends Component {
   constructor() {
@@ -50,10 +49,10 @@ class UserProfileContainer extends Component {
     actions.profileSubmissionInitiation();
     updateProfile(profileData)
       .then(() =>
-        actions.profileSubmissionSuccess()
+        actions.profileSubmissionSuccess(),
       )
       .catch(err =>
-        actions.profileSubmissionFailure(err.message)
+        actions.profileSubmissionFailure(err.message),
       );
   }
   render() {
@@ -130,17 +129,14 @@ UserProfileContainer.propTypes = {
   isEditing: PropTypes.bool.isRequired,
   bioInput: PropTypes.string,
   submissionError: PropTypes.string,
-  refetch: PropTypes.func.isRequired,
   avatarInput: PropTypes.string,
-  employerInput: PropTypes.string,
   emailInput: PropTypes.string,
   isLoading: PropTypes.bool.isRequired,
-  authToken: PropTypes.string.isRequired,
   publicInput: PropTypes.bool.isRequired,
 };
 
 // mapStateToProps :: {State} -> {Props}
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   user: state.app.user,
   bioInput: state.userProfile.bioInput,
   submissionError: state.userProfile.error,
@@ -153,13 +149,13 @@ const mapStateToProps = (state) => ({
 });
 
 // mapDispatchToProps :: Dispatch -> {Action}
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     Object.assign({},
       AppActions,
-      UserProfileActionCreators
+      UserProfileActionCreators,
     ),
-    dispatch
+    dispatch,
   ),
 });
 
@@ -184,11 +180,11 @@ const ContainerWithMutation = graphql(updateProfileMutation, {
         mutate({
           variables: { authToken, profile },
         })
-        .then(mutationResult => {
+        .then((mutationResult) => {
           ownProps.actions.setPersistentUser(mutationResult.data.UpdateProfile.user);
           resolve(mutationResult);
         })
-        .catch(err => reject(err))
+        .catch(err => reject(err)),
       );
     },
   }),
@@ -197,5 +193,5 @@ const ContainerWithMutation = graphql(updateProfileMutation, {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(ContainerWithMutation);

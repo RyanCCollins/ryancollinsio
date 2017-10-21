@@ -6,7 +6,7 @@ export const profileStartEditing = () => ({
 });
 
 // profileEditBio :: String -> {Action}
-export const profileEditBio = (bio) => ({
+export const profileEditBio = bio => ({
   type: types.PROFILE_EDIT_BIO,
   bio,
 });
@@ -22,7 +22,7 @@ export const profileSubmissionSuccess = () => ({
 });
 
 // profileSubmissionFailure :: JSON -> {Action}
-export const profileSubmissionFailure = (error) => ({
+export const profileSubmissionFailure = error => ({
   type: types.PROFILE_SUBMISSION_FAILURE,
   error,
 });
@@ -38,25 +38,25 @@ export const profileCancelEditing = () => ({
 });
 
 // profileEditAvatar :: String -> {Action}
-export const profileEditAvatar = (avatar) => ({
+export const profileEditAvatar = avatar => ({
   type: types.PROFILE_EDIT_AVATAR,
   avatar,
 });
 
 // profileEditEmail :: String -> {Action}
-export const profileEditEmail = (email) => ({
+export const profileEditEmail = email => ({
   type: types.PROFILE_EDIT_EMAIL,
   email,
 });
 
 // profileEditEmployer :: String -> {Action}
-export const profileEditEmployer = (employer) => ({
+export const profileEditEmployer = employer => ({
   type: types.PROFILE_EDIT_EMPLOYER,
   employer,
 });
 
 // setDefaultInputs :: Object -> {Action}
-export const setDefaultInputs = (inputs) => ({
+export const setDefaultInputs = inputs => ({
   type: types.PROFILE_SET_DEFAULT_INPUTS,
   inputs,
 });
