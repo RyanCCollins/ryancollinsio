@@ -9,37 +9,42 @@ import Label from 'grommet-udacity/components/Label';
 import Value from 'grommet-udacity/components/Value';
 import moment from 'moment';
 
+const noAvatar = 'http://bit.ly/2dqCGdd';
+
 const Comment = ({
   comment,
   onUpvote,
 }) => (
   <Box direction="column" style={{ width: '100%' }}>
     <Box direction="row">
-      <Box align="center" justify="center" className="avatar-box">
+      <Box direction="row" align="center" justify="center" className="avatar-box">
         <img
+          style={{ marginRight: 8 }}
           alt="user avatar"
           className="avatar avatar__small"
-          src={comment.user.avatar}
+          src={comment.user.avatar || noAvatar}
         />
         <Label uppercase>
           {comment.user.name}
         </Label>
       </Box>
-      <Box align="center" justify="center">
-        <Heading tag="h4">
-          {`on ${moment(comment.created_at).format('MMM Do YY h:mm:ss a')}`}
-        </Heading>
+      <Box>
         <Markdown content={comment.body} />
       </Box>
     </Box>
     <Menu direction="row" inline responsive={false}>
-      <Box align="center" justify="end" style={{ width: '100%' }} direction="row">
-        <Value size="small" value={comment.total_votes} />
-        <Button
-          plain
-          icon={<LikeIcon />}
-          onClick={() => onUpvote(comment.id)}
-        />
+      <Box align="center" justify="between" style={{ width: '100%' }} direction="row">
+        <Heading tag="h4">
+          {`on ${moment(comment.created_at).format('MMM Do YY h:mm:ss a')}`}
+        </Heading>
+        <Box>
+          <Value size="small" value={comment.total_votes} />
+          <Button
+            plain
+            icon={<LikeIcon />}
+            onClick={() => onUpvote(comment.id)}
+          />
+        </Box>
       </Box>
     </Menu>
   </Box>
