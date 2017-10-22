@@ -17,14 +17,13 @@ const Comment = ({
 }) => (
   <Box direction="column" style={{ width: '100%' }}>
     <Box direction="row">
-      <Box separator="right" direction="row" align="center" justify="center" className="avatar-box">
+      <Box separator="right" direction="column" align="center" justify="center" className="avatar-box">
         <img
-          style={{ marginRight: 8 }}
           alt="user avatar"
           className="avatar avatar__small"
           src={comment.user.avatar || noAvatar}
         />
-        <Label uppercase>
+        <Label margin="small" style={{ fontSize: 14 }} align="center" uppercase>
           {comment.user.name}
         </Label>
       </Box>
@@ -32,9 +31,16 @@ const Comment = ({
         <Markdown content={comment.body} />
       </Box>
     </Box>
-    <Box align="center" justify="between" style={{ width: '100%' }} direction="row">
-      <Heading tag="h4">
-        {`on ${moment(comment.created_at).format('MMM Do YY h:mm:ss a')}`}
+    <Box
+      separator="top"
+      pad={{ vertical: 'small' }}
+      align="center"
+      justify="between"
+      style={{ width: '100%', marginTop: 12 }}
+      direction="row"
+    >
+      <Heading margin="none" tag="h5">
+        {`Posted on ${moment(comment.created_at).format('MMM Do YYYY')}`}
       </Heading>
       <Menu align="center" direction="row" inline responsive={false}>
         <Value size="small" value={comment.total_votes} />

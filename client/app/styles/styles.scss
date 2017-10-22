@@ -211,7 +211,7 @@ a.navLink {
 }
 
 label {
-  font-size: 20px !important;
+  font-size: 20px;
 }
 
 .grommetux-hero--large {
@@ -378,8 +378,8 @@ a.active {
 
 
 .avatar-box {
-  padding-right: 10px;
-  margin-right: 10px;
+  padding-right: 24px;
+  margin-right: 24px;
   @media screen and (max-width: 600px) {
     margin-right: 0;
     padding-right: 0;
