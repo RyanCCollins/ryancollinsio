@@ -65,6 +65,4 @@ export const showPost = post => (dispatch) => {
   );
 };
 
-export const deletePost = () => () => {
-
-};
+export const deletePost = () => () => {};
