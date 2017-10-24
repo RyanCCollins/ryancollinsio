@@ -49,9 +49,7 @@ export const showProject = project => (dispatch) => {
   );
 };
 
-export const deleteProject = () => () => {
-
-};
+export const deleteProject = () => () => {};
 
 export const editPost = post => (dispatch) => {
   dispatch(
