@@ -2,6 +2,7 @@ import * as types from './constants';
 import update from 'react-addons-update';
 
 export const initialState = {
+  activeTab: 0,
   posts: {
     items: [],
     perPage: 6,
@@ -17,7 +18,6 @@ export const initialState = {
     perPage: 6,
     currentPage: 1,
   },
-  activeTab: 0,
 };
 
 const postReducer = (state = initialState.posts, action) => {
