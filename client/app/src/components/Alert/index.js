@@ -1,12 +1,19 @@
-import React, { PropTypes } from 'react';
+// @flow
+import React, { Element } from 'react';
 import Button from 'grommet-udacity/components/Button';
 import { StyledWrapper, Closer, StyledNotification } from './styles';
+
+type Props = {
+  onClose: () => void,
+  status: 'ok' | 'critical',
+  message: string,
+}
 
 const Alert = ({
   message,
   status,
   onClose,
-}) => (
+}: Props): Element<*> => (
   <StyledWrapper>
     <StyledNotification
       closer={
@@ -23,11 +30,5 @@ const Alert = ({
     />
   </StyledWrapper>
 );
-
-Alert.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  status: PropTypes.oneOf(['ok', 'critical']),
-  message: PropTypes.string.isRequired,
-};
 
 export default Alert;
