@@ -1,5 +1,5 @@
 ## AdminDashboardContainer
-A crazy complex dashboard container
+A crazy complex dashboard container :)
 
 ### Example Usage
 
