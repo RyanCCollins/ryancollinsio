@@ -12,7 +12,7 @@ if (typeof window !== 'undefined') {
 }
 
 /* eslint-disable */
-// Polyfill for the System.import
+// Polyfill for the System.import for webpack
 if (typeof System === 'undefined') {
   var System = {
     import(path) {
