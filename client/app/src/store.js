@@ -4,6 +4,7 @@ import thunk from 'redux-thunk';
 import { browserHistory } from 'react-router';
 import rootReducer from './reducers';
 import client from './apolloClient';
+
 /* GENERATOR: Import all of your initial state */
 import { initialState as feedback } from './containers/FeedbackContainer/reducer';
 import { initialState as search } from './containers/SearchContainer/reducer';
