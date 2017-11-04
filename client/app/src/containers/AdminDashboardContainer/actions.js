@@ -1,5 +1,4 @@
 import { push } from 'react-router-redux';
-
 import * as types from './constants';
 
 export const setPosts = posts => ({
