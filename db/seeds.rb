@@ -2139,6 +2139,22 @@ end
 post.save!
 
 Reference.create(
+  avatar: 'https://media.licdn.com/mpr/mpr/shrinknp_100_100/p/8/000/1bd/2fd/2e31416.jpg',
+  name: 'Mike Walrath',
+  body: "I can’t say enough nice things about Ryan. He was wonderful 
+    to work with and I couldn't ask for a better colleague and friend. 
+    Under the strictest of timelines I could always count on Ryan to 
+    have a great attitude, communicate well and utilize his extraordinary 
+    talents to get the job done. \n Ryan has many accomplishments and 
+    aspirations for the future but his humble, honest, ego free attitude 
+    truly excites me for what he might achieve. I wish Ryan the very best 
+    in the future and honestly hope our career paths cross again 
+    because it was a pleasure to work with him.",
+  title: 'Project Manager',
+  company: 'Hewlett-Packard Enterprise'
+)
+
+Reference.create(
   avatar: 'https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/andres.jpg?raw=true',
   name: 'Andres Narvaez',
   body: 'Ryan is an incredibly smart worker with a high proficiency in his field,

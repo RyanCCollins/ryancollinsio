@@ -1,0 +1,20 @@
+{
+  "name": "ryancollinsio",
+  "version": "1.0.0",
+  "description": "Professional portfolio for me, Ryan Collins. A GraphQL on Rails API and React single page app.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RyanCCollins/ryancollinsio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RyanCCollins/ryancollinsio/issues"
+  },
+  "homepage": "https://github.com/RyanCCollins/ryancollinsio#readme"
+}
