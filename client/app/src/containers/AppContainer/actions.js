@@ -57,8 +57,6 @@ export const loadPersistedUser = () => (dispatch) => {
       authenticateUser(parsedUser),
     );
   } else {
-    dispatch(
-      invalidateUser(),
-    );
+    dispatch(invalidateUser());
   }
 };
