@@ -2271,7 +2271,6 @@ Tutorial.create(
   image: "https://github.com/RyanCCollins/cdn/blob/master/misc/logo-redux.png?raw=true"
 )
 
-
 projects = Project.all
 projects.each do |project|
   project.status = "published"

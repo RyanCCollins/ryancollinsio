@@ -248,11 +248,13 @@ a.active {
 }
 
 .main-text {
-  p {
-    font-size: 26px !important;
+  p, li {
+    font-size: 20px !important;
     padding: 10px 40px;
     line-height: 1.75rem;
     letter-spacing: 1.3px;
+    font-weight: 400 !important;
+    color: #6c6c6c !important;
     @media screen and (max-width: 600px) {
       padding: 10px 10px;
     }
