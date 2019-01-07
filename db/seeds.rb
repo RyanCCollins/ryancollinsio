@@ -1,7 +1,7 @@
 User.create(
   name: "Admin User",
-  email: "admin@ryancollins.io",
-  password: "Password123!"
+  email: ENV['admin-email'],
+  password: ENV['admin-pw']
 )
 
 # React TS Boilerplate
@@ -41,7 +41,7 @@ p = Project.create!(
   title: 'Udacity Blitz Calendar Web App',
   user: User.all.first,
   featureImage: "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/mentor-calendar/main-mockup.jpg?raw=true",
-  description: "Built as a contractor for the Udacity Blitz platform, the mentor calendar web application is an engineering feat to say the least.  As a core engineer on the project, my goal is to implement the most cutting-edge web technologies available to build a highly optimized dynamic web application, which will be used by Udacity Mentors and Students from around the globe.",
+  description: "As a core engineer on the project, my goal was to implement the most cutting-edge web technologies available to build a highly optimized dynamic web application, which will be used by Udacity Mentors and Students from around the globe.",
   projectUrl: "https://github.com/udacity-blitz/calendar-web-app-frontend",
   repoUrl: "https://github.com/udacity-blitz/calendar-web-app-frontend",
   milestones: "- Integrated more than 150 unit tests in an effort to provide reliable code. \n - Utilized best-practices for organization of React applications. \n - Wrote dozens of connected containers and reusable React UI components following the Flux unidirectional and feature-first architectures",
@@ -82,7 +82,7 @@ p = Project.create(
   user: User.all.first,
   featureImage: "https://github.com/RyanCCollins/cdn/blob/master/portfolio-image-gallery-images/udacity-client.png?raw=true",
   caption: "Component-oriented dynamic SPA for Udacity Alumni Publishing Platform",
-  description: "A true feat of engineering, this application serves as a hub for Udacity Alumni from around the world. We built a bespoke publishing platform and social network to connect Alumni from around the world, using many of the most advanced web engineering technologies available.",
+  description: "This application serves as a hub for Udacity Alumni from around the world. We built a bespoke publishing platform and social network to connect Alumni from around the world, using many of the most advanced web engineering technologies available.",
   projectUrl: "https://udacity-alumni-client.herokuapp.com/",
   repoUrl: "https://github.com/udacityalumni/alumni-client",
   milestones: "- As team leader, lead the engineering of the Udacity Alumni Web application, with over 800 commits from 20+ engineers from around the world \n - Engineered a cutting edge React single page application that utilizes server rendering, providing exceptional performance. \n  - Implemented webpack code-chunking, lazy loading, and other similar performance optimization techniques to cut the time-to-first-byte loading time to milliseconds",
